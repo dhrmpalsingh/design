@@ -65,7 +65,7 @@ Very slow push in. One drop of condensation slides down the surface.
 
 An eye in the dark, the lamp reflected in it. Unblinking.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -85,7 +85,7 @@ Locked off. He doesn't blink. The lamp reflection trembles slightly.
 
 Artificial daylight swells through the apartment on schedule. DP asleep in a low bed.
 
-**Attach:** APARTMENT plate (flow-guide §1.6); DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** APARTMENT plate (flow-guide §1.6); DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -105,7 +105,7 @@ Locked off. The light rises smoothly from dim to bright over 8 seconds.
 
 DP opens his eyes.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -165,7 +165,7 @@ Locked off. The panel brightens gently.
 
 DP sits up. Behind him, the sealed window and the amber sky.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); APARTMENT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); APARTMENT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -205,7 +205,7 @@ Locked off. The 'strawberry' finishes forming and settles onto the dish.
 
 DP eats standing at the counter. The pet sits beside him, too still.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); Pet (flow-guide §1.5); APARTMENT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); Pet (flow-guide §1.5); APARTMENT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -265,7 +265,7 @@ Locked off. The crumb drops, the hatch flashes white, it is empty.
 
 DP's eyes flick, for half a second, to a low wall panel. Then away.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -305,7 +305,7 @@ Locked off.
 
 By the door he pulls on the dusty work jacket. The only dirt in the apartment.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); APARTMENT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); APARTMENT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -325,7 +325,7 @@ Locked off. He pulls the jacket on in one practised move.
 
 The half-mask goes onto his face. Click. Seal tone.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -345,7 +345,7 @@ Locked off. The mask seats against his face in one firm motion.
 
 He clips the hose to the belt unit. Its light goes white.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -365,7 +365,7 @@ Locked off. The hose clicks in; the light turns white.
 
 The door slides open. DP steps out into the pale corridor.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -405,7 +405,7 @@ Locked off.
 
 Inside the glass lift: DP among immaculate residents. He's the only one with dust on him, and the only one in a work mask.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); Crescent-respirator crowd reference (flow-guide §1.1 lift test); LIFT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); Crescent-respirator crowd reference (flow-guide §1.1 lift test); LIFT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -465,7 +465,7 @@ Locked off. Its tail sweeps in a perfectly even metronome rhythm.
 
 Over DP's shoulder: the lift leaves the tower core and the city opens up beyond the glass.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); LIFT plate (flow-guide §1.6); CITY plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); LIFT plate (flow-guide §1.6); CITY plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -505,7 +505,7 @@ Slow lateral drift. Flying commuters glide in silent lanes; nothing else moves i
 
 A transit concourse. DP crosses through the pale crowd.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); Crescent-respirator crowd reference (flow-guide §1.1 lift test); BRIDGE plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); Crescent-respirator crowd reference (flow-guide §1.1 lift test); BRIDGE plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -545,7 +545,7 @@ Locked off. Two commuter vehicles glide under the bridge.
 
 A plaza of perfect projected trees. DP walks beneath them. Nobody looks up.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); Crescent-respirator crowd reference (flow-guide §1.1 lift test); BRIDGE plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); Crescent-respirator crowd reference (flow-guide §1.1 lift test); BRIDGE plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -625,7 +625,7 @@ Locked off. The drone glides across frame, rinsing.
 
 A sealed agricultural floor. Real crops behind glass, pollination units flying in perfect grids. DP services a regulator in the foreground.
 
-**Attach:** AG-FLOOR plate (flow-guide §1.6); DP reference: C01 + C03 crops (add C02 for three-quarter angles); Pollination unit (flow-guide §1.4)
+**Attach:** AG-FLOOR plate (flow-guide §1.6); DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); Pollination unit (flow-guide §1.4)
 
 **Image prompt:**
 
@@ -705,7 +705,7 @@ Locked off. The arm sweeps once and retracts.
 
 His work tablet pings an unrelated notice.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -725,7 +725,7 @@ Locked off.
 
 Above the mask, his eyes flick to a camera dome on the ceiling.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -745,7 +745,7 @@ Locked off. His eyes go up, then down.
 
 He shifts his body to block the dome's view, and his hand goes into the tray.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); AG-FLOOR plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); AG-FLOOR plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -765,7 +765,7 @@ Locked off. He turns casually; his hand dips into the tray.
 
 The damaged unit slides into a cargo pocket.
 
-**Attach:** Pollination unit (flow-guide §1.4); DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** Pollination unit (flow-guide §1.4); DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -785,7 +785,7 @@ Locked off. The drone disappears into the pocket; the flap falls closed.
 
 He straightens up. Breath steady through the mask. His first transgression.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -825,7 +825,7 @@ Slow drift. The vehicle passes the window; the figure inside closes the door.
 
 DP comes home, lets the mask hang, hangs the dusty jacket by the door.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); APARTMENT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); APARTMENT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -845,7 +845,7 @@ Locked off. He hangs up the jacket and lets out a breath.
 
 He unclips the condensation canister from his belt unit.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -885,7 +885,7 @@ Locked off. A thin stream fills the jar.
 
 The pet greets him on schedule, a perfect head-bump. He rests a hand on its back.
 
-**Attach:** Pet (flow-guide §1.5); DP reference: C01 + C03 crops (add C02 for three-quarter angles); APARTMENT plate (flow-guide §1.6)
+**Attach:** Pet (flow-guide §1.5); DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); APARTMENT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -905,7 +905,7 @@ Locked off. The pet bumps his leg exactly once; his hand settles on it.
 
 He glances up at the ceiling sensor dome.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -925,7 +925,7 @@ Locked off. A quick glance up.
 
 He kneels and presses the low wall panel. It releases.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); APARTMENT plate (flow-guide §1.6); HABITAT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); APARTMENT plate (flow-guide §1.6); HABITAT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -985,7 +985,7 @@ Very slow push in toward the struggling strawberry plant.
 
 His face, lit warm from below by the lamp. Quiet devotion.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1085,7 +1085,7 @@ Locked off. The fingertip rests on the drawing.
 
 He puts the mask back on, unclips the hose from the belt unit and feeds it into the bay.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); HABITAT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); HABITAT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -1105,7 +1105,7 @@ Locked off. He threads the hose into the cavity.
 
 He sits against the wall beside the open bay, breathing slowly. The habitat runs on his breath.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); APARTMENT plate (flow-guide §1.6); HABITAT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); APARTMENT plate (flow-guide §1.6); HABITAT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -1265,7 +1265,7 @@ Locked off. The pencil lifts; the light goes out as the panel closes.
 
 Echo of SC01A: the light rises on schedule. DP wakes.
 
-**Attach:** APARTMENT plate (flow-guide §1.6); DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** APARTMENT plate (flow-guide §1.6); DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1305,7 +1305,7 @@ Locked off.
 
 Echo of SC03A: the click.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1385,7 +1385,7 @@ Locked off.
 
 Day 9. He kneels at the bay with a waste bag, to clear it out and end it.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); APARTMENT plate (flow-guide §1.6); HABITAT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); APARTMENT plate (flow-guide §1.6); HABITAT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -1445,7 +1445,7 @@ Slow push in along the silvery trail.
 
 He frowns, and reaches in to clear it.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1485,7 +1485,7 @@ Locked off. The leaf lifts slowly; the chrysalis sways once.
 
 He leans in. His eyes narrow.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1545,7 +1545,7 @@ Locked off. The bag hangs in the air.
 
 He lowers the bag. He closes the panel.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1585,7 +1585,7 @@ Locked off.
 
 Night 13. The dark apartment. DP asleep; the pet asleep at his feet.
 
-**Attach:** APARTMENT plate (flow-guide §1.6); DP reference: C01 + C03 crops (add C02 for three-quarter angles); Pet (flow-guide §1.5)
+**Attach:** APARTMENT plate (flow-guide §1.6); DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); Pet (flow-guide §1.5)
 
 **Image prompt:**
 
@@ -1645,7 +1645,7 @@ Locked off. The iris pattern flickers, cycles, then stops dead.
 
 DP wakes, because the pet has never done anything unscheduled before.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1705,7 +1705,7 @@ Locked off.
 
 He kneels and opens the bay. Lamp on.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); HABITAT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); HABITAT plate (flow-guide §1.6)
 
 **Image prompt:**
 
@@ -1825,7 +1825,7 @@ Locked off. The abdomen rises and falls.
 
 DP's face. He has stopped breathing.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1845,7 +1845,7 @@ Locked off. Nothing moves.
 
 The creature in the foreground. His face, soft behind it.
 
-**Attach:** Creature G1 (flow-guide §1.2); DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** Creature G1 (flow-guide §1.2); DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1905,7 +1905,7 @@ Locked off. The wing peels off the glass.
 
 It rests on his sleeve, trembling.
 
-**Attach:** Creature G1 (flow-guide §1.2); DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** Creature G1 (flow-guide §1.2); DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1965,7 +1965,7 @@ Locked off. The creature crosses the light; glittering scales hang and drift in 
 
 The long hold. DP sitting on the floor, watching it. He has never seen anything that wasn't programmed to behave.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)
 
 **Image prompt:**
 
@@ -1985,7 +1985,7 @@ Locked off. Only his eyes move, following it. Build the 30 s by chaining four cl
 
 The creature loops imperfectly in the warm beam above him. In the shadows, the pet watches.
 
-**Attach:** DP reference: C01 + C03 crops (add C02 for three-quarter angles); Creature G1 (flow-guide §1.2); Pet (flow-guide §1.5); APARTMENT plate (flow-guide §1.6)
+**Attach:** DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles); Creature G1 (flow-guide §1.2); Pet (flow-guide §1.5); APARTMENT plate (flow-guide §1.6)
 
 **Image prompt:**
 

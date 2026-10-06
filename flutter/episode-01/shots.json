@@ -71,7 +71,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Extreme close-up of one eye of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, in near darkness, a tiny warm lamp reflected in the iris, watching something below frame, utterly still. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. He doesn't blink. The lamp reflection trembles slightly.",
@@ -146,7 +146,7 @@
   ],
   "attach": [
    "APARTMENT plate (flow-guide §1.6)",
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Wide shot of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, at dawn: soft artificial daylight rising through the frosted ceiling panels, a low minimal bed where the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, lies asleep, a softly glowing wall panel, the sealed window showing rose-amber haze. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. The light rises smoothly from dim to bright over 8 seconds.",
@@ -173,7 +173,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Medium close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lying on a pale pillow in soft artificial morning light, eyes just opening, calm, unhurried. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. His eyes open; nothing else moves.",
@@ -257,7 +257,7 @@
    "APARTMENT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "APARTMENT plate (flow-guide §1.6)"
   ],
   "full_prompt": "Wide shot from the side of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, sitting up on the edge of a low bed in a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile; behind him the sealed floor-to-ceiling window full of rose-amber haze and distant towers. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
@@ -314,7 +314,7 @@
    "APARTMENT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "Pet (flow-guide §1.5)",
    "APARTMENT plate (flow-guide §1.6)"
   ],
@@ -397,7 +397,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, in soft morning light, his eyes glancing down and to the side toward something low on the wall, then away. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. A brief downward glance and back.",
@@ -452,7 +452,7 @@
    "APARTMENT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "APARTMENT plate (flow-guide §1.6)"
   ],
   "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; his grey twin-cartridge half-face respirator hanging at his chest from its black corrugated hose, which runs to a compact grey belt unit at his left hip, by the front door of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, shrugging on the dusty jacket; the dust on it is the only imperfection in the spotless room. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
@@ -480,7 +480,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Extreme close-up of the grey twin-cartridge half-face respirator being pressed onto the face of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; his eyes above it, practised and calm. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. The mask seats against his face in one firm motion.",
@@ -507,7 +507,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Insert of a black corrugated respirator hose clicking into a compact grey belt unit on dusty dark-grey cargo trousers; a small status light on the unit glowing white. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. The hose clicks in; the light turns white.",
@@ -534,7 +534,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Medium shot from a pristine pale-stone corridor as an apartment door slides silently open and the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; grey twin-cartridge half-face respirator over his nose and mouth, black corrugated hose over his left shoulder to a compact grey belt unit at his left hip, steps out. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. The door slides open; he walks out past camera.",
@@ -590,7 +590,7 @@
    "LIFT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "Crescent-respirator crowd reference (flow-guide §1.1 lift test)",
    "LIFT plate (flow-guide §1.6)"
   ],
@@ -677,7 +677,7 @@
    "CITY"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "LIFT plate (flow-guide §1.6)",
    "CITY plate (flow-guide §1.6)"
   ],
@@ -735,7 +735,7 @@
    "BRIDGE"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "Crescent-respirator crowd reference (flow-guide §1.1 lift test)",
    "BRIDGE plate (flow-guide §1.6)"
   ],
@@ -795,7 +795,7 @@
    "BRIDGE"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "Crescent-respirator crowd reference (flow-guide §1.1 lift test)",
    "BRIDGE plate (flow-guide §1.6)"
   ],
@@ -912,7 +912,7 @@
   ],
   "attach": [
    "AG-FLOOR plate (flow-guide §1.6)",
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "Pollination unit (flow-guide §1.4)"
   ],
   "full_prompt": "Wide shot of a sealed agricultural floor: perfect rows of real green crops under even white light behind floor-to-ceiling glass, tiny insect-scale pollination drones flying above them in an exact grid; in the foreground the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; his grey twin-cartridge half-face respirator hanging at his chest from its black corrugated hose, which runs to a compact grey belt unit at his left hip, kneels at an open humidity-regulator panel. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
@@ -1027,7 +1027,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Insert over the shoulder of a slim work tablet in a hand with a dusty charcoal canvas sleeve, the screen softly glowing (text added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off.",
@@ -1054,7 +1054,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, wearing a grey twin-cartridge half-face respirator, his eyes flicking up toward the ceiling. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. His eyes go up, then down.",
@@ -1082,7 +1082,7 @@
    "AG-FLOOR"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "AG-FLOOR plate (flow-guide §1.6)"
   ],
   "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; his grey twin-cartridge half-face respirator hanging at his chest from its black corrugated hose, which runs to a compact grey belt unit at his left hip, turning his back to a small white ceiling camera dome, his body screening his hand as it reaches into a white disposal tray. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
@@ -1112,7 +1112,7 @@
   ],
   "attach": [
    "Pollination unit (flow-guide §1.4)",
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Insert of a hand slipping a damaged insect-scale pollination drone: a bee-sized bio-synthetic body of pale engineered tissue over a micro-segmented graphite spine, thin carbon-fibre wing spars, the right forewing spar visibly bent, into the side cargo pocket of dusty dark-grey cargo trousers. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. The drone disappears into the pocket; the flap falls closed.",
@@ -1139,7 +1139,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Medium close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; grey twin-cartridge half-face respirator over his nose and mouth, black corrugated hose over his left shoulder to a compact grey belt unit at his left hip, straightening up from a kneeling position, eyes calm, breathing steadily. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. He rises into frame and holds still.",
@@ -1194,7 +1194,7 @@
    "APARTMENT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "APARTMENT plate (flow-guide §1.6)"
   ],
   "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; his grey twin-cartridge half-face respirator hanging at his chest from its black corrugated hose, which runs to a compact grey belt unit at his left hip, stepping into a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, at night and hanging the dusty charcoal jacket on a hook by the door. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
@@ -1222,7 +1222,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Insert of a hand unclipping a small clear condensation canister from a compact grey respirator belt unit at the hip of dark-grey cargo trousers; a little water inside. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. The canister clicks free.",
@@ -1279,7 +1279,7 @@
   ],
   "attach": [
    "Pet (flow-guide §1.5)",
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "APARTMENT plate (flow-guide §1.6)"
   ],
   "full_prompt": "Medium low shot of a bio-synthetic companion animal in a cat shape: soft short pale-grey coat, slightly too-perfect proportions and posture, calm glassy eyes, a tiny soft licence light at its collar, pressing its head against the shin of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, in a perfectly timed greeting; his hand resting on its back. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
@@ -1307,7 +1307,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Close-up from below of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, glancing up at a small white sensor dome on a pale ceiling, at night. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. A quick glance up.",
@@ -1336,7 +1336,7 @@
    "HABITAT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "APARTMENT plate (flow-guide §1.6)",
    "HABITAT plate (flow-guide §1.6)"
   ],
@@ -1419,7 +1419,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Medium close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, kneeling, his face lit warm from below by a tiny lamp inside a wall cavity, looking at it with quiet devotion. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. He breathes slowly; nothing else moves.",
@@ -1551,7 +1551,7 @@
    "HABITAT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "HABITAT plate (flow-guide §1.6)"
   ],
   "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, wearing his grey twin-cartridge half-face respirator, unclipping its black corrugated hose from the grey belt unit at his hip and feeding the end into a small open wall cavity at floor level lit by a tiny warm lamp: a shallow tray holding a handful of dry soil, one struggling wild strawberry plant with three leaves (one greying) and one tired white flower, a thumb-sized patch of half-grey moss on a stone, a small glass jar of water; almost pathetic. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
@@ -1581,7 +1581,7 @@
    "HABITAT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "APARTMENT plate (flow-guide §1.6)",
    "HABITAT plate (flow-guide §1.6)"
   ],
@@ -1803,7 +1803,7 @@
   ],
   "attach": [
    "APARTMENT plate (flow-guide §1.6)",
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Wide shot of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, at dawn: soft artificial daylight rising, a low minimal bed where the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, lies awake. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. The light rises fast.",
@@ -1857,7 +1857,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Extreme close-up of the grey twin-cartridge half-face respirator being pressed onto the face of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off.",
@@ -1967,7 +1967,7 @@
    "HABITAT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "APARTMENT plate (flow-guide §1.6)",
    "HABITAT plate (flow-guide §1.6)"
   ],
@@ -2050,7 +2050,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Medium close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lit by a warm lamp from a wall cavity, frowning, reaching forward. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. A small frown; his arm moves forward.",
@@ -2106,7 +2106,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Extreme close-up of the eyes of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, warm lamp light, narrowing as he leans closer to something tiny. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. He leans in a centimetre.",
@@ -2187,7 +2187,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lowering a white waste bag and quietly closing a small lamp-lit wall panel. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. The bag drops to his side; the panel closes and the light goes.",
@@ -2244,7 +2244,7 @@
   ],
   "attach": [
    "APARTMENT plate (flow-guide §1.6)",
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "Pet (flow-guide §1.5)"
   ],
   "full_prompt": "Wide night shot of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, in darkness, faint rose-amber city glow through the sealed window, the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, asleep in a low bed, a bio-synthetic companion animal in a cat shape: soft short pale-grey coat, slightly too-perfect proportions and posture, calm glassy eyes, a tiny soft licence light at its collar, asleep at its foot. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
@@ -2326,7 +2326,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, waking in a dark room, faint city glow, looking toward the foot of the bed with confusion. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. His eyes open and find the pet.",
@@ -2408,7 +2408,7 @@
    "HABITAT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "HABITAT plate (flow-guide §1.6)"
   ],
   "full_prompt": "Medium low shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, kneeling in a dark apartment and opening a small wall panel; warm lamp light spills over him. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
@@ -2573,7 +2573,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lit warm from below by a tiny lamp, completely still, holding his breath, eyes wide. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. Nothing moves.",
@@ -2602,7 +2602,7 @@
   ],
   "attach": [
    "Creature G1 (flow-guide §1.2)",
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Macro two-shot: a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, sharp in the foreground under a strawberry leaf, and behind it the soft-focus face of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lamp-lit. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Rack focus from the creature to his eyes and back.",
@@ -2687,7 +2687,7 @@
   ],
   "attach": [
    "Creature G1 (flow-guide §1.2)",
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Close-up of a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, resting on the heather-grey T-shirt sleeve of a man's arm, wings trembling, warm lamp light. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
   "motion": "Locked off. The wings tremble and settle.",
@@ -2774,7 +2774,7 @@
    "C01-C03"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)"
   ],
   "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, sitting on the floor in a dark apartment, lit warm by a small lamp, watching something flutter above him with quiet, overwhelmed wonder; a few drifting scales glinting in the air between him and the lamp. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text.",
   "motion": "Locked off. Only his eyes move, following it. Build the 30 s by chaining four clips from each clip's last frame.",
@@ -2804,7 +2804,7 @@
    "APARTMENT"
   ],
   "attach": [
-   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
    "Creature G1 (flow-guide §1.2)",
    "Pet (flow-guide §1.5)",
    "APARTMENT plate (flow-guide §1.6)"

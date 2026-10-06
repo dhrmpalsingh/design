@@ -36,7 +36,7 @@ PARTS = [  # (label, first scene, last scene)
 ]
 
 ATTACH = {
-    "C01-C03": "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+    "C01-C03": "DP reference: reference/DP-C01.png + DP-C03.png (add DP-C02.png for three-quarter angles)",
     "CONSUMER-MASK": "Crescent-respirator crowd reference (flow-guide §1.1 lift test)",
     "CREATURE-G1": "Creature G1 (flow-guide §1.2)",
     "CHRYSALIS": "Chrysalis (flow-guide §1.3)",

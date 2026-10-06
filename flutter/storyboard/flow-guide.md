@@ -26,7 +26,7 @@ Generate each one, pick the best, and keep it in the Flow project as a reusable 
 
 ### 1.1 DP (the protagonist)
 
-1. Crop the reference sheet [`../reference/protagonist-C01-C03.webp`](../reference/protagonist-C01-C03.webp) into three images: **C01** (front face), **C02** (three-quarter) and **C03** (full body, masked).
+1. Use the prepared crops of the reference sheet, with the label badges removed so Flow doesn't copy them: [`DP-C01.png`](../reference/DP-C01.png) (front face), [`DP-C02.png`](../reference/DP-C02.png) (three-quarter) and [`DP-C03.png`](../reference/DP-C03.png) (full body, masked).
 2. Upload them to Flow and use them as DP's reference every time he's in a shot.
 3. **Consistency test:** before any storyboard frame, generate these four test images with C01 + C03 attached. Check the curly hair with faded sides, the trimmed beard, and **the small mark at the outer corner of his left eye**.
 
