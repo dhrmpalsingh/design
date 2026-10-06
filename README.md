@@ -14,9 +14,10 @@ Pre-production package: [`flutter/`](flutter/README.md)
 | Creature biology | Proposed lock v0.1 |
 | Story beats | Proposed lock v0.1 (39 beats, ~16:30) |
 | Decisions | 21 listed, with recommendations |
+| **Episode 1 storyboard (10:00)** | **Draft v0.1**: 19 scenes, 104 shots, Flow prompts ([sheet](flutter/episode-01/storyboard-sheet.html) · [markdown](flutter/episode-01/storyboard.md) · [prompts](flutter/episode-01/flow-prompts.md)) |
 | Creature visual development | Not started |
 | Interface-text pass | Not started |
-| Shot list / animatic | Not started |
+| Animatic | Not started |
 
 ## Archive
 

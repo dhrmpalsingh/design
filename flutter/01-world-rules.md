@@ -43,7 +43,7 @@ The Authority has to be *right* about something, or the film is just "evil gover
 
 **Around 50 years ago:** The **Biological Preservation Authority** was founded with a reasonable mandate: *never again let living things reproduce beyond our control.*
 
-**The rhyme the film depends on:** the world was ended by **an engineered organism that helped nature and then reproduced without permission.** Sameer's creature is *exactly that profile*. From the Authority's point of view, he hasn't made a miracle. He has rebuilt the thing that ended the world.
+**The rhyme the film depends on:** the world was ended by **an engineered organism that helped nature and then reproduced without permission.** DP's creature is *exactly that profile*. From the Authority's point of view, he hasn't made a miracle. He has rebuilt the thing that ended the world.
 
 The film should never tell the audience who is right. It has to be possible to watch the final scene as **hope** or as **outbreak**.
 
@@ -80,10 +80,10 @@ The film should never tell the audience who is right. It has to be possible to w
 | **Base** | 0–150 | Sealed industry, recycling, water processing. Workers only. |
 | **Lower** | 150–400 | Dense, functional, older systems. |
 | **Mid** | 400–700 | The working middle. Transit concourses. |
-| **Upper** | 700–900 | Comfortable professionals. Better light, quieter air. **Sameer lives here (Floor 786).** |
+| **Upper** | 700–900 | Comfortable professionals. Better light, quieter air. **DP lives here (Floor 786).** |
 | **Summit** | 900+ | Wealth. Private flyers, real-glass skylights, the closest thing to sky. |
 
-Sameer is **not poor**. He lives in a nice apartment in a beautiful building. This matters: he has a lot to lose, and the system has been good to him.
+DP is **not poor**. He lives in a nice apartment in a beautiful building. This matters: he has a lot to lose, and the system has been good to him.
 
 ### The shared air network ⚠ (critical for the ending)
 
@@ -110,7 +110,7 @@ What you breathe through says what you do. Both tiers **collect condensation** f
 - A slim crescent unit that sits along the jaw and under the nose, with a near-invisible clear seal over the nose and mouth. The face stays readable.
 - A tiny **status light** at the temple for seal and allocation.
 
-**Work tier (technicians, Base workers, filtration crews; this is Sameer's):**
+**Work tier (technicians, Base workers, filtration crews; this is DP's):**
 - **Locked from the protagonist reference (C03).** A **grey half-face mask with twin side filter cartridges**, a **black corrugated hose** over the left shoulder, and a **compact grey belt unit** at the left hip that holds filtration, allocation and the **condensation canister**.
 - Built for ducts, wall cavities and dirty plant rooms, where the consumer tier would clog.
 - It's functional, heavy and slightly old-fashioned. **Among the crescents in a lift, it marks him as someone who works inside the walls.**
@@ -123,7 +123,7 @@ What you breathe through says what you do. Both tiers **collect condensation** f
 - Engineered protein, fungal farm products (Contained) and synthetic agriculture output.
 - Food is dispensed at home from a wall **dispenser** in pleasant, idealised shapes. **It is shaped like fruit it doesn't taste like.** A pale protein "strawberry" is the first food we see.
 - **Real fruit is something people know from images.**
-- Organic waste goes into the apartment's **sterilisation port**: a small wall hatch that flashes heat and UV and leaves nothing behind. Every home has one. *(It becomes the site of Sameer's final choice.)*
+- Organic waste goes into the apartment's **sterilisation port**: a small wall hatch that flashes heat and UV and leaves nothing behind. Every home has one. *(It becomes the site of DP's final choice.)*
 
 ---
 
@@ -133,7 +133,7 @@ People keep pets, and the pets are **LICENSED**:
 - **Bio-synthetic companions:** warm, soft, responsive. Engineered tissue over processors, with artificial nervous systems.
 - They behave like cats, birds, dogs, even butterflies, **without belonging to any ecosystem.** They don't eat prey, shed, age naturally or breed.
 - **Sterile by design. Fixed lifespan. Annual licence renewal.**
-- **Networked.** Their eyes and ears are part of the home's sensor suite. Most owners don't think about that. Sameer, who installs the sensors, does.
+- **Networked.** Their eyes and ears are part of the home's sensor suite. Most owners don't think about that. DP, who installs the sensors, does.
 - Their behaviour is **scheduled and perfect**: they wake on time and move in clean, repeating patterns.
 
 ---
@@ -142,7 +142,7 @@ People keep pets, and the pets are **LICENSED**:
 
 - **Trees exist primarily as simulations:** projected canopies, moulded synthetic trunks, moss walls of licensed non-reproducing tissue. Public plazas are full of greenery, and none of it is alive in the way that matters.
 - **Real plants exist only in CONTAINED facilities:** sealed agricultural floors where crops are grown under total control.
-- In those facilities, crops are pollinated by **pollination units**: tiny bio-synthetic insect-drones with carbon-fibre wing spars and self-repairing engineered tissue. They're sterile and centrally controlled, and they fly in **perfect grid patterns**. Damaged units are swept into disposal trays. *(Sameer takes one.)*
+- In those facilities, crops are pollinated by **pollination units**: tiny bio-synthetic insect-drones with carbon-fibre wing spars and self-repairing engineered tissue. They're sterile and centrally controlled, and they fly in **perfect grid patterns**. Damaged units are swept into disposal trays. *(DP takes one.)*
 
 ---
 
@@ -216,7 +216,7 @@ This is the ordered escalation used in Part V. **Every step is rational containm
 | **Interior light** | Soft, diffused, near shadowless. Artificial daylight that changes on a schedule. |
 | **⚠ The light rule** | **The air is so filtered that nothing floats in it. Light beams are invisible.** No dust motes, ever. When the creature first flies through the lamp, its shed scales and pollen make a light beam **visible for the first time in the film.** |
 | **⚠ The life rule** | **No birds, no insects, no weeds, no stains, no decay** anywhere, until the habitat. The audience should feel the absence before they can name it. |
-| **⚠ The one exception: workwear** | **The city is spotless; the people who clean it are not.** Technicians' work clothes carry dust and filter residue from inside the walls. Sameer's dusty charcoal jacket, cargo trousers and boots (reference C01–C03) are the **only dirt on screen** in public spaces. The dirt is on fabric, never in the air, and never on the city's surfaces. |
+| **⚠ The one exception: workwear** | **The city is spotless; the people who clean it are not.** Technicians' work clothes carry dust and filter residue from inside the walls. DP's dusty charcoal jacket, cargo trousers and boots (reference C01–C03) are the **only dirt on screen** in public spaces. The dirt is on fabric, never in the air, and never on the city's surfaces. |
 | **Architecture** | Elegant curves, biophilic design *without biology*: Gardens by the Bay supertrees, Zaha Hadid curves, Apple Park calm |
 | **Sound** | Engineered and pleasant: soft chimes, a constant low ventilation hum, quiet magnetic clicks. **No un-designed sound** until the creature's wings. |
 | **Lineage** | *Gattaca*, *Her*, *Ex Machina*, *Never Let Me Go*, *Severance*, *THX 1138*: the clean-dystopia tradition, not the cyberpunk one |

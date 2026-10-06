@@ -6,9 +6,9 @@
 
 ---
 
-## SAMEER *(working name)*
+## DP *(working name)*
 
-*Sameer* (समीर) means **gentle breeze** in Sanskrit, and in Arabic it means a companion in evening conversation. It's an ordinary name that's readable across South Asia, the Middle East and beyond. It's also a quiet irony: he's a breeze in a city where no window opens and no wind ever reaches anyone's face. It's never said aloud in the film. It's swappable.
+The character's final name is **parked** and will be decided later. Until then, every document and storyboard calls him **DP**. The film is **universal**: no national, ethnic or cultural markers in the story, the world or the names.
 
 | | |
 |---|---|
@@ -24,7 +24,7 @@
 
 ## His job, and why it's the right job
 
-Sameer installs, calibrates and repairs the systems that keep homes perfect: **air-quality sensors, humidity regulators, domestic filtration, and bio-compliance equipment.** Every day he goes into strangers' apartments and replaces the devices that watch them.
+DP installs, calibrates and repairs the systems that keep homes perfect: **air-quality sensors, humidity regulators, domestic filtration, and bio-compliance equipment.** Every day he goes into strangers' apartments and replaces the devices that watch them.
 
 The job does three things for the story:
 
@@ -44,7 +44,7 @@ The job does three things for the story:
 
 A **decommissioned humidity-regulator bay** behind a wall panel near the floor. It's about 60 cm wide, 40 cm high and 35 cm deep.
 
-- **Sameer decommissioned it himself.** He logged the regulator as removed and its sensor as retired. It's a **sensor dead zone**, and he knows it because he made it.
+- **DP decommissioned it himself.** He logged the regulator as removed and its sensor as retired. It's a **sensor dead zone**, and he knows it because he made it.
 - That is the habitat's only protection. Whatever happens *inside* the bay is invisible. Whatever *leaks out* (humidity, CO₂ change, movement, particles) is not.
 - That's why the variance readings creep up instead of spiking. And it's why the creature becomes dangerous the moment it starts leaving the bay.
 
@@ -68,9 +68,9 @@ It should look **almost pathetic**. It is not a lush greenhouse.
 ### The inheritance: grandmother's tin
 
 A small, dented metal tin. Inside:
-- **The diagram.** A hand-drawn cycle in faded ink: *sun → plant → pollinator → seed → soil → water → sun*. The pollinator is drawn as a butterfly. Sameer has circled that link in his own hand and written next to it: **"impossible."**
+- **The diagram.** A hand-drawn cycle in faded ink: *sun → plant → pollinator → seed → soil → water → sun*. The pollinator is drawn as a butterfly. DP has circled that link in his own hand and written next to it: **"impossible."**
 - **Empty seed envelopes**, all used and all failed.
-- **A sealed glass vial** in old cryo-wrap, labelled in his grandmother's handwriting. The label has a Latin name he has never looked up, and **a tiny drawn butterfly.** Sameer thinks it's spores or seed stock. The audience can see the drawing. He can't, or doesn't look.
+- **A sealed glass vial** in old cryo-wrap, labelled in his grandmother's handwriting. The label has a Latin name he has never looked up, and **a tiny drawn butterfly.** DP thinks it's spores or seed stock. The audience can see the drawing. He can't, or doesn't look.
 
 We never explain who his grandmother was. One shot of the tin, the handwriting and the diagram is enough to say that someone before him tried too.
 
@@ -128,7 +128,7 @@ The companion is the only other "living" presence in his apartment. It's warm, s
 Its story job:
 1. **Contrast.** Perfect, scheduled behaviour sits beside the creature's imperfect, unprogrammed movement.
 2. **First witness.** The night of the emergence, the pet turns toward the wall *off schedule*. Its classification loop flickers and freezes. It doesn't know what it's looking at, and neither do we yet.
-3. **Betrayal without malice.** During the hunt the system switches it into **sensor mode**, and it starts tracking the creature around the room with smooth, perfect head turns. Sameer has to **switch it off**: he puts out the only other "life" he has to protect the real one. It goes limp and stays warm.
+3. **Betrayal without malice.** During the hunt the system switches it into **sensor mode**, and it starts tracking the creature around the room with smooth, perfect head turns. DP has to **switch it off**: he puts out the only other "life" he has to protect the real one. It goes limp and stays warm.
 
 ---
 
@@ -155,7 +155,7 @@ Source: [`reference/protagonist-C01-C03.webp`](reference/protagonist-C01-C03.web
 | Element | Locked from reference |
 |---|---|
 | **Age / build** | Early 30s. Average height, lean, relaxed posture. |
-| **Ethnicity** | South Asian, warm medium-brown skin |
+| **Skin** | Warm brown. Follow the reference exactly. |
 | **Face** | Soft, warm dark-brown eyes with a slightly tired, kind expression. A gentle half-smile at rest. |
 | **Hair** | Thick, dark, **curly and slightly unruly on top**, with shorter faded sides |
 | **Facial hair** | **Full, short, neatly trimmed black beard** with a defined moustache |
@@ -165,12 +165,11 @@ Source: [`reference/protagonist-C01-C03.webp`](reference/protagonist-C01-C03.web
 | **Trousers** | **Dark grey cargo work trousers** with side cargo pockets, dusty, worn pale at the knees and thighs |
 | **Boots** | **Brown leather lace-up work boots**, scuffed and dusty |
 | **Respirator (work-grade)** | A **grey half-face mask with twin side filter cartridges** over the nose and mouth. A **black corrugated hose** runs from the mask over his left shoulder and down to a **compact grey belt unit at his left hip** (filtration and condensation canister). See World Rules §5. |
-| **Home wardrobe** | *(Not in the reference; proposal.)* Loose plain T-shirt and soft trousers, barefoot on the warm composite floor. **Clean.** The dust stays on the work clothes by the door. |
-| **Mask mark** | *(Not in the reference; proposal.)* When the half-mask comes off, there's a faint pressure line across the bridge of his nose and his cheeks, from years of wear. It's the only mark the city leaves on his body. |
+| **At home** | **The same reference outfit, without the jacket and boots:** heather-grey T-shirt and dark-grey cargo trousers, barefoot. The jacket hangs by the door. No invented wardrobe; the reference is followed strictly in every scene. |
 
 ### Why his clothes are dirty in a spotless city
 
-The world rules say the city has **no grime**. Sameer is the exception, and that's deliberate.
+The world rules say the city has **no grime**. DP is the exception, and that's deliberate.
 
 He services filters, ducts, humidity regulators and the inside of walls: **everywhere the city hides the dirt it removes from the air.** His work clothes carry that residue. In the lift (B4), surrounded by polished Upper-band residents in pale, clean clothing, **he's the only person in frame with dust on him.** He literally wears what the city doesn't want to see. That fits a man who keeps soil behind a wall panel.
 

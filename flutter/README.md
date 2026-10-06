@@ -13,10 +13,11 @@
 | # | Document | Locks |
 |---|---|---|
 | 01 | [World Rules](01-world-rules.md) | The Law (Licensed / Contained / Autonomous), the Remedy and the Collapse, the Preservation Authority, the vertical city and the shared air network, breathing, food, pets, plants, rain, surveillance thresholds, the containment protocol, look and sound rules, and rules → on-screen proof |
-| 02 | [Protagonist](02-protagonist.md) | Sameer, 31, Tower 41 / Floor 786, with his look **locked** from the reference sheet: his job, his apartment, the hidden bay, the habitat inventory, the inheritance, his psychology and arc (control → release), the pet, performance notes, canonical look |
+| 02 | [Protagonist](02-protagonist.md) | DP, 31, Tower 41 / Floor 786, with his look **locked** from the reference sheet: his job, his apartment, the hidden bay, the habitat inventory, the inheritance, his psychology and arc (control → release), the pet, performance notes, canonical look |
 | 03 | [The Creature](03-creature.md) | Origin mechanism, life cycle and timeline, chrysalis, anatomy, asymmetry, emergence, flight and behaviour, parthenogenesis, generational drift, detection signatures, the Authority's threat assessment, design do's and don'ts, canonical generation text |
 | 04 | [Story Beats](04-story-beats.md) | 39 timed beats across 5 parts and an ending, with on-screen readouts, sound, setups and payoffs, and a 12-minute cut |
 | 05 | [Decisions](05-decisions.md) | 21 choices with recommendations (protagonist look locked), and the production pipeline order |
+| 06 | [Episode 1 storyboard](episode-01/storyboard.md) | The 10-minute first episode, "Birth": a cold open, beats 1–17 and an end tag, as 19 scenes and 104 shots with Google Flow prompts. Visual sheet: [`episode-01/storyboard-sheet.html`](episode-01/storyboard-sheet.html). |
 
 ## The ideas that hold it together
 

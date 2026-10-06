@@ -11,15 +11,11 @@ Where things stand when this work moved from the cloud session to Dharampal's co
 
 ## Stopped before finishing
 
-1. **Protagonist name.** The naming workflow produced 18 candidates ([`name-candidates.md`](name-candidates.md)) but was stopped before judging and fact-checking. The docs still say "Sameer" in places; the storyboard and Flow material say **DP**. Next: pick the name, verify its meaning, then replace "Sameer" across `flutter/*.md`.
-2. **Storyboard shots.** The storyboard workflow was stopped before writing any data. Next: write `storyboard/data/S1-the-world.json` … `S5-hunt-and-ending.json`, then run `python3 flutter/storyboard/render.py`.
-   - One shot object per shot, with keys `id` (e.g. `B07-A`), `beat`, `title`, `duration_s`, `shot_size`, `angle`, `lens_mm`, `camera`, `frame`, `action`, `light_colour`, `sound`, `text_on_screen`, `transition`, `keyframe_prompt`, `motion_prompt`, `refs`, `notes`.
-   - Shot durations must add up to each beat's time range in [`04-story-beats.md`](04-story-beats.md).
-   - Keyframe prompts must be self-contained, include the character and creature text blocks when those are in frame, never ask for rendered text, and end with *"cinematic film still, 2.39:1 composition, … photoreal, no text"*.
-   - Sequences: S1 = beats 1–7 (0:00–3:00), S2 = 8–13 (3:00–5:30), S3 = 14–17 (5:30–8:30), S4 = 18–25 (8:30–11:45), S5 = 26–39 (11:45–16:30).
+1. **Protagonist name: parked.** Working name **DP** everywhere. The final name is decided later and must be universal (no national or cultural markers). The earlier Sanskrit-rooted candidates are archived in [`../archive/flutter-name-candidates-parked.md`](../archive/flutter-name-candidates-parked.md).
+2. **Storyboard: Episode 1 done (draft v0.1).** The series runs as episodes. Episode 1 (10:00) is in [`episode-01/`](episode-01/storyboard.md): 19 scenes, 104 shots, hero list and Flow prompts, built from `episode-01/shots.py` by `episode-01/build.py`. The earlier full-film storyboard plan (`storyboard/data/S1…S5`) is superseded; `storyboard/flow-guide.md` still applies.
 
 ## Next on the local machine: Google Flow
 
 1. Open the Browser pane (desktop app) or use Claude in Chrome, and sign in to Google as the account with Flow credits (**pipihiri2021**) yourself.
 2. Follow [`storyboard/flow-guide.md`](storyboard/flow-guide.md) §1: build the ingredients first (DP → creature → chrysalis and G2 → props → locations), picking one image at each step.
-3. Then generate shot frames from `storyboard/flow/`, hero frames first. Save them as `storyboard/frames/<shot-id>.png` and run the renderer.
+3. Then generate Episode 1 frames from [`episode-01/flow-prompts.md`](episode-01/flow-prompts.md), hero frames first. Save them as `episode-01/frames/<SHOT>.png` (e.g. `SC06C.png`) and run `python3 flutter/episode-01/build.py`.

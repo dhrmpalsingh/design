@@ -1,0 +1,2896 @@
+[
+ {
+  "id": "SC00A",
+  "scene": "SC00",
+  "start": 0.0,
+  "dur": 8,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Black. A warm glow fades up on a wet, translucent surface with metallic threads beneath it. We can't tell what it is.",
+  "sound": "Silence, then one slow breath through a respirator valve.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CHRYSALIS"
+  ],
+  "attach": [
+   "Chrysalis (flow-guide §1.3)"
+  ],
+  "full_prompt": "Extreme macro of a wet translucent organic surface like grape skin, fine uneven metallic threads running beneath it, condensation beads, lit by a single tiny warm lamp from below, deep darkness around; abstract and unidentifiable. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The surface swells almost imperceptibly once, like a slow breath.",
+  "frame": null,
+  "end": 8.0,
+  "prompt": "Extreme macro of a wet translucent organic surface like grape skin, fine uneven metallic threads running beneath it, condensation beads, lit by a single tiny warm lamp from below, deep darkness around; abstract and unidentifiable.",
+  "motes": false
+ },
+ {
+  "id": "SC00B",
+  "scene": "SC00",
+  "start": 8.0,
+  "dur": 7,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "slow push in",
+  "action": "The surface pulses once. A bead of condensation slides down.",
+  "sound": "A faint wet creak.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CHRYSALIS"
+  ],
+  "attach": [
+   "Chrysalis (flow-guide §1.3)"
+  ],
+  "full_prompt": "Extreme macro of a 3.5 cm chrysalis hanging under a greying wild-strawberry leaf: translucent wet organic tissue like grape skin held to light, fine uneven metallic threads running beneath it like veins or wiring, an anchoring silk pad of part organic thread and part frayed filament, condensation beads, no glow, it looks like it might be rotting, framed so tightly it is abstract; a single bead of condensation on the surface, warm lamp light, black background. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Very slow push in. One drop of condensation slides down the surface.",
+  "frame": null,
+  "end": 15.0,
+  "prompt": "Extreme macro of {CHRYSALIS}, framed so tightly it is abstract; a single bead of condensation on the surface, warm lamp light, black background.",
+  "motes": false
+ },
+ {
+  "id": "SC00C",
+  "scene": "SC00",
+  "start": 15.0,
+  "dur": 5,
+  "size": "ECU",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "An eye in the dark, the lamp reflected in it. Unblinking.",
+  "sound": "His held breath.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Extreme close-up of one eye of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, in near darkness, a tiny warm lamp reflected in the iris, watching something below frame, utterly still. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He doesn't blink. The lamp reflection trembles slightly.",
+  "frame": null,
+  "end": 20.0,
+  "prompt": "Extreme close-up of one eye of {DP_FACE}, in near darkness, a tiny warm lamp reflected in the iris, watching something below frame, utterly still.",
+  "motes": false
+ },
+ {
+  "id": "SC00D",
+  "scene": "SC00",
+  "start": 20.0,
+  "dur": 4,
+  "size": "INSERT",
+  "lens": 0,
+  "angle": "—",
+  "move": "—",
+  "action": "Black. A tiny organic crack.",
+  "sound": "A small, wet crack. Silence.",
+  "text": "",
+  "trans": "HARD CUT",
+  "hero": false,
+  "refs": [],
+  "attach": [],
+  "full_prompt": "Pure black frame.",
+  "motion": "Hold on black.",
+  "frame": null,
+  "end": 24.0,
+  "prompt": "Pure black frame.",
+  "motes": false
+ },
+ {
+  "id": "SC00E",
+  "scene": "SC00",
+  "start": 24.0,
+  "dur": 6,
+  "size": "TITLE",
+  "lens": 0,
+  "angle": "—",
+  "move": "—",
+  "action": "Title card: FLUTTER. White on black, opacity rising and falling like a breath.",
+  "sound": "One long exhale.",
+  "text": "FLUTTER",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [],
+  "attach": [],
+  "full_prompt": "Pure black frame (title added in post).",
+  "motion": "Hold on black; the title breathes in post.",
+  "frame": null,
+  "end": 30.0,
+  "prompt": "Pure black frame (title added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC01A",
+  "scene": "SC01",
+  "start": 30.0,
+  "dur": 8,
+  "size": "WS",
+  "lens": 24,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Artificial daylight swells through the apartment on schedule. DP asleep in a low bed.",
+  "sound": "A soft two-note chime. The ventilation hum starts and stays under every interior shot.",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "APARTMENT",
+   "C01-C03"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)",
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Wide shot of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, at dawn: soft artificial daylight rising through the frosted ceiling panels, a low minimal bed where the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, lies asleep, a softly glowing wall panel, the sealed window showing rose-amber haze. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The light rises smoothly from dim to bright over 8 seconds.",
+  "frame": null,
+  "end": 38.0,
+  "prompt": "Wide shot of {APT}, at dawn: soft artificial daylight rising through the frosted ceiling panels, a low minimal bed where {DP_HOME}, lies asleep, a softly glowing wall panel, the sealed window showing rose-amber haze.",
+  "motes": false
+ },
+ {
+  "id": "SC01B",
+  "scene": "SC01",
+  "start": 38.0,
+  "dur": 4,
+  "size": "MCU",
+  "lens": 50,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "DP opens his eyes.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Medium close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lying on a pale pillow in soft artificial morning light, eyes just opening, calm, unhurried. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. His eyes open; nothing else moves.",
+  "frame": null,
+  "end": 42.0,
+  "prompt": "Medium close-up of {DP_FACE}, lying on a pale pillow in soft artificial morning light, eyes just opening, calm, unhurried.",
+  "motes": false
+ },
+ {
+  "id": "SC01C",
+  "scene": "SC01",
+  "start": 42.0,
+  "dur": 6,
+  "size": "MS",
+  "lens": 50,
+  "angle": "low",
+  "move": "locked off",
+  "action": "At the foot of the bed, the pet wakes at exactly the same moment and stretches in a perfectly symmetrical motion.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "PET",
+   "APARTMENT"
+  ],
+  "attach": [
+   "Pet (flow-guide §1.5)",
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of a bio-synthetic companion animal in a cat shape: soft short pale-grey coat, slightly too-perfect proportions and posture, calm glassy eyes, a tiny soft licence light at its collar, at the foot of a pale bed in a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, mid-stretch, the stretch unnaturally symmetrical and smooth. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The pet stretches in one perfectly smooth, mechanical-feeling arc, then settles exactly back into place.",
+  "frame": null,
+  "end": 48.0,
+  "prompt": "Medium shot of {PET}, at the foot of a pale bed in {APT}, mid-stretch, the stretch unnaturally symmetrical and smooth.",
+  "motes": false
+ },
+ {
+  "id": "SC01D",
+  "scene": "SC01",
+  "start": 48.0,
+  "dur": 4,
+  "size": "INSERT",
+  "lens": 65,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The home panel's morning readout.",
+  "sound": "",
+  "text": "O₂ 21.0% · RH 45.0% · 22.0°C",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close insert of a softly glowing wall interface panel in pale stone and frosted glass, minimal and elegant (readout added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The panel brightens gently.",
+  "frame": null,
+  "end": 52.0,
+  "prompt": "Close insert of a softly glowing wall interface panel in pale stone and frosted glass, minimal and elegant (readout added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC01E",
+  "scene": "SC01",
+  "start": 52.0,
+  "dur": 3,
+  "size": "WS",
+  "lens": 32,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "DP sits up. Behind him, the sealed window and the amber sky.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "APARTMENT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Wide shot from the side of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, sitting up on the edge of a low bed in a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile; behind him the sealed floor-to-ceiling window full of rose-amber haze and distant towers. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He sits up and rests his forearms on his knees.",
+  "frame": null,
+  "end": 55.0,
+  "prompt": "Wide shot from the side of {DP_HOME}, sitting up on the edge of a low bed in {APT}; behind him the sealed floor-to-ceiling window full of rose-amber haze and distant towers.",
+  "motes": false
+ },
+ {
+  "id": "SC02A",
+  "scene": "SC02",
+  "start": 55.0,
+  "dur": 5,
+  "size": "CU",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The wall dispenser extrudes a pale protein \"strawberry\" into a dish.",
+  "sound": "A soft dispenser whir.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up of an elegant wall food dispenser in brushed champagne metal extruding a pale, slightly translucent protein food moulded into the perfect shape of a strawberry onto a white dish; clinical and beautiful. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The 'strawberry' finishes forming and settles onto the dish.",
+  "frame": null,
+  "end": 60.0,
+  "prompt": "Close-up of an elegant wall food dispenser in brushed champagne metal extruding a pale, slightly translucent protein food moulded into the perfect shape of a strawberry onto a white dish; clinical and beautiful.",
+  "motes": false
+ },
+ {
+  "id": "SC02B",
+  "scene": "SC02",
+  "start": 60.0,
+  "dur": 7,
+  "size": "MS",
+  "lens": 40,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "DP eats standing at the counter. The pet sits beside him, too still.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "PET",
+   "APARTMENT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "Pet (flow-guide §1.5)",
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, standing at a pale stone kitchen counter eating the pale protein strawberry, a bio-synthetic companion animal in a cat shape: soft short pale-grey coat, slightly too-perfect proportions and posture, calm glassy eyes, a tiny soft licence light at its collar, sitting on the counter beside him in a perfectly upright pose, inside a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He eats one bite; the pet doesn't move at all.",
+  "frame": null,
+  "end": 67.0,
+  "prompt": "Medium shot of {DP_HOME}, standing at a pale stone kitchen counter eating the pale protein strawberry, {PET}, sitting on the counter beside him in a perfectly upright pose, inside {APT}.",
+  "motes": false
+ },
+ {
+  "id": "SC02C",
+  "scene": "SC02",
+  "start": 67.0,
+  "dur": 4,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "In the panel's corner, a number nobody looks at.",
+  "sound": "",
+  "text": "BIOLOGICAL VARIANCE 0.001% — WITHIN TOLERANCE",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close insert of the corner of a softly glowing wall interface panel, minimal, pale stone surround (readout added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 71.0,
+  "prompt": "Close insert of the corner of a softly glowing wall interface panel, minimal, pale stone surround (readout added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC02D",
+  "scene": "SC02",
+  "start": 71.0,
+  "dur": 5,
+  "size": "CU",
+  "lens": 65,
+  "angle": "high",
+  "move": "locked off",
+  "action": "A crumb goes into the sterilisation port. A flash. Nothing left.",
+  "sound": "A soft 'fft'.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up from above of a small round wall hatch in brushed champagne metal, open, a fingertip dropping a pale crumb into it; a soft white-blue flash of light inside. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The crumb drops, the hatch flashes white, it is empty.",
+  "frame": null,
+  "end": 76.0,
+  "prompt": "Close-up from above of a small round wall hatch in brushed champagne metal, open, a fingertip dropping a pale crumb into it; a soft white-blue flash of light inside.",
+  "motes": false
+ },
+ {
+  "id": "SC02E",
+  "scene": "SC02",
+  "start": 76.0,
+  "dur": 4,
+  "size": "CU",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "DP's eyes flick, for half a second, to a low wall panel. Then away.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, in soft morning light, his eyes glancing down and to the side toward something low on the wall, then away. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. A brief downward glance and back.",
+  "frame": null,
+  "end": 80.0,
+  "prompt": "Close-up of {DP_FACE}, in soft morning light, his eyes glancing down and to the side toward something low on the wall, then away.",
+  "motes": false
+ },
+ {
+  "id": "SC02F",
+  "scene": "SC02",
+  "start": 80.0,
+  "dur": 4,
+  "size": "INSERT",
+  "lens": 50,
+  "angle": "low",
+  "move": "locked off",
+  "action": "The low wall panel near the floor: flush, seamless, ordinary.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Low-angle insert of a flush, seamless pale wall panel near the floor of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile; perfectly ordinary, nothing to see. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 84.0,
+  "prompt": "Low-angle insert of a flush, seamless pale wall panel near the floor of {APT}; perfectly ordinary, nothing to see.",
+  "motes": false
+ },
+ {
+  "id": "SC02G",
+  "scene": "SC02",
+  "start": 84.0,
+  "dur": 6,
+  "size": "MS",
+  "lens": 35,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "By the door he pulls on the dusty work jacket. The only dirt in the apartment.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "APARTMENT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; his grey twin-cartridge half-face respirator hanging at his chest from its black corrugated hose, which runs to a compact grey belt unit at his left hip, by the front door of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, shrugging on the dusty jacket; the dust on it is the only imperfection in the spotless room. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He pulls the jacket on in one practised move.",
+  "frame": null,
+  "end": 90.0,
+  "prompt": "Medium shot of {DP_WORK}, by the front door of {APT}, shrugging on the dusty jacket; the dust on it is the only imperfection in the spotless room.",
+  "motes": false
+ },
+ {
+  "id": "SC03A",
+  "scene": "SC03",
+  "start": 90.0,
+  "dur": 4,
+  "size": "ECU",
+  "lens": 65,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The half-mask goes onto his face. Click. Seal tone.",
+  "sound": "CLICK + seal tone (motif).",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Extreme close-up of the grey twin-cartridge half-face respirator being pressed onto the face of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; his eyes above it, practised and calm. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The mask seats against his face in one firm motion.",
+  "frame": null,
+  "end": 94.0,
+  "prompt": "Extreme close-up of the grey twin-cartridge half-face respirator being pressed onto the face of {DP_FACE}; his eyes above it, practised and calm.",
+  "motes": false
+ },
+ {
+  "id": "SC03B",
+  "scene": "SC03",
+  "start": 94.0,
+  "dur": 3,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "He clips the hose to the belt unit. Its light goes white.",
+  "sound": "",
+  "text": "ALLOCATION 100%",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Insert of a black corrugated respirator hose clicking into a compact grey belt unit on dusty dark-grey cargo trousers; a small status light on the unit glowing white. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The hose clicks in; the light turns white.",
+  "frame": null,
+  "end": 97.0,
+  "prompt": "Insert of a black corrugated respirator hose clicking into a compact grey belt unit on dusty dark-grey cargo trousers; a small status light on the unit glowing white.",
+  "motes": false
+ },
+ {
+  "id": "SC03C",
+  "scene": "SC03",
+  "start": 97.0,
+  "dur": 5,
+  "size": "MS",
+  "lens": 32,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The door slides open. DP steps out into the pale corridor.",
+  "sound": "A soft door glide.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Medium shot from a pristine pale-stone corridor as an apartment door slides silently open and the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; grey twin-cartridge half-face respirator over his nose and mouth, black corrugated hose over his left shoulder to a compact grey belt unit at his left hip, steps out. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The door slides open; he walks out past camera.",
+  "frame": null,
+  "end": 102.0,
+  "prompt": "Medium shot from a pristine pale-stone corridor as an apartment door slides silently open and {DP_MASKED}, steps out.",
+  "motes": false
+ },
+ {
+  "id": "SC04A",
+  "scene": "SC04",
+  "start": 102.0,
+  "dur": 3,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The floor counter falls from 786.",
+  "sound": "A low lift hum.",
+  "text": "786 → 520",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "LIFT"
+  ],
+  "attach": [
+   "LIFT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Insert of an elegant brushed-champagne lift floor indicator, softly lit (numbers added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 105.0,
+  "prompt": "Insert of an elegant brushed-champagne lift floor indicator, softly lit (numbers added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC04B",
+  "scene": "SC04",
+  "start": 105.0,
+  "dur": 7,
+  "size": "MS",
+  "lens": 32,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Inside the glass lift: DP among immaculate residents. He's the only one with dust on him, and the only one in a work mask.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "CONSUMER-MASK",
+   "LIFT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "Crescent-respirator crowd reference (flow-guide §1.1 lift test)",
+   "LIFT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot inside a spotless glass-walled express lift: the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; grey twin-cartridge half-face respirator over his nose and mouth, black corrugated hose over his left shoulder to a compact grey belt unit at his left hip, standing among elegant residents in pale, immaculate, well-tailored clothes, each wearing a slim champagne-metal crescent respirator along the jaw with a near-invisible clear seal over the nose and mouth; he is the only person with dusty clothes and the only one in a heavy work mask. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Nobody moves; the city drifts past the glass behind them.",
+  "frame": null,
+  "end": 112.0,
+  "prompt": "Medium shot inside a spotless glass-walled express lift: {DP_MASKED}, standing among {CROWD}; he is the only person with dusty clothes and the only one in a heavy work mask.",
+  "motes": false
+ },
+ {
+  "id": "SC04C",
+  "scene": "SC04",
+  "start": 112.0,
+  "dur": 6,
+  "size": "MCU",
+  "lens": 50,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "A six-year-old girl attaches her own crescent respirator in one practised movement. Her mother doesn't look.",
+  "sound": "A small click.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CONSUMER-MASK",
+   "LIFT"
+  ],
+  "attach": [
+   "Crescent-respirator crowd reference (flow-guide §1.1 lift test)",
+   "LIFT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium close-up inside a glass lift of a six-year-old girl in pale clothes fitting a small slim champagne-metal crescent respirator to her own jaw with practised ease; her elegant mother beside her, looking ahead, not helping. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The girl clicks the respirator on in one fluid motion.",
+  "frame": null,
+  "end": 118.0,
+  "prompt": "Medium close-up inside a glass lift of a six-year-old girl in pale clothes fitting a small slim champagne-metal crescent respirator to her own jaw with practised ease; her elegant mother beside her, looking ahead, not helping.",
+  "motes": false
+ },
+ {
+  "id": "SC04D",
+  "scene": "SC04",
+  "start": 118.0,
+  "dur": 4,
+  "size": "MS",
+  "lens": 50,
+  "angle": "low",
+  "move": "locked off",
+  "action": "A licensed dog sits in a too-regular rhythm, its collar tag glowing.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "LIFT"
+  ],
+  "attach": [
+   "LIFT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of a bio-synthetic dog with a soft glowing licence tag on its collar sitting in a glass lift, its posture and tail movement unnaturally regular. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Its tail sweeps in a perfectly even metronome rhythm.",
+  "frame": null,
+  "end": 122.0,
+  "prompt": "Medium shot of a bio-synthetic dog with a soft glowing licence tag on its collar sitting in a glass lift, its posture and tail movement unnaturally regular.",
+  "motes": false
+ },
+ {
+  "id": "SC04E",
+  "scene": "SC04",
+  "start": 122.0,
+  "dur": 8,
+  "size": "OTS",
+  "lens": 35,
+  "angle": "eye level",
+  "move": "slow push in",
+  "action": "Over DP's shoulder: the lift leaves the tower core and the city opens up beyond the glass.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "LIFT",
+   "CITY"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "LIFT plate (flow-guide §1.6)",
+   "CITY plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Over-the-shoulder shot from behind the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; grey twin-cartridge half-face respirator over his nose and mouth, black corrugated hose over his left shoulder to a compact grey belt unit at his left hip, looking out through the glass wall of the lift as it emerges from the tower core into a beautiful vertical megacity: colossal elegant towers a thousand floors tall rising into a permanent rose-amber haze with a pale sun disc, connected by curved glass aerial bridges and transport tubes, quiet flying commuter vehicles moving in orderly lanes; luxurious and efficient, no neon, no grime, no birds. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Slow push in past his shoulder toward the glass as the city is revealed.",
+  "frame": null,
+  "end": 130.0,
+  "prompt": "Over-the-shoulder shot from behind {DP_MASKED}, looking out through the glass wall of the lift as it emerges from the tower core into {CITY}.",
+  "motes": false
+ },
+ {
+  "id": "SC04F",
+  "scene": "SC04",
+  "start": 130.0,
+  "dur": 10,
+  "size": "EWS",
+  "lens": 18,
+  "angle": "eye level",
+  "move": "slow drift",
+  "action": "The city: colossal towers in rose-amber haze, glass bridges, flying commuters in silent lanes. No birds.",
+  "sound": "Wind against glass, very distant.",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "CITY"
+  ],
+  "attach": [
+   "CITY plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Extreme wide shot of a beautiful vertical megacity: colossal elegant towers a thousand floors tall rising into a permanent rose-amber haze with a pale sun disc, connected by curved glass aerial bridges and transport tubes, quiet flying commuter vehicles moving in orderly lanes; luxurious and efficient, no neon, no grime, no birds; a single glass lift capsule travelling down the face of one tower in the foreground. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Slow lateral drift. Flying commuters glide in silent lanes; nothing else moves in the sky.",
+  "frame": null,
+  "end": 140.0,
+  "prompt": "Extreme wide shot of {CITY}; a single glass lift capsule travelling down the face of one tower in the foreground.",
+  "motes": false
+ },
+ {
+  "id": "SC05A",
+  "scene": "SC05",
+  "start": 140.0,
+  "dur": 6,
+  "size": "WS",
+  "lens": 28,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "A transit concourse. DP crosses through the pale crowd.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "CONSUMER-MASK",
+   "BRIDGE"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "Crescent-respirator crowd reference (flow-guide §1.1 lift test)",
+   "BRIDGE plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Wide shot of a vast transit concourse of pale stone and frosted glass, soft light, elegant residents in pale, immaculate, well-tailored clothes, each wearing a slim champagne-metal crescent respirator along the jaw with a near-invisible clear seal over the nose and mouth, moving calmly; the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; grey twin-cartridge half-face respirator over his nose and mouth, black corrugated hose over his left shoulder to a compact grey belt unit at his left hip crossing through them. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The crowd flows; he cuts across it.",
+  "frame": null,
+  "end": 146.0,
+  "prompt": "Wide shot of a vast transit concourse of pale stone and frosted glass, soft light, {CROWD}, moving calmly; {DP_MASKED} crossing through them.",
+  "motes": false
+ },
+ {
+  "id": "SC05B",
+  "scene": "SC05",
+  "start": 146.0,
+  "dur": 7,
+  "size": "EWS",
+  "lens": 24,
+  "angle": "low",
+  "move": "locked off",
+  "action": "A curved glass bridge between two towers; flying commuters pass beneath it.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "BRIDGE",
+   "CITY"
+  ],
+  "attach": [
+   "BRIDGE plate (flow-guide §1.6)",
+   "CITY plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Extreme wide low-angle shot of a curved glass aerial bridge between two colossal towers in a beautiful vertical megacity: colossal elegant towers a thousand floors tall rising into a permanent rose-amber haze with a pale sun disc, connected by curved glass aerial bridges and transport tubes, quiet flying commuter vehicles moving in orderly lanes; luxurious and efficient, no neon, no grime, no birds; small figures crossing inside it, quiet flying commuter vehicles passing beneath. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Two commuter vehicles glide under the bridge.",
+  "frame": null,
+  "end": 153.0,
+  "prompt": "Extreme wide low-angle shot of a curved glass aerial bridge between two colossal towers in {CITY}; small figures crossing inside it, quiet flying commuter vehicles passing beneath.",
+  "motes": false
+ },
+ {
+  "id": "SC05C",
+  "scene": "SC05",
+  "start": 153.0,
+  "dur": 7,
+  "size": "MS",
+  "lens": 35,
+  "angle": "eye level",
+  "move": "tracking with DP",
+  "action": "A plaza of perfect projected trees. DP walks beneath them. Nobody looks up.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "CONSUMER-MASK",
+   "BRIDGE"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "Crescent-respirator crowd reference (flow-guide §1.1 lift test)",
+   "BRIDGE plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; grey twin-cartridge half-face respirator over his nose and mouth, black corrugated hose over his left shoulder to a compact grey belt unit at his left hip, walking through an indoor plaza of perfect projected and synthetic trees with flawless green leaves; elegant residents in pale, immaculate, well-tailored clothes, each wearing a slim champagne-metal crescent respirator along the jaw with a near-invisible clear seal over the nose and mouth, passing, none of them looking up. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Tracking alongside him. The synthetic leaves sway in a too-regular rhythm.",
+  "frame": null,
+  "end": 160.0,
+  "prompt": "Medium shot of {DP_MASKED}, walking through an indoor plaza of perfect projected and synthetic trees with flawless green leaves; {CROWD}, passing, none of them looking up.",
+  "motes": false
+ },
+ {
+  "id": "SC05D",
+  "scene": "SC05",
+  "start": 160.0,
+  "dur": 5,
+  "size": "CU",
+  "lens": 85,
+  "angle": "low",
+  "move": "locked off",
+  "action": "The first drops of warm amber rain hit the glass roof.",
+  "sound": "Rain on glass.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "BRIDGE"
+  ],
+  "attach": [
+   "BRIDGE plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up looking up at a clear glass roof as the first drops of warm, faintly amber rain land and streak across it, rose-amber sky beyond. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Amber drops land and run down the glass.",
+  "frame": null,
+  "end": 165.0,
+  "prompt": "Close-up looking up at a clear glass roof as the first drops of warm, faintly amber rain land and streak across it, rose-amber sky beyond.",
+  "motes": false
+ },
+ {
+  "id": "SC05E",
+  "scene": "SC05",
+  "start": 165.0,
+  "dur": 7,
+  "size": "WS",
+  "lens": 28,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "An open section of the bridge seals itself with a sliding glass panel. Commuters hurry.",
+  "sound": "A soft bridge announcement chime.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "BRIDGE",
+   "CONSUMER-MASK"
+  ],
+  "attach": [
+   "BRIDGE plate (flow-guide §1.6)",
+   "Crescent-respirator crowd reference (flow-guide §1.1 lift test)"
+  ],
+  "full_prompt": "Wide shot of an open-air section of a glass aerial bridge as a curved glass panel slides closed over it; elegant residents in pale, immaculate, well-tailored clothes, each wearing a slim champagne-metal crescent respirator along the jaw with a near-invisible clear seal over the nose and mouth, hurrying inside out of the amber rain. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The glass panel slides shut; people quicken their steps.",
+  "frame": null,
+  "end": 172.0,
+  "prompt": "Wide shot of an open-air section of a glass aerial bridge as a curved glass panel slides closed over it; {CROWD}, hurrying inside out of the amber rain.",
+  "motes": false
+ },
+ {
+  "id": "SC05F",
+  "scene": "SC05",
+  "start": 172.0,
+  "dur": 6,
+  "size": "MS",
+  "lens": 40,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "A small white drone rinses the walkway behind them.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "DRONE",
+   "BRIDGE"
+  ],
+  "attach": [
+   "Drone (flow-guide §1.5)",
+   "BRIDGE plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of a small rounded white appliance-like drone hovering low over a pale stone walkway, spraying a fine clean rinse. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The drone glides across frame, rinsing.",
+  "frame": null,
+  "end": 178.0,
+  "prompt": "Medium shot of a small rounded white appliance-like drone hovering low over a pale stone walkway, spraying a fine clean rinse.",
+  "motes": false
+ },
+ {
+  "id": "SC06A",
+  "scene": "SC06",
+  "start": 178.0,
+  "dur": 8,
+  "size": "WS",
+  "lens": 28,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "A sealed agricultural floor. Real crops behind glass, pollination units flying in perfect grids. DP services a regulator in the foreground.",
+  "sound": "A thin, high grid-flight whine.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "AG-FLOOR",
+   "C01-C03",
+   "PU-7"
+  ],
+  "attach": [
+   "AG-FLOOR plate (flow-guide §1.6)",
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "Pollination unit (flow-guide §1.4)"
+  ],
+  "full_prompt": "Wide shot of a sealed agricultural floor: perfect rows of real green crops under even white light behind floor-to-ceiling glass, tiny insect-scale pollination drones flying above them in an exact grid; in the foreground the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; his grey twin-cartridge half-face respirator hanging at his chest from its black corrugated hose, which runs to a compact grey belt unit at his left hip, kneels at an open humidity-regulator panel. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The drones move in precise grid lines; he works.",
+  "frame": null,
+  "end": 186.0,
+  "prompt": "Wide shot of a sealed agricultural floor: perfect rows of real green crops under even white light behind floor-to-ceiling glass, tiny insect-scale pollination drones flying above them in an exact grid; in the foreground {DP_WORK}, kneels at an open humidity-regulator panel.",
+  "motes": false
+ },
+ {
+  "id": "SC06B",
+  "scene": "SC06",
+  "start": 186.0,
+  "dur": 5,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Pollination units in exact formation over the leaves.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "PU-7",
+   "AG-FLOOR"
+  ],
+  "attach": [
+   "Pollination unit (flow-guide §1.4)",
+   "AG-FLOOR plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Macro shot of several insect-scale pollination drones hovering in an exact grid formation just above green crop leaves, clinical white light. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The drones step sideways in perfect unison.",
+  "frame": null,
+  "end": 191.0,
+  "prompt": "Macro shot of several insect-scale pollination drones hovering in an exact grid formation just above green crop leaves, clinical white light.",
+  "motes": false
+ },
+ {
+  "id": "SC06C",
+  "scene": "SC06",
+  "start": 191.0,
+  "dur": 4,
+  "size": "CU",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "One unit clips another and falls, its right wing spar bent.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "PU-7",
+   "AG-FLOOR"
+  ],
+  "attach": [
+   "Pollination unit (flow-guide §1.4)",
+   "AG-FLOOR plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up of a damaged insect-scale pollination drone: a bee-sized bio-synthetic body of pale engineered tissue over a micro-segmented graphite spine, thin carbon-fibre wing spars, the right forewing spar visibly bent, tumbling out of a formation of identical drones after a collision, falling past green leaves. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. One drone clips another and drops out of frame, spinning.",
+  "frame": null,
+  "end": 195.0,
+  "prompt": "Close-up of {PU7}, tumbling out of a formation of identical drones after a collision, falling past green leaves.",
+  "motes": false
+ },
+ {
+  "id": "SC06D",
+  "scene": "SC06",
+  "start": 195.0,
+  "dur": 4,
+  "size": "MS",
+  "lens": 50,
+  "angle": "high",
+  "move": "locked off",
+  "action": "A robot arm sweeps it into a white disposal tray.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "PU-7",
+   "AG-FLOOR"
+  ],
+  "attach": [
+   "Pollination unit (flow-guide §1.4)",
+   "AG-FLOOR plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium high-angle shot of a slim white robotic arm sweeping a broken insect-sized drone into a white disposal tray holding a few other broken drones. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The arm sweeps once and retracts.",
+  "frame": null,
+  "end": 199.0,
+  "prompt": "Medium high-angle shot of a slim white robotic arm sweeping a broken insect-sized drone into a white disposal tray holding a few other broken drones.",
+  "motes": false
+ },
+ {
+  "id": "SC06E",
+  "scene": "SC06",
+  "start": 199.0,
+  "dur": 4,
+  "size": "INSERT",
+  "lens": 65,
+  "angle": "high",
+  "move": "locked off",
+  "action": "His work tablet pings an unrelated notice.",
+  "sound": "A tablet ping.",
+  "text": "UNIT 41-602-07 — MICROBIAL BLOOM (food residue) — NOTICE ISSUED",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Insert over the shoulder of a slim work tablet in a hand with a dusty charcoal canvas sleeve, the screen softly glowing (text added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 203.0,
+  "prompt": "Insert over the shoulder of a slim work tablet in a hand with a dusty charcoal canvas sleeve, the screen softly glowing (text added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC06F",
+  "scene": "SC06",
+  "start": 203.0,
+  "dur": 3,
+  "size": "CU",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Above the mask, his eyes flick to a camera dome on the ceiling.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, wearing a grey twin-cartridge half-face respirator, his eyes flicking up toward the ceiling. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. His eyes go up, then down.",
+  "frame": null,
+  "end": 206.0,
+  "prompt": "Close-up of {DP_FACE}, wearing a grey twin-cartridge half-face respirator, his eyes flicking up toward the ceiling.",
+  "motes": false
+ },
+ {
+  "id": "SC06G",
+  "scene": "SC06",
+  "start": 206.0,
+  "dur": 5,
+  "size": "MS",
+  "lens": 40,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "He shifts his body to block the dome's view, and his hand goes into the tray.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "AG-FLOOR"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "AG-FLOOR plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; his grey twin-cartridge half-face respirator hanging at his chest from its black corrugated hose, which runs to a compact grey belt unit at his left hip, turning his back to a small white ceiling camera dome, his body screening his hand as it reaches into a white disposal tray. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He turns casually; his hand dips into the tray.",
+  "frame": null,
+  "end": 211.0,
+  "prompt": "Medium shot of {DP_WORK}, turning his back to a small white ceiling camera dome, his body screening his hand as it reaches into a white disposal tray.",
+  "motes": false
+ },
+ {
+  "id": "SC06H",
+  "scene": "SC06",
+  "start": 211.0,
+  "dur": 4,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The damaged unit slides into a cargo pocket.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "PU-7",
+   "C01-C03"
+  ],
+  "attach": [
+   "Pollination unit (flow-guide §1.4)",
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Insert of a hand slipping a damaged insect-scale pollination drone: a bee-sized bio-synthetic body of pale engineered tissue over a micro-segmented graphite spine, thin carbon-fibre wing spars, the right forewing spar visibly bent, into the side cargo pocket of dusty dark-grey cargo trousers. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The drone disappears into the pocket; the flap falls closed.",
+  "frame": null,
+  "end": 215.0,
+  "prompt": "Insert of a hand slipping {PU7}, into the side cargo pocket of dusty dark-grey cargo trousers.",
+  "motes": false
+ },
+ {
+  "id": "SC06I",
+  "scene": "SC06",
+  "start": 215.0,
+  "dur": 3,
+  "size": "MCU",
+  "lens": 50,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "He straightens up. Breath steady through the mask. His first transgression.",
+  "sound": "His steady breath through the valve.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Medium close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; grey twin-cartridge half-face respirator over his nose and mouth, black corrugated hose over his left shoulder to a compact grey belt unit at his left hip, straightening up from a kneeling position, eyes calm, breathing steadily. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He rises into frame and holds still.",
+  "frame": null,
+  "end": 218.0,
+  "prompt": "Medium close-up of {DP_MASKED}, straightening up from a kneeling position, eyes calm, breathing steadily.",
+  "motes": false
+ },
+ {
+  "id": "SC07A",
+  "scene": "SC07",
+  "start": 218.0,
+  "dur": 7,
+  "size": "EWS",
+  "lens": 35,
+  "angle": "eye level",
+  "move": "slow drift",
+  "action": "Night. The city lit like jewellery. A commuter vehicle slides past a lit window on Floor 786 as a figure enters.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CITY"
+  ],
+  "attach": [
+   "CITY plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Extreme wide night shot of a beautiful vertical megacity: colossal elegant towers a thousand floors tall rising into a permanent rose-amber haze with a pale sun disc, connected by curved glass aerial bridges and transport tubes, quiet flying commuter vehicles moving in orderly lanes; luxurious and efficient, no neon, no grime, no birds, lit like jewellery, warm window lights stacked into the haze; a quiet flying commuter slides past one lit window high on a tower where a small figure is entering an apartment. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Slow drift. The vehicle passes the window; the figure inside closes the door.",
+  "frame": null,
+  "end": 225.0,
+  "prompt": "Extreme wide night shot of {CITY}, lit like jewellery, warm window lights stacked into the haze; a quiet flying commuter slides past one lit window high on a tower where a small figure is entering an apartment.",
+  "motes": false
+ },
+ {
+  "id": "SC08A",
+  "scene": "SC08",
+  "start": 225.0,
+  "dur": 6,
+  "size": "MS",
+  "lens": 32,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "DP comes home, lets the mask hang, hangs the dusty jacket by the door.",
+  "sound": "Click off. The hum.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "APARTMENT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; dusty faded charcoal-black canvas work jacket open over a heather-grey crew-neck T-shirt, dusty dark-grey cargo work trousers, scuffed brown leather lace-up work boots; his grey twin-cartridge half-face respirator hanging at his chest from its black corrugated hose, which runs to a compact grey belt unit at his left hip, stepping into a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, at night and hanging the dusty charcoal jacket on a hook by the door. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He hangs up the jacket and lets out a breath.",
+  "frame": null,
+  "end": 231.0,
+  "prompt": "Medium shot of {DP_WORK}, stepping into {APT}, at night and hanging the dusty charcoal jacket on a hook by the door.",
+  "motes": false
+ },
+ {
+  "id": "SC08B",
+  "scene": "SC08",
+  "start": 231.0,
+  "dur": 4,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "high",
+  "move": "locked off",
+  "action": "He unclips the condensation canister from his belt unit.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Insert of a hand unclipping a small clear condensation canister from a compact grey respirator belt unit at the hip of dark-grey cargo trousers; a little water inside. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The canister clicks free.",
+  "frame": null,
+  "end": 235.0,
+  "prompt": "Insert of a hand unclipping a small clear condensation canister from a compact grey respirator belt unit at the hip of dark-grey cargo trousers; a little water inside.",
+  "motes": false
+ },
+ {
+  "id": "SC08C",
+  "scene": "SC08",
+  "start": 235.0,
+  "dur": 5,
+  "size": "CU",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "He empties it into a small glass jar, not the drain.",
+  "sound": "Drip.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up of water from a small clear canister being poured into a small glass jar on a pale stone counter, a spotless sink visible and unused beside it. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. A thin stream fills the jar.",
+  "frame": null,
+  "end": 240.0,
+  "prompt": "Close-up of water from a small clear canister being poured into a small glass jar on a pale stone counter, a spotless sink visible and unused beside it.",
+  "motes": false
+ },
+ {
+  "id": "SC08D",
+  "scene": "SC08",
+  "start": 240.0,
+  "dur": 5,
+  "size": "MS",
+  "lens": 40,
+  "angle": "low",
+  "move": "locked off",
+  "action": "The pet greets him on schedule, a perfect head-bump. He rests a hand on its back.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "PET",
+   "C01-C03",
+   "APARTMENT"
+  ],
+  "attach": [
+   "Pet (flow-guide §1.5)",
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium low shot of a bio-synthetic companion animal in a cat shape: soft short pale-grey coat, slightly too-perfect proportions and posture, calm glassy eyes, a tiny soft licence light at its collar, pressing its head against the shin of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, in a perfectly timed greeting; his hand resting on its back. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The pet bumps his leg exactly once; his hand settles on it.",
+  "frame": null,
+  "end": 245.0,
+  "prompt": "Medium low shot of {PET}, pressing its head against the shin of {DP_HOME}, in a perfectly timed greeting; his hand resting on its back.",
+  "motes": false
+ },
+ {
+  "id": "SC09A",
+  "scene": "SC09",
+  "start": 245.0,
+  "dur": 3,
+  "size": "CU",
+  "lens": 65,
+  "angle": "low",
+  "move": "locked off",
+  "action": "He glances up at the ceiling sensor dome.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Close-up from below of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, glancing up at a small white sensor dome on a pale ceiling, at night. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. A quick glance up.",
+  "frame": null,
+  "end": 248.0,
+  "prompt": "Close-up from below of {DP_FACE}, glancing up at a small white sensor dome on a pale ceiling, at night.",
+  "motes": false
+ },
+ {
+  "id": "SC09B",
+  "scene": "SC09",
+  "start": 248.0,
+  "dur": 5,
+  "size": "MS",
+  "lens": 35,
+  "angle": "low",
+  "move": "locked off",
+  "action": "He kneels and presses the low wall panel. It releases.",
+  "sound": "A soft latch.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "APARTMENT",
+   "HABITAT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "APARTMENT plate (flow-guide §1.6)",
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium low shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, kneeling at a flush pale wall panel near the floor of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, and pressing it; it springs open a few centimetres. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The panel releases with a soft click and swings open.",
+  "frame": null,
+  "end": 253.0,
+  "prompt": "Medium low shot of {DP_HOME}, kneeling at a flush pale wall panel near the floor of {APT}, and pressing it; it springs open a few centimetres.",
+  "motes": false
+ },
+ {
+  "id": "SC09C",
+  "scene": "SC09",
+  "start": 253.0,
+  "dur": 4,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "A small lamp inside clicks on: warmer than anything we've seen.",
+  "sound": "A tiny click.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "HABITAT"
+  ],
+  "attach": [
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Insert inside a dark wall cavity as a tiny warm lamp switches on, the warmest light in an otherwise cool, clean apartment. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The lamp flickers on and settles.",
+  "frame": null,
+  "end": 257.0,
+  "prompt": "Insert inside a dark wall cavity as a tiny warm lamp switches on, the warmest light in an otherwise cool, clean apartment.",
+  "motes": false
+ },
+ {
+  "id": "SC09D",
+  "scene": "SC09",
+  "start": 257.0,
+  "dur": 10,
+  "size": "CU",
+  "lens": 50,
+  "angle": "eye level",
+  "move": "slow push in",
+  "action": "The habitat revealed. Almost pathetic.",
+  "sound": "The hum drops slightly: a dead zone.",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "HABITAT"
+  ],
+  "attach": [
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up of a small open wall cavity at floor level lit by a tiny warm lamp: a shallow tray holding a handful of dry soil, one struggling wild strawberry plant with three leaves (one greying) and one tired white flower, a thumb-sized patch of half-grey moss on a stone, a small glass jar of water; almost pathetic. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Very slow push in toward the struggling strawberry plant.",
+  "frame": null,
+  "end": 267.0,
+  "prompt": "Close-up of {BAY}.",
+  "motes": false
+ },
+ {
+  "id": "SC09E",
+  "scene": "SC09",
+  "start": 267.0,
+  "dur": 8,
+  "size": "MCU",
+  "lens": 50,
+  "angle": "low",
+  "move": "locked off",
+  "action": "His face, lit warm from below by the lamp. Quiet devotion.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Medium close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, kneeling, his face lit warm from below by a tiny lamp inside a wall cavity, looking at it with quiet devotion. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He breathes slowly; nothing else moves.",
+  "frame": null,
+  "end": 275.0,
+  "prompt": "Medium close-up of {DP_FACE}, kneeling, his face lit warm from below by a tiny lamp inside a wall cavity, looking at it with quiet devotion.",
+  "motes": false
+ },
+ {
+  "id": "SC10A",
+  "scene": "SC10",
+  "start": 275.0,
+  "dur": 8,
+  "size": "INSERT",
+  "lens": 65,
+  "angle": "top-down",
+  "move": "locked off",
+  "action": "A paper notebook: a record of failure in neat handwriting.",
+  "sound": "Paper.",
+  "text": "Seed 7 — no germination. / Fungal culture — collapsed day 4. / Moss — grey. Watering?",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "LOG"
+  ],
+  "attach": [],
+  "full_prompt": "Top-down insert of an open paper notebook on a pale stone floor in warm lamp light, pages of neat handwritten entries, many crossed out (handwriting legible text added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. A page turns.",
+  "frame": null,
+  "end": 283.0,
+  "prompt": "Top-down insert of an open paper notebook on a pale stone floor in warm lamp light, pages of neat handwritten entries, many crossed out (handwriting legible text added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC10B",
+  "scene": "SC10",
+  "start": 283.0,
+  "dur": 6,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "top-down",
+  "move": "locked off",
+  "action": "More entries, struck through.",
+  "sound": "A pencil.",
+  "text": "Leaf 2 — grey.",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "LOG"
+  ],
+  "attach": [],
+  "full_prompt": "Top-down close insert of handwritten notebook entries struck through with single neat lines, warm lamp light. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 289.0,
+  "prompt": "Top-down close insert of handwritten notebook entries struck through with single neat lines, warm lamp light.",
+  "motes": false
+ },
+ {
+  "id": "SC10C",
+  "scene": "SC10",
+  "start": 289.0,
+  "dur": 10,
+  "size": "INSERT",
+  "lens": 65,
+  "angle": "eye level",
+  "move": "slow push in",
+  "action": "The handwritten diagram taped inside the panel door. The butterfly is circled: \"impossible.\"",
+  "sound": "",
+  "text": "impossible",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "DIAGRAM"
+  ],
+  "attach": [
+   "Tin and diagram (flow-guide §1.4)"
+  ],
+  "full_prompt": "Insert of a faded hand-drawn ink diagram taped inside a small open wall-panel door: a life cycle of sun, plant, butterfly, seed, soil and water joined by arrows; the butterfly circled in newer pen with a short handwritten word beside it. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Slow push in to the circled butterfly.",
+  "frame": null,
+  "end": 299.0,
+  "prompt": "Insert of a faded hand-drawn ink diagram taped inside a small open wall-panel door: a life cycle of sun, plant, butterfly, seed, soil and water joined by arrows; the butterfly circled in newer pen with a short handwritten word beside it.",
+  "motes": false
+ },
+ {
+  "id": "SC10D",
+  "scene": "SC10",
+  "start": 299.0,
+  "dur": 6,
+  "size": "CU",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "His fingertip touches the circled butterfly.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "DIAGRAM"
+  ],
+  "attach": [
+   "Tin and diagram (flow-guide §1.4)"
+  ],
+  "full_prompt": "Close-up of a fingertip touching a small hand-drawn butterfly circled in pen on a faded paper diagram, warm lamp light. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The fingertip rests on the drawing.",
+  "frame": null,
+  "end": 305.0,
+  "prompt": "Close-up of a fingertip touching a small hand-drawn butterfly circled in pen on a faded paper diagram, warm lamp light.",
+  "motes": false
+ },
+ {
+  "id": "SC11A",
+  "scene": "SC11",
+  "start": 305.0,
+  "dur": 8,
+  "size": "MS",
+  "lens": 40,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "He puts the mask back on, unclips the hose from the belt unit and feeds it into the bay.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "HABITAT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, wearing his grey twin-cartridge half-face respirator, unclipping its black corrugated hose from the grey belt unit at his hip and feeding the end into a small open wall cavity at floor level lit by a tiny warm lamp: a shallow tray holding a handful of dry soil, one struggling wild strawberry plant with three leaves (one greying) and one tired white flower, a thumb-sized patch of half-grey moss on a stone, a small glass jar of water; almost pathetic. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He threads the hose into the cavity.",
+  "frame": null,
+  "end": 313.0,
+  "prompt": "Medium shot of {DP_HOME}, wearing his grey twin-cartridge half-face respirator, unclipping its black corrugated hose from the grey belt unit at his hip and feeding the end into {BAY}.",
+  "motes": false
+ },
+ {
+  "id": "SC11B",
+  "scene": "SC11",
+  "start": 313.0,
+  "dur": 10,
+  "size": "WS",
+  "lens": 28,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "He sits against the wall beside the open bay, breathing slowly. The habitat runs on his breath.",
+  "sound": "His breathing, close and real: the first un-designed sound.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "APARTMENT",
+   "HABITAT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "APARTMENT plate (flow-guide §1.6)",
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Wide shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, sitting on the floor with his back against the wall of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, wearing his half-face respirator, its hose running into a small lamp-lit wall cavity beside him; everything else dim and spotless. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. His chest rises and falls slowly.",
+  "frame": null,
+  "end": 323.0,
+  "prompt": "Wide shot of {DP_HOME}, sitting on the floor with his back against the wall of {APT}, wearing his half-face respirator, its hose running into a small lamp-lit wall cavity beside him; everything else dim and spotless.",
+  "motes": false
+ },
+ {
+  "id": "SC11C",
+  "scene": "SC11",
+  "start": 323.0,
+  "dur": 7,
+  "size": "CU",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The greying leaf trembles faintly in his breath.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "HABITAT"
+  ],
+  "attach": [
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up of a greying wild-strawberry leaf in a lamp-lit wall cavity, the end of a black corrugated hose resting near it. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The leaf trembles faintly with each breath.",
+  "frame": null,
+  "end": 330.0,
+  "prompt": "Close-up of a greying wild-strawberry leaf in a lamp-lit wall cavity, the end of a black corrugated hose resting near it.",
+  "motes": false
+ },
+ {
+  "id": "SC12A",
+  "scene": "SC12",
+  "start": 330.0,
+  "dur": 5,
+  "size": "INSERT",
+  "lens": 50,
+  "angle": "top-down",
+  "move": "locked off",
+  "action": "Grandmother's dented tin, opened: empty seed envelopes, a sealed vial.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "TIN"
+  ],
+  "attach": [
+   "Tin and diagram (flow-guide §1.4)"
+  ],
+  "full_prompt": "Top-down insert of a small dented old metal tin opened on a pale stone floor: empty paper seed envelopes and a sealed glass vial in old cryo-wrap, warm lamp light. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. A hand lifts out the vial.",
+  "frame": null,
+  "end": 335.0,
+  "prompt": "Top-down insert of a small dented old metal tin opened on a pale stone floor: empty paper seed envelopes and a sealed glass vial in old cryo-wrap, warm lamp light.",
+  "motes": false
+ },
+ {
+  "id": "SC12B",
+  "scene": "SC12",
+  "start": 335.0,
+  "dur": 4,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The vial's label: old handwriting and a tiny drawn butterfly. He doesn't notice. We do.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "TIN"
+  ],
+  "attach": [
+   "Tin and diagram (flow-guide §1.4)"
+  ],
+  "full_prompt": "Macro of a sealed glass vial's yellowed paper label with faded old handwriting and a tiny hand-drawn butterfly in the corner. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The vial turns slightly in his fingers.",
+  "frame": null,
+  "end": 339.0,
+  "prompt": "Macro of a sealed glass vial's yellowed paper label with faded old handwriting and a tiny hand-drawn butterfly in the corner.",
+  "motes": false
+ },
+ {
+  "id": "SC12C",
+  "scene": "SC12",
+  "start": 339.0,
+  "dur": 5,
+  "size": "CU",
+  "lens": 85,
+  "angle": "high",
+  "move": "locked off",
+  "action": "He cracks the damaged unit open. Clear repair gel.",
+  "sound": "Snap of the casing.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "PU-7"
+  ],
+  "attach": [
+   "Pollination unit (flow-guide §1.4)"
+  ],
+  "full_prompt": "Close-up of hands cracking open the casing of a damaged insect-scale pollination drone: a bee-sized bio-synthetic body of pale engineered tissue over a micro-segmented graphite spine, thin carbon-fibre wing spars, the right forewing spar visibly bent, with a small tool, clear glossy repair gel welling out. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The casing splits; gel beads out.",
+  "frame": null,
+  "end": 344.0,
+  "prompt": "Close-up of hands cracking open the casing of {PU7}, with a small tool, clear glossy repair gel welling out.",
+  "motes": false
+ },
+ {
+  "id": "SC12D",
+  "scene": "SC12",
+  "start": 344.0,
+  "dur": 6,
+  "size": "CU",
+  "lens": 85,
+  "angle": "high",
+  "move": "locked off",
+  "action": "Gel squeezed into the soil; the vial emptied over it.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "PU-7",
+   "HABITAT",
+   "TIN"
+  ],
+  "attach": [
+   "Pollination unit (flow-guide §1.4)",
+   "HABITAT plate (flow-guide §1.6)",
+   "Tin and diagram (flow-guide §1.4)"
+  ],
+  "full_prompt": "Close-up from above of clear gel being squeezed from a broken insect-sized drone into a handful of dry soil in a shallow tray, a small glass vial tipped beside it; warm lamp light. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Gel, then the vial's contents, into the soil.",
+  "frame": null,
+  "end": 350.0,
+  "prompt": "Close-up from above of clear gel being squeezed from a broken insect-sized drone into a handful of dry soil in a shallow tray, a small glass vial tipped beside it; warm lamp light.",
+  "motes": false
+ },
+ {
+  "id": "SC12E",
+  "scene": "SC12",
+  "start": 350.0,
+  "dur": 5,
+  "size": "CU",
+  "lens": 85,
+  "angle": "high",
+  "move": "locked off",
+  "action": "His fingers bury both and pat the soil flat.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "HABITAT"
+  ],
+  "attach": [
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up of fingertips burying a broken insect-sized drone in a shallow tray of soil and patting it flat beside a struggling wild strawberry plant, warm lamp light. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Fingers press the soil smooth.",
+  "frame": null,
+  "end": 355.0,
+  "prompt": "Close-up of fingertips burying a broken insect-sized drone in a shallow tray of soil and patting it flat beside a struggling wild strawberry plant, warm lamp light.",
+  "motes": false
+ },
+ {
+  "id": "SC12F",
+  "scene": "SC12",
+  "start": 355.0,
+  "dur": 5,
+  "size": "INSERT",
+  "lens": 65,
+  "angle": "top-down",
+  "move": "locked off",
+  "action": "The log: \"Day 0 — last try.\" The panel closes.",
+  "sound": "",
+  "text": "Day 0 — last try.",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "LOG"
+  ],
+  "attach": [],
+  "full_prompt": "Top-down insert of a pencil finishing a short handwritten line in a paper notebook on a pale stone floor, warm lamp light (handwriting added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The pencil lifts; the light goes out as the panel closes.",
+  "frame": null,
+  "end": 360.0,
+  "prompt": "Top-down insert of a pencil finishing a short handwritten line in a paper notebook on a pale stone floor, warm lamp light (handwriting added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC13A",
+  "scene": "SC13",
+  "start": 360.0,
+  "dur": 3,
+  "size": "WS",
+  "lens": 24,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Echo of SC01A: the light rises on schedule. DP wakes.",
+  "sound": "Chime.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT",
+   "C01-C03"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)",
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Wide shot of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, at dawn: soft artificial daylight rising, a low minimal bed where the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, lies awake. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The light rises fast.",
+  "frame": null,
+  "end": 363.0,
+  "prompt": "Wide shot of {APT}, at dawn: soft artificial daylight rising, a low minimal bed where {DP_HOME}, lies awake.",
+  "motes": false
+ },
+ {
+  "id": "SC13B",
+  "scene": "SC13",
+  "start": 363.0,
+  "dur": 2.5,
+  "size": "CU",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Echo of SC02A: the protein strawberry.",
+  "sound": "Whir.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up of an elegant wall food dispenser in brushed champagne metal extruding a pale protein food moulded into the shape of a strawberry onto a white dish. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 365.5,
+  "prompt": "Close-up of an elegant wall food dispenser in brushed champagne metal extruding a pale protein food moulded into the shape of a strawberry onto a white dish.",
+  "motes": false
+ },
+ {
+  "id": "SC13C",
+  "scene": "SC13",
+  "start": 365.5,
+  "dur": 2,
+  "size": "ECU",
+  "lens": 65,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Echo of SC03A: the click.",
+  "sound": "Click.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Extreme close-up of the grey twin-cartridge half-face respirator being pressed onto the face of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 367.5,
+  "prompt": "Extreme close-up of the grey twin-cartridge half-face respirator being pressed onto the face of {DP_FACE}.",
+  "motes": false
+ },
+ {
+  "id": "SC13D",
+  "scene": "SC13",
+  "start": 367.5,
+  "dur": 2,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Echo of SC04A: the counter falls.",
+  "sound": "",
+  "text": "786",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "LIFT"
+  ],
+  "attach": [
+   "LIFT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Insert of an elegant brushed-champagne lift floor indicator, softly lit (numbers added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 369.5,
+  "prompt": "Insert of an elegant brushed-champagne lift floor indicator, softly lit (numbers added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC13E",
+  "scene": "SC13",
+  "start": 369.5,
+  "dur": 2.5,
+  "size": "INSERT",
+  "lens": 50,
+  "angle": "low",
+  "move": "locked off",
+  "action": "The low wall panel, closed. He doesn't open it. He has given up.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Low-angle insert of a flush pale wall panel near the floor of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, closed, in flat daylight. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 372.0,
+  "prompt": "Low-angle insert of a flush pale wall panel near the floor of {APT}, closed, in flat daylight.",
+  "motes": false
+ },
+ {
+  "id": "SC13F",
+  "scene": "SC13",
+  "start": 372.0,
+  "dur": 3,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The number creeps.",
+  "sound": "",
+  "text": "BIOLOGICAL VARIANCE 0.003% — WITHIN TOLERANCE",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close insert of the corner of a softly glowing wall interface panel (readout added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 375.0,
+  "prompt": "Close insert of the corner of a softly glowing wall interface panel (readout added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC14A",
+  "scene": "SC14",
+  "start": 375.0,
+  "dur": 6,
+  "size": "MS",
+  "lens": 35,
+  "angle": "low",
+  "move": "locked off",
+  "action": "Day 9. He kneels at the bay with a waste bag, to clear it out and end it.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "APARTMENT",
+   "HABITAT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "APARTMENT plate (flow-guide §1.6)",
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium low shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, kneeling at a flush wall panel near the floor of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, in evening light, a folded white waste bag in one hand, opening the panel. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The panel opens; lamp light spills onto him.",
+  "frame": null,
+  "end": 381.0,
+  "prompt": "Medium low shot of {DP_HOME}, kneeling at a flush wall panel near the floor of {APT}, in evening light, a folded white waste bag in one hand, opening the panel.",
+  "motes": false
+ },
+ {
+  "id": "SC14B",
+  "scene": "SC14",
+  "start": 381.0,
+  "dur": 5,
+  "size": "CU",
+  "lens": 65,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The strawberry is alive. Barely.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "HABITAT"
+  ],
+  "attach": [
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close-up of a struggling wild strawberry plant in a shallow tray of soil in a lamp-lit wall cavity, alive but barely. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 386.0,
+  "prompt": "Close-up of a struggling wild strawberry plant in a shallow tray of soil in a lamp-lit wall cavity, alive but barely.",
+  "motes": false
+ },
+ {
+  "id": "SC14C",
+  "scene": "SC14",
+  "start": 386.0,
+  "dur": 6,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "slow push in",
+  "action": "Chewed edges on a leaf, and a faint silvery trail on the stem. He reads it as rot.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "HABITAT"
+  ],
+  "attach": [
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Macro of a wild strawberry leaf with small chewed, scalloped edges and a faint silvery trail along its stem, warm lamp light. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Slow push in along the silvery trail.",
+  "frame": null,
+  "end": 392.0,
+  "prompt": "Macro of a wild strawberry leaf with small chewed, scalloped edges and a faint silvery trail along its stem, warm lamp light.",
+  "motes": false
+ },
+ {
+  "id": "SC14D",
+  "scene": "SC14",
+  "start": 392.0,
+  "dur": 4,
+  "size": "MCU",
+  "lens": 50,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "He frowns, and reaches in to clear it.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Medium close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lit by a warm lamp from a wall cavity, frowning, reaching forward. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. A small frown; his arm moves forward.",
+  "frame": null,
+  "end": 396.0,
+  "prompt": "Medium close-up of {DP_FACE}, lit by a warm lamp from a wall cavity, frowning, reaching forward.",
+  "motes": false
+ },
+ {
+  "id": "SC14E",
+  "scene": "SC14",
+  "start": 396.0,
+  "dur": 8,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "low",
+  "move": "locked off",
+  "action": "His finger lifts a leaf. Underneath: the chrysalis.",
+  "sound": "Silence except his breath and the hum.",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "CHRYSALIS",
+   "HABITAT"
+  ],
+  "attach": [
+   "Chrysalis (flow-guide §1.3)",
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Macro from below: a fingertip lifting a greying wild-strawberry leaf to reveal a 3.5 cm chrysalis hanging under a greying wild-strawberry leaf: translucent wet organic tissue like grape skin held to light, fine uneven metallic threads running beneath it like veins or wiring, an anchoring silk pad of part organic thread and part frayed filament, condensation beads, no glow, it looks like it might be rotting. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The leaf lifts slowly; the chrysalis sways once.",
+  "frame": null,
+  "end": 404.0,
+  "prompt": "Macro from below: a fingertip lifting a greying wild-strawberry leaf to reveal {CHRYSALIS}.",
+  "motes": false
+ },
+ {
+  "id": "SC14F",
+  "scene": "SC14",
+  "start": 404.0,
+  "dur": 4,
+  "size": "ECU",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "He leans in. His eyes narrow.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Extreme close-up of the eyes of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, warm lamp light, narrowing as he leans closer to something tiny. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. He leans in a centimetre.",
+  "frame": null,
+  "end": 408.0,
+  "prompt": "Extreme close-up of the eyes of {DP_FACE}, warm lamp light, narrowing as he leans closer to something tiny.",
+  "motes": false
+ },
+ {
+  "id": "SC14G",
+  "scene": "SC14",
+  "start": 408.0,
+  "dur": 6,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Metallic threads under translucent tissue. Condensation. To him it looks like mould fused with drone parts. A failure.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CHRYSALIS"
+  ],
+  "attach": [
+   "Chrysalis (flow-guide §1.3)"
+  ],
+  "full_prompt": "Extreme macro of a 3.5 cm chrysalis hanging under a greying wild-strawberry leaf: translucent wet organic tissue like grape skin held to light, fine uneven metallic threads running beneath it like veins or wiring, an anchoring silk pad of part organic thread and part frayed filament, condensation beads, no glow, it looks like it might be rotting, showing the metallic threads beneath the translucent tissue and the frayed filament pad. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. A condensation bead slides.",
+  "frame": null,
+  "end": 414.0,
+  "prompt": "Extreme macro of {CHRYSALIS}, showing the metallic threads beneath the translucent tissue and the frayed filament pad.",
+  "motes": false
+ },
+ {
+  "id": "SC14H",
+  "scene": "SC14",
+  "start": 414.0,
+  "dur": 5,
+  "size": "MS",
+  "lens": 40,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The waste bag hovers over the habitat.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "HABITAT"
+  ],
+  "attach": [
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of a hand holding an open white waste bag hovering over a small open wall cavity at floor level lit by a tiny warm lamp: a shallow tray holding a handful of dry soil, one struggling wild strawberry plant with three leaves (one greying) and one tired white flower, a thumb-sized patch of half-grey moss on a stone, a small glass jar of water; almost pathetic, the lamp light on it. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The bag hangs in the air.",
+  "frame": null,
+  "end": 419.0,
+  "prompt": "Medium shot of a hand holding an open white waste bag hovering over {BAY}, the lamp light on it.",
+  "motes": false
+ },
+ {
+  "id": "SC14I",
+  "scene": "SC14",
+  "start": 419.0,
+  "dur": 4,
+  "size": "CU",
+  "lens": 50,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "He lowers the bag. He closes the panel.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lowering a white waste bag and quietly closing a small lamp-lit wall panel. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The bag drops to his side; the panel closes and the light goes.",
+  "frame": null,
+  "end": 423.0,
+  "prompt": "Close-up of {DP_FACE}, lowering a white waste bag and quietly closing a small lamp-lit wall panel.",
+  "motes": false
+ },
+ {
+  "id": "SC14J",
+  "scene": "SC14",
+  "start": 423.0,
+  "dur": 2,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The number.",
+  "sound": "",
+  "text": "BIOLOGICAL VARIANCE 0.006% — WITHIN TOLERANCE",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close insert of the corner of a softly glowing wall interface panel (readout added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 425.0,
+  "prompt": "Close insert of the corner of a softly glowing wall interface panel (readout added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC15A",
+  "scene": "SC15",
+  "start": 425.0,
+  "dur": 6,
+  "size": "WS",
+  "lens": 24,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Night 13. The dark apartment. DP asleep; the pet asleep at his feet.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT",
+   "C01-C03",
+   "PET"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)",
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "Pet (flow-guide §1.5)"
+  ],
+  "full_prompt": "Wide night shot of a technically perfect small luxury apartment on the 786th floor: warm ivory walls, pale stone floor, warm composite wood, frosted glass, a sealed floor-to-ceiling window onto a rose-amber hazy sky and colossal towers; spotless, minimal, emotionally sterile, in darkness, faint rose-amber city glow through the sealed window, the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, asleep in a low bed, a bio-synthetic companion animal in a cat shape: soft short pale-grey coat, slightly too-perfect proportions and posture, calm glassy eyes, a tiny soft licence light at its collar, asleep at its foot. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Stillness.",
+  "frame": null,
+  "end": 431.0,
+  "prompt": "Wide night shot of {APT}, in darkness, faint rose-amber city glow through the sealed window, {DP_HOME}, asleep in a low bed, {PET}, asleep at its foot.",
+  "motes": false
+ },
+ {
+  "id": "SC15B",
+  "scene": "SC15",
+  "start": 431.0,
+  "dur": 6,
+  "size": "MCU",
+  "lens": 65,
+  "angle": "low",
+  "move": "locked off",
+  "action": "The pet lifts its head off schedule and turns toward the low wall panel.",
+  "sound": "A faint organic crack from inside the wall.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "PET"
+  ],
+  "attach": [
+   "Pet (flow-guide §1.5)"
+  ],
+  "full_prompt": "Medium close-up of a bio-synthetic companion animal in a cat shape: soft short pale-grey coat, slightly too-perfect proportions and posture, calm glassy eyes, a tiny soft licence light at its collar, in near darkness lifting its head and turning it toward something low on the far wall. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The head lifts and turns in one smooth, slightly mechanical move.",
+  "frame": null,
+  "end": 437.0,
+  "prompt": "Medium close-up of {PET}, in near darkness lifting its head and turning it toward something low on the far wall.",
+  "motes": false
+ },
+ {
+  "id": "SC15C",
+  "scene": "SC15",
+  "start": 437.0,
+  "dur": 5,
+  "size": "ECU",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Its eye: the classification loop flickers and freezes. It doesn't know what it's looking at.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "PET"
+  ],
+  "attach": [
+   "Pet (flow-guide §1.5)"
+  ],
+  "full_prompt": "Extreme close-up of the glassy eye of a bio-synthetic cat in darkness, a faint ring pattern in the iris flickering as if searching, then freezing. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The iris pattern flickers, cycles, then stops dead.",
+  "frame": null,
+  "end": 442.0,
+  "prompt": "Extreme close-up of the glassy eye of a bio-synthetic cat in darkness, a faint ring pattern in the iris flickering as if searching, then freezing.",
+  "motes": false
+ },
+ {
+  "id": "SC15D",
+  "scene": "SC15",
+  "start": 442.0,
+  "dur": 5,
+  "size": "CU",
+  "lens": 50,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "DP wakes, because the pet has never done anything unscheduled before.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, waking in a dark room, faint city glow, looking toward the foot of the bed with confusion. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. His eyes open and find the pet.",
+  "frame": null,
+  "end": 447.0,
+  "prompt": "Close-up of {DP_FACE}, waking in a dark room, faint city glow, looking toward the foot of the bed with confusion.",
+  "motes": false
+ },
+ {
+  "id": "SC15E",
+  "scene": "SC15",
+  "start": 447.0,
+  "dur": 5,
+  "size": "MS",
+  "lens": 35,
+  "angle": "floor level",
+  "move": "locked off",
+  "action": "The low wall panel in darkness. Another faint crack.",
+  "sound": "A faint crack.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium floor-level shot of a flush pale wall panel near the floor in a dark apartment, a hairline of warm light at its edge. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The hairline of light flickers faintly.",
+  "frame": null,
+  "end": 452.0,
+  "prompt": "Medium floor-level shot of a flush pale wall panel near the floor in a dark apartment, a hairline of warm light at its edge.",
+  "motes": false
+ },
+ {
+  "id": "SC15F",
+  "scene": "SC15",
+  "start": 452.0,
+  "dur": 3,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The number.",
+  "sound": "",
+  "text": "BIOLOGICAL VARIANCE 0.009% — WITHIN TOLERANCE",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close insert of the corner of a softly glowing wall interface panel in a dark room (readout added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off.",
+  "frame": null,
+  "end": 455.0,
+  "prompt": "Close insert of the corner of a softly glowing wall interface panel in a dark room (readout added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC16A",
+  "scene": "SC16",
+  "start": 455.0,
+  "dur": 5,
+  "size": "MS",
+  "lens": 35,
+  "angle": "low",
+  "move": "locked off",
+  "action": "He kneels and opens the bay. Lamp on.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "HABITAT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium low shot of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, kneeling in a dark apartment and opening a small wall panel; warm lamp light spills over him. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Light floods his face.",
+  "frame": null,
+  "end": 460.0,
+  "prompt": "Medium low shot of {DP_HOME}, kneeling in a dark apartment and opening a small wall panel; warm lamp light spills over him.",
+  "motes": false
+ },
+ {
+  "id": "SC16B",
+  "scene": "SC16",
+  "start": 460.0,
+  "dur": 8,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The chrysalis splits along an uneven seam.",
+  "sound": "Tearing tissue, a snapped filament.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CHRYSALIS"
+  ],
+  "attach": [
+   "Chrysalis (flow-guide §1.3)"
+  ],
+  "full_prompt": "Extreme macro of a 3.5 cm chrysalis hanging under a greying wild-strawberry leaf: translucent wet organic tissue like grape skin held to light, fine uneven metallic threads running beneath it like veins or wiring, an anchoring silk pad of part organic thread and part frayed filament, condensation beads, no glow, it looks like it might be rotting, splitting open along an uneven seam, tissue tearing, a metallic filament snapping. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The seam opens slowly from top to bottom.",
+  "frame": null,
+  "end": 468.0,
+  "prompt": "Extreme macro of {CHRYSALIS}, splitting open along an uneven seam, tissue tearing, a metallic filament snapping.",
+  "motes": false
+ },
+ {
+  "id": "SC16C",
+  "scene": "SC16",
+  "start": 468.0,
+  "dur": 8,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The creature pulls itself out: wet, crumpled, wings folded.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CREATURE-G1",
+   "CHRYSALIS"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)",
+   "Chrysalis (flow-guide §1.3)"
+  ],
+  "full_prompt": "Extreme macro of a wet, crumpled newborn hybrid butterfly pulling itself out of a split translucent chrysalis under a strawberry leaf; wings still folded and soft. It is a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, newly emerged. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Legs grip, the body slides free, it hangs.",
+  "frame": null,
+  "end": 476.0,
+  "prompt": "Extreme macro of a wet, crumpled newborn hybrid butterfly pulling itself out of a split translucent chrysalis under a strawberry leaf; wings still folded and soft. It is {CREATURE}, newly emerged.",
+  "motes": false
+ },
+ {
+  "id": "SC16D",
+  "scene": "SC16",
+  "start": 476.0,
+  "dur": 12,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "It hangs and pumps fluid into its wings. The veins fill. The wings slowly open.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "CREATURE-G1"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)"
+  ],
+  "full_prompt": "Extreme macro of a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, hanging beneath an empty split chrysalis as its wings expand, pale-amber fluid visibly filling the veins, wings half-open. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off, time-compressed. Veins fill and the wings unfold and flatten over the clip; chain two clips.",
+  "frame": null,
+  "end": 488.0,
+  "prompt": "Extreme macro of {CREATURE}, hanging beneath an empty split chrysalis as its wings expand, pale-amber fluid visibly filling the veins, wings half-open.",
+  "motes": false
+ },
+ {
+  "id": "SC16E",
+  "scene": "SC16",
+  "start": 488.0,
+  "dur": 5,
+  "size": "ECU",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The right wing doesn't fully flatten. The kink stays.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CREATURE-G1"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)"
+  ],
+  "full_prompt": "Extreme close-up of the right forewing of a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental: a kinked carbon-fibre spar and a crease that will not flatten. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The wing strains to flatten and stops short.",
+  "frame": null,
+  "end": 493.0,
+  "prompt": "Extreme close-up of the right forewing of {CREATURE}: a kinked carbon-fibre spar and a crease that will not flatten.",
+  "motes": false
+ },
+ {
+  "id": "SC16F",
+  "scene": "SC16",
+  "start": 493.0,
+  "dur": 6,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "Moisture beads along its body. The abdomen breathes.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CREATURE-G1"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)"
+  ],
+  "full_prompt": "Extreme macro of the body of a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, moisture beads along the thorax, the soft cream abdomen visibly expanding and contracting. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The abdomen rises and falls.",
+  "frame": null,
+  "end": 499.0,
+  "prompt": "Extreme macro of the body of {CREATURE}, moisture beads along the thorax, the soft cream abdomen visibly expanding and contracting.",
+  "motes": false
+ },
+ {
+  "id": "SC16G",
+  "scene": "SC16",
+  "start": 499.0,
+  "dur": 6,
+  "size": "CU",
+  "lens": 65,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "DP's face. He has stopped breathing.",
+  "sound": "Near silence.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lit warm from below by a tiny lamp, completely still, holding his breath, eyes wide. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Nothing moves.",
+  "frame": null,
+  "end": 505.0,
+  "prompt": "Close-up of {DP_FACE}, lit warm from below by a tiny lamp, completely still, holding his breath, eyes wide.",
+  "motes": false
+ },
+ {
+  "id": "SC16H",
+  "scene": "SC16",
+  "start": 505.0,
+  "dur": 5,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "rack focus",
+  "action": "The creature in the foreground. His face, soft behind it.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CREATURE-G1",
+   "C01-C03"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)",
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Macro two-shot: a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, sharp in the foreground under a strawberry leaf, and behind it the soft-focus face of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye, lamp-lit. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Rack focus from the creature to his eyes and back.",
+  "frame": null,
+  "end": 510.0,
+  "prompt": "Macro two-shot: {CREATURE}, sharp in the foreground under a strawberry leaf, and behind it the soft-focus face of {DP_FACE}, lamp-lit.",
+  "motes": false
+ },
+ {
+  "id": "SC17A",
+  "scene": "SC17",
+  "start": 510.0,
+  "dur": 4,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "It launches, and crashes into the bay wall.",
+  "sound": "A tiny tap.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CREATURE-G1"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)"
+  ],
+  "full_prompt": "Macro of a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, launching clumsily from a strawberry leaf and bumping into the pale wall of a lamp-lit cavity. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. It lifts, veers right, bumps the wall and drops.",
+  "frame": null,
+  "end": 514.0,
+  "prompt": "Macro of {CREATURE}, launching clumsily from a strawberry leaf and bumping into the pale wall of a lamp-lit cavity.",
+  "motes": false
+ },
+ {
+  "id": "SC17B",
+  "scene": "SC17",
+  "start": 514.0,
+  "dur": 5,
+  "size": "MACRO",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "A wing sticks to the wet jar. It tugs free.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CREATURE-G1",
+   "HABITAT"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)",
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Macro of a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, one wet wing stuck to the side of a small glass jar of water, pulling free. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The wing peels off the glass.",
+  "frame": null,
+  "end": 519.0,
+  "prompt": "Macro of {CREATURE}, one wet wing stuck to the side of a small glass jar of water, pulling free.",
+  "motes": false
+ },
+ {
+  "id": "SC17C",
+  "scene": "SC17",
+  "start": 519.0,
+  "dur": 6,
+  "size": "CU",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "It rests on his sleeve, trembling.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CREATURE-G1",
+   "C01-C03"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)",
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Close-up of a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, resting on the heather-grey T-shirt sleeve of a man's arm, wings trembling, warm lamp light. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The wings tremble and settle.",
+  "frame": null,
+  "end": 525.0,
+  "prompt": "Close-up of {CREATURE}, resting on the heather-grey T-shirt sleeve of a man's arm, wings trembling, warm lamp light.",
+  "motes": false
+ },
+ {
+  "id": "SC17D",
+  "scene": "SC17",
+  "start": 525.0,
+  "dur": 5,
+  "size": "MS",
+  "lens": 50,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "It flutters up, dipping to the right, out of the bay.",
+  "sound": "Wings: the first un-designed sound.",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "CREATURE-G1",
+   "HABITAT"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)",
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Medium shot of a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, fluttering up out of a small lamp-lit wall cavity into a dark apartment, dipping to the right. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. Uneven flutter, a dip to the right, up and out of frame.",
+  "frame": null,
+  "end": 530.0,
+  "prompt": "Medium shot of {CREATURE}, fluttering up out of a small lamp-lit wall cavity into a dark apartment, dipping to the right.",
+  "motes": false
+ },
+ {
+  "id": "SC17E",
+  "scene": "SC17",
+  "start": 530.0,
+  "dur": 10,
+  "size": "WS",
+  "lens": 32,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "It flies through the lamp's beam, and shed scales make the light beam visible for the first time in the film.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "CREATURE-G1",
+   "APARTMENT",
+   "HABITAT"
+  ],
+  "attach": [
+   "Creature G1 (flow-guide §1.2)",
+   "APARTMENT plate (flow-guide §1.6)",
+   "HABITAT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Wide shot of a dark, spotless apartment: a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, flying through the warm light spilling from a small open wall cavity; tiny shed scales drift in the light, making a soft beam visible in the air for the first time. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text.",
+  "motion": "Locked off. The creature crosses the light; glittering scales hang and drift in the beam.",
+  "frame": null,
+  "end": 540.0,
+  "prompt": "Wide shot of a dark, spotless apartment: {CREATURE}, flying through the warm light spilling from a small open wall cavity; tiny shed scales drift in the light, making a soft beam visible in the air for the first time.",
+  "motes": true
+ },
+ {
+  "id": "SC17F",
+  "scene": "SC17",
+  "start": 540.0,
+  "dur": 30,
+  "size": "CU",
+  "lens": 65,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The long hold. DP sitting on the floor, watching it. He has never seen anything that wasn't programmed to behave.",
+  "sound": "No music. Wings, his breathing, the hum.",
+  "text": "",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "C01-C03"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)"
+  ],
+  "full_prompt": "Close-up of the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, sitting on the floor in a dark apartment, lit warm by a small lamp, watching something flutter above him with quiet, overwhelmed wonder; a few drifting scales glinting in the air between him and the lamp. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text.",
+  "motion": "Locked off. Only his eyes move, following it. Build the 30 s by chaining four clips from each clip's last frame.",
+  "frame": null,
+  "end": 570.0,
+  "prompt": "Close-up of {DP_HOME}, sitting on the floor in a dark apartment, lit warm by a small lamp, watching something flutter above him with quiet, overwhelmed wonder; a few drifting scales glinting in the air between him and the lamp.",
+  "motes": true
+ },
+ {
+  "id": "SC17G",
+  "scene": "SC17",
+  "start": 570.0,
+  "dur": 10,
+  "size": "WS",
+  "lens": 28,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The creature loops imperfectly in the warm beam above him. In the shadows, the pet watches.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "C01-C03",
+   "CREATURE-G1",
+   "PET",
+   "APARTMENT"
+  ],
+  "attach": [
+   "DP reference: C01 + C03 crops (add C02 for three-quarter angles)",
+   "Creature G1 (flow-guide §1.2)",
+   "Pet (flow-guide §1.5)",
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Wide shot of a dark apartment: the man from character reference images C01-C03 (match his face exactly): early 30s, warm brown skin, thick curly dark hair with shorter faded sides, full short neatly trimmed black beard and moustache, small dark mark at the outer corner of his left eye; wearing his heather-grey crew-neck T-shirt and dark-grey cargo work trousers, barefoot, no jacket, sitting on the floor beside a small lamp-lit wall cavity, a fragile hybrid butterfly, 10 cm wingspan: translucent, wet, smoky wing membranes with visible branching pale-amber veins, supported by a few hair-thin matte carbon-fibre spars running alongside the veins; the right forewing slightly shorter with a kinked spar and a crease; soft pale cream segmented organic abdomen, slightly translucent; thin thorax with tiny graphite vertebrae visible beneath thin organic tissue like a fish skeleton through skin; dark organic compound eyes, uneven antennae; moisture beads on the body; no glow, no lights, no visible electronics; faint rose-gold iridescence only at angles; delicate, imperfect, almost accidental, looping unevenly in the warm beam above him, and a bio-synthetic companion animal in a cat shape: soft short pale-grey coat, slightly too-perfect proportions and posture, calm glassy eyes, a tiny soft licence light at its collar, in the shadows watching. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text.",
+  "motion": "Locked off. The creature loops and dips right; the pet's head follows it smoothly.",
+  "frame": null,
+  "end": 580.0,
+  "prompt": "Wide shot of a dark apartment: {DP_HOME}, sitting on the floor beside a small lamp-lit wall cavity, {CREATURE}, looping unevenly in the warm beam above him, and {PET}, in the shadows watching.",
+  "motes": true
+ },
+ {
+  "id": "SC18A",
+  "scene": "SC18",
+  "start": 580.0,
+  "dur": 8,
+  "size": "INSERT",
+  "lens": 85,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The home panel in the dark. The number ticks over, and the line changes colour.",
+  "sound": "One polite interface tone.",
+  "text": "0.009% → 0.010% — WITHIN TOLERANCE → FLAGGED FOR REVIEW",
+  "trans": "CUT",
+  "hero": true,
+  "refs": [
+   "APARTMENT"
+  ],
+  "attach": [
+   "APARTMENT plate (flow-guide §1.6)"
+  ],
+  "full_prompt": "Close insert of the corner of a softly glowing wall interface panel in a dark room, a faint warm glow from off-screen (readout added in post). Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The panel's glow shifts from neutral to a soft amber.",
+  "frame": null,
+  "end": 588.0,
+  "prompt": "Close insert of the corner of a softly glowing wall interface panel in a dark room, a faint warm glow from off-screen (readout added in post).",
+  "motes": false
+ },
+ {
+  "id": "SC18B",
+  "scene": "SC18",
+  "start": 588.0,
+  "dur": 5,
+  "size": "ECU",
+  "lens": 100,
+  "angle": "eye level",
+  "move": "locked off",
+  "action": "The pet's eye in the dark, reflecting the fluttering creature. Its licence light blinks.",
+  "sound": "",
+  "text": "",
+  "trans": "CUT",
+  "hero": false,
+  "refs": [
+   "PET"
+  ],
+  "attach": [
+   "Pet (flow-guide §1.5)"
+  ],
+  "full_prompt": "Extreme close-up of the glassy eye of a bio-synthetic cat in the dark, a tiny fluttering winged shape reflected in it, a small licence light blinking at the edge of frame. Cinematic film still, 16:9 frame with the key action kept inside a central 2.39:1 band, large-format digital cinema camera, clean-dystopia production design, photoreal, subtle film grain, no neon, no text. The air is perfectly filtered: no dust motes, no visible light beams.",
+  "motion": "Locked off. The reflection flutters; the light blinks once.",
+  "frame": null,
+  "end": 593.0,
+  "prompt": "Extreme close-up of the glassy eye of a bio-synthetic cat in the dark, a tiny fluttering winged shape reflected in it, a small licence light blinking at the edge of frame.",
+  "motes": false
+ },
+ {
+  "id": "SC18C",
+  "scene": "SC18",
+  "start": 593.0,
+  "dur": 7,
+  "size": "TITLE",
+  "lens": 0,
+  "angle": "—",
+  "move": "—",
+  "action": "Black. Wings and breath. End card.",
+  "sound": "Fluttering wings + one human breath. Silence.",
+  "text": "FLUTTER — Episode 1",
+  "trans": "FADE OUT",
+  "hero": false,
+  "refs": [],
+  "attach": [],
+  "full_prompt": "Pure black frame (end card added in post).",
+  "motion": "Hold on black.",
+  "frame": null,
+  "end": 600.0,
+  "prompt": "Pure black frame (end card added in post).",
+  "motes": false
+ }
+]

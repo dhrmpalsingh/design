@@ -31,7 +31,7 @@ Generate each one, pick the best, and keep it in the Flow project as a reusable 
 3. **Consistency test:** before any storyboard frame, generate these four test images with C01 + C03 attached. Check the curly hair with faded sides, the trimmed beard, and **the small mark at the outer corner of his left eye**.
 
 ```
-The man in the reference images, standing in a bright minimal luxury apartment of warm ivory walls, pale stone and frosted glass, wearing a clean plain grey T-shirt and soft trousers, barefoot, relaxed, a faint pressure line across the bridge of his nose and cheeks from a respirator. Full body, eye level, soft shadowless daylight. Cinematic film still, 16:9, photoreal, subtle film grain, no text.
+The man in the reference images, standing in a bright minimal luxury apartment of warm ivory walls, pale stone and frosted glass, wearing exactly his reference outfit without the jacket and boots: heather-grey crew-neck T-shirt and dusty dark-grey cargo trousers, barefoot, relaxed. Full body, eye level, soft shadowless daylight. Cinematic film still, 16:9, photoreal, subtle film grain, no text.
 ```
 
 ```
