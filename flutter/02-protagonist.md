@@ -1,34 +1,36 @@
 # FLUTTER — Protagonist
 
-**Status:** Proposed lock v0.1. Her name, look and pet are listed in [`05-decisions.md`](05-decisions.md).
+**Status:** Look **LOCKED** from the reference sheet, [`reference/protagonist-C01-C03.webp`](reference/protagonist-C01-C03.webp). Name and pet are proposed and listed in [`05-decisions.md`](05-decisions.md).
+
+![Protagonist reference sheet C01–C03](reference/protagonist-C01-C03.webp)
 
 ---
 
-## ILA *(working name)*
+## SAMEER *(working name)*
 
-*Ila* (Sanskrit, इला) means **earth**. It's short, readable in any language, and it's never said aloud in the film. It's swappable.
+*Sameer* (समीर) means **gentle breeze** in Sanskrit, and in Arabic it means a companion in evening conversation. It's an ordinary name that's readable across South Asia, the Middle East and beyond. It's also a quiet irony: he's a breeze in a city where no window opens and no wind ever reaches anyone's face. It's never said aloud in the film. It's swappable.
 
 | | |
 |---|---|
-| **Age** | 29 |
+| **Age** | 31 |
 | **Address** | Tower 41 / Floor 786 / Residence 12, shown on screen as **41-786-12** |
 | **Job** | Residential Environmental Systems Technician, Grade II |
-| **Employer** | A building-services contractor certified by Preservation, so she's a tradesperson, not an official |
+| **Employer** | A building-services contractor certified by Preservation, so he's a tradesperson, not an official |
 | **Lives with** | One bio-synthetic companion (feline pattern). See Decisions for its name. |
 | **Elevation band** | Upper. Comfortable, a little lonely, well looked-after. |
 | **Family** | Grandmother deceased, which is the source of the inherited tin. No partner. Parents not part of the story. |
 
 ---
 
-## Her job, and why it's the right job
+## His job, and why it's the right job
 
-Ila installs, calibrates and repairs the systems that keep homes perfect: **air-quality sensors, humidity regulators, domestic filtration, and bio-compliance equipment.** Every day she goes into strangers' apartments and replaces the devices that watch them.
+Sameer installs, calibrates and repairs the systems that keep homes perfect: **air-quality sensors, humidity regulators, domestic filtration, and bio-compliance equipment.** Every day he goes into strangers' apartments and replaces the devices that watch them.
 
 The job does three things for the story:
 
-1. **Believable access.** Her service calls take her into a **Contained agricultural floor**, where she can pick up a damaged pollination unit from a disposal tray.
-2. **Expert knowledge.** She knows exactly what each sensor measures, where the **dead zones** are, and what every threshold means. When her own panel reads **0.021%, FLAGGED FOR REVIEW**, the audience doesn't need to understand the number. They watch *her* understand it.
-3. **Built-in irony.** Each countermeasure she tries is something she's professionally trained to detect. She knows she's leaving a trail. She does it anyway.
+1. **Believable access.** His service calls take him into a **Contained agricultural floor**, where he can pick up a damaged pollination unit from a disposal tray.
+2. **Expert knowledge.** He knows exactly what each sensor measures, where the **dead zones** are, and what every threshold means. When his own panel reads **0.021%, FLAGGED FOR REVIEW**, the audience doesn't need to understand the number. They watch *him* understand it.
+3. **Built-in irony.** Each countermeasure he tries is something he's professionally trained to detect. He knows he's leaving a trail. He does it anyway.
 
 ---
 
@@ -42,7 +44,7 @@ The job does three things for the story:
 
 A **decommissioned humidity-regulator bay** behind a wall panel near the floor. It's about 60 cm wide, 40 cm high and 35 cm deep.
 
-- **Ila decommissioned it herself.** She logged the regulator as removed and its sensor as retired. It's a **sensor dead zone**, and she knows it because she made it.
+- **Sameer decommissioned it himself.** He logged the regulator as removed and its sensor as retired. It's a **sensor dead zone**, and he knows it because he made it.
 - That is the habitat's only protection. Whatever happens *inside* the bay is invisible. Whatever *leaks out* (humidity, CO₂ change, movement, particles) is not.
 - That's why the variance readings creep up instead of spiking. And it's why the creature becomes dangerous the moment it starts leaving the bay.
 
@@ -53,11 +55,11 @@ It should look **almost pathetic**. It is not a lush greenhouse.
 | Item | Detail |
 |---|---|
 | Soil | A handful, in a shallow composite tray. Dry at the edges. |
-| Water | A small jar of **condensation collected from her own respirator**, emptied in every evening |
+| Water | A small jar of **condensation collected from his own respirator**, emptied in every evening from the canister on his belt unit |
 | The plant | One **wild strawberry** (*Fragaria vesca*): three leaves, one of them greying, one tired white flower. It has never fruited. |
 | Moss | A thumb-sized patch on a stone, half grey |
 | Light | A small lamp approximating sunlight, warmer than anything else in the apartment |
-| Breath line | A thin clear tube she connects from her respirator's exhaust port into the bay, so **the habitat runs on her breath** |
+| Breath line | **His respirator's own corrugated hose.** He unclips it from the belt unit, adds a short extension and feeds it into the bay, so **the habitat runs on his breath** |
 | The diagram | Handwritten, inherited, taped inside the panel door (see below) |
 | The log | A **paper** notebook. Paper, because digital is monitored. |
 
@@ -66,11 +68,11 @@ It should look **almost pathetic**. It is not a lush greenhouse.
 ### The inheritance: grandmother's tin
 
 A small, dented metal tin. Inside:
-- **The diagram.** A hand-drawn cycle in faded ink: *sun → plant → pollinator → seed → soil → water → sun*. The pollinator is drawn as a butterfly. Ila has circled that link in her own hand and written next to it: **"impossible."**
+- **The diagram.** A hand-drawn cycle in faded ink: *sun → plant → pollinator → seed → soil → water → sun*. The pollinator is drawn as a butterfly. Sameer has circled that link in his own hand and written next to it: **"impossible."**
 - **Empty seed envelopes**, all used and all failed.
-- **A sealed glass vial** in old cryo-wrap, labelled in her grandmother's handwriting. The label has a Latin name she has never looked up, and **a tiny drawn butterfly.** Ila thinks it's spores or seed stock. The audience can see the drawing. She can't, or doesn't look.
+- **A sealed glass vial** in old cryo-wrap, labelled in his grandmother's handwriting. The label has a Latin name he has never looked up, and **a tiny drawn butterfly.** Sameer thinks it's spores or seed stock. The audience can see the drawing. He can't, or doesn't look.
 
-We never explain who her grandmother was. One shot of the tin, the handwriting and the diagram is enough to say that someone before her tried too.
+We never explain who his grandmother was. One shot of the tin, the handwriting and the diagram is enough to say that someone before him tried too.
 
 ### The log
 
@@ -86,47 +88,47 @@ A record of failure in neat handwriting, shown in brief inserts:
 
 ## Psychology
 
-### What she is not
+### What he is not
 
-- **Not a revolutionary.** She has no politics she'd put into words. She's never met an activist.
-- **Not a soldier.** She never fights anyone.
-- **Not a scientist trying to overthrow the system.** She's a technician. She partly believes in the system: she has seen mould blooms in people's homes, and she knows the history.
-- **Not a rebel against her life.** Her life is fine. That's the problem.
+- **Not a revolutionary.** He has no politics he'd put into words. He's never met an activist.
+- **Not a soldier.** He never fights anyone.
+- **Not a scientist trying to overthrow the system.** He's a technician. He partly believes in the system: he has seen mould blooms in people's homes, and he knows the history.
+- **Not a rebel against his life.** His life is fine. That's the problem.
 
-### Why she does it
+### Why he does it
 
-Not ideology. **Something closer to a private diary, or prayer.** Keeping the habitat is the one thing in her day that hasn't been designed for her. She's spent her whole working life measuring the *absence* of living things; the bay is the one place where she's trying to measure something present.
+Not ideology. **Something closer to a private diary, or prayer.** Keeping the habitat is the one thing in his day that hasn't been designed for him. He's spent his whole working life measuring the *absence* of living things; the bay is the one place where he's trying to measure something present.
 
-The diagram gives it a shape: she's trying to complete a cycle her grandmother drew. She has quietly accepted that she will only ever manage half of it.
+The diagram gives it a shape: he's trying to complete a cycle his grandmother drew. He has quietly accepted that he will only ever manage half of it.
 
 ### Want / Need / Flaw
 
 | | |
 |---|---|
 | **Want** | To keep **one** living thing alive. To make the plant fruit. |
-| **Need** | To accept that life can't be controlled, including by her. |
-| **Flaw** | **She is a product of the system she's hiding from.** She runs the habitat the way the city runs her: measured, logged, rationed, controlled. That's why it keeps dying. |
+| **Need** | To accept that life can't be controlled, including by him. |
+| **Flaw** | **He is a product of the system he's hiding from.** He runs the habitat the way the city runs him: measured, logged, rationed, controlled. That's why it keeps dying. |
 
 ### The arc: control → release
 
 This is the key internal idea, and it mirrors the film's theme:
 
-1. **She controls the habitat**, and it fails. Every experiment dies.
-2. **She gives up** ("Day 0, last try") and **stops opening the bay.**
-3. **While she isn't controlling it, life happens.** The chrysalis forms during the days she has abandoned it. *It works the moment she stops controlling it.*
-4. **She tries to control again**, with countermeasures, taping and routing. Each attempt makes things worse and leaves a trail.
-5. **Her final act is a refusal, not a rebellion.** Offered amnesty if she destroys the creature, she simply **doesn't.** She closes the sterilisation port, sits down on the floor, holds it in her hands and waits. The most radical thing available to her is to **not kill something.**
+1. **He controls the habitat**, and it fails. Every experiment dies.
+2. **He gives up** ("Day 0, last try") and **stops opening the bay.**
+3. **While he isn't controlling it, life happens.** The chrysalis forms during the days he has abandoned it. *It works the moment he stops controlling it.*
+4. **He tries to control again**, with countermeasures, taping and routing. Each attempt makes things worse and leaves a trail.
+5. **His final act is a refusal, not a rebellion.** Offered amnesty if he destroys the creature, he simply **doesn't.** He closes the sterilisation port, sits down on the floor, holds it in his hands and waits. The most radical thing available to him is to **not kill something.**
 
 ---
 
-## Her relationship with the pet
+## His relationship with the pet
 
-The companion is the only other "living" presence in her apartment. It's warm, soft and affectionate on schedule. She's fond of it the way you're fond of a good appliance, but she also talks to it in body language: a hand on its back, a pause.
+The companion is the only other "living" presence in his apartment. It's warm, soft and affectionate on schedule. He's fond of it the way you're fond of a good appliance, but he also talks to it in body language: a hand on its back, a pause.
 
 Its story job:
 1. **Contrast.** Perfect, scheduled behaviour sits beside the creature's imperfect, unprogrammed movement.
 2. **First witness.** The night of the emergence, the pet turns toward the wall *off schedule*. Its classification loop flickers and freezes. It doesn't know what it's looking at, and neither do we yet.
-3. **Betrayal without malice.** During the hunt the system switches it into **sensor mode**, and it starts tracking the creature around the room with smooth, perfect head turns. Ila has to **switch it off**: she puts out the only other "life" she has to protect the real one. It goes limp and stays warm.
+3. **Betrayal without malice.** During the hunt the system switches it into **sensor mode**, and it starts tracking the creature around the room with smooth, perfect head turns. Sameer has to **switch it off**: he puts out the only other "life" he has to protect the real one. It goes limp and stays warm.
 
 ---
 
@@ -134,24 +136,40 @@ Its story job:
 
 The film is **near-dialogue-free** (see Decisions), so everything is behavioural.
 
-- **The glance.** She habitually checks the ceiling sensor dome when she enters a room. It's a professional tic, and later a fearful one.
-- **The click.** She attaches her respirator without looking: magnetic click, seal tone. The audience should be able to hear her mood in how she does it.
-- **The reservoir.** Every evening she empties her respirator's condensation into the habitat jar, not the drain. It's the first sign that something is off.
-- **Stillness.** Her default state is composed and economical. When she finally breaks, it's small: a held breath, a hand that won't stop shaking.
-- **Watching.** The 30-second emergence sequence is entirely her face watching. Cast someone who can hold the frame doing nothing.
-- **Breathing.** Her breath is part of the sound design (see beats). The actor's breathing should be recorded wild and close in every scene.
+- **The glance.** He habitually checks the ceiling sensor dome when he enters a room. It's a professional tic, and later a fearful one.
+- **The click.** He puts on his respirator without looking: mask to face, hose clipped to the belt unit, **click**, seal tone. The audience should be able to hear his mood in how he does it.
+- **The reservoir.** Every evening he unclips the condensation canister from his belt unit and empties it into the habitat jar, not the drain. It's the first sign that something is off.
+- **Hands in pockets.** His resting stance in the reference (C03) is relaxed and unbothered, hands deep in his jacket pockets. That's the man at the start of the film. By the hunt, his hands are never still.
+- **Stillness.** His default state is easy and economical, with a warm, half-tired half-smile (C01–C02). When he finally breaks, it's small: a held breath, a hand that won't stop shaking.
+- **Watching.** The 30-second emergence sequence is entirely his face watching. The reference face has soft, warm eyes that can hold a frame doing nothing. Protect that in every generation.
+- **Breathing.** His breath is part of the sound design (see beats). The actor's breathing should be recorded wild and close in every scene.
 
 ---
 
-## Canonical look *(proposed, for generation consistency)*
+## Canonical look *(LOCKED: reference sheet C01–C03)*
 
-Lock these before generating any production shot. Face and ethnicity are an **open decision**.
+Source: [`reference/protagonist-C01-C03.webp`](reference/protagonist-C01-C03.webp). C01 is a front head-and-shoulders, C02 is a three-quarter head-and-shoulders, and C03 is full body in the respirator. **Attach this sheet as the character reference in every generation of him.**
 
-| Element | Proposal |
+| Element | Locked from reference |
 |---|---|
-| **Build** | Slight, upright, economical movements |
-| **Hair** | Dark, practical. Pulled back for work, down at home. |
-| **Work wardrobe** | A tailored technician's jacket in **soft sage** with a pale stone undershirt, a slim tool belt and a contractor badge. Clean and well made, because this world dresses its tradespeople well. |
-| **Home wardrobe** | Loose ivory knit, bare feet on warm composite floor |
-| **Respirator** | A standard Upper-band model: champagne-metal crescent along the jaw, clear seal, a soft white temple light |
-| **Distinguishing detail** | A faint red line along the jaw where the seal sits, from years of wear. It's the only mark the city leaves on her body. |
+| **Age / build** | Early 30s. Average height, lean, relaxed posture. |
+| **Ethnicity** | South Asian, warm medium-brown skin |
+| **Face** | Soft, warm dark-brown eyes with a slightly tired, kind expression. A gentle half-smile at rest. |
+| **Hair** | Thick, dark, **curly and slightly unruly on top**, with shorter faded sides |
+| **Facial hair** | **Full, short, neatly trimmed black beard** with a defined moustache |
+| **Distinguishing mark** | A **small dark mark at the outer corner of his left eye** (screen right in C01). Keep it consistent in every shot. |
+| **Jacket** | A **worn charcoal-black canvas work jacket**: stand collar, brass-toned zip worn open, chest flap pocket, sleeves pushed slightly up. **Faded and dusty**, with pale scuffs on the pocket and elbows. |
+| **Shirt** | Plain **heather-grey crew-neck T-shirt** |
+| **Trousers** | **Dark grey cargo work trousers** with side cargo pockets, dusty, worn pale at the knees and thighs |
+| **Boots** | **Brown leather lace-up work boots**, scuffed and dusty |
+| **Respirator (work-grade)** | A **grey half-face mask with twin side filter cartridges** over the nose and mouth. A **black corrugated hose** runs from the mask over his left shoulder and down to a **compact grey belt unit at his left hip** (filtration and condensation canister). See World Rules §5. |
+| **Home wardrobe** | *(Not in the reference; proposal.)* Loose plain T-shirt and soft trousers, barefoot on the warm composite floor. **Clean.** The dust stays on the work clothes by the door. |
+| **Mask mark** | *(Not in the reference; proposal.)* When the half-mask comes off, there's a faint pressure line across the bridge of his nose and his cheeks, from years of wear. It's the only mark the city leaves on his body. |
+
+### Why his clothes are dirty in a spotless city
+
+The world rules say the city has **no grime**. Sameer is the exception, and that's deliberate.
+
+He services filters, ducts, humidity regulators and the inside of walls: **everywhere the city hides the dirt it removes from the air.** His work clothes carry that residue. In the lift (B4), surrounded by polished Upper-band residents in pale, clean clothing, **he's the only person in frame with dust on him.** He literally wears what the city doesn't want to see. That fits a man who keeps soil behind a wall panel.
+
+**Rule:** The dust is **on his workwear only**: the jacket, trousers and boots. His **skin, hair and home are clean.** The air around him stays dust-free (the light rule still holds).

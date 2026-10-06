@@ -10,9 +10,10 @@ Pre-production package: [`flutter/`](flutter/README.md)
 |---|---|
 | World rules | Proposed lock v0.1 |
 | Protagonist | Proposed lock v0.1 |
+| Protagonist look | **Locked** (reference sheet C01–C03) |
 | Creature biology | Proposed lock v0.1 |
 | Story beats | Proposed lock v0.1 (39 beats, ~16:30) |
-| Decisions | 20 open, with recommendations |
+| Decisions | 21 listed, with recommendations |
 | Creature visual development | Not started |
 | Interface-text pass | Not started |
 | Shot list / animatic | Not started |

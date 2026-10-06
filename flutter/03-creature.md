@@ -7,7 +7,7 @@
 **Design north star:** It should look **fragile, almost accidental.** It must NOT look like sophisticated technology. If a frame of it could be used in an advert for a gadget, the design has failed.
 
 **Names:**
-- Ila never names it on screen.
+- Sameer never names it on screen.
 - The Authority's designation, seen on the ops screen and the evidence vial: **ORGANISM 41-786-A**.
 - Production nickname: open (see Decisions).
 
@@ -15,17 +15,17 @@
 
 ## 1. Origin: how it came to exist
 
-Ila **is not trying to create a butterfly.** It happens by accident. There are three ingredients.
+Sameer **is not trying to create a butterfly.** It happens by accident. There are three ingredients.
 
 | Ingredient | What it is | Where it comes from |
 |---|---|---|
 | **The pollination unit** | A **PU-7 micro-pollinator**: insect-scale, with carbon-fibre wing spars, micro-segmented graphite spine, sterile engineered tissue, and a **self-repair gel** that regrows damaged tissue from a genetic template broadcast by the facility network | The disposal tray on a Contained agricultural floor. It's damaged, with **one bent right forewing spar.** |
-| **The preserved biology** | Grandmother's vial: **lepidopteran germ cells / eggs in cryoprotectant**, pre-Collapse, still viable | The inherited tin. Ila thinks it's spore or seed stock. |
-| **The habitat** | Soil, condensation water, lamp warmth, and **CO₂ and moisture from her breath** | The hidden bay |
+| **The preserved biology** | Grandmother's vial: **lepidopteran germ cells / eggs in cryoprotectant**, pre-Collapse, still viable | The inherited tin. Sameer thinks it's spore or seed stock. |
+| **The habitat** | Soil, condensation water, lamp warmth, and **CO₂ and moisture from his breath** | The hidden bay |
 
 ### What happened (in-world logic, never explained on screen)
 
-On Day 0, desperate to revive the dying soil, Ila cracks the pollination unit open, squeezes its repair gel into the soil as a nutrient, empties the vial in alongside it, and buries the lot.
+On Day 0, desperate to revive the dying soil, Sameer cracks the pollination unit open, squeezes its repair gel into the soil as a nutrient, empties the vial in alongside it, and buries the lot.
 
 The repair gel is designed to **rebuild the unit from a template.** Cut off from the facility network, it gets no template signal, so it takes one from the nearest viable genetic material: **the butterfly germ cells.** It doesn't "reproduce." It **repairs itself into something else**, absorbing the unit's mechanical parts as scaffolding and growing new biology around them.
 
@@ -39,8 +39,8 @@ That one line is the creature's whole scientific premise. The design team, write
 
 | Day | Stage | What is visible | Panel reading |
 |---|---|---|---|
-| 0 | Burial | Nothing. Ila writes *"Day 0 — last try."* | 0.001% |
-| 1–7 | **Dormant / larval** (unseen) | **Chewed edges** on one leaf, and a faint **silvery trail** on the stem. Ila reads both as rot. | 0.003% |
+| 0 | Burial | Nothing. Sameer writes *"Day 0 — last try."* | 0.001% |
+| 1–7 | **Dormant / larval** (unseen) | **Chewed edges** on one leaf, and a faint **silvery trail** on the stem. Sameer reads both as rot. | 0.003% |
 | ~8 | Pupation | The chrysalis forms under a leaf | 0.005% |
 | 9 | **Chrysalis discovered** | See §3 | 0.006% |
 | 13 (night) | **Emergence** | See §5 | 0.009% |
@@ -49,7 +49,7 @@ That one line is the creature's whole scientific premise. The design team, write
 | 18 | Fruit set, airborne pollen | A tiny green berry; pollen drifting in the window light | REPRODUCTIVE SIGNATURE |
 | ~25 | **Second generation emerges** | In another tower, from an air vent | BIOLOGICAL VARIANCE DETECTED |
 
-The larval stage is **never shown directly.** It exists only as evidence that Ila misreads. Viewers on a second watch will catch it.
+The larval stage is **never shown directly.** It exists only as evidence that Sameer misreads. Viewers on a second watch will catch it.
 
 ---
 
@@ -60,7 +60,7 @@ The larval stage is **never shown directly.** It exists only as evidence that Il
 - **Underneath:** **Fine metallic threads.** The unit's carbon fibre and filament have been repurposed as silk, running in uneven lines beneath the tissue like veins, or wiring.
 - **Attachment:** The silk pad that anchors it to the leaf is part organic thread, part frayed filament.
 - **Life signs:** Condensation beads on it. In one shot only, a **barely perceptible pulse.**
-- **What Ila thinks it is:** Mould, a fungal growth fused with the dead unit's parts. A failure. She has seen a hundred failures.
+- **What Sameer thinks it is:** Mould, a fungal growth fused with the dead unit's parts. A failure. He has seen a hundred failures.
 - **Do not:** No glow, no LEDs, no clean seams. It should look like something that might be rotting.
 
 ---
@@ -111,7 +111,7 @@ Overall size: **a large butterfly, 10–11 cm wingspan.**
 
 1. It tries to take off and **crashes** into the bay wall.
 2. **A wing sticks** to the wet condensation jar. It pulls free.
-3. It **rests** on Ila's sleeve, wings trembling.
+3. It **rests** on Sameer's sleeve, wings trembling.
 4. Then it **flutters.** It's uneven, dipping right and erratic. It's the first un-designed movement in the film.
 
 As it passes through the lamp, **shed scales drift in the light beam**, making the beam visible for the first time in the film (see the light rule in World Rules §11).
@@ -120,8 +120,8 @@ As it passes through the lamp, **shed scales drift in the light beam**, making t
 
 | Behaviour | Why | Story use |
 |---|---|---|
-| **Attracted to breath** (CO₂ and moisture) | Flowers emit CO₂; it reads breath as "flower" | It lands near Ila's mouth. Intimacy. |
-| **Drinks condensation** | It needs water constantly; the filtered 45% humidity air dries it out | It drinks from her respirator reservoir: **it lives on her breath** |
+| **Attracted to breath** (CO₂ and moisture) | Flowers emit CO₂; it reads breath as "flower" | It lands near Sameer's mouth. Intimacy. |
+| **Drinks condensation** | It needs water constantly; the filtered 45% humidity air dries it out | It drinks from his respirator reservoir: **it lives on his breath** |
 | **Drawn to light and movement** | Phototaxis | It goes to the window, then to the drone scan lights. **It becomes hard to hide.** |
 | **Seeks warm, humid enclosed spaces** | Egg-laying instinct | It disappears into the exhaust duct (Day 15) |
 | **Rests often** | Fragile, with limited energy | Pacing: quiet beats |
@@ -130,7 +130,7 @@ As it passes through the lamp, **shed scales drift in the light beam**, making t
 ### What it cannot survive
 
 - **Perfect city air**: too dry and too clean, with no sugars. Left in a normal apartment, it would die in about a day.
-- **It needs imperfection to live:** humidity, CO₂, condensation, the lamp, Ila's breath. *The habitat is fragile, and so is the creature.*
+- **It needs imperfection to live:** humidity, CO₂, condensation, the lamp, Sameer's breath. *The habitat is fragile, and so is the creature.*
 
 ---
 
@@ -138,14 +138,14 @@ As it passes through the lamp, **shed scales drift in the light beam**, making t
 
 - **Parthenogenetic.** It reproduces **without a mate.** That's how one creature can be the start of everything, and it's the Authority's worst fear: **one is enough.**
 - **Eggs:** Tiny, pearl-like, about 1 mm, each with a **single metallic fleck.** They're laid loosely in the condensation film of warm, humid enclosed spaces.
-- **Where:** On Day 15, inside the **exhaust duct** Ila routed the habitat's humidity into. From there, airflow carries some of them up the shared riser into the inter-tower air exchange.
+- **Where:** On Day 15, inside the **exhaust duct** Sameer routed the habitat's humidity into. From there, airflow carries some of them up the shared riser into the inter-tower air exchange.
 - **The Authority never finds them.** The drone sweep (Beat 31) passes the duct junction and moves on. The film leaves that ambiguous.
 
 ### Generational drift: nature taking over
 
 The mechanical parts **can't be fully inherited**: there are no more pollination units to scavenge. Biology can be inherited. So **each generation is more organic than the last.**
 
-| | Generation 1 (Ila's) | Generation 2 (coda) |
+| | Generation 1 (Sameer's) | Generation 2 (coda) |
 |---|---|---|
 | Size | 10–11 cm | 7–8 cm |
 | Mechanical vertebrae | Visible along the thorax | **Vestigial**: two or three graphite flecks |
@@ -164,10 +164,10 @@ What the city's sensors actually see. Everything here has to stay consistent wit
 | Signature | Sensor | Notes |
 |---|---|---|
 | Humidity bloom | Humidity | The habitat needs more moisture once the creature exists, and it leaks from the bay |
-| CO₂ drawdown | O₂/CO₂ | The plant consumes CO₂. Ila masks this by feeding it from her breath line (Beat 21). |
+| CO₂ drawdown | O₂/CO₂ | The plant consumes CO₂. Sameer masks this by feeding it from his breath line (Beat 21). |
 | Micro-motion at **8–14 Hz** | Acoustic / micro-motion | Real butterflies beat at 5–12 Hz and the PU-7 at about 200 Hz. **It falls between, so it can't be classified as a licensed device or a known organism.** Result: **UNIDENTIFIED ORGANIC MOTION.** |
 | Pollen | Particulate | **The fatal signature.** Reproduction bypasses every threshold. |
-| Missing unit | *Not a sensor; bureaucracy* | Preservation's disposal reconciliation is **one PU-7 short.** The last handler on the service log is Ila. |
+| Missing unit | *Not a sensor; bureaucracy* | Preservation's disposal reconciliation is **one PU-7 short.** The last handler on the service log is Sameer. |
 
 ---
 

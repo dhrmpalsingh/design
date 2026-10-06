@@ -43,7 +43,7 @@ The Authority has to be *right* about something, or the film is just "evil gover
 
 **Around 50 years ago:** The **Biological Preservation Authority** was founded with a reasonable mandate: *never again let living things reproduce beyond our control.*
 
-**The rhyme the film depends on:** the world was ended by **an engineered organism that helped nature and then reproduced without permission.** Ila's creature is *exactly that profile*. From the Authority's point of view, she hasn't made a miracle. She has rebuilt the thing that ended the world.
+**The rhyme the film depends on:** the world was ended by **an engineered organism that helped nature and then reproduced without permission.** Sameer's creature is *exactly that profile*. From the Authority's point of view, he hasn't made a miracle. He has rebuilt the thing that ended the world.
 
 The film should never tell the audience who is right. It has to be possible to watch the final scene as **hope** or as **outbreak**.
 
@@ -80,10 +80,10 @@ The film should never tell the audience who is right. It has to be possible to w
 | **Base** | 0–150 | Sealed industry, recycling, water processing. Workers only. |
 | **Lower** | 150–400 | Dense, functional, older systems. |
 | **Mid** | 400–700 | The working middle. Transit concourses. |
-| **Upper** | 700–900 | Comfortable professionals. Better light, quieter air. **Ila lives here (Floor 786).** |
+| **Upper** | 700–900 | Comfortable professionals. Better light, quieter air. **Sameer lives here (Floor 786).** |
 | **Summit** | 900+ | Wealth. Private flyers, real-glass skylights, the closest thing to sky. |
 
-Ila is **not poor**. She lives in a nice apartment in a beautiful building. This matters: she has a lot to lose, and the system has been good to her.
+Sameer is **not poor**. He lives in a nice apartment in a beautiful building. This matters: he has a lot to lose, and the system has been good to him.
 
 ### The shared air network ⚠ (critical for the ending)
 
@@ -101,13 +101,20 @@ This is how the ending works: whatever gets into one tower's exhaust can reach a
 - **Clean air is metered.** Every resident has an **oxygen allocation**. It's displayed on home panels and the apparatus. Allocation can be **reduced** as a compliance measure.
 - **Children learn to attach their unit the way children today learn to tie their shoes.** It's a rite of passage, and nobody comments on it.
 
-### The respiratory apparatus (design direction)
+### The respiratory apparatus: two tiers
 
+What you breathe through says what you do. Both tiers **collect condensation** from the wearer's breath into a removable reservoir, and both **attach with a click** and a brief seal-check tone. That sound is a motif.
+
+**Consumer tier (almost everyone):**
 - A **compact, elegant consumer product.** Think premium earbuds or a luxury watch, not a gas mask.
-- A slim crescent unit that sits along the jaw and under the nose, with a near-invisible clear seal over the nose and mouth. The face stays readable for performance.
+- A slim crescent unit that sits along the jaw and under the nose, with a near-invisible clear seal over the nose and mouth. The face stays readable.
 - A tiny **status light** at the temple for seal and allocation.
-- It **collects condensation** from the wearer's breath into a small removable reservoir. *(Ila uses this water for her habitat.)*
-- It **attaches with a soft magnetic click** and a brief seal-check tone. That sound is a motif.
+
+**Work tier (technicians, Base workers, filtration crews; this is Sameer's):**
+- **Locked from the protagonist reference (C03).** A **grey half-face mask with twin side filter cartridges**, a **black corrugated hose** over the left shoulder, and a **compact grey belt unit** at the left hip that holds filtration, allocation and the **condensation canister**.
+- Built for ducts, wall cavities and dirty plant rooms, where the consumer tier would clog.
+- It's functional, heavy and slightly old-fashioned. **Among the crescents in a lift, it marks him as someone who works inside the walls.**
+- **The hose is a story object.** Because his breath runs through a detachable hose, he can unclip it and **route his breath straight into the habitat** (B11, B21c).
 
 ---
 
@@ -116,7 +123,7 @@ This is how the ending works: whatever gets into one tower's exhaust can reach a
 - Engineered protein, fungal farm products (Contained) and synthetic agriculture output.
 - Food is dispensed at home from a wall **dispenser** in pleasant, idealised shapes. **It is shaped like fruit it doesn't taste like.** A pale protein "strawberry" is the first food we see.
 - **Real fruit is something people know from images.**
-- Organic waste goes into the apartment's **sterilisation port**: a small wall hatch that flashes heat and UV and leaves nothing behind. Every home has one. *(It becomes the site of Ila's final choice.)*
+- Organic waste goes into the apartment's **sterilisation port**: a small wall hatch that flashes heat and UV and leaves nothing behind. Every home has one. *(It becomes the site of Sameer's final choice.)*
 
 ---
 
@@ -126,7 +133,7 @@ People keep pets, and the pets are **LICENSED**:
 - **Bio-synthetic companions:** warm, soft, responsive. Engineered tissue over processors, with artificial nervous systems.
 - They behave like cats, birds, dogs, even butterflies, **without belonging to any ecosystem.** They don't eat prey, shed, age naturally or breed.
 - **Sterile by design. Fixed lifespan. Annual licence renewal.**
-- **Networked.** Their eyes and ears are part of the home's sensor suite. Most owners don't think about that. Ila, who installs the sensors, does.
+- **Networked.** Their eyes and ears are part of the home's sensor suite. Most owners don't think about that. Sameer, who installs the sensors, does.
 - Their behaviour is **scheduled and perfect**: they wake on time and move in clean, repeating patterns.
 
 ---
@@ -135,7 +142,7 @@ People keep pets, and the pets are **LICENSED**:
 
 - **Trees exist primarily as simulations:** projected canopies, moulded synthetic trunks, moss walls of licensed non-reproducing tissue. Public plazas are full of greenery, and none of it is alive in the way that matters.
 - **Real plants exist only in CONTAINED facilities:** sealed agricultural floors where crops are grown under total control.
-- In those facilities, crops are pollinated by **pollination units**: tiny bio-synthetic insect-drones with carbon-fibre wing spars and self-repairing engineered tissue. They're sterile and centrally controlled, and they fly in **perfect grid patterns**. Damaged units are swept into disposal trays. *(Ila takes one.)*
+- In those facilities, crops are pollinated by **pollination units**: tiny bio-synthetic insect-drones with carbon-fibre wing spars and self-repairing engineered tissue. They're sterile and centrally controlled, and they fly in **perfect grid patterns**. Damaged units are swept into disposal trays. *(Sameer takes one.)*
 
 ---
 
@@ -199,7 +206,7 @@ This is the ordered escalation used in Part V. **Every step is rational containm
 
 ## 11. Look & Feel Rules
 
-**Avoid the Blade Runner vocabulary entirely:** no grime, no neon, no rain-soaked alleys, no holographic ad clutter, no industrial decay.
+**Avoid the Blade Runner vocabulary entirely:** no grime in the city, no neon, no rain-soaked alleys, no holographic ad clutter, no industrial decay. (The single exception is technicians' workwear, below.)
 
 | Element | Rule |
 |---|---|
@@ -209,6 +216,7 @@ This is the ordered escalation used in Part V. **Every step is rational containm
 | **Interior light** | Soft, diffused, near shadowless. Artificial daylight that changes on a schedule. |
 | **⚠ The light rule** | **The air is so filtered that nothing floats in it. Light beams are invisible.** No dust motes, ever. When the creature first flies through the lamp, its shed scales and pollen make a light beam **visible for the first time in the film.** |
 | **⚠ The life rule** | **No birds, no insects, no weeds, no stains, no decay** anywhere, until the habitat. The audience should feel the absence before they can name it. |
+| **⚠ The one exception: workwear** | **The city is spotless; the people who clean it are not.** Technicians' work clothes carry dust and filter residue from inside the walls. Sameer's dusty charcoal jacket, cargo trousers and boots (reference C01–C03) are the **only dirt on screen** in public spaces. The dirt is on fabric, never in the air, and never on the city's surfaces. |
 | **Architecture** | Elegant curves, biophilic design *without biology*: Gardens by the Bay supertrees, Zaha Hadid curves, Apple Park calm |
 | **Sound** | Engineered and pleasant: soft chimes, a constant low ventilation hum, quiet magnetic clicks. **No un-designed sound** until the creature's wings. |
 | **Lineage** | *Gattaca*, *Her*, *Ex Machina*, *Never Let Me Go*, *Severance*, *THX 1138*: the clean-dystopia tradition, not the cyberpunk one |
@@ -224,15 +232,15 @@ The film has **no exposition**. Every rule has to be taught by an image. If a ru
 | Interiors are perfect and controlled | The apartment wakes up: light, temperature, the panel reading 21.0% O₂, 45% RH | 1 |
 | Biological Variance exists | The panel shows **0.001%, WITHIN TOLERANCE**, in the corner, unremarked | 2 |
 | Food imitates nature | A pale protein "strawberry" from the dispenser | 2 |
-| Organic waste is sterilised | She drops a crumb into the sterilisation port; a flash; nothing left | 2 |
-| Breathing is technological and normal | The magnetic click and seal tone at her door; a child in the lift doing it without help | 3–4 |
+| Organic waste is sterilised | He drops a crumb into the sterilisation port; a flash; nothing left | 2 |
+| Breathing is technological and normal | The magnetic click and seal tone at his door; a child in the lift doing it without help | 3–4 |
 | Vertical city, elevation as class | The lift counter dropping from 786; the window reveal | 4 |
 | Pets are synthetic and licensed | A dog in the lift with a licence light at its collar, moving in a slightly too-perfect rhythm | 4 |
 | Trees are simulations | Commuters crossing a plaza of perfect projected trees | 5 |
 | Rain is contaminated | Amber rain on a bridge; people hurry, a section seals, a drone rinses | 5 |
-| Real plants exist only in facilities | Her service call to a Contained agricultural floor | 6 |
+| Real plants exist only in facilities | His service call to a Contained agricultural floor | 6 |
 | Pollination is robotic | Units flying in perfect grids; a damaged one falls | 6 |
-| Even mould is policed | Her work tablet: *MICROBIAL BLOOM, FOOD RESIDUE, NOTICE ISSUED* at a neighbour's unit | 6 |
+| Even mould is policed | His work tablet: *MICROBIAL BLOOM, FOOD RESIDUE, NOTICE ISSUED* at a neighbour's unit | 6 |
 | Reproduction is the real crime | The escalation in Part IV: pollen detection jumps straight past every threshold | 22 |
 | Authority fear is rational | The ops-floor screen: *PROFILE MATCH, REMEDY-CLASS ORGANISM* | 23 |
 | The bridges are shared lungs | The final display: detections spreading along bridge lines | 38 |
