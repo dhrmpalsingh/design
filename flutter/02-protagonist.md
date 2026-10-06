@@ -1,6 +1,6 @@
 # FLUTTER — Protagonist
 
-**Status:** Look **LOCKED** from the reference sheet, [`reference/protagonist-C01-C03.webp`](reference/protagonist-C01-C03.webp). Name and pet are proposed and listed in [`05-decisions.md`](05-decisions.md).
+**Status:** Played by **Dharampal (DP)**. Look **LOCKED** from the reference sheet, [`reference/protagonist-C01-C03.webp`](reference/protagonist-C01-C03.webp). Name and pet are proposed and listed in [`05-decisions.md`](05-decisions.md).
 
 ![Protagonist reference sheet C01–C03](reference/protagonist-C01-C03.webp)
 
@@ -147,6 +147,8 @@ The film is **near-dialogue-free** (see Decisions), so everything is behavioural
 ---
 
 ## Canonical look *(LOCKED: reference sheet C01–C03)*
+
+**Played by Dharampal (DP), the filmmaker.** The reference sheet is him.
 
 Source: [`reference/protagonist-C01-C03.webp`](reference/protagonist-C01-C03.webp). C01 is a front head-and-shoulders, C02 is a three-quarter head-and-shoulders, and C03 is full body in the respirator. **Attach this sheet as the character reference in every generation of him.**
 

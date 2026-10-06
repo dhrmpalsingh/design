@@ -48,6 +48,7 @@ These are the open choices that need sign-off before dialogue (if any) or any pr
 - Also open: does he need a surname? On screen the system only ever calls him **41-786-12**, which is a deliberate choice.
 
 ### 10. Sameer's look & casting: ✅ LOCKED
+- **Cast: Dharampal (DP), the filmmaker, plays the lead.**
 - Locked from the reference sheet [`reference/protagonist-C01-C03.webp`](reference/protagonist-C01-C03.webp): a South Asian man in his early 30s with curly dark hair, faded sides and a full trimmed beard; a dusty charcoal canvas jacket, grey T-shirt, dusty cargo trousers and brown work boots; a grey twin-cartridge half-mask with a hose to a belt unit.
 - Full breakdown: Protagonist → *Canonical look*.
 - Still open: the home wardrobe and the mask pressure-line, which are proposals not shown in the reference.
