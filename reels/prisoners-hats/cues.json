@@ -1,0 +1,647 @@
+{
+ "dur": 107.902,
+ "sfx": [
+  [
+   0.35,
+   "step"
+  ],
+  [
+   0.4,
+   "pop"
+  ],
+  [
+   0.654,
+   "step"
+  ],
+  [
+   0.957,
+   "step"
+  ],
+  [
+   1.261,
+   "step"
+  ],
+  [
+   3.387,
+   "whoosh"
+  ],
+  [
+   3.437,
+   "pop"
+  ],
+  [
+   6.675,
+   "card"
+  ],
+  [
+   7.102,
+   "card"
+  ],
+  [
+   7.53,
+   "card"
+  ],
+  [
+   7.957,
+   "card"
+  ],
+  [
+   8.385,
+   "card"
+  ],
+  [
+   8.812,
+   "card"
+  ],
+  [
+   9.24,
+   "card"
+  ],
+  [
+   9.963,
+   "whoosh"
+  ],
+  [
+   10.013,
+   "pop"
+  ],
+  [
+   10.92,
+   "chime"
+  ],
+  [
+   14.746,
+   "whoosh"
+  ],
+  [
+   14.796,
+   "pop"
+  ],
+  [
+   15.823,
+   "pop"
+  ],
+  [
+   16.254,
+   "pop"
+  ],
+  [
+   16.685,
+   "pop"
+  ],
+  [
+   17.115,
+   "pop"
+  ],
+  [
+   17.546,
+   "pop"
+  ],
+  [
+   17.977,
+   "pop"
+  ],
+  [
+   18.408,
+   "pop"
+  ],
+  [
+   19.054,
+   "whoosh"
+  ],
+  [
+   19.104,
+   "pop"
+  ],
+  [
+   19.734,
+   "win"
+  ],
+  [
+   21.727,
+   "buzz"
+  ],
+  [
+   21.727,
+   "clang"
+  ],
+  [
+   23.914,
+   "whoosh"
+  ],
+  [
+   23.964,
+   "pop"
+  ],
+  [
+   25.811,
+   "buzz"
+  ],
+  [
+   28.13,
+   "whoosh"
+  ],
+  [
+   28.18,
+   "pop"
+  ],
+  [
+   30.225,
+   "pop"
+  ],
+  [
+   31.939,
+   "whoosh"
+  ],
+  [
+   32.439,
+   "tick"
+  ],
+  [
+   33.439,
+   "tick"
+  ],
+  [
+   34.439,
+   "tick"
+  ],
+  [
+   35.439,
+   "tick"
+  ],
+  [
+   36.439,
+   "tick"
+  ],
+  [
+   37.439,
+   "tick"
+  ],
+  [
+   38.439,
+   "tick"
+  ],
+  [
+   39.439,
+   "tick"
+  ],
+  [
+   40.439,
+   "tick"
+  ],
+  [
+   41.439,
+   "tickHi"
+  ],
+  [
+   42.439,
+   "ding"
+  ],
+  [
+   43.732,
+   "whoosh"
+  ],
+  [
+   43.732,
+   "chime"
+  ],
+  [
+   43.782,
+   "pop"
+  ],
+  [
+   46.034,
+   "tick"
+  ],
+  [
+   46.494,
+   "tick"
+  ],
+  [
+   46.954,
+   "tick"
+  ],
+  [
+   48.335,
+   "whoosh"
+  ],
+  [
+   48.385,
+   "pop"
+  ],
+  [
+   48.557,
+   "card"
+  ],
+  [
+   50.559,
+   "card"
+  ],
+  [
+   52.783,
+   "whoosh"
+  ],
+  [
+   52.833,
+   "pop"
+  ],
+  [
+   53.213,
+   "roll"
+  ],
+  [
+   54.934,
+   "chime"
+  ],
+  [
+   57.084,
+   "whoosh"
+  ],
+  [
+   57.134,
+   "pop"
+  ],
+  [
+   57.973,
+   "pop"
+  ],
+  [
+   58.125,
+   "pop"
+  ],
+  [
+   58.277,
+   "pop"
+  ],
+  [
+   58.43,
+   "pop"
+  ],
+  [
+   58.582,
+   "pop"
+  ],
+  [
+   59.623,
+   "whoosh"
+  ],
+  [
+   59.673,
+   "pop"
+  ],
+  [
+   60.837,
+   "tick"
+  ],
+  [
+   61.419,
+   "tick"
+  ],
+  [
+   62.827,
+   "pop"
+  ],
+  [
+   63.119,
+   "card"
+  ],
+  [
+   64.478,
+   "whoosh"
+  ],
+  [
+   64.528,
+   "pop"
+  ],
+  [
+   65.821,
+   "buzz"
+  ],
+  [
+   69.276,
+   "whoosh"
+  ],
+  [
+   69.326,
+   "pop"
+  ],
+  [
+   70.227,
+   "tick"
+  ],
+  [
+   75.775,
+   "pop"
+  ],
+  [
+   76.409,
+   "win"
+  ],
+  [
+   77.202,
+   "whoosh"
+  ],
+  [
+   77.252,
+   "pop"
+  ],
+  [
+   78.89,
+   "pop"
+  ],
+  [
+   80.578,
+   "pop"
+  ],
+  [
+   82.829,
+   "whoosh"
+  ],
+  [
+   82.879,
+   "pop"
+  ],
+  [
+   85.575,
+   "chime"
+  ],
+  [
+   87.821,
+   "whoosh"
+  ],
+  [
+   87.871,
+   "pop"
+  ],
+  [
+   88.182,
+   "win"
+  ],
+  [
+   88.831,
+   "win"
+  ],
+  [
+   89.48,
+   "win"
+  ],
+  [
+   90.165,
+   "pop"
+  ],
+  [
+   91.427,
+   "whoosh"
+  ],
+  [
+   91.477,
+   "pop"
+  ],
+  [
+   92.52,
+   "tick"
+  ],
+  [
+   92.684,
+   "tick"
+  ],
+  [
+   92.848,
+   "tick"
+  ],
+  [
+   93.011,
+   "tick"
+  ],
+  [
+   93.175,
+   "tick"
+  ],
+  [
+   93.339,
+   "tick"
+  ],
+  [
+   93.503,
+   "tick"
+  ],
+  [
+   93.667,
+   "tick"
+  ],
+  [
+   93.831,
+   "tick"
+  ],
+  [
+   93.995,
+   "tick"
+  ],
+  [
+   94.159,
+   "tick"
+  ],
+  [
+   94.323,
+   "tick"
+  ],
+  [
+   94.487,
+   "tick"
+  ],
+  [
+   94.651,
+   "tick"
+  ],
+  [
+   94.815,
+   "tick"
+  ],
+  [
+   94.978,
+   "tick"
+  ],
+  [
+   95.142,
+   "tick"
+  ],
+  [
+   95.306,
+   "tick"
+  ],
+  [
+   95.47,
+   "tick"
+  ],
+  [
+   95.634,
+   "tick"
+  ],
+  [
+   95.798,
+   "whoosh"
+  ],
+  [
+   95.798,
+   "clang"
+  ],
+  [
+   95.848,
+   "pop"
+  ],
+  [
+   96.138,
+   "cheer"
+  ],
+  [
+   99.537,
+   "roll"
+  ],
+  [
+   102.597,
+   "whoosh"
+  ],
+  [
+   102.647,
+   "pop"
+  ],
+  [
+   104.984,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 2.287,
+   "file": "vo/00.wav",
+   "text": "The warden offers one hundred prisoners a deal."
+  },
+  {
+   "t": 3.387,
+   "dur": 5.726,
+   "file": "vo/01.wav",
+   "text": "Tomorrow, they'll stand in one long line, all facing forward, and each one gets a red or a blue hat."
+  },
+  {
+   "t": 9.963,
+   "dur": 4.033,
+   "file": "vo/02.wav",
+   "text": "Nobody can see their own hat. Only the hats of everyone in front of them."
+  },
+  {
+   "t": 14.746,
+   "dur": 3.458,
+   "file": "vo/03.wav",
+   "text": "Starting at the back, each prisoner says one word: red, or blue."
+  },
+  {
+   "t": 19.054,
+   "dur": 4.01,
+   "file": "vo/04.wav",
+   "text": "Name your own hat color, and you walk free. Get it wrong, and you stay locked up."
+  },
+  {
+   "t": 23.914,
+   "dur": 3.566,
+   "file": "vo/05.wav",
+   "text": "Everyone hears every answer, but no one can say anything else."
+  },
+  {
+   "t": 28.13,
+   "dur": 3.059,
+   "file": "vo/06.wav",
+   "text": "Tonight, they can make a plan. How many can they save for sure?"
+  },
+  {
+   "t": 31.939,
+   "dur": 2.343,
+   "file": "vo/07.wav",
+   "text": "What's your plan? Pause, and comment it below!"
+  },
+  {
+   "t": 43.732,
+   "dur": 3.753,
+   "file": "vo/08.wav",
+   "text": "Here's the trick. The prisoner at the back counts the red hats in front of them."
+  },
+  {
+   "t": 48.335,
+   "dur": 3.398,
+   "file": "vo/09.wav",
+   "text": "If the number is even, they say blue. If it's odd, they say red."
+  },
+  {
+   "t": 52.783,
+   "dur": 3.551,
+   "file": "vo/10.wav",
+   "text": "For them, it's a coin flip. But now everyone else knows the code."
+  },
+  {
+   "t": 57.084,
+   "dur": 1.689,
+   "file": "vo/11.wav",
+   "text": "Let's try it with five prisoners."
+  },
+  {
+   "t": 59.623,
+   "dur": 3.905,
+   "file": "vo/12.wav",
+   "text": "The back prisoner sees two red hats. Two is even, so they say: blue."
+  },
+  {
+   "t": 64.478,
+   "dur": 4.048,
+   "file": "vo/13.wav",
+   "text": "Their own hat is red, so they lose the coin flip. That's the price of the code."
+  },
+  {
+   "t": 69.276,
+   "dur": 7.076,
+   "file": "vo/14.wav",
+   "text": "Next in line sees only one red hat. That's odd, but the code said even. So the missing red is on their own head. Red!"
+  },
+  {
+   "t": 77.202,
+   "dur": 4.877,
+   "file": "vo/15.wav",
+   "text": "From here, each prisoner adds the reds they've heard behind them to the reds they can see ahead."
+  },
+  {
+   "t": 82.829,
+   "dur": 4.142,
+   "file": "vo/16.wav",
+   "text": "If even or odd matches the code, their hat is blue. If it doesn't, it's red."
+  },
+  {
+   "t": 87.821,
+   "dur": 2.456,
+   "file": "vo/17.wav",
+   "text": "Blue. Red. Blue. Every one of them is right."
+  },
+  {
+   "t": 91.427,
+   "dur": 2.721,
+   "file": "vo/18.wav",
+   "text": "With a hundred prisoners, it works exactly the same."
+  },
+  {
+   "t": 95.798,
+   "dur": 5.149,
+   "file": "vo/19.wav",
+   "text": "Ninety nine walk free, guaranteed. And the one at the back still has a fifty-fifty chance."
+  },
+  {
+   "t": 102.597,
+   "dur": 3.355,
+   "file": "vo/20.wav",
+   "text": "Would you volunteer to stand at the back? Follow for more puzzles!"
+  }
+ ],
+ "countdown": [
+  32.039,
+  32.439,
+  42.439,
+  42.939
+ ]
+}

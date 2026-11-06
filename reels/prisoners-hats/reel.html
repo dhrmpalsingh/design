@@ -1,0 +1,564 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Prisoners Hat Puzzle</title>
+<style>
+  @font-face { font-family: 'Fredoka'; src: url('fredoka.woff2') format('woff2'); font-weight: 300 700; font-display: block; }
+  html, body { margin: 0; height: 100%; background: #111; }
+  body { display: flex; align-items: center; justify-content: center; overflow: hidden; font-family: Fredoka, sans-serif; }
+  #stage { width: 720px; height: 1280px; position: relative; overflow: hidden; background: #1C2030; transform-origin: center center; cursor: pointer; }
+  svg { display: block; }
+  #hint { position: fixed; bottom: 12px; left: 0; right: 0; text-align: center; color: #bbb; font-size: 14px; }
+  body.render { display: block; }
+  body.render #hint { display: none; }
+</style>
+</head>
+<body>
+<div id="stage"><svg id="svg" xmlns="http://www.w3.org/2000/svg" width="720" height="1280" viewBox="0 0 720 1280"></svg></div>
+<div id="hint">Click or press space to play / pause · ← → to scrub</div>
+<script src="vo.js"></script>
+<script>
+// ---------------------------------------------------------------------------
+// 100 Prisoners and the Hat Line: a puzzle reel drawn as SVG from time t.
+// Each scene is one voice-over line (vo.js); actions sit at fractions of their scene.
+// ---------------------------------------------------------------------------
+const W = 720, H = 1280;
+const C = {
+  ink: '#1A1822', wall: '#2E3448', wall2: '#283044', brick: '#363D55', floor: '#1C2030', floorLine: '#272C3E',
+  bars: '#B4BCCB', cellBack: '#3A4159', jump: '#E8873A', jumpDark: '#C46B24', warden: '#2F4E73', wardenDark: '#22394F',
+  yellow: '#F4B740', red: '#E2574C', green: '#43B067', pill: '#14161F', cream: '#F7EFE1', card: '#FFFDF7',
+  board: '#2F4A3C', boardEdge: '#8A6440', chalk: '#ECEBE2', muted: '#6E655A', warm: '#FFD27A',
+};
+const SK = ['#F2C49E', '#D9A27A', '#B07A52', '#8A5A3C', '#F5D2B0'];
+const HR = ['#2B2420', '#5A3A22', '#1E1A18', '#8A6A3A', '#C9C3BA'];
+const FONT = "Fredoka, Inter, sans-serif";
+const HATC = { r: '#D9443B', b: '#3473D1' };
+
+// ---------- math ----------
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => b <= a ? (t >= b ? 1 : 0) : clamp((t - a) / (b - a));
+const lerp = (a, b, p) => a + (b - a) * p;
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+const easeIn = x => x * x * x;
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const backOut = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const f1 = n => Math.round(n * 10) / 10;
+function hex2rgb(h) { const n = parseInt(h.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; }
+function mix(a, b, p) { const A = hex2rgb(a), B = hex2rgb(b); return '#' + A.map((v, i) => Math.round(lerp(v, B[i], clamp(p))).toString(16).padStart(2, '0')).join(''); }
+function rnd(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let x = Math.imul(seed ^ seed >>> 15, 1 | seed); x = x + Math.imul(x ^ x >>> 7, 61 | x) ^ x; return ((x ^ x >>> 14) >>> 0) / 4294967296; }; }
+const fmt = n => Math.round(n).toLocaleString('en-US');
+
+// ---------- text ----------
+const mctx = document.createElement('canvas').getContext('2d');
+function tw(text, size, weight = 600) { mctx.font = `${weight} ${size}px Fredoka`; return mctx.measureText(text).width; }
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+function text(x, y, str, { size = 30, weight = 600, fill = C.ink, anchor = 'middle', opacity = 1, stroke = '', sw = 0 } = {}) {
+  const st = stroke ? ` stroke="${stroke}" stroke-width="${sw}" paint-order="stroke" stroke-linejoin="round"` : '';
+  return `<text x="${f1(x)}" y="${f1(y)}" text-anchor="${anchor}" font-family="${FONT}" font-weight="${weight}" font-size="${size}" fill="${fill}" opacity="${opacity}"${st}>${esc(str)}</text>`;
+}
+function pill(str, cx, cy, { size = 36, bg = C.pill, fg = '#fff', scale = 1, opacity = 1, weight = 600, maxW = 650, icon = '' } = {}) {
+  const iconW = icon ? size * 1.25 : 0;
+  let w = tw(str, size, weight);
+  while (w + iconW > maxW - 56 && size > 20) { size -= 1; w = tw(str, size, weight); }
+  const ph = size * 1.8, pw = w + 56 + iconW, r = ph / 2.4;
+  let ic = '';
+  if (icon === 'plus') { const ix = -pw / 2 + 28 + size * .45; ic = `<circle cx="${ix}" cy="0" r="${size * .5}" fill="${C.yellow}"/><path d="M${ix - size * .24} 0H${ix + size * .24}M${ix} ${-size * .24}V${size * .24}" stroke="${C.ink}" stroke-width="${size * .13}" stroke-linecap="round"/>`; }
+  if (icon === 'check') { const ix = -pw / 2 + 28 + size * .45; ic = `<circle cx="${ix}" cy="0" r="${size * .5}" fill="#fff"/><path d="M${ix - size * .22} 0 l${size * .16} ${size * .16} l${size * .28} ${-size * .3}" stroke="${bg}" stroke-width="${size * .13}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`; }
+  return `<g transform="translate(${f1(cx)} ${f1(cy)}) scale(${scale.toFixed(3)})" opacity="${opacity.toFixed(3)}">
+    <rect x="${-pw / 2}" y="${-ph / 2 + 6}" width="${pw}" height="${ph}" rx="${r}" fill="rgba(0,0,0,.3)"/>
+    <rect x="${-pw / 2}" y="${-ph / 2}" width="${pw}" height="${ph}" rx="${r}" fill="${bg}"/>${ic}
+    <text x="${iconW / 2}" y="${size * .35}" text-anchor="middle" font-family="${FONT}" font-weight="${weight}" font-size="${size}" fill="${fg}">${esc(str)}</text></g>`;
+}
+function popAnim(t, a, b, inDur = .3) {
+  if (t < a || t > b) return null;
+  const p = prog(t, a, a + inDur), q = prog(t, b - .18, b);
+  return { scale: (0.6 + 0.4 * backOut(p)) * (1 - 0.08 * q), opacity: Math.min(1, p * 3) * (1 - q) };
+}
+function popIn(p, inner, cx, cy) { if (p <= 0) return ''; const sc = .3 + .7 * backOut(clamp(p)); return `<g transform="translate(${f1(cx)} ${f1(cy)}) scale(${sc.toFixed(3)})" opacity="${Math.min(1, p * 3).toFixed(2)}">${inner}</g>`; }
+
+// ---------- timeline from the voice-over ----------
+const VO = window.VO || [];
+const LEAD = 0.35, GAP = 0.25;
+const S = []; let acc = LEAD;
+VO.forEach(l => { S.push(acc); acc += l.dur + GAP + l.extra; });
+const VDUR = acc + 0.1;
+const SE = i => (i + 1 < S.length ? S[i + 1] : VDUR);
+const T = (i, f = 0) => S[i] + f * (SE(i) - S[i]);
+const CD0 = T(7) + .5; // countdown start
+
+// ---------- character (side view, facing right; origin at the feet) ----------
+function ik(sx, sy, tx, ty, l1, l2) {
+  let dx = tx - sx, dy = ty - sy, d = Math.hypot(dx, dy); const max = l1 + l2 - .5;
+  if (d > max) { tx = sx + dx / d * max; ty = sy + dy / d * max; d = max; }
+  if (d < 1) d = 1;
+  const a = Math.atan2(ty - sy, tx - sx), cosA = clamp((l1 * l1 + d * d - l2 * l2) / (2 * l1 * d), -1, 1);
+  const ang = a + Math.acos(cosA);
+  return { ex: sx + Math.cos(ang) * l1, ey: sy + Math.sin(ang) * l1, hx: tx, hy: ty };
+}
+function limb(pts, col, w) {
+  const d = 'M' + pts.map(p => `${f1(p[0])} ${f1(p[1])}`).join(' L');
+  return `<path d="${d}" stroke="${C.ink}" stroke-width="${w + 7}" fill="none" stroke-linecap="round" stroke-linejoin="round"/><path d="${d}" stroke="${col}" stroke-width="${w}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+}
+function person(o) {
+  const { x, y, s = 1, dir = 1, phase = 0, walk = 0, expr = 'neutral', kind = 'prisoner', skin = SK[0], hair = HR[0], hs = 'short', beard = 0, grey = 0, num = '', sash = false, cane = false } = o;
+  const toLocal = ([wx, wy]) => [(wx - x) / (dir * s), (wy - y) / s];
+  const bob = -Math.abs(Math.sin(phase)) * 7 * walk, swing = Math.sin(phase) * walk, hipY = -165 + bob;
+  const war = kind === 'warden';
+  const body = war ? C.warden : C.jump, bodyD = war ? C.wardenDark : C.jumpDark, legC = war ? '#252A3A' : C.jump, legC2 = war ? '#1B1F2C' : C.jumpDark;
+  const hairC = mix(hair, '#DEDBD5', grey);
+  const leg = (ang, col) => { const fx = Math.sin(ang) * 168, fy = hipY + Math.cos(ang) * 168; return limb([[0, hipY], [fx, fy - 6]], col, 30) + `<ellipse cx="${f1(fx + 12)}" cy="${f1(fy + 2)}" rx="25" ry="12" fill="#22202A"/>`; };
+  const arm = (sx, sy, rest, spec, col) => {
+    let tgt = rest;
+    if (spec && spec.amt > 0) { const L = toLocal(spec.to); tgt = [lerp(rest[0], L[0], spec.amt), lerp(rest[1], L[1], spec.amt)]; }
+    const e = ik(sx, sy, tgt[0], tgt[1], 80, 80);
+    return limb([[sx, sy], [e.ex, e.ey], [e.hx, e.hy]], col, 24) + `<circle cx="${f1(e.hx)}" cy="${f1(e.hy)}" r="15" fill="${skin}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  };
+  const sy = -330 + bob;
+  let g = `<g transform="translate(${f1(x)} ${f1(y)}) scale(${dir * s} ${s})"><ellipse cx="6" cy="4" rx="78" ry="12" fill="rgba(0,0,0,.25)"/>`;
+  if (cane) g += `<path d="M70 0 L64 -150 q-2 -16 14 -16" stroke="#6E4E34" stroke-width="9" fill="none" stroke-linecap="round"/>`;
+  g += arm(-8, sy, [-6 - swing * 42, sy + 156], o.back, bodyD);
+  g += leg(-swing * .4 - .07 * (1 - walk), legC2) + leg(swing * .4 + .07 * (1 - walk), legC);
+  g += `<rect x="-47" y="${-352 + bob}" width="94" height="196" rx="34" fill="${body}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  if (!war) {
+    g += `<path d="M-30 ${-352 + bob} L0 ${-318 + bob} L30 ${-352 + bob}" stroke="${bodyD}" stroke-width="5" fill="none"/>`;
+    if (sash) g += `<path d="M-44 ${-330 + bob} L40 ${-190 + bob}" stroke="${C.ink}" stroke-width="27"/><path d="M-44 ${-330 + bob} L40 ${-190 + bob}" stroke="${C.yellow}" stroke-width="20"/>`;
+    if (num) g += `<g transform="translate(14 ${-262 + bob}) scale(${dir} 1)"><rect x="-26" y="-18" width="52" height="34" rx="6" fill="#fff" stroke="${C.ink}" stroke-width="3"/>${text(0, 10, num, { size: 24, weight: 700 })}</g>`;
+  } else {
+    g += `<rect x="-45" y="${-200 + bob}" width="90" height="14" fill="#1A1C24"/><circle cx="22" cy="${-193 + bob}" r="6" fill="${C.yellow}"/>
+      <path d="M10 ${-300 + bob} l6 -12 l6 12 l-12 -7 h12 z" fill="${C.yellow}"/>
+      <circle cx="-34" cy="${-170 + bob}" r="12" fill="none" stroke="#C9CDD6" stroke-width="4"/><path d="M-34 ${-158 + bob} v14" stroke="#C9CDD6" stroke-width="4"/>`;
+  }
+  const hy = -414 + bob, ex = 38, ey = hy;
+  g += `<rect x="-2" y="${hy + 40}" width="22" height="26" fill="${mix(skin, '#000000', .12)}"/>`;
+  if (hs === 'bun') g += `<circle cx="-50" cy="${hy - 46}" r="23" fill="${hairC}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  if (hs === 'curly') [[-40, -40], [-10, -58], [22, -52], [-50, -8]].forEach(([a, b]) => g += `<circle cx="${a}" cy="${hy + b}" r="24" fill="${hairC}" stroke="${C.ink}" stroke-width="3.5"/>`);
+  if (hs !== 'bald') g += `<circle cx="-2" cy="${hy - 6}" r="57" fill="${hairC}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  g += `<circle cx="12" cy="${hy + 4}" r="50" fill="${skin}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  if (hs !== 'bald') g += `<path d="M-38 ${hy - 26} Q 6 ${hy - 82} 62 ${hy - 16} Q 34 ${hy - 40} -4 ${hy - 30} Q -20 ${hy - 6} -30 ${hy + 10} Z" fill="${hairC}"/>`;
+  g += `<circle cx="-2" cy="${hy + 8}" r="11" fill="${mix(skin, '#000000', .12)}" stroke="${C.ink}" stroke-width="3"/>`;
+  if (beard > 0) g += `<path d="M-6 ${hy + 18} Q 0 ${hy + 50 + 70 * beard} 34 ${hy + 52 + 74 * beard} Q 66 ${hy + 46 + 50 * beard} 60 ${hy + 22} Q 40 ${hy + 34} 12 ${hy + 28} Z" fill="${hairC}" stroke="${C.ink}" stroke-width="3"/>`;
+  g += `<circle cx="60" cy="${hy + 12}" r="9" fill="${skin}" stroke="${C.ink}" stroke-width="3"/>`;
+  if (expr === 'ouch') g += `<path d="M${ex - 8} ${ey - 8} L${ex + 4} ${ey} L${ex - 8} ${ey + 8}" stroke="${C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+  else g += `<circle cx="${ex}" cy="${ey}" r="6.5" fill="${C.ink}"/>`;
+  if (beard < .35) {
+    if (expr === 'happy') g += `<path d="M${ex - 6} ${ey + 22} Q ${ex + 8} ${ey + 38} ${ex + 18} ${ey + 20}" stroke="${C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+    else if (expr === 'think') g += `<path d="M${ex - 2} ${ey + 28} Q ${ex + 6} ${ey + 24} ${ex + 14} ${ey + 30}" stroke="${C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+    else g += `<path d="M${ex} ${ey + 27} L${ex + 14} ${ey + 26}" stroke="${C.ink}" stroke-width="4" stroke-linecap="round"/>`;
+  }
+  const browLift = expr === 'think' ? -8 : expr === 'happy' ? -4 : 0;
+  g += `<path d="M${ex - 12} ${ey - 18 + browLift} L${ex + 10} ${ey - 20 + browLift * 1.6}" stroke="${hairC}" stroke-width="5" stroke-linecap="round"/>`;
+  if (war) g += `<path d="M-48 ${hy - 30} Q 6 ${hy - 82} 64 ${hy - 28} L 64 ${hy - 20} L -48 ${hy - 20} Z" fill="${C.warden}" stroke="${C.ink}" stroke-width="3.5"/><path d="M30 ${hy - 22} L92 ${hy - 14}" stroke="${C.ink}" stroke-width="9" stroke-linecap="round"/><circle cx="8" cy="${hy - 46}" r="7" fill="${C.yellow}"/>`;
+  if (o.hat) { const hc = HATC[o.hat] || o.hat, hd = mix(hc, '#000000', .25);
+    g += `<path d="M-46 ${hy - 6} Q -44 ${hy - 74} 12 ${hy - 76} Q 66 ${hy - 74} 68 ${hy - 6} Z" fill="${hc}" stroke="${C.ink}" stroke-width="3.5"/>
+      <rect x="-50" y="${hy - 22}" width="122" height="22" rx="10" fill="${hd}" stroke="${C.ink}" stroke-width="3.5"/><circle cx="12" cy="${hy - 80}" r="13" fill="${hd}" stroke="${C.ink}" stroke-width="3.5"/>`; }
+  g += arm(8, sy, [24 + swing * 42, sy + 155], o.front, body);
+  return g + '</g>';
+}
+// front-facing bust (crowds)
+function bust(x, y, s, skin, hair, back = false, sash = false) {
+  return `<g transform="translate(${f1(x)} ${f1(y)}) scale(${s})">
+    <path d="M-46 60 Q -46 6 0 6 Q 46 6 46 60 Z" fill="${C.jump}" stroke="${C.ink}" stroke-width="3.5"/>
+    ${sash ? `<path d="M-30 14 L36 58" stroke="${C.yellow}" stroke-width="12"/>` : ''}
+    <circle cx="0" cy="-22" r="27" fill="${back ? hair : skin}" stroke="${C.ink}" stroke-width="3.5"/>
+    ${back ? '' : `<path d="M-27 -26 Q 0 -60 27 -26 Q 14 -40 0 -38 Q -14 -40 -27 -26 Z" fill="${hair}"/><circle cx="-9" cy="-20" r="3.5" fill="${C.ink}"/><circle cx="9" cy="-20" r="3.5" fill="${C.ink}"/><path d="M-7 -6 Q 0 -1 7 -6" stroke="${C.ink}" stroke-width="2.5" fill="none" stroke-linecap="round"/>`}
+  </g>`;
+}
+
+// ---------- props ----------
+function bulbSVG(cx, cy, r, on, glow = 1) {
+  const k = r / 50;
+  let s = '';
+  if (on > 0) s += `<circle cx="${cx}" cy="${cy}" r="${r * 5}" fill="url(#gWarm)" opacity="${(on * glow).toFixed(2)}"/>`;
+  s += `<rect x="${cx - 20 * k}" y="${cy - 72 * k}" width="${40 * k}" height="${32 * k}" rx="${6 * k}" fill="#8E89A3" stroke="${C.ink}" stroke-width="${3.5 * k}"/>
+    <circle cx="${cx}" cy="${cy}" r="${r}" fill="${mix('#CFCBD8', '#FFE27A', on)}" stroke="${C.ink}" stroke-width="${4 * k}"/>
+    <path d="M${cx - 10 * k} ${cy - 40 * k} V${cy - 6 * k} l${5 * k} ${8 * k} l${5 * k} ${-8 * k} l${5 * k} ${8 * k} l${5 * k} ${-8 * k} V${cy - 40 * k}" stroke="${mix('#8E879E', '#E39A1C', on)}" stroke-width="${3.5 * k}" fill="none" stroke-linejoin="round"/>
+    <path d="M${cx - r * .55} ${cy + r * .1} Q ${cx - r * .55} ${cy - r * .5} ${cx - r * .15} ${cy - r * .62}" stroke="#fff" stroke-width="${5 * k}" fill="none" stroke-linecap="round" opacity=".55"/>`;
+  if (on > .5) for (let i = 0; i < 8; i++) { const a = i / 8 * Math.PI * 2; s += `<path d="M${f1(cx + Math.cos(a) * r * 1.3)} ${f1(cy + Math.sin(a) * r * 1.3)} L${f1(cx + Math.cos(a) * r * 1.65)} ${f1(cy + Math.sin(a) * r * 1.65)}" stroke="${C.yellow}" stroke-width="${6 * k}" stroke-linecap="round" opacity="${((on - .5) * 2).toFixed(2)}"/>`; }
+  return s;
+}
+function switchSVG(x, y, on, sc = 1) {
+  const ly = y + (on ? -20 : 8) * sc;
+  return `<rect x="${x - 34 * sc}" y="${y - 54 * sc}" width="${68 * sc}" height="${108 * sc}" rx="${12 * sc}" fill="#EDE8DD" stroke="${C.ink}" stroke-width="${4 * sc}"/>
+    <rect x="${x - 14 * sc}" y="${y - 32 * sc}" width="${28 * sc}" height="${64 * sc}" rx="${7 * sc}" fill="#C9C1B2" stroke="${C.ink}" stroke-width="${3 * sc}"/>
+    <rect x="${x - 11 * sc}" y="${f1(ly - 10 * sc)}" width="${22 * sc}" height="${30 * sc}" rx="${6 * sc}" fill="#fff" stroke="${C.ink}" stroke-width="${3 * sc}"/>`;
+}
+function bubble(cx, cy, lines, p, { tail = 'down', size = 34, bg = '#fff', fg = C.ink, tx = 0 } = {}) {
+  if (p <= 0) return '';
+  const w = Math.max(...lines.map(l => tw(l, size))) + 60, h = lines.length * size * 1.25 + 36;
+  const tl = tail === 'down' ? `<path d="M${tx - 18} ${h / 2 - 3} L${tx - 30} ${h / 2 + 34} L${tx + 18} ${h / 2 - 3} Z" fill="${bg}" stroke="${C.ink}" stroke-width="4" stroke-linejoin="round"/>` : '';
+  const inner = `<rect x="${-w / 2}" y="${-h / 2 + 6}" width="${w}" height="${h}" rx="26" fill="rgba(0,0,0,.25)"/>${tl}<rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="26" fill="${bg}" stroke="${C.ink}" stroke-width="4"/>
+    ${tail === 'down' ? `<path d="M${tx - 15} ${h / 2 - 4} L${tx + 15} ${h / 2 - 4}" stroke="${bg}" stroke-width="6"/>` : ''}
+    ${lines.map((l, i) => text(0, -h / 2 + 18 + size * (i + 1) * 1.15, l, { size, fill: fg })).join('')}`;
+  return popIn(p, inner, cx, cy);
+}
+function thought(cx, cy, lines, p, side = -1, size = 30) {
+  if (p <= 0) return '';
+  const w = Math.max(...lines.map(l => tw(l, size))) + 56, h = lines.length * size * 1.25 + 34;
+  const inner = `<circle cx="${side * (w / 2 - 30)}" cy="${h / 2 + 30}" r="11" fill="#fff" stroke="${C.ink}" stroke-width="3.5"/><circle cx="${side * (w / 2 - 50)}" cy="${h / 2 + 8}" r="16" fill="#fff" stroke="${C.ink}" stroke-width="3.5"/>
+    <rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="${h / 2}" fill="#fff" stroke="${C.ink}" stroke-width="4"/>
+    ${lines.map((l, i) => text(0, -h / 2 + 16 + size * (i + 1) * 1.15, l, { size })).join('')}`;
+  return popIn(p, inner, cx, cy);
+}
+function dayBadge(n, sc = 1) {
+  const str = typeof n === 'string' ? n : fmt(n), w = tw(str, 40, 700) + 150;
+  return `<g transform="translate(360 78) scale(${sc.toFixed(3)})">
+    <rect x="${-w / 2}" y="-34" width="${w}" height="72" rx="20" fill="rgba(0,0,0,.35)"/>
+    <rect x="${-w / 2}" y="-38" width="${w}" height="72" rx="20" fill="${C.card}" stroke="${C.ink}" stroke-width="4"/>
+    <rect x="${-w / 2 + 10}" y="-28" width="92" height="52" rx="12" fill="${C.red}"/>
+    ${text(-w / 2 + 56, 10, 'DAY', { size: 30, weight: 700, fill: '#fff' })}
+    ${text(-w / 2 + 112 + (w - 122) / 2, 13, str, { size: 40, weight: 700 })}</g>`;
+}
+
+// ---------- sets ----------
+function brickWall(y0, y1, col = C.wall, brick = C.brick) {
+  let s = `<rect x="0" y="${y0}" width="720" height="${y1 - y0}" fill="${col}"/>`;
+  for (let y = y0 + 8, r = 0; y < y1 - 20; y += 46, r++) for (let x = (r % 2 ? -40 : 0); x < 720; x += 96) s += `<rect x="${x + 4}" y="${y}" width="88" height="38" rx="5" fill="${brick}" opacity=".55"/>`;
+  return s;
+}
+function floorSVG(y0, col = C.floor) {
+  let s = `<rect x="0" y="${y0}" width="720" height="${1280 - y0}" fill="${col}"/><path d="M0 ${y0} H720" stroke="${C.ink}" stroke-width="5"/>`;
+  for (let k = 0; k < 4; k++) s += `<path d="M0 ${y0 + 50 + k * 70} H720" stroke="${C.floorLine}" stroke-width="4"/>`;
+  return s;
+}
+function corridorBG() {
+  let s = brickWall(0, 1040) + floorSVG(1040);
+  [130, 360, 590].forEach(x => s += `<path d="M${x} 0 V120" stroke="#15131C" stroke-width="4"/><path d="M${x - 40} 120 h80 l-14 -22 h-52 z" fill="#555B70" stroke="${C.ink}" stroke-width="3"/><path d="M${x - 40} 122 L${x - 120} 470 H${x + 120} L${x + 40} 122 Z" fill="${C.warm}" opacity=".07"/>`);
+  return s;
+}
+const CELLS = [[20, '14'], [260, '23'], [500, '71']];
+function cellBack(x, y = 470, w = 200, h = 520, glow = 0) {
+  return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${C.cellBack}" stroke="${C.ink}" stroke-width="5"/>
+    <rect x="${x + w / 2 - 34}" y="${y + 40}" width="68" height="52" fill="#20263A" stroke="${C.ink}" stroke-width="3"/><path d="M${x + w / 2 - 12} ${y + 40} v52 M${x + w / 2 + 12} ${y + 40} v52" stroke="${C.bars}" stroke-width="4"/>
+    <rect x="${x + 10}" y="${y + h - 130}" width="${w * .6}" height="34" rx="6" fill="#59607A" stroke="${C.ink}" stroke-width="3"/><rect x="${x + 14}" y="${y + h - 96}" width="10" height="92" fill="#454B62"/><rect x="${x + w * .6 - 4}" y="${y + h - 96}" width="10" height="92" fill="#454B62"/>
+    ${glow > 0 ? `<rect x="${x - 6}" y="${y - 6}" width="${w + 12}" height="${h + 12}" fill="none" stroke="${C.yellow}" stroke-width="10" opacity="${glow.toFixed(2)}"/>` : ''}`;
+}
+function cellBars(x, num, open = 0, y = 470, w = 200, h = 520) {
+  let s = `<g transform="translate(0 ${f1(-open * (h - 30))})">`;
+  for (let bx = x + 18; bx < x + w - 6; bx += 26) s += `<path d="M${bx} ${y} V${y + h}" stroke="${C.ink}" stroke-width="12"/><path d="M${bx} ${y} V${y + h}" stroke="${C.bars}" stroke-width="7"/>`;
+  s += `<rect x="${x}" y="${y + h * .42}" width="${w}" height="14" fill="${C.bars}" stroke="${C.ink}" stroke-width="3"/></g>`;
+  s += `<rect x="${x - 4}" y="${y - 16}" width="${w + 8}" height="22" fill="#4A5068" stroke="${C.ink}" stroke-width="4"/>
+    <rect x="${x + w / 2 - 36}" y="${y - 58}" width="72" height="38" rx="8" fill="${C.card}" stroke="${C.ink}" stroke-width="3.5"/>${text(x + w / 2, y - 29, '#' + num, { size: 26, weight: 700 })}`;
+  return s;
+}
+function bulbRoom(o) {
+  const lit = o.lit || 0, sw = o.sw ?? (lit > .5 ? 1 : 0), t = o.t || 0;
+  let s = brickWall(0, 1010, mix('#2E3448', '#6A5F63', lit), mix(C.brick, '#7C6E6C', lit)) + floorSVG(1010, mix(C.floor, '#3A3540', lit));
+  if (lit > 0) s += `<path d="M300 560 L120 1280 H600 L420 560 Z" fill="${C.warm}" opacity="${(lit * .12).toFixed(2)}"/><ellipse cx="360" cy="1110" rx="250" ry="40" fill="${C.warm}" opacity="${(lit * .2).toFixed(2)}"/>`;
+  // steel door (left)
+  s += `<rect x="30" y="610" width="170" height="400" fill="#5A6078" stroke="${C.ink}" stroke-width="5"/><rect x="74" y="650" width="82" height="70" fill="#1E2230" stroke="${C.ink}" stroke-width="3"/>
+    <path d="M94 650 v70 M115 650 v70 M136 650 v70" stroke="${C.bars}" stroke-width="4"/><circle cx="180" cy="820" r="9" fill="${C.yellow}" stroke="${C.ink}" stroke-width="3"/>`;
+  // hanging bulb + switch
+  s += `<path d="M360 0 V470" stroke="#15131C" stroke-width="5"/>` + bulbSVG(360, 540, 52, lit) + switchSVG(612, 720, sw);
+  s += text(612, 810, sw > .5 ? 'ON' : 'OFF', { size: 26, weight: 700, fill: sw > .5 ? C.yellow : '#9AA0B4' });
+  return s;
+}
+function meetingRoom(board = 'PLAN?', skip = -1) {
+  let s = brickWall(0, 1280, '#2B3145', '#333A50');
+  s += `<rect x="96" y="318" width="528" height="316" rx="10" fill="${C.boardEdge}" stroke="${C.ink}" stroke-width="5"/><rect x="114" y="336" width="492" height="280" fill="${C.board}"/>
+    <path d="M150 598 h60" stroke="${C.chalk}" stroke-width="6" opacity=".5"/>` + text(360, 520, board, { size: 110, weight: 700, fill: C.chalk, opacity: .92 });
+  const R = rnd(8);
+  [[860, 6, .9], [990, 7, 1.05], [1130, 8, 1.2]].forEach(([y, n, sc], r) => {
+    for (let k = 0; k < n; k++) { const x = 360 + (k - (n - 1) / 2) * (640 / n); if (r === 2 && k === skip) continue; s += bust(x, y, sc, SK[Math.floor(R() * 5)], HR[Math.floor(R() * 5)], true); }
+  });
+  return s;
+}
+function tallies(n, x0, y0, sc = 1, hiLast = false) {
+  let s = '';
+  for (let i = 0; i < n; i++) {
+    const g = Math.floor(i / 5), k = i % 5, gx = x0 + (g % 5) * 118 * sc, gy = y0 + Math.floor(g / 5) * 132 * sc;
+    const col = hiLast && i === n - 1 ? C.yellow : C.chalk;
+    if (k < 4) s += `<path d="M${f1(gx + k * 20 * sc)} ${f1(gy)} l${f1(3 * sc)} ${f1(96 * sc)}" stroke="${col}" stroke-width="${f1(7 * sc)}" stroke-linecap="round"/>`;
+    else s += `<path d="M${f1(gx - 12 * sc)} ${f1(gy + 74 * sc)} L${f1(gx + 76 * sc)} ${f1(gy + 18 * sc)}" stroke="${col}" stroke-width="${f1(7 * sc)}" stroke-linecap="round"/>`;
+  }
+  return s;
+}
+function slate(n, p) { // small "counter's wall" inset
+  if (p <= 0) return '';
+  const inner = `<rect x="-130" y="-74" width="260" height="160" rx="14" fill="${C.board}" stroke="${C.boardEdge}" stroke-width="8"/>
+    ${text(0, -42, "Counter's wall", { size: 22, fill: C.chalk, opacity: .8 })}${tallies(n, -100, -18, .55)}${text(100, 70, String(n), { size: 30, weight: 700, fill: C.yellow, anchor: 'end' })}`;
+  return popIn(p, inner, 560, 330);
+}
+
+// ---------- scenes (inserted into reel.html by build step) ----------
+const P = (t, i, a, b) => prog(t, T(i, a), T(i, b));
+const PR = { wdn: { kind: 'warden', skin: SK[0], hair: HR[2] } };
+const L7 = { xs: [52, 155, 258, 361, 464, 567, 670], hats: ['r', 'b', 'b', 'r', 'b', 'r', 'r'], s: .6, y: 1110 };
+const L7CAST = [0, 1, 2, 3, 4, 0, 2].map((k, i) => ({ skin: SK[(k + i) % 5], hair: HR[(k * 2 + i) % 5], hs: ['short', 'bun', 'curly', 'bald', 'short'][(i * 3) % 5], num: String(7 - i) }));
+const L5 = { xs: [96, 222, 348, 474, 600], hats: ['r', 'r', 'b', 'r', 'b'], s: .78, y: 1120 };
+const L5CAST = [
+  { skin: SK[4], hair: HR[3], hs: 'bun', num: '5' }, { skin: SK[1], hair: HR[0], hs: 'short', num: '4' }, { skin: SK[3], hair: HR[2], hs: 'curly', num: '3' },
+  { skin: SK[0], hair: HR[1], hs: 'short', num: '2' }, { skin: SK[2], hair: HR[4], hs: 'bald', num: '1' },
+];
+const headY = (L, k) => L.y - 414 * L.s, headX = (L, k) => L.xs[k] + 12 * L.s;
+
+function yardBG(night = 0) {
+  let s = brickWall(0, 1090, mix('#323A50', '#1F2436', night), mix('#3B435C', '#272C40', night)) + floorSVG(1090, '#262A38');
+  s += `<rect x="0" y="150" width="720" height="16" fill="#4A5068" stroke="${C.ink}" stroke-width="3"/>`;
+  for (let x = 30; x < 720; x += 70) s += `<path d="M${x} 166 v40" stroke="${C.bars}" stroke-width="5"/>`;
+  return s;
+}
+function lineOf(L, cast, { hats = true, hatDrop = null, focus = -1, dimK = [], hide = [] } = {}) {
+  let s = '';
+  L.xs.forEach((x, k) => {
+    if (hide.includes(k)) return;
+    if (k === focus) s += `<ellipse cx="${x + 6}" cy="${L.y + 4}" rx="${110 * L.s}" ry="${22 * L.s}" fill="${C.yellow}" opacity=".45"/>`;
+    let hat = hats ? L.hats[k] : null, extra = '';
+    if (hatDrop) { const p = hatDrop(k); if (p < 1) { hat = null; if (p > 0) { const hy = headY(L, k) - 40 * L.s, y0 = -80; extra = `<g transform="translate(${headX(L, k)} ${f1(lerp(y0, hy, easeIn(p)))}) scale(${L.s})"><path d="M-58 0 Q -56 -68 0 -70 Q 56 -68 58 0 Z" fill="${HATC[L.hats[k]]}" stroke="${C.ink}" stroke-width="3.5"/></g>`; } } }
+    s += `<g opacity="${dimK.includes(k) ? .45 : 1}">` + person({ ...cast[k], x, y: L.y, s: L.s, hat, expr: k === focus ? 'think' : 'neutral' }) + '</g>' + extra;
+  });
+  return s;
+}
+function cone(L, k, p) {
+  if (p <= 0) return '';
+  const ex = L.xs[k] + 40 * L.s, ey = headY(L, k) - 4;
+  return `<path d="M${ex} ${ey} L720 ${ey - 170} L720 ${ey + 170} Z" fill="${C.yellow}" opacity="${(p * .14).toFixed(2)}"/>`;
+}
+function qMark(L, k, p) { return popIn(p, `<circle r="26" fill="#fff" stroke="${C.ink}" stroke-width="3.5"/>${text(0, 13, '?', { size: 38, weight: 700 })}`, headX(L, k), headY(L, k) - 92 * L.s - 34); }
+function numOver(L, k, n, p) { return popIn(p, `<circle r="28" fill="${C.yellow}" stroke="${C.ink}" stroke-width="4"/>${text(0, 13, String(n), { size: 36, weight: 700 })}`, headX(L, k), headY(L, k) - 92 * L.s - 36); }
+function say(L, k, word, p, y = null) {
+  if (p <= 0) return '';
+  const col = word.startsWith('R') ? HATC.r : HATC.b;
+  return bubble(headX(L, k) + 10, y ?? headY(L, k) - 150, [word], p, { size: 40, fg: col });
+}
+function mark(L, k, ok, p) {
+  if (p <= 0) return '';
+  const inner = ok ? `<circle r="26" fill="${C.green}" stroke="${C.ink}" stroke-width="4"/><path d="M-12 0 l8 9 l16 -18" stroke="#fff" stroke-width="7" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`
+    : `<circle r="26" fill="${C.red}" stroke="${C.ink}" stroke-width="4"/><path d="M-10 -10 L10 10 M10 -10 L-10 10" stroke="#fff" stroke-width="7" stroke-linecap="round"/>`;
+  return popIn(p, inner, headX(L, k), headY(L, k) - 92 * L.s - 36);
+}
+function chip(str, cx, cy, p, { bg = C.card, fg = C.ink, size = 30 } = {}) {
+  if (p <= 0) return '';
+  const w = tw(str, size) + 44;
+  return popIn(p, `<rect x="${-w / 2}" y="-30" width="${w}" height="60" rx="18" fill="rgba(0,0,0,.3)" transform="translate(0 5)"/><rect x="${-w / 2}" y="-30" width="${w}" height="60" rx="18" fill="${bg}" stroke="${C.ink}" stroke-width="3.5"/>${text(0, size * .35, str, { size, fg, fill: fg })}`, cx, cy);
+}
+function hatIcon(x, y, c, s = 1) { return `<g transform="translate(${x} ${y}) scale(${s})"><path d="M-40 10 Q -38 -44 0 -46 Q 38 -44 40 10 Z" fill="${HATC[c]}" stroke="${C.ink}" stroke-width="4"/><rect x="-44" y="0" width="88" height="18" rx="8" fill="${mix(HATC[c], '#000000', .25)}" stroke="${C.ink}" stroke-width="4"/><circle cy="-50" r="10" fill="${mix(HATC[c], '#000000', .25)}" stroke="${C.ink}" stroke-width="4"/></g>`; }
+function codeChip(t) {
+  const p = prog(t, T(12, .72), T(12, .82)); if (p <= 0 || t > SE(17)) return '';
+  return popIn(p, `<rect x="-120" y="-34" width="240" height="68" rx="20" fill="${C.ink}" stroke="#fff" stroke-width="3"/>${text(-38, 10, 'CODE:', { size: 26, fill: '#9AA0B4' })}${text(52, 12, 'EVEN', { size: 34, weight: 700, fill: C.yellow })}`, 150, 330);
+}
+function demoState(t, opts = {}) { // the 5-prisoner example, shared by scenes 11-17
+  const L = L5, i = opts.i;
+  let s = yardBG() + codeChip(t);
+  const focus = opts.focus ?? -1;
+  if (opts.cone) s += cone(L, focus, opts.cone);
+  s += lineOf(L, L5CAST, { focus, dimK: t > T(13, .3) ? [0] : [] });
+  if (i === 11) L.xs.forEach((x, k) => s += qMark(L, k, P(t, 11, .35 + k * .06, .45 + k * .06)));
+  // answers + marks that persist
+  const SAY = [[0, 'BLUE!', T(12, .66), T(13, .25), false, T(13, .28)], [1, 'RED!', T(14, .82), T(15, .1), true, T(14, .9)],
+    [2, 'BLUE!', T(17, .02), T(17, .2), true, T(17, .1)], [3, 'RED!', T(17, .2), T(17, .4), true, T(17, .28)], [4, 'BLUE!', T(17, .38), T(17, .6), true, T(17, .46)]];
+  SAY.forEach(([k, w, a, b, ok, m]) => { if (t >= a && t < b) s += say(L, k, w, prog(t, a, a + .25)); if (t >= m) s += mark(L, k, ok, prog(t, m, m + .25)); });
+  return s;
+}
+const SCENES = [
+  // 0: the warden's deal
+  t => {
+    let s = corridorBG(); CELLS.forEach(([x]) => s += cellBack(x));
+    [[SK[0], HR[1], 'short', '14'], [SK[1], HR[0], 'short', '23'], [SK[2], HR[4], 'bald', '71']].forEach(([sk, hr, hs, n], k) => s += person({ skin: sk, hair: hr, hs, num: n, x: CELLS[k][0] + 96, y: 960, s: .78, dir: k === 2 ? -1 : 1 }));
+    CELLS.forEach(([x, n]) => s += cellBars(x, n));
+    s += `<rect y="1040" width="720" height="240" fill="${C.floor}"/>`;
+    const w = { x: lerp(820, 470, easeOut(P(t, 0, 0, .35))) };
+    s += person({ ...PR.wdn, x: w.x, y: 1190, dir: -1, walk: P(t, 0, 0, .35) < 1 ? 1 : 0, phase: t * 9, front: { to: [w.x - 120, 960], amt: 1 } });
+    s += `<g transform="translate(${f1(w.x - 190)} 900)"><rect x="-80" y="0" width="160" height="96" rx="8" fill="#9B6B43" stroke="${C.ink}" stroke-width="4"/><path d="M-80 30 H80" stroke="${C.ink}" stroke-width="3" opacity=".4"/>
+      ${hatIcon(-44, -6, 'r', .6)}${hatIcon(0, -14, 'b', .6)}${hatIcon(44, -6, 'r', .6)}</g>`;
+    return s;
+  },
+  // 1: hats drop onto a line
+  t => yardBG() + lineOf(L7, L7CAST, { hatDrop: k => P(t, 1, .38 + k * .065, .5 + k * .065) }) + popIn(P(t, 1, .1, .22), `<path d="M-250 0 H250 m-30 -24 l30 24 l-30 24" stroke="#fff" stroke-width="8" fill="none" stroke-linecap="round" stroke-linejoin="round" opacity=".8"/>${text(0, -26, 'facing forward', { size: 28, fill: '#fff' })}`, 360, 420),
+  // 2: only the hats ahead
+  t => yardBG() + cone(L7, 2, P(t, 2, .2, .4)) + lineOf(L7, L7CAST, { focus: 2 }) + qMark(L7, 2, P(t, 2, .08, .18)) + [3, 4, 5, 6].map((k, j) => popIn(P(t, 2, .5 + j * .06, .6 + j * .06), `<circle r="16" fill="#fff" stroke="${C.ink}" stroke-width="3"/><circle r="7" fill="${C.ink}"/>`, headX(L7, k), headY(L7, k) - 80)).join(''),
+  // 3: back to front, one word each
+  t => {
+    let s = yardBG() + lineOf(L7, L7CAST);
+    s += popIn(P(t, 3, .05, .15), `<path d="M-280 0 H280 m-30 -24 l30 24 l-30 24" stroke="${C.yellow}" stroke-width="9" fill="none" stroke-linecap="round" stroke-linejoin="round"/>${text(-280, -30, 'back', { size: 28, fill: C.yellow, anchor: 'start' })}${text(280, -30, 'front', { size: 28, fill: C.yellow, anchor: 'end' })}`, 360, 420);
+    let cur = -1; L7.xs.forEach((x, k) => { if (t >= T(3, .25 + k * .1)) cur = k; });
+    if (cur >= 0 && t < T(3, .25 + cur * .1) + .9) { const a = T(3, .25 + cur * .1); s += say(L7, cur, ['RED', 'BLUE', 'RED', 'BLUE', 'RED', 'RED', 'BLUE'][cur], prog(t, a, a + .15), 600); }
+    return s;
+  },
+  // 4: right = free, wrong = stay
+  t => {
+    let s = `<rect width="720" height="1280" fill="#171A26"/>`;
+    const a = P(t, 4, .02, .14), b = P(t, 4, .5, .62);
+    if (a > 0) {
+      const op = easeOut(P(t, 4, .1, .4));
+      let g = `<rect x="-320" y="-220" width="640" height="440" rx="30" fill="#1F4A33" stroke="${C.ink}" stroke-width="5"/>
+        <rect x="-120" y="-150" width="240" height="300" fill="#BFE6F5"/><rect x="-120" y="80" width="240" height="70" fill="#7CBF5A"/><circle cx="60" cy="-80" r="32" fill="${C.yellow}"/>
+        <rect x="-120" y="-150" width="${f1(120 * (1 - op))}" height="300" fill="#5C6278" stroke="${C.ink}" stroke-width="4"/><rect x="${f1(120 - 120 * (1 - op))}" y="-150" width="${f1(120 * (1 - op))}" height="300" fill="#5C6278" stroke="${C.ink}" stroke-width="4"/>
+        <rect x="-140" y="-170" width="280" height="340" fill="none" stroke="${C.ink}" stroke-width="10"/>`;
+      g += hatIcon(-230, 40, 'b', 1.1) + pill('RIGHT: walk free', 0, -180, { bg: C.green, size: 34, icon: 'check' });
+      s += popIn(a, g, 360, 520);
+    }
+    if (b > 0) {
+      let g = `<rect x="-320" y="-200" width="640" height="400" rx="30" fill="#4A1E24" stroke="${C.ink}" stroke-width="5"/>`;
+      for (let x = -280; x <= 280; x += 46) g += `<path d="M${x} -170 V170" stroke="${C.bars}" stroke-width="9" opacity=".5"/>`;
+      g += `<path d="M-46 -20 V-60 a46 46 0 0 1 92 0 V-20" stroke="#C9CDD6" stroke-width="20" fill="none"/><rect x="-74" y="-24" width="148" height="120" rx="18" fill="${C.yellow}" stroke="${C.ink}" stroke-width="5"/><circle cy="24" r="14" fill="${C.ink}"/><path d="M0 30 V66" stroke="${C.ink}" stroke-width="10"/>`;
+      g += pill('WRONG: stay locked up', 0, -170, { bg: C.red, size: 34 });
+      s += popIn(b, g, 360, 1010);
+    }
+    return s;
+  },
+  // 5: no other talking
+  t => {
+    let s = yardBG() + lineOf(L7, L7CAST);
+    s += bubble(headX(L7, 3) - 40, 600, ['psst... your hat', 'is red...'], P(t, 5, .12, .24), { size: 32, tx: 40 });
+    const np = P(t, 5, .45, .55);
+    if (np > 0) s += popIn(np, `<circle r="80" fill="none" stroke="${C.red}" stroke-width="16"/><path d="M-57 -57 L57 57" stroke="${C.red}" stroke-width="16" stroke-linecap="round"/>`, headX(L7, 3) - 40, 600);
+    return s;
+  },
+  // 6: tonight's plan
+  t => {
+    let s = meetingRoom('PLAN?');
+    s += `<rect x="560" y="60" width="120" height="120" fill="#141A2C" stroke="${C.ink}" stroke-width="5"/><circle cx="636" cy="104" r="26" fill="#F3EBC8"/><circle cx="648" cy="96" r="24" fill="#141A2C"/><path d="M590 60 v120 M620 60 v120 M650 60 v120" stroke="${C.bars}" stroke-width="5"/>`;
+    s += popIn(P(t, 6, .55, .68), `<rect x="-180" y="-38" width="360" height="76" rx="38" fill="${C.yellow}" stroke="${C.ink}" stroke-width="4"/>${text(0, 13, 'How many for sure?', { size: 36, weight: 700 })}`, 360, 740);
+    return s;
+  },
+  // 7: countdown
+  t => {
+    let s = `<rect width="720" height="1280" fill="${C.cream}"/>`;
+    for (let y = 40; y < 1280; y += 64) for (let x = (y / 64) % 2 ? 40 : 72; x < 720; x += 64) s += `<circle cx="${x}" cy="${y}" r="3" fill="#E9DDC8"/>`;
+    s += pill("What's your plan?", 360, 190, { size: 44 });
+    s += `<rect x="40" y="296" width="640" height="300" rx="36" fill="${C.card}" stroke="${C.ink}" stroke-width="4"/>`;
+    for (let r = 0; r < 4; r++) for (let c = 0; c < 5; c++) s += `<circle cx="${110 + c * 22}" cy="${370 + r * 26}" r="9" fill="${SK[(r + c) % 5]}" stroke="${C.ink}" stroke-width="2"/>`;
+    s += hatIcon(330, 440, 'r', .9) + hatIcon(394, 440, 'b', .9);
+    s += `<path d="M520 380 h92 a16 16 0 0 1 16 16 v40 a16 16 0 0 1 -16 16 h-50 l-20 18 v-18 h-22 a16 16 0 0 1 -16 -16 v-40 a16 16 0 0 1 16 -16 z" fill="#fff" stroke="${C.ink}" stroke-width="4"/>` + text(566, 426, '1 word', { size: 24, weight: 700 });
+    s += text(155, 552, '100 prisoners', { size: 28, weight: 500 }) + text(360, 552, 'red or blue', { size: 28, weight: 500 }) + text(566, 552, 'one word each', { size: 28, weight: 500 });
+    const rem = clamp((CD0 + 10 - t) / 10), r = 118, circ = 2 * Math.PI * r, n = clamp(Math.ceil(CD0 + 10 - t), 1, 10);
+    const f = t >= CD0 ? (t - CD0) % 1 : 1, pulse = 1 + .16 * Math.max(0, 1 - f * 5);
+    s += `<g transform="translate(360 840)"><circle r="${r + 26}" fill="${C.card}" stroke="${C.ink}" stroke-width="4"/><circle r="${r}" fill="none" stroke="#EADFCB" stroke-width="20"/>
+      <circle r="${r}" fill="none" stroke="${C.red}" stroke-width="20" stroke-linecap="round" stroke-dasharray="${f1(circ * rem)} ${f1(circ)}" transform="rotate(-90)"/>
+      <g transform="scale(${pulse.toFixed(3)})">${text(0, 48, String(n), { size: 140, weight: 700 })}</g></g>`;
+    s += `<path d="M168 1030 h52 a14 14 0 0 1 14 14 v28 a14 14 0 0 1 -14 14 h-30 l-16 14 v-14 h-6 a14 14 0 0 1 -14 -14 v-28 a14 14 0 0 1 14 -14 z" fill="${C.yellow}" stroke="${C.ink}" stroke-width="3.5"/>` + text(254, 1066, 'Comment your plan', { size: 40, anchor: 'start' });
+    return s;
+  },
+  // 8: the back prisoner counts red hats
+  t => {
+    let s = yardBG() + cone(L7, 0, P(t, 8, .25, .4)) + lineOf(L7, L7CAST, { focus: 0 });
+    [3, 5, 6].forEach((k, j) => s += numOver(L7, k, j + 1, P(t, 8, .5 + j * .1, .6 + j * .1)));
+    return s;
+  },
+  // 9: the code
+  t => {
+    let s = yardBG() + lineOf(L7, L7CAST, { focus: 0 }) + `<rect width="720" height="1280" fill="#0E1018" opacity=".6"/>`;
+    s += `<rect x="60" y="330" width="600" height="560" rx="36" fill="${C.card}" stroke="${C.ink}" stroke-width="5"/>` + pill('THE CODE', 360, 330, { size: 34, bg: C.ink });
+    const r1 = P(t, 9, .05, .2), r2 = P(t, 9, .5, .65);
+    if (r1 > 0) s += `<g opacity="${clamp(r1 * 2)}">${text(120, 500, 'EVEN', { size: 60, weight: 700, anchor: 'start' })}${text(120, 548, 'number of reds', { size: 28, anchor: 'start', fill: C.muted })}<path d="M380 480 h50 m-16 -16 l16 16 l-16 16" stroke="${C.ink}" stroke-width="6" fill="none" stroke-linecap="round"/>${hatIcon(520, 500, 'b', 1.2)}${text(520, 572, 'say BLUE', { size: 30, weight: 700, fill: HATC.b })}</g>`;
+    s += `<path d="M110 620 H610" stroke="#E6DCCB" stroke-width="3"/>`;
+    if (r2 > 0) s += `<g opacity="${clamp(r2 * 2)}">${text(120, 740, 'ODD', { size: 60, weight: 700, anchor: 'start' })}${text(120, 788, 'number of reds', { size: 28, anchor: 'start', fill: C.muted })}<path d="M380 720 h50 m-16 -16 l16 16 l-16 16" stroke="${C.ink}" stroke-width="6" fill="none" stroke-linecap="round"/>${hatIcon(520, 740, 'r', 1.2)}${text(520, 812, 'say RED', { size: 30, weight: 700, fill: HATC.r })}</g>`;
+    return s;
+  },
+  // 10: coin flip for the back one, code for everyone else
+  t => {
+    let s = yardBG() + lineOf(L7, L7CAST, { focus: 0 });
+    if (t < T(10, .5)) s += say(L7, 0, 'RED!', P(t, 10, .02, .12), 640);
+    s += popIn(P(t, 10, .1, .22), `<circle r="38" fill="${C.yellow}" stroke="${C.ink}" stroke-width="4"/><circle r="28" fill="none" stroke="#C99A1E" stroke-width="3"/>${text(0, 9, '50/50', { size: 20, weight: 700 })}`, headX(L7, 0), headY(L7, 0) - 160);
+    [1, 2, 3, 4, 5, 6].forEach((k, j) => s += popIn(P(t, 10, .5 + j * .06, .58 + j * .06), `<rect x="-38" y="-20" width="76" height="40" rx="12" fill="${C.green}" stroke="${C.ink}" stroke-width="3"/>${text(0, 9, 'code ✓', { size: 20, weight: 700, fill: '#fff' })}`, headX(L7, k), headY(L7, k) - 90));
+    return s;
+  },
+  // 11-17: worked example with five
+  t => demoState(t, { i: 11 }),
+  t => { let s = demoState(t, { i: 12, focus: 0, cone: P(t, 12, .1, .25) }); [1, 3].forEach((k, j) => s += numOver(L5, k, j + 1, P(t, 12, .25 + j * .12, .35 + j * .12) * (1 - P(t, 12, .9, 1)))); s += chip('2 reds = EVEN', 470, 520, P(t, 12, .48, .58) * (1 - P(t, 12, .92, 1))); return s; },
+  t => demoState(t, { i: 13, focus: 0 }) + chip('own hat: RED → lost the flip', 360, 520, P(t, 13, .3, .4), { bg: '#F6D6D3' }),
+  t => { let s = demoState(t, { i: 14, focus: 1, cone: P(t, 14, .05, .15) }); s += numOver(L5, 3, 1, P(t, 14, .12, .2) * (1 - P(t, 14, .8, .85))); s += chip('sees 1 red = ODD', 430, 470, P(t, 14, .25, .33)); s += chip('code says EVEN → I must be RED', 360, 560, P(t, 14, .55, .63), { size: 28 }); return s; },
+  t => {
+    let s = demoState(t, { i: 15, focus: 2, cone: P(t, 15, .45, .55) });
+    s += chip('heard: 1 red', 230, 470, P(t, 15, .3, .4)) + `<path d="M${headX(L5, 1) + 20} 760 Q 290 700 ${headX(L5, 2) - 20} 760" stroke="${C.yellow}" stroke-width="5" fill="none" stroke-dasharray="10 8" opacity="${P(t, 15, .3, .4)}"/>`;
+    s += numOver(L5, 3, 1, P(t, 15, .55, .62)) + chip('sees: 1 red', 520, 470, P(t, 15, .6, .7));
+    return s;
+  },
+  t => {
+    let s = demoState(t, { i: 16, focus: 2 }) + numOver(L5, 3, 1, 1) + chip('heard: 1 red', 230, 470, 1) + chip('sees: 1 red', 520, 470, 1);
+    s += chip('1 + 1 = 2 → EVEN = code ✓', 360, 560, P(t, 16, .55, .65), { bg: '#D8F0DD', size: 28 });
+    return s;
+  },
+  t => demoState(t, { i: 17, focus: t < T(17, .2) ? 2 : t < T(17, .38) ? 3 : 4 }) + pill('4 of 5 right, every time', 360, 520, { ...(popAnim(t, T(17, .65), SE(17) + .1) || { scale: 0, opacity: 0 }), bg: C.green, size: 34, icon: 'check' }),
+  // 18: a hundred in line
+  t => {
+    let s = yardBG() + `<rect width="720" height="1280" fill="#0E1018" opacity=".35"/>`;
+    const R = rnd(42), u = P(t, 18, .25, 1);
+    for (let k = 0; k < 100; k++) {
+      const row = Math.floor(k / 20), col = k % 20, x = 46 + col * 33, y = 420 + row * 150, c = R() < .5 ? 'r' : 'b';
+      s += `<g transform="translate(${x} ${y})"><rect x="-9" y="0" width="18" height="34" rx="6" fill="${C.jump}" stroke="${C.ink}" stroke-width="2"/><circle cy="-8" r="10" fill="${SK[k % 5]}" stroke="${C.ink}" stroke-width="2"/><path d="M-11 -9 Q -10 -24 0 -24 Q 10 -24 11 -9 Z" fill="${HATC[c]}" stroke="${C.ink}" stroke-width="2"/></g>`;
+      const done = u * 100 - k;
+      if (k > 0 && done > 0) s += `<circle cx="${x}" cy="${y - 38}" r="${f1(7 * clamp(done))}" fill="${C.green}"/>`;
+      if (k === 0) s += `<circle cx="${x}" cy="${y - 40}" r="11" fill="${C.yellow}" stroke="${C.ink}" stroke-width="2"/>`;
+    }
+    s += text(46, 1210, 'back', { size: 26, fill: '#9AA0B4', anchor: 'start' }) + text(674, 1210, 'front', { size: 26, fill: '#9AA0B4', anchor: 'end' });
+    return s;
+  },
+  // 19: 99 free
+  t => {
+    const u = P(t, 19, 0, 1), op = easeOut(prog(u, 0, .3));
+    let s = brickWall(0, 1280) + `<defs><clipPath id="cGate"><rect x="150" y="300" width="420" height="700"/></clipPath></defs>
+      <g clip-path="url(#cGate)"><rect x="150" y="300" width="420" height="700" fill="#BFE6F5"/><rect x="150" y="760" width="420" height="240" fill="#7CBF5A"/><circle cx="470" cy="420" r="56" fill="${C.yellow}"/></g>`;
+    s += `<rect x="150" y="300" width="${f1(210 * (1 - op))}" height="700" fill="#5C6278" stroke="${C.ink}" stroke-width="5"/><rect x="${f1(570 - 210 * (1 - op))}" y="300" width="${f1(210 * (1 - op))}" height="700" fill="#5C6278" stroke="${C.ink}" stroke-width="5"/><rect x="140" y="290" width="440" height="720" fill="none" stroke="${C.ink}" stroke-width="12"/>`;
+    for (let k = 0; k < 9; k++) { const ph = clamp(u * 1.5 - .1 - k * .08); if (ph > 0 && ph < 1) s += bust(lerp(140 + (k % 3) * 220, 360 + (k % 3 - 1) * 60, ph), lerp(1240, 900, ph), lerp(1.4, .6, ph), SK[k % 5], HR[(k + 2) % 5]); }
+    s += pill('99 free, guaranteed', 360, 1130, { ...(popAnim(t, T(19, .05), SE(19) + .2) || { scale: 0, opacity: 0 }), size: 46, bg: C.green, icon: 'check', weight: 700 });
+    s += popIn(P(t, 19, .55, .65), `<circle r="54" fill="${C.yellow}" stroke="${C.ink}" stroke-width="5"/><circle r="42" fill="none" stroke="#C99A1E" stroke-width="3"/>${text(0, 6, '50/50', { size: 28, weight: 700 })}${text(0, 84, '+ the back one?', { size: 26, fill: '#fff' })}`, 600, 1000);
+    const R = rnd(14);
+    if (u > .15) for (let k = 0; k < 50; k++) { const x = R() * 720, sp = 200 + R() * 220, y = ((t - T(19, .2)) * sp + R() * 300) % 1400 - 100, c = [C.yellow, C.red, C.green, '#5AA9E6', '#fff'][k % 5]; s += `<rect x="${f1(x)}" y="${f1(y)}" width="12" height="20" fill="${c}" transform="rotate(${f1((t * 200 + k * 37) % 360)} ${f1(x + 6)} ${f1(y + 10)})"/>`; }
+    return s;
+  },
+  // 20: end
+  t => {
+    let s = yardBG() + lineOf(L5, L5CAST, { focus: 0, dimK: [1, 2, 3, 4] });
+    s += popIn(P(t, 20, .05, .15), `<circle r="30" fill="#fff" stroke="${C.ink}" stroke-width="4"/>${text(0, 14, '?', { size: 42, weight: 700 })}`, headX(L5, 0), headY(L5, 0) - 92 * L5.s - 36);
+    s += pill('Follow for more puzzles', 360, 1200, { ...(popAnim(t, T(20, .45), VDUR + 1) || { scale: 0, opacity: 0 }), icon: 'plus', size: 38 });
+    return s;
+  },
+];
+
+// ---------- sound cues ----------
+const SFX = [];
+VO.forEach((l, i) => { if (i !== 7) SFX.push([S[i] + .05, 'pop']); if (i > 0) SFX.push([S[i], 'whoosh']); });
+SFX.push([T(0, 0), 'step'], [T(0, .1), 'step'], [T(0, .2), 'step'], [T(0, .3), 'step']);
+for (let k = 0; k < 7; k++) SFX.push([T(1, .5 + k * .065), 'card']);
+SFX.push([T(2, .2), 'chime']);
+for (let k = 0; k < 7; k++) SFX.push([T(3, .25 + k * .1), 'pop']);
+SFX.push([T(4, .14), 'win'], [T(4, .55), 'buzz'], [T(4, .55), 'clang'], [T(5, .45), 'buzz'], [T(6, .55), 'pop']);
+for (let k = 0; k < 10; k++) SFX.push([CD0 + k, k === 9 ? 'tickHi' : 'tick']);
+SFX.push([CD0 + 10, 'ding'], [T(8, 0), 'chime']);
+for (let k = 0; k < 3; k++) SFX.push([T(8, .5 + k * .1), 'tick']);
+SFX.push([T(9, .05), 'card'], [T(9, .5), 'card'], [T(10, .1), 'roll'], [T(10, .5), 'chime']);
+for (let k = 0; k < 5; k++) SFX.push([T(11, .35 + k * .06), 'pop']);
+SFX.push([T(12, .25), 'tick'], [T(12, .37), 'tick'], [T(12, .66), 'pop'], [T(12, .72), 'card'], [T(13, .28), 'buzz'], [T(14, .12), 'tick'], [T(14, .82), 'pop'], [T(14, .9), 'win']);
+SFX.push([T(15, .3), 'pop'], [T(15, .6), 'pop'], [T(16, .55), 'chime'], [T(17, .1), 'win'], [T(17, .28), 'win'], [T(17, .46), 'win'], [T(17, .65), 'pop']);
+for (let k = 0; k < 20; k++) SFX.push([T(18, .25 + k * .0375), 'tick']);
+SFX.push([T(19, 0), 'clang'], [T(19, .05), 'cheer'], [T(19, .55), 'roll'], [T(20, .45), 'pop']);
+window.SFX = SFX.sort((a, b) => a[0] - b[0]);
+window.cues = () => ({ dur: VDUR, sfx: SFX.map(([t, k]) => [+t.toFixed(3), k]), vo: VO.map((l, i) => ({ t: +S[i].toFixed(3), dur: l.dur, file: l.file, text: l.text })), countdown: [CD0 - .4, CD0, CD0 + 10, CD0 + 10.5] });
+
+// ---------- frame ----------
+const DEFS = `<defs><radialGradient id="gWarm"><stop offset="0" stop-color="#FFD98A" stop-opacity=".75"/><stop offset="1" stop-color="#FFD98A" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gVig" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".35"/></radialGradient></defs>`;
+const svg = document.getElementById('svg');
+function renderAt(t) {
+  t = clamp(t, 0, VDUR - 1e-4);
+  let i = 0; while (i + 1 < S.length && t >= S[i + 1]) i++;
+  const punch = 1 + .04 * (1 - easeOut(prog(t, S[i], S[i] + .3)));
+  let s = DEFS + `<g transform="translate(360 640) scale(${punch.toFixed(4)}) translate(-360 -640)">${SCENES[i](t)}</g><rect width="720" height="1280" fill="url(#gVig)"/>`;
+  if (i !== 7) { const an = popAnim(t, S[i] + .05, SE(i) - .05); if (an) s += pill(VO[i].cap, 360, 205, an); }
+  svg.innerHTML = s;
+}
+window.renderAt = renderAt;
+window.DUR = VDUR;
+
+const params = new URLSearchParams(location.search);
+window.ready = document.fonts.load('700 60px Fredoka').then(() => document.fonts.ready).then(() => {
+  if (params.has('render')) { document.body.classList.add('render'); renderAt(+params.get('t') || 0); return; }
+  const stage = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / W, (innerHeight - 40) / H); stage.style.transform = `scale(${k})`; };
+  addEventListener('resize', fit); fit();
+  let playing = true, t0 = performance.now(), cur = 0;
+  const tick = now => { if (playing) { cur = ((now - t0) / 1000) % VDUR; renderAt(cur); } requestAnimationFrame(tick); };
+  const toggle = () => { playing = !playing; t0 = performance.now() - cur * 1000; };
+  stage.addEventListener('click', toggle);
+  addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); toggle(); }
+    if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') { cur = clamp(cur + (e.code === 'ArrowRight' ? 1 : -1), 0, VDUR - .01); t0 = performance.now() - cur * 1000; renderAt(cur); }
+  });
+  requestAnimationFrame(tick);
+});
+</script>
+</body>
+</html>
