@@ -1,0 +1,600 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Light Switch Riddle</title>
+<style>
+  @font-face { font-family: 'Fredoka'; src: url('fredoka.woff2') format('woff2'); font-weight: 300 700; font-display: block; }
+  html, body { margin: 0; height: 100%; background: #16151c; }
+  body { display: flex; align-items: center; justify-content: center; overflow: hidden; font-family: Fredoka, sans-serif; }
+  #stage { width: 720px; height: 1280px; position: relative; overflow: hidden; background: #F7EFE1; transform-origin: center center; cursor: pointer; }
+  svg { display: block; }
+  #hint { position: fixed; bottom: 12px; left: 0; right: 0; text-align: center; color: #bbb; font-size: 14px; }
+  body.render { display: block; background: #F7EFE1; }
+  body.render #hint { display: none; }
+</style>
+</head>
+<body>
+<div id="stage"><svg id="svg" xmlns="http://www.w3.org/2000/svg" width="720" height="1280" viewBox="0 0 720 1280"></svg></div>
+<div id="hint">Click or press space to play / pause · ← → to scrub</div>
+<script>
+// ---------------------------------------------------------------------------
+// Light Switch Riddle: a 65-second vertical reel, drawn as SVG from time t.
+// renderAt(t) draws one frame; window.SFX lists sound cues for the audio mix.
+// ---------------------------------------------------------------------------
+const W = 720, H = 1280, DUR = 65;
+const C = {
+  ink: '#2B2620', wall: '#EFE3CC', wallStripe: '#E9DBC1', wains: '#E3D0AE', wainsLine: '#D3BC95',
+  ceil: '#E2D1B3', floor: '#B98757', floorLine: '#A07047', trim: '#FFF7E8',
+  door: '#8A5A35', doorPanel: '#7A4D2C', teal: '#2F8F83', tealDark: '#22706A',
+  skin: '#F2C49E', skinDark: '#DDA47C', hair: '#3B2A20', pants: '#3D4559', shoe: '#2B2620',
+  yellow: '#F4B740', red: '#E2574C', pill: '#2A2D34', cream: '#F7EFE1', card: '#FFFDF7',
+  roomWall: '#3A3551', roomWallLit: '#5E5677', roomFloor: '#2A2640', roomFloorLit: '#463F5F', dark: '#1C1A2A',
+  muted: '#6E655A', blue: '#7FB3D5',
+};
+const FONT = "Fredoka, Inter, sans-serif";
+
+// ---------- math ----------
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => clamp((t - a) / (b - a));
+const lerp = (a, b, p) => a + (b - a) * p;
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const backOut = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const f1 = n => Math.round(n * 10) / 10;
+function hex2rgb(h) { const n = parseInt(h.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; }
+function mix(a, b, p) { const A = hex2rgb(a), B = hex2rgb(b); return `rgb(${A.map((v, i) => Math.round(lerp(v, B[i], clamp(p)))).join(',')})`; }
+function keys(t, ks) { // keyframes [[t, x, y], ...] eased between
+  if (t <= ks[0][0]) return [ks[0][1], ks[0][2]];
+  for (let i = 0; i < ks.length - 1; i++) {
+    const [ta, xa, ya] = ks[i], [tb, xb, yb] = ks[i + 1];
+    if (t <= tb) { const p = easeInOut(prog(t, ta, tb)); return [lerp(xa, xb, p), lerp(ya, yb, p)]; }
+  }
+  const l = ks[ks.length - 1]; return [l[1], l[2]];
+}
+
+// ---------- text ----------
+const mctx = document.createElement('canvas').getContext('2d');
+function tw(text, size, weight = 600) { mctx.font = `${weight} ${size}px Fredoka`; return mctx.measureText(text).width; }
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+function text(x, y, str, { size = 32, weight = 600, fill = C.ink, anchor = 'middle', opacity = 1 } = {}) {
+  return `<text x="${f1(x)}" y="${f1(y)}" text-anchor="${anchor}" font-family="${FONT}" font-weight="${weight}" font-size="${size}" fill="${fill}" opacity="${opacity}">${esc(str)}</text>`;
+}
+function pill(str, cx, cy, { size = 36, bg = C.pill, fg = '#fff', scale = 1, opacity = 1, weight = 600, maxW = 640, icon = '' } = {}) {
+  const iconW = icon ? size * 1.25 : 0;
+  let w = tw(str, size, weight);
+  while (w + iconW > maxW - 56 && size > 20) { size -= 1; w = tw(str, size, weight); }
+  const ph = size * 1.8, pw = w + 56 + iconW, r = ph / 2.4;
+  let ic = '';
+  if (icon === 'plus') {
+    const ix = -pw / 2 + 28 + size * .45;
+    ic = `<circle cx="${ix}" cy="0" r="${size * .5}" fill="${C.yellow}"/><path d="M${ix - size * .24} 0H${ix + size * .24}M${ix} ${-size * .24}V${size * .24}" stroke="${C.ink}" stroke-width="${size * .13}" stroke-linecap="round"/>`;
+  }
+  return `<g transform="translate(${f1(cx)} ${f1(cy)}) scale(${scale.toFixed(3)})" opacity="${opacity.toFixed(3)}">
+    <rect x="${-pw / 2}" y="${-ph / 2 + 6}" width="${pw}" height="${ph}" rx="${r}" fill="rgba(20,16,12,.22)"/>
+    <rect x="${-pw / 2}" y="${-ph / 2}" width="${pw}" height="${ph}" rx="${r}" fill="${bg}"/>
+    ${ic}
+    <text x="${iconW / 2}" y="${size * .35}" text-anchor="middle" font-family="${FONT}" font-weight="${weight}" font-size="${size}" fill="${fg}">${esc(str)}</text></g>`;
+}
+function popAnim(t, a, b, inDur = .32) {
+  if (t < a || t > b) return null;
+  const p = prog(t, a, a + inDur), q = prog(t, b - .18, b);
+  return { scale: (0.6 + 0.4 * backOut(p)) * (1 - 0.08 * q), opacity: Math.min(1, p * 3) * (1 - q) };
+}
+
+// ---------- captions ----------
+const CAPS = [
+  [0.5, 4.8, '3 light switches in a hallway'],
+  [5.3, 7.6, '1 bulb in the room behind the door', 'light'],
+  [7.7, 9.9, 'No windows. No peeking.', 'light'],
+  [10.3, 14.3, 'Only one switch works the bulb'],
+  [14.8, 16.8, 'Flip them as much as you like'],
+  [16.9, 18.9, 'But you can open the door only once'],
+  [19.2, 22.4, 'Which switch is it?'],
+  [33.2, 35.4, "Here's the trick"],
+  [35.7, 37.8, 'Turn A on'],
+  [37.9, 40.9, 'Wait 5 minutes'],
+  [41.2, 44.9, 'Turn A off, then B on'],
+  [45.2, 48.3, 'Now open the door'],
+  [48.7, 50.8, 'The bulb is off…', 'light'],
+  [51.7, 54.3, '…but it’s warm!', 'light'],
+  [61.2, 63.1, 'Did you get it right?'],
+];
+function captions(t) {
+  let s = '';
+  for (const [a, b, str, style] of CAPS) {
+    const an = popAnim(t, a, b); if (!an) continue;
+    s += pill(str, 360, 262, style === 'light'
+      ? { ...an, bg: C.cream, fg: C.ink }
+      : an);
+  }
+  return s;
+}
+
+// ---------- sound cues (read by the renderer, mixed by audio.py) ----------
+const SFX = [];
+CAPS.forEach(c => SFX.push([c[0], 'pop']));
+const RULE_FLIPS = [[15.2, 0, 1], [15.5, 1, 1], [15.8, 0, 0], [16.1, 2, 1], [16.4, 1, 0], [16.65, 2, 0]];
+RULE_FLIPS.forEach(f => SFX.push([f[0], 'click']));
+SFX.push([16.9, 'blip'], [19.6, 'pop'], [22.6, 'pop']);
+for (let i = 0; i < 10; i++) SFX.push([23 + i, i === 9 ? 'tickHi' : 'tick']);
+SFX.push([33.0, 'ding'], [33.45, 'idea'], [36.2, 'click'], [41.55, 'click'], [42.6, 'click']);
+SFX.push([38.0, 'ff'], [46.4, 'whoosh'], [46.55, 'blipDown'], [51.5, 'ouch'], [51.7, 'chime']);
+SFX.push([54.6, 'pop'], [54.9, 'card'], [55.4, 'card'], [55.9, 'card'], [57.0, 'chime'], [57.2, 'pop'], [63.3, 'pop']);
+SFX.push([0.05, 'cut'], [5, 'cut'], [10, 'cut'], [14.5, 'cut'], [19, 'cut'], [22.5, 'cut'], [33, 'cut'], [35.5, 'cut'], [45, 'cut'], [48.5, 'cut'], [54.5, 'cut'], [61, 'cut']);
+for (const [a, b] of [[0, 2.3], [17.0, 17.8], [45.0, 45.9], [48.6, 50.2]]) for (let x = a + .12; x < b; x += .37) SFX.push([x, 'step']);
+window.SFX = SFX.sort((a, b) => a[0] - b[0]);
+
+// ---------- character ----------
+function ik(sx, sy, tx, ty, l1, l2) {
+  let dx = tx - sx, dy = ty - sy, d = Math.hypot(dx, dy); const max = l1 + l2 - .5;
+  if (d > max) { tx = sx + dx / d * max; ty = sy + dy / d * max; d = max; }
+  if (d < 1) d = 1;
+  const a = Math.atan2(ty - sy, tx - sx), cosA = clamp((l1 * l1 + d * d - l2 * l2) / (2 * l1 * d), -1, 1);
+  const ang = a + Math.acos(cosA);
+  return { ex: sx + Math.cos(ang) * l1, ey: sy + Math.sin(ang) * l1, hx: tx, hy: ty };
+}
+function limb(pts, col, w) {
+  const d = 'M' + pts.map(p => `${f1(p[0])} ${f1(p[1])}`).join(' L');
+  return `<path d="${d}" stroke="${C.ink}" stroke-width="${w + 7}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="${d}" stroke="${col}" stroke-width="${w}" fill="none" stroke-linecap="round" stroke-linejoin="round"/>`;
+}
+// o: {x, y, s, dir, phase, walk, front:{to:[wx,wy], amt}, back, expr}
+function person(o) {
+  const { x, y, s = 1, dir = 1, phase = 0, walk = 0, expr = 'neutral' } = o;
+  const toLocal = ([wx, wy]) => [(wx - x) / (dir * s), (wy - y) / s];
+  const bob = -Math.abs(Math.sin(phase)) * 7 * walk;
+  const swing = Math.sin(phase) * walk;
+  const hipY = -165 + bob;
+  const leg = (ang, col) => {
+    const fx = Math.sin(ang) * 168, fy = hipY + Math.cos(ang) * 168;
+    return limb([[0, hipY], [fx, fy - 6]], col, 30) +
+      `<ellipse cx="${f1(fx + 12)}" cy="${f1(fy + 2)}" rx="25" ry="12" fill="${C.shoe}"/>`;
+  };
+  const arm = (sx, sy, rest, spec, col) => {
+    let tgt = rest;
+    if (spec && spec.amt > 0) { const L = toLocal(spec.to); tgt = [lerp(rest[0], L[0], spec.amt), lerp(rest[1], L[1], spec.amt)]; }
+    const e = ik(sx, sy, tgt[0], tgt[1], 80, 80);
+    return limb([[sx, sy], [e.ex, e.ey], [e.hx, e.hy]], col, 24) +
+      `<circle cx="${f1(e.hx)}" cy="${f1(e.hy)}" r="15" fill="${C.skin}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  };
+  const sy = -330 + bob;
+  let g = `<g transform="translate(${f1(x)} ${f1(y)}) scale(${dir * s} ${s})">`;
+  g += `<ellipse cx="6" cy="4" rx="78" ry="12" fill="rgba(0,0,0,.13)"/>`;
+  g += arm(-8, sy, [-6 - swing * 42, sy + 156], o.back, C.tealDark);
+  g += leg(-swing * .4 - .07 * (1 - walk), '#333A4C');
+  g += leg(swing * .4 + .07 * (1 - walk), C.pants);
+  // torso + waist
+  g += `<rect x="-47" y="${-352 + bob}" width="94" height="196" rx="34" fill="${C.teal}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  g += `<rect x="-45" y="${-196 + bob}" width="90" height="40" rx="14" fill="${C.pants}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  // neck + head
+  const hy = -414 + bob;
+  g += `<rect x="-2" y="${hy + 40}" width="22" height="26" fill="${C.skinDark}"/>`;
+  g += `<circle cx="-50" cy="${hy - 46}" r="23" fill="${C.hair}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  g += `<circle cx="-2" cy="${hy - 6}" r="57" fill="${C.hair}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  g += `<circle cx="12" cy="${hy + 4}" r="50" fill="${C.skin}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  g += `<path d="M-38 ${hy - 26} Q 6 ${hy - 82} 62 ${hy - 16} Q 34 ${hy - 40} -4 ${hy - 30} Q -20 ${hy - 6} -30 ${hy + 10} Z" fill="${C.hair}"/>`;
+  g += `<circle cx="-2" cy="${hy + 8}" r="11" fill="${C.skinDark}" stroke="${C.ink}" stroke-width="3"/>`;
+  g += `<circle cx="60" cy="${hy + 12}" r="9" fill="${C.skin}" stroke="${C.ink}" stroke-width="3"/>`;
+  g += `<circle cx="28" cy="${hy + 22}" r="9" fill="#F0907E" opacity=".45"/>`;
+  // face by expression
+  const ex = 38, ey = hy;
+  if (expr === 'ouch') {
+    g += `<path d="M${ex - 8} ${ey - 8} L${ex + 4} ${ey} L${ex - 8} ${ey + 8}" stroke="${C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+    g += `<ellipse cx="${ex + 8}" cy="${ey + 30}" rx="7" ry="9" fill="${C.ink}"/>`;
+  } else {
+    g += `<circle cx="${ex}" cy="${ey}" r="6.5" fill="${C.ink}"/>`;
+    if (expr === 'happy') g += `<path d="M${ex - 6} ${ey + 22} Q ${ex + 8} ${ey + 38} ${ex + 18} ${ey + 20}" stroke="${C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+    else if (expr === 'think') g += `<path d="M${ex - 2} ${ey + 28} Q ${ex + 6} ${ey + 24} ${ex + 14} ${ey + 30}" stroke="${C.ink}" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+    else g += `<path d="M${ex} ${ey + 27} L${ex + 14} ${ey + 26}" stroke="${C.ink}" stroke-width="4" stroke-linecap="round"/>`;
+  }
+  const browLift = expr === 'think' ? -8 : expr === 'happy' ? -4 : 0;
+  g += `<path d="M${ex - 12} ${ey - 18 + browLift} L${ex + 10} ${ey - 20 + browLift * 1.6}" stroke="${C.hair}" stroke-width="5" stroke-linecap="round"/>`;
+  g += arm(8, sy, [24 + swing * 42, sy + 155], o.front, C.teal);
+  return g + '</g>';
+}
+
+// ---------- props ----------
+function toggle(cx, top, on, sc = 1) { // a single rocker in a slot; on in 0..1
+  const sw = 76 * sc, sh = 200 * sc, lw = 64 * sc, lh = 92 * sc;
+  const ly = top + 6 * sc + (1 - on) * 96 * sc;
+  return `<rect x="${cx - sw / 2}" y="${top}" width="${sw}" height="${sh}" rx="${18 * sc}" fill="#E1D6C3" stroke="${C.ink}" stroke-width="${4.5 * sc}"/>
+    <rect x="${cx - lw / 2}" y="${f1(ly + 5 * sc)}" width="${lw}" height="${lh}" rx="${14 * sc}" fill="rgba(0,0,0,.15)"/>
+    <rect x="${cx - lw / 2}" y="${f1(ly)}" width="${lw}" height="${lh}" rx="${14 * sc}" fill="#FFFFFF" stroke="${C.ink}" stroke-width="${4.5 * sc}"/>
+    <path d="M${cx - lw * .3} ${f1(ly + lh * (on > .5 ? .25 : .75))} H${cx + lw * .3}" stroke="#CFC4B2" stroke-width="${5 * sc}" stroke-linecap="round"/>`;
+}
+function plateSmall(x, y, sw, sc = 1, labels = true) { // wide-shot switch plate, top-left x,y
+  let s = `<rect x="${x + 4}" y="${y + 6}" width="${120 * sc}" height="${92 * sc}" rx="${12 * sc}" fill="rgba(0,0,0,.10)"/>
+    <rect x="${x}" y="${y}" width="${120 * sc}" height="${92 * sc}" rx="${12 * sc}" fill="${C.card}" stroke="${C.ink}" stroke-width="${3.5 * sc}"/>`;
+  [0, 1, 2].forEach(i => {
+    const cx = x + (26 + i * 34) * sc;
+    s += toggle(cx, y + 16 * sc, sw[i], .25 * sc);
+    if (labels) s += text(cx, y + 84 * sc, 'ABC'[i], { size: 13 * sc, weight: 700 });
+  });
+  return s;
+}
+function bulbIcon(cx, cy, r, state, t = 0) { // state: off | on | warm | cold | unknown
+  const glass = { off: '#D9D4E0', on: '#FFE27A', warm: '#F7BE86', cold: '#CFE3EF', unknown: '#D9D4E0' }[state];
+  const k = r / 50;
+  let s = '';
+  if (state === 'on') {
+    s += `<circle cx="${cx}" cy="${cy}" r="${r * 1.9}" fill="url(#gOn)"/>`;
+    for (let i = 0; i < 8; i++) {
+      const a = i / 8 * Math.PI * 2 - Math.PI / 2;
+      s += `<path d="M${f1(cx + Math.cos(a) * r * 1.25)} ${f1(cy + Math.sin(a) * r * 1.25)} L${f1(cx + Math.cos(a) * r * 1.6)} ${f1(cy + Math.sin(a) * r * 1.6)}" stroke="${C.yellow}" stroke-width="${6 * k}" stroke-linecap="round"/>`;
+    }
+  }
+  if (state === 'warm') s += `<circle cx="${cx}" cy="${cy}" r="${r * 1.7}" fill="url(#gWarm)"/>`;
+  s += `<rect x="${cx - 20 * k}" y="${cy + 38 * k}" width="${40 * k}" height="${30 * k}" rx="${6 * k}" fill="#8E89A3" stroke="${C.ink}" stroke-width="${3.5 * k}"/>
+        <circle cx="${cx}" cy="${cy}" r="${r}" fill="${glass}" stroke="${C.ink}" stroke-width="${4 * k}"/>
+        <path d="M${cx - 10 * k} ${cy + 38 * k} V${cy + 6 * k} l${5 * k} ${-8 * k} l${5 * k} ${8 * k} l${5 * k} ${-8 * k} l${5 * k} ${8 * k} V${cy + 38 * k}" stroke="${state === 'on' ? '#E39A1C' : state === 'warm' ? '#E0763A' : '#8E879E'}" stroke-width="${3.5 * k}" fill="none" stroke-linejoin="round"/>`;
+  if (state === 'warm') s += heatLines(cx, cy - r * .2, r * 1.1, 1, t, k);
+  if (state === 'cold') {
+    const fx = cx + r * .95, fy = cy - r * .85, fr = 16 * k;
+    for (let i = 0; i < 3; i++) { const a = i * Math.PI / 3; s += `<path d="M${f1(fx - Math.cos(a) * fr)} ${f1(fy - Math.sin(a) * fr)} L${f1(fx + Math.cos(a) * fr)} ${f1(fy + Math.sin(a) * fr)}" stroke="#4F8FBF" stroke-width="${5 * k}" stroke-linecap="round"/>`; }
+  }
+  if (state === 'unknown') s += text(cx, cy + 22 * k, '?', { size: 62 * k, weight: 700, fill: C.ink });
+  return s;
+}
+function heatLines(cx, cy, spread, amt, t, k = 1) {
+  if (amt <= 0) return '';
+  let s = '';
+  [-1, 0, 1].forEach((side, i) => {
+    const bx = cx + side * spread, y0 = cy + 30 * k - (side === 0 ? 40 * k : 0);
+    let d = '';
+    for (let j = 0; j <= 12; j++) {
+      const yy = y0 - j * 9 * k;
+      const xx = bx + Math.sin((j * 9 + t * 160 + i * 40) / 13) * 6 * k;
+      d += (j ? 'L' : 'M') + f1(xx) + ' ' + f1(yy);
+    }
+    s += `<path d="${d}" stroke="#F0843F" stroke-width="${5 * k}" fill="none" stroke-linecap="round" opacity="${(amt * (0.55 + 0.45 * Math.sin(t * 5 + i))).toFixed(2)}"/>`;
+  });
+  return s;
+}
+
+// ---------- sets ----------
+function hall(o = {}) {
+  const open = o.open || 0, sw = o.sw || [0, 0, 0], glow = o.glow || 0;
+  let s = `<rect width="720" height="1000" fill="${C.wall}"/>`;
+  for (let x = 6; x < 720; x += 72) s += `<rect x="${x}" y="120" width="32" height="512" fill="${C.wallStripe}"/>`;
+  s += `<rect width="720" height="120" fill="${C.ceil}"/><rect y="112" width="720" height="16" fill="${C.trim}" stroke="${C.ink}" stroke-width="3"/>`;
+  s += `<rect y="640" width="720" height="360" fill="${C.wains}"/>`;
+  for (let x = 20; x < 720; x += 118) s += `<rect x="${x}" y="680" width="94" height="262" rx="8" fill="none" stroke="${C.wainsLine}" stroke-width="4"/>`;
+  s += `<rect y="628" width="720" height="18" fill="${C.trim}" stroke="${C.ink}" stroke-width="3"/>`;
+  // framed picture
+  s += `<rect x="58" y="352" width="148" height="122" rx="6" fill="${C.trim}" stroke="${C.ink}" stroke-width="4"/>
+        <rect x="72" y="366" width="120" height="94" fill="#A9D3DF"/>
+        <circle cx="166" cy="388" r="12" fill="${C.yellow}"/>
+        <path d="M72 460 L110 414 L136 440 L156 420 L192 460 Z" fill="#6FAF7A"/>
+        <rect x="72" y="366" width="120" height="94" fill="none" stroke="${C.ink}" stroke-width="3"/>`;
+  // sconce
+  s += `<circle cx="668" cy="430" r="80" fill="url(#gLamp)"/>
+        <rect x="660" y="430" width="16" height="50" rx="4" fill="#B08D57" stroke="${C.ink}" stroke-width="3"/>
+        <path d="M640 438 L696 438 L684 396 L652 396 Z" fill="#FBD98A" stroke="${C.ink}" stroke-width="3.5" stroke-linejoin="round"/>`;
+  // door
+  s += `<rect x="392" y="542" width="236" height="458" fill="${C.trim}" stroke="${C.ink}" stroke-width="4"/>
+        <rect x="410" y="560" width="200" height="440" fill="${C.dark}" stroke="${C.ink}" stroke-width="3"/>`;
+  const dw = 200 * (1 - .84 * open), dx = 610 - dw;
+  if (open > 0) s += `<path d="M410 1000 L${f1(dx)} 1000 L${f1(dx)} 560 L410 560 Z" fill="#14121F"/>`;
+  s += `<rect x="${f1(dx)}" y="560" width="${f1(dw)}" height="440" fill="${C.door}" stroke="${C.ink}" stroke-width="4"/>`;
+  const pw = dw * .7, px = dx + dw * .15;
+  s += `<rect x="${f1(px)}" y="590" width="${f1(pw)}" height="160" rx="6" fill="${C.doorPanel}" stroke="${C.ink}" stroke-width="3" opacity="${1 - open * .6}"/>
+        <rect x="${f1(px)}" y="790" width="${f1(pw)}" height="180" rx="6" fill="${C.doorPanel}" stroke="${C.ink}" stroke-width="3" opacity="${1 - open * .6}"/>
+        <circle cx="${f1(dx + 22 * (dw / 200) + 4)}" cy="780" r="12" fill="${C.yellow}" stroke="${C.ink}" stroke-width="3.5"/>`;
+  // skirting + floor
+  s += `<rect x="0" y="972" width="392" height="28" fill="${C.trim}" stroke="${C.ink}" stroke-width="3"/>
+        <rect x="628" y="972" width="92" height="28" fill="${C.trim}" stroke="${C.ink}" stroke-width="3"/>
+        <rect y="1000" width="720" height="280" fill="${C.floor}"/>
+        <path d="M0 1000 H720" stroke="${C.ink}" stroke-width="4"/>`;
+  [[1066, 140], [1146, 60], [1232, 210]].forEach(([y, off], i) => {
+    s += `<path d="M0 ${y} H720" stroke="${C.floorLine}" stroke-width="4"/>`;
+    for (let x = off; x < 720; x += 260) s += `<path d="M${x} ${y - (i === 0 ? 66 : i === 1 ? 80 : 86)} V${y}" stroke="${C.floorLine}" stroke-width="4"/>`;
+  });
+  // switch plate (with highlight)
+  if (glow > 0) s += `<rect x="222" y="666" width="148" height="120" rx="22" fill="none" stroke="${C.yellow}" stroke-width="8" opacity="${glow.toFixed(2)}"/>`;
+  s += plateSmall(236, 680, sw);
+  return s;
+}
+
+function room(o = {}) {
+  const lit = o.lit || 0, heat = o.heat || 0, sway = o.sway || 0, t = o.t || 0;
+  let s = `<rect width="720" height="1020" fill="${mix(C.roomWall, C.roomWallLit, lit * .55)}"/>
+    <rect width="720" height="140" fill="${mix('#2E2A43', '#4A4363', lit * .5)}"/>
+    <rect y="132" width="720" height="12" fill="${mix('#4A4462', '#6E6688', lit * .5)}"/>
+    <rect y="1020" width="720" height="260" fill="${mix(C.roomFloor, C.roomFloorLit, lit * .6)}"/>
+    <rect y="1004" width="720" height="16" fill="${mix('#4A4462', '#6E6688', lit * .5)}"/>
+    <path d="M0 1020 H720" stroke="${C.ink}" stroke-width="4"/>`;
+  // door on the left wall
+  s += `<rect x="-20" y="536" width="132" height="484" fill="${mix('#4A4462', '#8A8099', lit)}" stroke="${C.ink}" stroke-width="4"/>`;
+  if (lit > 0) {
+    s += `<rect x="-20" y="552" width="116" height="468" fill="${mix('#3A2A22', '#F6E7C6', lit)}"/>
+          <path d="M0 1020 L96 1020 L420 1280 L0 1280 Z" fill="#F6E7C6" opacity="${(.22 * lit).toFixed(2)}"/>
+          <path d="M96 552 L300 470 L300 1020 L96 1020 Z" fill="#F6E7C6" opacity="${(.06 * lit).toFixed(2)}"/>`;
+  } else {
+    s += `<rect x="-20" y="552" width="116" height="468" fill="#4B3A35" stroke="${C.ink}" stroke-width="3"/>
+          <circle cx="78" cy="790" r="10" fill="#8C7A4A" stroke="${C.ink}" stroke-width="3"/>
+          <path d="M96 552 V1020" stroke="#F6E7C6" stroke-width="3" opacity=".25"/>`;
+  }
+  // stool + box
+  const furn = mix('#4A4463', '#6A6283', lit * .6);
+  s += `<rect x="470" y="880" width="130" height="22" rx="6" fill="${furn}" stroke="${C.ink}" stroke-width="4"/>
+        <path d="M486 902 L476 1040 M584 902 L594 1040 M492 980 H578" stroke="${C.ink}" stroke-width="10" stroke-linecap="round"/>
+        <path d="M486 902 L476 1040 M584 902 L594 1040 M492 980 H578" stroke="${furn}" stroke-width="5" stroke-linecap="round"/>
+        <rect x="610" y="950" width="120" height="96" rx="4" fill="${mix('#5A4A3F', '#7D6853', lit * .6)}" stroke="${C.ink}" stroke-width="4"/>
+        <path d="M610 980 H730" stroke="${C.ink}" stroke-width="3" opacity=".5"/>`;
+  // hanging bulb
+  const glass = mix('#D2CDDA', '#F7BE86', heat);
+  s += `<g transform="rotate(${sway.toFixed(2)} 360 140)">`;
+  if (heat > 0) s += `<circle cx="360" cy="626" r="170" fill="url(#gWarm)" opacity="${heat.toFixed(2)}"/>`;
+  s += `<path d="M360 140 V520" stroke="#15131F" stroke-width="5"/>
+        <rect x="340" y="514" width="40" height="56" rx="6" fill="#77728C" stroke="${C.ink}" stroke-width="4"/>
+        <path d="M342 532 H378 M342 548 H378" stroke="${C.ink}" stroke-width="3" opacity=".5"/>
+        <path d="M342 566 C342 584 302 592 302 630 A58 58 0 1 0 418 630 C418 592 378 584 378 566 Z" fill="${glass}" stroke="${C.ink}" stroke-width="4"/>
+        <path d="M352 570 V612 l4 8 l4 -8 l4 8 l4 -8 V570" stroke="${mix('#8E879E', '#E0763A', heat)}" stroke-width="3.5" fill="none" stroke-linejoin="round"/>
+        <path d="M320 612 Q322 590 340 584" stroke="#fff" stroke-width="5" fill="none" stroke-linecap="round" opacity=".55"/>`;
+  s += heatLines(360, 600, 92, heat, t, 1.1);
+  s += '</g>';
+  return s;
+}
+
+function switchClose(o = {}) {
+  const sw = o.sw || [0, 0, 0], q = o.q || [0, 0, 0], t = o.t || 0;
+  let s = `<rect width="720" height="1280" fill="${C.wall}"/>`;
+  for (let x = -24; x < 720; x += 120) s += `<rect x="${x}" y="0" width="56" height="1280" fill="${C.wallStripe}"/>`;
+  s += `<rect x="124" y="484" width="500" height="372" rx="38" fill="rgba(0,0,0,.10)"/>
+        <rect x="110" y="466" width="500" height="372" rx="38" fill="${C.card}" stroke="${C.ink}" stroke-width="6"/>`;
+  [[360, 492], [360, 812]].forEach(([x, y]) => s += `<circle cx="${x}" cy="${y}" r="10" fill="#E1D6C3" stroke="${C.ink}" stroke-width="3"/><path d="M${x - 6} ${y} H${x + 6}" stroke="${C.ink}" stroke-width="3"/>`);
+  const cxs = [210, 360, 510];
+  cxs.forEach((cx, i) => {
+    s += toggle(cx, 552, sw[i]);
+    s += `<circle cx="${cx}" cy="920" r="40" fill="${C.pill}"/>` + text(cx, 937, 'ABC'[i], { size: 46, weight: 700, fill: '#fff' });
+    if (q[i] > 0) {
+      const sc = 0.4 + 0.6 * backOut(q[i]), by = 392 + Math.sin(t * 4 + i * 1.3) * 7;
+      s += `<g transform="translate(${cx} ${f1(by)}) scale(${sc.toFixed(3)})"><circle r="38" fill="${C.yellow}" stroke="${C.ink}" stroke-width="4"/>${text(0, 19, '?', { size: 54, weight: 700 })}</g>`;
+    }
+  });
+  if (o.hand) s += bigHand(o.hand[0], o.hand[1]);
+  if (o.timer != null) s += timerPill(o.timer, o.timerAnim, t);
+  return s;
+}
+function bigHand(x, y) { // fingertip at (x,y), arm coming up from the bottom
+  return `<g>
+    <rect x="${f1(x - 62)}" y="${f1(y + 112)}" width="124" height="900" rx="50" fill="${C.ink}"/>
+    <rect x="${f1(x - 57)}" y="${f1(y + 116)}" width="114" height="900" rx="46" fill="${C.teal}"/>
+    <rect x="${f1(x - 54)}" y="${f1(y + 50)}" width="108" height="100" rx="44" fill="${C.skin}" stroke="${C.ink}" stroke-width="5"/>
+    <rect x="${f1(x - 15)}" y="${f1(y - 4)}" width="30" height="92" rx="15" fill="${C.skin}" stroke="${C.ink}" stroke-width="5"/>
+    <path d="M${f1(x - 54)} ${f1(y + 86)} q -16 18 2 40" stroke="${C.ink}" stroke-width="5" fill="${C.skin}"/>
+    <path d="M${f1(x - 8)} ${f1(y + 8)} h16" stroke="#E0A47E" stroke-width="5" stroke-linecap="round"/>
+  </g>`;
+}
+function timerPill(secs, an, t) {
+  if (!an) return '';
+  const m = Math.floor(secs / 60), sec = Math.floor(secs % 60);
+  const str = `${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
+  const running = secs > 0 && secs < 300;
+  const ffOp = running ? (0.6 + 0.4 * Math.sin(t * 16)) : 1;
+  return `<g transform="translate(360 1080) scale(${an.scale.toFixed(3)})" opacity="${an.opacity.toFixed(3)}">
+    <rect x="-170" y="-54" width="340" height="114" rx="40" fill="rgba(0,0,0,.18)"/>
+    <rect x="-170" y="-60" width="340" height="114" rx="40" fill="${C.pill}"/>
+    <g opacity="${ffOp.toFixed(2)}"><path d="M-128 -24 L-98 -3 L-128 18 Z M-98 -24 L-68 -3 L-98 18 Z" fill="${C.yellow}"/></g>
+    ${text(40, 17, str, { size: 60, weight: 600, fill: '#fff' })}
+  </g>`;
+}
+
+function badge(t) {
+  const show = (t >= 16.9 && t < 22.5) || (t >= 33 && t < 54.5);
+  if (!show) return '';
+  const n = t < 46.55 ? 1 : 0;
+  const pIn = t < 22.5 ? prog(t, 16.9, 17.25) : prog(t, 33, 33.25);
+  const pulse = 1 + .16 * Math.max(0, 1 - Math.abs(t - 17.1) * 4) + .2 * Math.max(0, 1 - Math.abs(t - 46.7) * 4);
+  const sc = (0.6 + 0.4 * backOut(pIn)) * pulse;
+  const label = 'Door opens left';
+  const w = tw(label, 26) + 140;
+  return `<g transform="translate(360 64) scale(${sc.toFixed(3)})">
+    <rect x="${-w / 2}" y="-30" width="${w}" height="64" rx="32" fill="rgba(0,0,0,.2)"/>
+    <rect x="${-w / 2}" y="-34" width="${w}" height="64" rx="32" fill="${C.pill}"/>
+    <rect x="${-w / 2 + 22}" y="-20" width="24" height="36" rx="3" fill="${C.door}" stroke="#fff" stroke-width="2.5"/>
+    <circle cx="${-w / 2 + 40}" cy="0" r="3" fill="${C.yellow}"/>
+    ${text(-w / 2 + 58, 7, label, { size: 26, fill: '#fff', anchor: 'start' })}
+    <circle cx="${w / 2 - 34}" cy="-2" r="22" fill="${n ? C.yellow : C.red}"/>
+    ${text(w / 2 - 34, 9, String(n), { size: 30, weight: 700, fill: n ? C.ink : '#fff' })}
+  </g>`;
+}
+
+function thought(cx, cy, p, t, str = '?', side = 1) {
+  if (p <= 0) return '';
+  const sc = 0.3 + 0.7 * backOut(p), by = Math.sin(t * 3) * 5;
+  return `<g transform="translate(${cx} ${f1(cy + by)}) scale(${sc.toFixed(3)})">
+    <circle cx="${58 * side}" cy="96" r="10" fill="#fff" stroke="${C.ink}" stroke-width="3.5"/>
+    <circle cx="${34 * side}" cy="64" r="16" fill="#fff" stroke="${C.ink}" stroke-width="3.5"/>
+    <circle cx="0" cy="0" r="52" fill="#fff" stroke="${C.ink}" stroke-width="4"/>
+    ${text(0, 26, str, { size: 72, weight: 700 })}</g>`;
+}
+function popIcon(cx, cy, p, inner) {
+  if (p <= 0) return '';
+  const sc = 0.3 + 0.7 * backOut(p);
+  return `<g transform="translate(${cx} ${cy}) scale(${sc.toFixed(3)})">${inner}</g>`;
+}
+
+// ---------- full-frame panels ----------
+function bgCream() {
+  let s = `<rect width="720" height="1280" fill="${C.cream}"/>`;
+  for (let y = 40; y < 1280; y += 64) for (let x = (y / 64) % 2 ? 40 : 72; x < 720; x += 64) s += `<circle cx="${x}" cy="${y}" r="3" fill="#E9DDC8"/>`;
+  return s;
+}
+function countdown(t) {
+  let s = bgCream();
+  const an = popAnim(t, 22.6, 33.5) || { scale: 1, opacity: 1 };
+  s += pill('Which switch works the bulb?', 360, 190, an);
+  // recap card
+  const cp = easeOut(prog(t, 22.6, 23.0));
+  s += `<g transform="translate(0 ${f1((1 - cp) * 60)})" opacity="${cp.toFixed(2)}">
+    <rect x="44" y="304" width="632" height="300" rx="36" fill="rgba(0,0,0,.08)"/>
+    <rect x="40" y="296" width="632" height="300" rx="36" fill="${C.card}" stroke="${C.ink}" stroke-width="4"/>`;
+  s += plateSmall(88, 380, [0, 0, 0], 1.08, true);
+  s += `<rect x="322" y="356" width="76" height="132" rx="4" fill="${C.door}" stroke="${C.ink}" stroke-width="4"/>
+        <circle cx="336" cy="424" r="7" fill="${C.yellow}" stroke="${C.ink}" stroke-width="2.5"/>
+        <circle cx="404" cy="360" r="27" fill="${C.yellow}" stroke="${C.ink}" stroke-width="3.5"/>${text(404, 371, '1×', { size: 28, weight: 700 })}`;
+  s += bulbIcon(566, 418, 46, 'unknown');
+  s += text(155, 552, 'Flip freely', { size: 28, weight: 500 }) + text(360, 552, 'Open once', { size: 28, weight: 500 }) + text(566, 552, 'Which one?', { size: 28, weight: 500 });
+  s += '</g>';
+  // timer ring
+  const rem = clamp((33 - t) / 10), r = 118, circ = 2 * Math.PI * r;
+  const n = clamp(Math.ceil(33 - t), 1, 10);
+  const f = t >= 23 ? (t - 23) % 1 : 1;
+  const pulse = 1 + .16 * Math.max(0, 1 - f * 5);
+  s += `<g transform="translate(360 840)">
+    <circle r="${r + 26}" fill="${C.card}" stroke="${C.ink}" stroke-width="4"/>
+    <circle r="${r}" fill="none" stroke="#EADFCB" stroke-width="20"/>
+    <circle r="${r}" fill="none" stroke="${C.red}" stroke-width="20" stroke-linecap="round" stroke-dasharray="${f1(circ * rem)} ${f1(circ)}" transform="rotate(-90)"/>
+    <g transform="scale(${pulse.toFixed(3)})">${text(0, 48, String(n), { size: 140, weight: 700 })}</g></g>`;
+  // comment prompt
+  s += `<g transform="translate(0 0)">
+    <path d="M168 1048 h52 a14 14 0 0 1 14 14 v28 a14 14 0 0 1 -14 14 h-30 l-16 14 v-14 h-6 a14 14 0 0 1 -14 -14 v-28 a14 14 0 0 1 14 -14 z" fill="${C.yellow}" stroke="${C.ink}" stroke-width="3.5" transform="translate(0 -18)"/>
+    ${text(254, 1084, 'Comment your answer', { size: 40, weight: 600, anchor: 'start' })}</g>`;
+  return s;
+}
+function logic(t) {
+  let s = bgCream();
+  const an = popAnim(t, 54.6, 61.2) || { scale: 1, opacity: 1 };
+  s += pill('How to tell', 360, 190, an);
+  const rows = [
+    ['on', 'Bulb is on', 'B is on right now', 'B'],
+    ['warm', 'Off, but warm', 'A was on for 5 minutes', 'A'],
+    ['cold', 'Off and cold', 'C was never turned on', 'C'],
+  ];
+  const hi = easeOut(prog(t, 57.0, 57.4));
+  rows.forEach(([st, h, sub, letter], i) => {
+    const p = easeOut(prog(t, 54.9 + i * .5, 55.35 + i * .5));
+    if (p <= 0) return;
+    const y = 300 + i * 214, isA = letter === 'A';
+    const sc = isA ? 1 + .05 * hi : 1, op = isA ? 1 : 1 - .45 * hi;
+    s += `<g opacity="${(p * op).toFixed(2)}" transform="translate(${f1((1 - p) * 300 + 360)} ${y + 90}) scale(${sc.toFixed(3)}) translate(-360 ${-(y + 90)})">
+      <rect x="44" y="${y + 8}" width="632" height="180" rx="32" fill="rgba(0,0,0,.08)"/>
+      <rect x="40" y="${y}" width="632" height="180" rx="32" fill="${isA ? mix('#FFFDF7', '#FFF0C4', hi) : C.card}" stroke="${isA && hi > 0 ? C.yellow : C.ink}" stroke-width="${isA ? 4 + 4 * hi : 4}"/>
+      ${bulbIcon(140, y + 82, 42, st, t)}
+      ${text(232, y + 82, h, { size: 40, weight: 600, anchor: 'start' })}
+      ${text(232, y + 128, sub, { size: 27, weight: 500, anchor: 'start', fill: C.muted })}
+      <circle cx="606" cy="${y + 90}" r="40" fill="${isA ? C.yellow : C.pill}"/>
+      ${text(606, y + 107, letter, { size: 48, weight: 700, fill: isA ? C.ink : '#fff' })}
+    </g>`;
+  });
+  const fa = popAnim(t, 57.2, 61.2);
+  if (fa) s += pill('So it’s switch A!', 360, 1070, { ...fa, size: 52, bg: C.yellow, fg: C.ink, weight: 700 });
+  return s;
+}
+
+// ---------- scenes ----------
+const REST = null;
+const SCENES = [
+  [0, 5, t => {
+    const p = prog(t, 0, 2.3), x = lerp(-130, 150, p);
+    const walk = p < 1 ? 1 : Math.max(0, 1 - (t - 2.3) * 5);
+    const glow = t > 2.6 ? (0.55 + 0.45 * Math.sin((t - 2.6) * 7)) * prog(t, 2.6, 2.9) * (1 - prog(t, 4.6, 4.95)) : 0;
+    return hall({ glow }) + person({ x, y: 1000, phase: t * 8.5, walk });
+  }],
+  [5, 10, t => room({ sway: Math.sin(t * 1.7) * 2.2, t })],
+  [10, 14.5, t => switchClose({ t, q: [prog(t, 11, 11.35), prog(t, 11.3, 11.65), prog(t, 11.6, 11.95)].map(v => v * (1 - prog(t, 14.1, 14.4))) })],
+  [14.5, 19, t => {
+    const sw = [0, 0, 0]; for (const [tt, i, v] of RULE_FLIPS) if (t >= tt) sw[i] = v;
+    const next = RULE_FLIPS.find(f => f[0] >= t - .08) || RULE_FLIPS[RULE_FLIPS.length - 1];
+    const hx = 262 + next[1] * 34;
+    const wp = prog(t, 17.0, 17.8), x = lerp(150, 300, easeInOut(wp));
+    let front;
+    if (t < 16.95) front = { to: [hx, 728], amt: easeOut(prog(t, 14.6, 15.05)) * (1 - easeInOut(prog(t, 16.7, 16.95))) };
+    else front = { to: [432, 782], amt: easeOut(prog(t, 17.9, 18.3)) };
+    return hall({ sw }) + person({ x, y: 1000, phase: (t - 17) * 8.5, walk: (wp > 0 && wp < 1) ? 1 : 0, front });
+  }],
+  [19, 22.5, t => {
+    const front = { to: [188 + Math.sin(t * 15) * 9, 528], amt: easeOut(prog(t, 19.1, 19.5)) };
+    return hall() + person({ x: 150, y: 1000, expr: 'think', front }) + thought(296, 440, prog(t, 19.6, 19.95), t, '?', -1);
+  }],
+  [22.5, 33, t => countdown(t)],
+  [33, 35.5, t => {
+    const ip = prog(t, 33.45, 33.8);
+    const front = { to: [262, 520], amt: easeOut(prog(t, 33.45, 33.8)) };
+    const idea = `<circle r="${70 + Math.sin(t * 6) * 4}" fill="url(#gOn)"/>` + bulbIcon(0, 0, 32, 'on', t);
+    return hall() + person({ x: 200, y: 1000, expr: 'happy', front }) + popIcon(212, 470, ip, idea);
+  }],
+  [35.5, 45, t => {
+    let a = 0, b = 0, hand = null;
+    if (t < 41) {
+      a = easeInOut(prog(t, 36.1, 36.35));
+      hand = keys(t, [[35.5, 210, 1500], [36.05, 210, 708], [36.1, 210, 708], [36.35, 210, 612], [36.6, 210, 612], [37.0, 210, 1500]]);
+    } else {
+      a = 1 - easeInOut(prog(t, 41.45, 41.7)); b = easeInOut(prog(t, 42.5, 42.75));
+      hand = keys(t, [[41.0, 210, 1500], [41.4, 210, 612], [41.45, 210, 612], [41.7, 210, 708], [41.9, 210, 708], [42.4, 360, 708], [42.5, 360, 708], [42.75, 360, 612], [43.2, 360, 612], [43.65, 360, 1500]]);
+    }
+    if (hand[1] > 1400) hand = null;
+    const timerAnim = popAnim(t, 37.9, 40.95);
+    return switchClose({ t, sw: [a, b, 0], hand, timer: prog(t, 38.0, 40.5) * 300, timerAnim });
+  }],
+  [45, 48.5, t => {
+    const open = easeInOut(prog(t, 46.4, 47.3));
+    const wp = prog(t, 45.0, 45.9), x = lerp(200, 300, easeInOut(wp));
+    const dw = 200 * (1 - .84 * open), knob = [610 - dw + 22 * (dw / 200) + 4, 780];
+    const front = { to: knob, amt: easeOut(prog(t, 45.9, 46.3)) * (1 - easeInOut(prog(t, 47.3, 47.7))) };
+    return hall({ sw: [0, 1, 0], open }) + person({ x, y: 1000, phase: (t - 45) * 8.5, walk: (wp > 0 && wp < 1) ? 1 : 0, front });
+  }],
+  [48.5, 54.5, t => {
+    const heat = easeOut(prog(t, 51.2, 51.8));
+    const wp = prog(t, 48.6, 50.2), x = lerp(-90, 236, wp);
+    const reach = easeOut(prog(t, 50.6, 51.2));
+    const recoil = easeOut(prog(t, 51.5, 51.72));
+    const shake = t > 51.5 && t < 52.1 ? Math.sin(t * 60) * 6 : 0;
+    const front = { to: [308 + shake, 640], amt: reach * (1 - recoil) };
+    const expr = t < 51.45 ? 'neutral' : t < 52.5 ? 'ouch' : 'happy';
+    const bang = popIcon(176, 590, prog(t, 51.5, 51.8) * (1 - prog(t, 52.9, 53.1)),
+      `<path d="M0 -50 L14 -14 L50 -18 L22 8 L36 46 L0 22 L-36 46 L-22 8 L-50 -18 L-14 -14 Z" fill="${C.yellow}" stroke="${C.ink}" stroke-width="4" stroke-linejoin="round"/>${text(0, 20, '!', { size: 56, weight: 700 })}`);
+    return room({ lit: 1, heat, t, sway: Math.sin(t * 1.7) * 1.2 }) +
+      person({ x, y: 1076, s: .95, phase: (t - 48.6) * 8.5, walk: wp < 1 ? 1 : Math.max(0, 1 - (t - 50.2) * 5), front, expr }) + bang;
+  }],
+  [54.5, 61, t => logic(t)],
+  [61, 65.01, t => {
+    const front = { to: [372 + Math.sin(t * 9) * 26, 470], amt: easeOut(prog(t, 61.1, 61.5)) };
+    let s = hall() + person({ x: 300, y: 1000, expr: 'happy', front });
+    const fa = popAnim(t, 63.3, 65.2);
+    if (fa) s += pill('Follow for more', 360, 1150, { ...fa, icon: 'plus', size: 40 });
+    return s;
+  }],
+];
+
+const DEFS = `<defs>
+  <radialGradient id="gOn"><stop offset="0" stop-color="#FFE58A" stop-opacity=".9"/><stop offset="1" stop-color="#FFE58A" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gWarm"><stop offset="0" stop-color="#FF9A4D" stop-opacity=".55"/><stop offset="1" stop-color="#FF9A4D" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gLamp"><stop offset="0" stop-color="#FFE7A8" stop-opacity=".8"/><stop offset="1" stop-color="#FFE7A8" stop-opacity="0"/></radialGradient>
+</defs>`;
+
+const svg = document.getElementById('svg');
+function renderAt(t) {
+  t = clamp(t, 0, DUR);
+  const sc = SCENES.find(s => t >= s[0] && t < s[1]) || SCENES[SCENES.length - 1];
+  const punch = 1 + .045 * (1 - easeOut(prog(t, sc[0], sc[0] + .3)));
+  svg.innerHTML = DEFS +
+    `<g transform="translate(360 640) scale(${punch.toFixed(4)}) translate(-360 -640)">${sc[2](t)}</g>` +
+    badge(t) + captions(t);
+}
+window.renderAt = renderAt;
+window.DUR = DUR;
+
+// ---------- player (when not rendering) ----------
+const params = new URLSearchParams(location.search);
+window.ready = document.fonts.load('600 36px Fredoka').then(() => document.fonts.ready).then(() => {
+  if (params.has('render')) { document.body.classList.add('render'); renderAt(+params.get('t') || 0); return; }
+  const stage = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / W, (innerHeight - 40) / H); stage.style.transform = `scale(${k})`; };
+  addEventListener('resize', fit); fit();
+  let playing = true, t0 = performance.now(), cur = 0;
+  const tick = now => { if (playing) { cur = ((now - t0) / 1000) % DUR; renderAt(cur); } requestAnimationFrame(tick); };
+  const toggle = () => { playing = !playing; t0 = performance.now() - cur * 1000; };
+  stage.addEventListener('click', toggle);
+  addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); toggle(); }
+    if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') { cur = clamp(cur + (e.code === 'ArrowRight' ? 1 : -1), 0, DUR - .01); t0 = performance.now() - cur * 1000; renderAt(cur); }
+  });
+  requestAnimationFrame(tick);
+});
+</script>
+</body>
+</html>
