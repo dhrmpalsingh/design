@@ -1,0 +1,349 @@
+{
+ "dur": 72.979,
+ "sfx": [
+  [
+   2.803,
+   "whoosh"
+  ],
+  [
+   2.803,
+   "crane"
+  ],
+  [
+   4.147,
+   "dig"
+  ],
+  [
+   4.371,
+   "dig"
+  ],
+  [
+   4.595,
+   "dig"
+  ],
+  [
+   4.819,
+   "dig"
+  ],
+  [
+   5.043,
+   "dig"
+  ],
+  [
+   5.268,
+   "dig"
+  ],
+  [
+   5.492,
+   "pour"
+  ],
+  [
+   7.284,
+   "whoosh"
+  ],
+  [
+   8.297,
+   "splash"
+  ],
+  [
+   8.369,
+   "crane"
+  ],
+  [
+   8.912,
+   "bubbles"
+  ],
+  [
+   10.648,
+   "thud"
+  ],
+  [
+   10.901,
+   "whoosh"
+  ],
+  [
+   11.278,
+   "pop"
+  ],
+  [
+   15.609,
+   "whoosh"
+  ],
+  [
+   15.609,
+   "crane"
+  ],
+  [
+   16.857,
+   "drip"
+  ],
+  [
+   17.689,
+   "thunk"
+  ],
+  [
+   18.147,
+   "thunk"
+  ],
+  [
+   18.605,
+   "thunk"
+  ],
+  [
+   19.063,
+   "thunk"
+  ],
+  [
+   19.77,
+   "whoosh"
+  ],
+  [
+   21.386,
+   "splash"
+  ],
+  [
+   21.502,
+   "crane"
+  ],
+  [
+   22.657,
+   "pop"
+  ],
+  [
+   25.543,
+   "whoosh"
+  ],
+  [
+   26.161,
+   "steps"
+  ],
+  [
+   27.191,
+   "creak"
+  ],
+  [
+   29.662,
+   "whoosh"
+  ],
+  [
+   29.949,
+   "pop"
+  ],
+  [
+   31.381,
+   "pump"
+  ],
+  [
+   34.247,
+   "creak"
+  ],
+  [
+   35.393,
+   "whoosh"
+  ],
+  [
+   36.24,
+   "wind"
+  ],
+  [
+   38.018,
+   "thud"
+  ],
+  [
+   39.627,
+   "whoosh"
+  ],
+  [
+   41.447,
+   "clang"
+  ],
+  [
+   42.313,
+   "clang"
+  ],
+  [
+   43.31,
+   "clang"
+  ],
+  [
+   43.96,
+   "whoosh"
+  ],
+  [
+   44.472,
+   "ring"
+  ],
+  [
+   44.779,
+   "ring"
+  ],
+  [
+   47.032,
+   "wind"
+  ],
+  [
+   49.08,
+   "whoosh"
+  ],
+  [
+   49.296,
+   "pop"
+  ],
+  [
+   51.239,
+   "snap"
+  ],
+  [
+   51.289,
+   "spray"
+  ],
+  [
+   53.398,
+   "whoosh"
+  ],
+  [
+   54.046,
+   "boing"
+  ],
+  [
+   57.72,
+   "whoosh"
+  ],
+  [
+   57.72,
+   "rainIn"
+  ],
+  [
+   58.938,
+   "thunder"
+  ],
+  [
+   61.781,
+   "whoosh"
+  ],
+  [
+   62.912,
+   "thunder"
+  ],
+  [
+   67.438,
+   "whoosh"
+  ],
+  [
+   69.1,
+   "chime"
+  ],
+  [
+   69.931,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 1.903,
+   "file": "vo/00.wav",
+   "text": "What if your house could float when a flood hits?"
+  },
+  {
+   "t": 2.803,
+   "dur": 3.431,
+   "file": "vo/01.wav",
+   "text": "First, lift it up, dig a deep pit underneath, and fill it with water."
+  },
+  {
+   "t": 7.284,
+   "dur": 2.667,
+   "file": "vo/02.wav",
+   "text": "Lower the house in... and it sinks straight to the bottom."
+  },
+  {
+   "t": 10.901,
+   "dur": 4.058,
+   "file": "vo/03.wav",
+   "text": "A house is heavy. To float, it has to push aside its own weight in water."
+  },
+  {
+   "t": 15.609,
+   "dur": 3.111,
+   "file": "vo/04.wav",
+   "text": "So, we give it a giant hollow concrete box to sit on."
+  },
+  {
+   "t": 19.77,
+   "dur": 4.923,
+   "file": "vo/05.wav",
+   "text": "It's mostly air inside, so it pushes aside a lot of water. Now the whole house floats!"
+  },
+  {
+   "t": 25.543,
+   "dur": 3.169,
+   "file": "vo/06.wav",
+   "text": "But when the family crowds onto one side, it starts to tip."
+  },
+  {
+   "t": 29.662,
+   "dur": 4.781,
+   "file": "vo/07.wav",
+   "text": "So the box gets split into tanks, and a pump moves water to the other side to level it out."
+  },
+  {
+   "t": 35.393,
+   "dur": 3.484,
+   "file": "vo/08.wav",
+   "text": "Next problem: wind and waves push it sideways, into the bank."
+  },
+  {
+   "t": 39.627,
+   "dur": 3.283,
+   "file": "vo/09.wav",
+   "text": "So two steel posts are driven deep down, into the bedrock."
+  },
+  {
+   "t": 43.96,
+   "dur": 4.37,
+   "file": "vo/10.wav",
+   "text": "Rings on the box slide along them. Up and down is fine, but never sideways."
+  },
+  {
+   "t": 49.08,
+   "dur": 3.468,
+   "file": "vo/11.wav",
+   "text": "And the water, power, and sewer pipes would snap the moment it lifts."
+  },
+  {
+   "t": 53.398,
+   "dur": 3.572,
+   "file": "vo/12.wav",
+   "text": "So they're swapped for flexible, coiled lines that stretch as it moves."
+  },
+  {
+   "t": 57.72,
+   "dur": 2.411,
+   "file": "vo/13.wav",
+   "text": "Now, when a flood comes, the water rises..."
+  },
+  {
+   "t": 61.781,
+   "dur": 4.607,
+   "file": "vo/14.wav",
+   "text": "and the house rises right along with it, floating safely, exactly where it was built."
+  },
+  {
+   "t": 67.438,
+   "dur": 3.591,
+   "file": "vo/15.wav",
+   "text": "Homes like this really exist, in the Netherlands. Follow for more!"
+  }
+ ],
+ "storm": [
+  57.72,
+  58.532199999999996,
+  66.02375,
+  69.37735
+ ],
+ "pump": [
+  31.3813,
+  34.70528
+ ]
+}

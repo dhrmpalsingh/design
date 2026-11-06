@@ -1,0 +1,512 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Floating House</title>
+<style>
+  @font-face { font-family: 'Fredoka'; src: url('fredoka.woff2') format('woff2'); font-weight: 300 700; font-display: block; }
+  html, body { margin: 0; height: 100%; background: #16151c; }
+  body { display: flex; align-items: center; justify-content: center; overflow: hidden; font-family: Fredoka, sans-serif; }
+  #stage { width: 720px; height: 1280px; position: relative; overflow: hidden; background: #BFE3F5; transform-origin: center center; cursor: pointer; }
+  svg { display: block; }
+  #hint { position: fixed; bottom: 12px; left: 0; right: 0; text-align: center; color: #bbb; font-size: 14px; }
+  body.render { display: block; }
+  body.render #hint { display: none; }
+</style>
+</head>
+<body>
+<div id="stage"><svg id="svg" xmlns="http://www.w3.org/2000/svg" width="720" height="1280" viewBox="0 0 720 1280"></svg></div>
+<div id="hint">Click or press space to play / pause · ← → to scrub</div>
+<script src="vo.js"></script>
+<script>
+// ---------------------------------------------------------------------------
+// Floating House: an explainer reel drawn as one continuous SVG cross-section.
+// Every scene is one voice-over line (vo.js); actions are placed at fractions of
+// their scene, so the animation follows the narration. renderAt(t) draws a frame.
+// ---------------------------------------------------------------------------
+const W = 720, H = 1280;
+const C = {
+  ink: '#232026', skyTop: '#79C0EA', skyBot: '#D9F0FA', stormTop: '#465463', stormBot: '#8D9AA4',
+  grass: '#77B25A', grassDark: '#5E9446', soil: '#B97A4C', soil2: '#A86C42', soilLine: '#9C6139', pit: '#7A4D32',
+  rock: '#7E7B82', rock2: '#6C6970', water: 'rgba(52,156,212,.55)', waterLine: '#E6F6FF',
+  wall: '#F4EADB', wallLine: '#E5D8C2', roof: '#4E6178', roof2: '#5E728B', accent: '#E07B47', glass: '#A3D3E8',
+  room1: '#EADFCD', room2: '#DCE6EC', concrete: '#BAB7AF', concrete2: '#A6A39B', air: '#EFEEE9',
+  tank: '#4FA6D3', steel: '#A3ACB6', steel2: '#7F8893', ring: '#F2C230', red: '#E2574C', blue: '#2F7FC1',
+};
+const FONT = "Fredoka, Inter, sans-serif";
+const GRADE = 600, PX0 = 120, PX1 = 600, PBOT = 1080, BED = 1160;
+
+// ---------- math ----------
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => b <= a ? (t >= b ? 1 : 0) : clamp((t - a) / (b - a));
+const lerp = (a, b, p) => a + (b - a) * p;
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+const easeIn = x => x * x * x;
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const backOut = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+const f1 = n => Math.round(n * 10) / 10;
+function hex2rgb(h) { const n = parseInt(h.slice(1), 16); return [n >> 16, (n >> 8) & 255, n & 255]; }
+function mix(a, b, p) { const A = hex2rgb(a), B = hex2rgb(b); return `rgb(${A.map((v, i) => Math.round(lerp(v, B[i], clamp(p)))).join(',')})`; }
+function rnd(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let x = Math.imul(seed ^ seed >>> 15, 1 | seed); x = x + Math.imul(x ^ x >>> 7, 61 | x) ^ x; return ((x ^ x >>> 14) >>> 0) / 4294967296; }; }
+function track(t, ks) { // [[time, value, ease?], ...]
+  if (t <= ks[0][0]) return ks[0][1];
+  for (let i = 0; i < ks.length - 1; i++) {
+    const [ta, va] = ks[i], [tb, vb, e] = ks[i + 1];
+    if (t <= tb) return lerp(va, vb, (e || easeInOut)(prog(t, ta, tb)));
+  }
+  return ks[ks.length - 1][1];
+}
+const mctx = document.createElement('canvas').getContext('2d');
+function tw(text, size, weight = 600) { mctx.font = `${weight} ${size}px Fredoka`; return mctx.measureText(text).width; }
+const esc = s => s.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+function text(x, y, str, { size = 30, weight = 600, fill = C.ink, anchor = 'middle', opacity = 1, stroke = '', sw = 0 } = {}) {
+  const st = stroke ? ` stroke="${stroke}" stroke-width="${sw}" paint-order="stroke" stroke-linejoin="round"` : '';
+  return `<text x="${f1(x)}" y="${f1(y)}" text-anchor="${anchor}" font-family="${FONT}" font-weight="${weight}" font-size="${size}" fill="${fill}" opacity="${opacity}"${st}>${esc(str)}</text>`;
+}
+
+// ---------- timeline from the voice-over ----------
+const VO = window.VO || [];
+const LEAD = 0.35, GAP = 0.25;
+const S = []; let acc = LEAD;
+VO.forEach(l => { S.push(acc); acc += l.dur + GAP + l.extra; });
+const VDUR = acc + 0.1;
+const SE = i => (i + 1 < S.length ? S[i + 1] : VDUR);
+const T = (i, f = 0) => S[i] + f * (SE(i) - S[i]);
+
+// ---------- state tracks ----------
+const TR = {
+  crane: [[0, 0], [T(1, 0), 0], [T(1, .1), 1], [T(2, .3), 1], [T(2, .45), 0], [T(4, 0), 0], [T(4, .12), 1], [T(5, .3), 1], [T(5, .45), 0]],
+  hbPre: [[0, GRADE], [T(1, .1), GRADE], [T(1, .28), 470], [T(2, 0), 470], [T(2, .28), 650], [T(2, .4), 656, easeOut], [T(2, .95), PBOT - 2], [T(4, .12), PBOT - 2], [T(4, .45), 440], [T(5, 0), 440], [T(5, .3), 610]],
+  pit: [[T(1, .28), 0], [T(1, .62), 1]],
+  water: [[0, PBOT], [T(1, .6), PBOT], [T(1, .95), 640], [T(10, .3), 640], [T(10, .55), 592], [T(10, .8), 660], [T(10, 1), 640],
+    [T(11, .3), 640], [T(11, .56), 585], [T(11, .9), 585], [T(12, .15), 640], [T(12, .3), 640], [T(12, .55), 585], [T(12, .85), 640],
+    [T(13, .08), 640], [T(13, 1), 400, x => x], [T(14, .5), 380], [T(15, 1), 380]],
+  build: [[T(4, .45), 0], [T(4, .92), 1]],
+  arrA: [[T(3, 0), 0], [T(3, .12), 1], [T(3, .9), 1], [T(4, .06), 0]],
+  arrB: [[T(5, .45), 0], [T(5, .55), 1], [T(5, .95), 1], [T(6, .05), 0]],
+  gather: [[T(6, .12), 0], [T(6, .55), 1]],
+  tilt: [[T(6, .35), 0], [T(6, .85), -6.5], [T(7, .3), -6.5], [T(7, .88), 0]],
+  tanks: [[T(7, 0), 0], [T(7, .18), 1]],
+  lvlL: [[T(7, .3), .45], [T(7, .88), .14]],
+  lvlR: [[T(7, .3), .45], [T(7, .88), .76]],
+  drift: [[T(8, .25), 0], [T(8, .62), 64, easeIn], [T(8, .7), 54, easeOut], [T(8, .8), 62], [T(9, .05), 62], [T(9, .3), 0]],
+  post: [[T(9, .2), -260], [T(9, .42), 700, easeOut], [T(9, .5), 700], [T(9, .62), 1040, easeOut], [T(9, .7), 1040], [T(9, .85), 1290, easeOut]],
+  rings: [[T(10, 0), 0], [T(10, .2), 1, backOut]],
+  pipes: [[T(11, 0), 0], [T(11, .15), 1]],
+  coil: [[T(12, .12), 0], [T(12, .28), 1]],
+  storm: [[T(13, 0), 0], [T(13, .2), 1], [T(14, .75), 1], [T(15, .35), 0]],
+};
+const T_SNAP = T(11, .5), T_FLOAT = T(5, .3), T_PUMP = [T(7, .3), T(7, .88)];
+const CAM = [ // per scene: cx, cy, zoom
+  [360, 440, 1.0], [360, 620, .8], [360, 700, .82], [360, 800, .95], [360, 600, .8], [360, 590, .95], [360, 500, 1.2], [360, 650, 1.35],
+  [400, 600, .95], [360, 720, .6], [360, 620, .92], [480, 640, 1.25], [480, 640, 1.25], [360, 520, .78], [360, 420, .84], [360, 430, .88],
+];
+function state(t) {
+  const s = {};
+  for (const k in TR) s[k] = track(t, TR[k]);
+  // once afloat, the house rides the water
+  if (t < T_FLOAT) s.hb = s.hbPre;
+  else {
+    const dt = t - T_FLOAT;
+    s.hb = s.water - 30 + 16 * Math.exp(-dt * 2.2) * Math.sin(dt * 7) + 2.5 * Math.sin(t * 1.6);
+  }
+  s.tilt += t > T(7, .88) ? .6 * Math.sin(t * 1.3) : 0;
+  s.drift += (t > T(10, .6) && t < T(10, .95)) ? 3 * Math.sin(t * 18) * Math.sin(Math.PI * prog(t, T(10, .6), T(10, .95))) : 0;
+  s.pumping = t > T_PUMP[0] && t < T_PUMP[1];
+  s.snapped = t >= T_SNAP && t < T(12, .15);
+  s.pipeOn = s.pipes > 0 && t < T(12, .15);
+  // camera: ease into each scene's framing
+  let i = 0; while (i + 1 < S.length && t >= S[i + 1]) i++;
+  const prev = CAM[Math.max(0, i - 1)], cur = CAM[i];
+  const p = i === 0 ? prog(t, 0, SE(0)) : easeInOut(prog(t, S[i], S[i] + Math.min(1.1, .4 * (SE(i) - S[i]))));
+  s.cam = cur.map((v, k) => lerp(i === 0 ? [360, 450, 1.08][k] : prev[k], v, p));
+  if (i === 13) s.cam[1] = lerp(560, 440, prog(t, T(13, .1), T(13, 1)));
+  s.scene = i;
+  return s;
+}
+
+// ---------- sound cues (mixed by audio.py) ----------
+const SFX = [];
+for (let i = 1; i < S.length; i++) SFX.push([S[i], 'whoosh']);
+SFX.push([T(1, 0), 'crane'], [T(2, .3), 'crane'], [T(4, 0), 'crane'], [T(5, .3), 'crane']);
+for (let k = 0; k < 6; k++) SFX.push([T(1, .3 + k * .05), 'dig']);
+SFX.push([T(1, .6), 'pour'], [T(2, .28), 'splash'], [T(2, .45), 'bubbles'], [T(2, .93), 'thud']);
+SFX.push([T(3, .08), 'pop'], [T(4, .3), 'drip']);
+for (let k = 0; k < 4; k++) SFX.push([T(4, .5 + k * .11), 'thunk']);
+SFX.push([T(5, .28), 'splash'], [T(5, .5), 'pop'], [T(6, .15), 'steps'], [T(6, .4), 'creak'], [T(7, .05), 'pop'], [T_PUMP[0], 'pump'], [T(7, .8), 'creak']);
+SFX.push([T(8, .2), 'wind'], [T(8, .62), 'thud'], [T(9, .42), 'clang'], [T(9, .62), 'clang'], [T(9, .85), 'clang']);
+SFX.push([T(10, .1), 'ring'], [T(10, .16), 'ring'], [T(10, .6), 'wind'], [T(11, .05), 'pop'], [T_SNAP, 'snap'], [T_SNAP + .05, 'spray']);
+SFX.push([T(12, .15), 'boing'], [T(13, 0), 'rainIn'], [T(13, .3), 'thunder'], [T(14, .2), 'thunder'], [T(15, .45), 'pop'], [T(15, .3), 'chime']);
+window.SFX = SFX.sort((a, b) => a[0] - b[0]);
+window.cues = () => ({
+  dur: VDUR, sfx: SFX.map(([t, k]) => [+t.toFixed(3), k]),
+  vo: VO.map((l, i) => ({ t: +S[i].toFixed(3), dur: l.dur, file: l.file, text: l.text })),
+  storm: [T(13, 0), T(13, .2), T(14, .75), T(15, .35)], pump: T_PUMP,
+});
+
+// ---------- world: backdrop ----------
+const R = rnd(11), PEBBLES = Array.from({ length: 70 }, () => [-900 + R() * 2500, 640 + R() * 500, 3 + R() * 7]);
+const CRACKS = Array.from({ length: 14 }, () => [-900 + R() * 2500, BED + 40 + R() * 600]);
+function backdrop(st, t) {
+  const sm = st.storm;
+  let s = `<rect x="-900" y="-1600" width="2520" height="2210" fill="url(#gSky)"/>
+    <rect x="-900" y="-1600" width="2520" height="2210" fill="url(#gStorm)" opacity="${sm.toFixed(3)}"/>`;
+  s += `<g opacity="${(1 - sm).toFixed(3)}"><circle cx="600" cy="70" r="120" fill="url(#gSun)"/><circle cx="600" cy="70" r="42" fill="#FFE27A"/></g>`;
+  [[80, 140, 1], [470, 230, .8], [-260, 90, 1.2], [900, 160, 1], [250, -120, 1.1]].forEach(([x, y, k], i) => {
+    const cx = x + ((t * 6 * (1 + i * .2)) % 1400) - 300;
+    const col = mix('#FFFFFF', '#6B7782', sm);
+    s += `<g transform="translate(${f1(cx)} ${y}) scale(${k})" fill="${col}" opacity=".95"><circle r="34"/><circle cx="38" cy="8" r="28"/><circle cx="-36" cy="10" r="24"/><rect x="-60" y="10" width="124" height="26" rx="13"/></g>`;
+  });
+  // trees and neighbours
+  const tree = (x, y, r, c) => `<rect x="${x - 7}" y="${y - r * .6}" width="14" height="${r * .6 + 2}" fill="#7A5A3E"/><circle cx="${x}" cy="${y - r * .9}" r="${r}" fill="${c}"/><circle cx="${x - r * .5}" cy="${y - r * .6}" r="${r * .7}" fill="${c}"/><circle cx="${x + r * .55}" cy="${y - r * .65}" r="${r * .65}" fill="${c}"/>`;
+  s += tree(-200, GRADE - 20, 60, '#6FA86A') + tree(130, GRADE - 30, 46, '#5F9A5E') + tree(660, GRADE - 25, 52, '#6FA86A') + tree(1000, GRADE - 20, 64, '#5F9A5E');
+  const nb = (x, w, h, wall, roof) => `<g><rect x="${x}" y="${GRADE - h}" width="${w}" height="${h}" fill="${wall}" stroke="${C.ink}" stroke-width="3"/>
+      <path d="M${x - 14} ${GRADE - h} L${x + w / 2} ${GRADE - h - w * .42} L${x + w + 14} ${GRADE - h} Z" fill="${roof}" stroke="${C.ink}" stroke-width="3" stroke-linejoin="round"/>
+      <rect x="${x + w * .18}" y="${GRADE - h * .78}" width="${w * .22}" height="${h * .26}" fill="${C.glass}" stroke="${C.ink}" stroke-width="2.5"/>
+      <rect x="${x + w * .6}" y="${GRADE - h * .78}" width="${w * .22}" height="${h * .26}" fill="${C.glass}" stroke="${C.ink}" stroke-width="2.5"/>
+      <rect x="${x + w * .42}" y="${GRADE - h * .36}" width="${w * .18}" height="${h * .36}" fill="#8C5C3E" stroke="${C.ink}" stroke-width="2.5"/></g>`;
+  s += nb(-330, 210, 170, '#EBCDAE', '#8E5A4A') + nb(700, 200, 160, '#CFE2D7', '#4E6A78') + nb(-40, 120, 96, '#E8D9EF', '#7A6290') + nb(1000, 150, 120, '#F1E0B8', '#A0623F');
+  // fence
+  s += `<rect x="-900" y="${GRADE - 52}" width="2520" height="10" fill="#D9BB90" stroke="${C.ink}" stroke-width="2"/>`;
+  for (let x = -900; x < 1620; x += 44) s += `<rect x="${x}" y="${GRADE - 64}" width="30" height="64" rx="4" fill="#E6C99E" stroke="${C.ink}" stroke-width="2"/>`;
+  return s;
+}
+function ground(st) {
+  let s = `<rect x="-900" y="${GRADE}" width="2520" height="${BED - GRADE}" fill="${C.soil}"/>
+    <rect x="-900" y="760" width="2520" height="${BED - 760}" fill="${C.soil2}"/>
+    <path d="M-900 760 Q -500 748 -100 762 T 700 758 T 1620 764" stroke="${C.soilLine}" stroke-width="4" fill="none"/>
+    <path d="M-900 960 Q -400 950 100 966 T 900 956 T 1620 962" stroke="${C.soilLine}" stroke-width="4" fill="none" opacity=".7"/>`;
+  PEBBLES.forEach(([x, y, r]) => { if (y < BED - 10) s += `<ellipse cx="${f1(x)}" cy="${f1(y)}" rx="${f1(r * 1.4)}" ry="${f1(r)}" fill="${C.soilLine}" opacity=".55"/>`; });
+  s += `<rect x="-900" y="${BED}" width="2520" height="900" fill="${C.rock}"/>
+    <path d="M-900 ${BED} Q -600 ${BED - 14} -300 ${BED} T 300 ${BED} T 900 ${BED} T 1620 ${BED}" stroke="${C.ink}" stroke-width="4" fill="${C.rock}"/>`;
+  CRACKS.forEach(([x, y]) => s += `<path d="M${f1(x)} ${f1(y)} l18 26 l-10 22 l16 30" stroke="${C.rock2}" stroke-width="4" fill="none" stroke-linecap="round"/>`);
+  s += text(-60, BED + 70, 'BEDROCK', { size: 30, weight: 700, fill: '#5E5B62', anchor: 'start', opacity: st.post > -200 ? 1 : 0 });
+  // grass (cut away over the pit once digging starts)
+  const g = (x0, x1) => `<rect x="${x0}" y="${GRADE - 4}" width="${x1 - x0}" height="18" fill="${C.grass}"/><path d="M${x0} ${GRADE + 14} H${x1}" stroke="${C.grassDark}" stroke-width="4"/>`;
+  if (st.pit > .01) {
+    s += g(-900, PX0) + g(PX1, 1620);
+    const d = st.pit * (PBOT - GRADE);
+    s += `<rect x="${PX0}" y="${GRADE - 4}" width="${PX1 - PX0}" height="${f1(d + 4)}" fill="${C.pit}"/>
+      <path d="M${PX0} ${GRADE} V${f1(GRADE + d)} H${PX1} V${GRADE}" stroke="${C.ink}" stroke-width="5" fill="none" stroke-linejoin="round"/>
+      <rect x="${PX0}" y="${GRADE}" width="22" height="${f1(d)}" fill="#000" opacity=".12"/>`;
+  } else s += g(-900, 1620);
+  return s;
+}
+
+// ---------- the house ----------
+function person(x, y, col, bob, k = 1) {
+  return `<g transform="translate(${f1(x)} ${f1(y + bob)}) scale(${k})">
+    <path d="M-5 -2 V-20 M5 -2 V-20" stroke="${C.ink}" stroke-width="5" stroke-linecap="round"/>
+    <rect x="-11" y="-50" width="22" height="32" rx="9" fill="${col}" stroke="${C.ink}" stroke-width="3"/>
+    <circle cy="-60" r="10" fill="#F1C49E" stroke="${C.ink}" stroke-width="3"/></g>`;
+}
+function houseBody(st, t) {
+  let s = '';
+  // rooms (cutaway, left part)
+  s += `<rect x="-148" y="-294" width="168" height="140" fill="${C.room2}"/><rect x="-148" y="-150" width="168" height="142" fill="${C.room1}"/>`;
+  // upstairs: bed, picture, lamp
+  s += `<rect x="-112" y="-262" width="42" height="30" fill="#fff" stroke="${C.ink}" stroke-width="3"/><path d="M-106 -240 l10 -12 l8 8 l8 -10 l10 14" stroke="#7DB36A" stroke-width="3" fill="none"/>
+    <rect x="-140" y="-200" width="96" height="30" rx="6" fill="#7E8FC9" stroke="${C.ink}" stroke-width="3"/><rect x="-140" y="-212" width="26" height="16" rx="5" fill="#fff" stroke="${C.ink}" stroke-width="3"/>
+    <rect x="-140" y="-172" width="8" height="18" fill="${C.ink}"/><rect x="-52" y="-172" width="8" height="18" fill="${C.ink}"/>
+    <rect x="-30" y="-190" width="28" height="36" fill="#C99A6B" stroke="${C.ink}" stroke-width="3"/>`;
+  // downstairs: sofa, lamp, rug
+  s += `<rect x="-136" y="-60" width="92" height="40" rx="10" fill="#E07B47" stroke="${C.ink}" stroke-width="3"/><rect x="-136" y="-74" width="92" height="22" rx="10" fill="#EB9665" stroke="${C.ink}" stroke-width="3"/>
+    <path d="M-8 -14 V-92" stroke="${C.ink}" stroke-width="4"/><path d="M-24 -92 h32 l-6 -22 h-20 z" fill="#FBD98A" stroke="${C.ink}" stroke-width="3"/>
+    <ellipse cx="-70" cy="-12" rx="66" ry="5" fill="#C9B79C"/>`;
+  // people (gather to the left side)
+  const g = st.gather, walk = g > 0 && g < 1 ? Math.abs(Math.sin(t * 14)) * -3 : 0;
+  const P = [[-84, -10, '#E2574C', -132], [-40, -10, '#3D7DD8', -110], [-92, -154, '#F2B632', -134], [-12, -154, '#6BBF59', -110]];
+  P.forEach(([x, y, c, gx], i) => s += person(lerp(x, gx, easeInOut(clamp(g * 1.2 - i * .06))), y, c, walk));
+  // facade (right part)
+  s += `<rect x="20" y="-294" width="130" height="286" fill="${C.wall}"/>`;
+  for (let y = -280; y < -10; y += 18) s += `<path d="M22 ${y} H148" stroke="${C.wallLine}" stroke-width="2"/>`;
+  s += `<rect x="30" y="-270" width="14" height="76" fill="${C.accent}" stroke="${C.ink}" stroke-width="2.5"/><rect x="126" y="-270" width="14" height="76" fill="${C.accent}" stroke="${C.ink}" stroke-width="2.5"/>
+    <rect x="48" y="-268" width="74" height="72" fill="${C.glass}" stroke="${C.ink}" stroke-width="3.5"/><path d="M85 -268 V-196 M48 -232 H122" stroke="#fff" stroke-width="4"/>
+    <rect x="36" y="-112" width="36" height="44" fill="${C.glass}" stroke="${C.ink}" stroke-width="3"/><path d="M54 -112 V-68" stroke="#fff" stroke-width="3"/>
+    <rect x="86" y="-120" width="44" height="112" rx="3" fill="${C.accent}" stroke="${C.ink}" stroke-width="3.5"/><circle cx="96" cy="-62" r="4" fill="${C.ink}"/>`;
+  // structure lines
+  s += `<rect x="16" y="-294" width="8" height="286" fill="#D6C7AE" stroke="${C.ink}" stroke-width="2.5"/>
+    <rect x="-152" y="-158" width="304" height="10" fill="#D6C7AE" stroke="${C.ink}" stroke-width="3"/>
+    <rect x="-156" y="-10" width="312" height="12" fill="#9A938A" stroke="${C.ink}" stroke-width="3.5"/>
+    <rect x="-150" y="-296" width="300" height="288" fill="none" stroke="${C.ink}" stroke-width="5"/>`;
+  // roof + chimney
+  s += `<rect x="70" y="-382" width="28" height="44" fill="#B5654A" stroke="${C.ink}" stroke-width="3"/>
+    <path d="M-174 -294 L174 -294 L118 -392 L-118 -392 Z" fill="${C.roof}" stroke="${C.ink}" stroke-width="5" stroke-linejoin="round"/>
+    <path d="M-150 -320 H150 M-136 -346 H136 M-122 -370 H122" stroke="${C.roof2}" stroke-width="4"/>`;
+  return s;
+}
+function pontoon(st, t) {
+  if (st.build <= 0) return '';
+  const r = st.tanks;
+  let s = `<defs><clipPath id="cBuild"><rect x="-200" y="-2" width="400" height="${f1(154 * st.build)}"/></clipPath>
+    <clipPath id="cT0"><rect x="-156" y="14" width="102" height="122"/></clipPath>
+    <clipPath id="cT1"><rect x="-42" y="14" width="84" height="122"/></clipPath>
+    <clipPath id="cT2"><rect x="54" y="14" width="102" height="122"/></clipPath></defs>
+    <g clip-path="url(#cBuild)">
+    <rect x="-170" y="0" width="340" height="150" rx="6" fill="${C.concrete}" stroke="${C.ink}" stroke-width="5"/>
+    <rect x="-156" y="14" width="312" height="122" fill="${C.air}" stroke="${C.concrete2}" stroke-width="3"/>`;
+  for (let x = -150; x < 160; x += 46) s += `<circle cx="${x}" cy="7" r="2.2" fill="${C.concrete2}"/><circle cx="${x + 20}" cy="143" r="2.2" fill="${C.concrete2}"/>`;
+  // "AIR" label while explaining why it floats
+  const airOp = clamp(prog(t, T(5, .05), T(5, .2)) * (1 - prog(t, T(6, 0), T(6, .15))));
+  if (airOp > 0) s += text(0, 90, 'AIR', { size: 40, weight: 700, fill: '#9C9990', opacity: airOp });
+  if (r > 0) {
+    const lv = [st.lvlL, .45, st.lvlR];
+    lv.forEach((l, k) => {
+      const ly = 136 - 122 * l, cx = [-105, 0, 105][k];
+      s += `<g clip-path="url(#cT${k})" opacity="${r.toFixed(2)}"><rect x="-300" y="${f1(ly)}" width="600" height="400" fill="${C.tank}" transform="rotate(${(-st.tilt).toFixed(2)} ${cx} ${f1(ly)})"/>
+        <path d="M-300 ${f1(ly)} H300" stroke="#D5EEFA" stroke-width="3" transform="rotate(${(-st.tilt).toFixed(2)} ${cx} ${f1(ly)})"/></g>`;
+    });
+    s += `<g opacity="${r.toFixed(2)}">
+      <rect x="-54" y="14" width="12" height="122" fill="${C.concrete}" stroke="${C.ink}" stroke-width="3"/><rect x="42" y="14" width="12" height="122" fill="${C.concrete}" stroke="${C.ink}" stroke-width="3"/>
+      <path d="M-148 126 H148" stroke="${C.ink}" stroke-width="10" stroke-linecap="round"/><path d="M-148 126 H148" stroke="${C.steel}" stroke-width="5" stroke-linecap="round"/>
+      <rect x="-22" y="104" width="44" height="30" rx="6" fill="${C.blue}" stroke="${C.ink}" stroke-width="3.5"/>
+      <circle cx="0" cy="119" r="7" fill="#fff" stroke="${C.ink}" stroke-width="2.5"/>
+      <path d="M0 119 L${f1(6 * Math.cos(t * (st.pumping ? 20 : 0)))} ${f1(119 + 6 * Math.sin(t * (st.pumping ? 20 : 0)))}" stroke="${C.ink}" stroke-width="2.5"/>`;
+    if (st.pumping) for (let k = 0; k < 6; k++) {
+      const x = -140 + ((t * 140 + k * 50) % 280);
+      s += `<path d="M${f1(x - 5)} 120 l8 6 l-8 6" stroke="#fff" stroke-width="3" fill="none" stroke-linecap="round"/>`;
+    }
+    s += '</g>';
+  }
+  s += '</g>';
+  return s;
+}
+function ringsSVG(st) {
+  if (st.rings <= 0) return '';
+  const k = st.rings;
+  let s = '';
+  [-1, 1].forEach(d => s += `<g transform="translate(${192 * d} 40) scale(${k.toFixed(3)})">
+      <rect x="${d > 0 ? -22 : 8}" y="-8" width="14" height="16" fill="${C.steel2}" stroke="${C.ink}" stroke-width="3"/>
+      <rect x="-13" y="-12" width="26" height="24" rx="7" fill="${C.ring}" stroke="${C.ink}" stroke-width="3.5"/>
+      <path d="M-13 0 H13" stroke="${C.ink}" stroke-width="2" opacity=".4"/></g>`);
+  return s;
+}
+function houseGroup(st, t) {
+  const x = 360 + st.drift;
+  return `<g transform="translate(${f1(x)} ${f1(st.hb)}) rotate(${st.tilt.toFixed(2)} 0 75)">${pontoon(st, t)}${houseBody(st, t)}${ringsSVG(st)}</g>`;
+}
+
+// ---------- water, posts, pipes, crane ----------
+function waterSVG(st, t) {
+  const wy = st.water;
+  if (wy >= PBOT - 1) return '';
+  let s = '', d = '';
+  if (wy < GRADE) {
+    s += `<rect x="-900" y="${f1(wy)}" width="2520" height="${f1(GRADE - wy)}" fill="${C.water}"/>`;
+    s += `<rect x="${PX0}" y="${GRADE}" width="${PX1 - PX0}" height="${PBOT - GRADE}" fill="${C.water}"/>`;
+    for (let x = -900; x <= 1620; x += 24) d += (x === -900 ? 'M' : 'L') + x + ' ' + f1(wy + Math.sin(x / 38 + t * 2.2) * 4);
+  } else {
+    s += `<rect x="${PX0}" y="${f1(wy)}" width="${PX1 - PX0}" height="${f1(PBOT - wy)}" fill="${C.water}"/>`;
+    for (let x = PX0; x <= PX1; x += 16) d += (x === PX0 ? 'M' : 'L') + x + ' ' + f1(wy + Math.sin(x / 30 + t * 2.4) * 3);
+  }
+  const dy = Math.max(wy, GRADE) + 240;
+  if (dy < PBOT) s += `<rect x="${PX0}" y="${f1(dy)}" width="${PX1 - PX0}" height="${f1(PBOT - dy)}" fill="#0E4C7A" opacity=".16"/>`;
+  s += `<path d="${d}" stroke="${C.waterLine}" stroke-width="5" fill="none" stroke-linecap="round"/>`;
+  return s;
+}
+function postsSVG(st) {
+  if (st.post <= -250) return '';
+  const bot = st.post, top = bot - 1100;
+  let s = '';
+  [168, 552].forEach(x => s += `<rect x="${x - 9}" y="${f1(top)}" width="18" height="1100" fill="${C.steel}" stroke="${C.ink}" stroke-width="3.5"/>
+    <rect x="${x - 5}" y="${f1(top)}" width="4" height="1100" fill="#DDE2E7"/>
+    <rect x="${x - 13}" y="${f1(top - 8)}" width="26" height="12" rx="3" fill="${C.steel2}" stroke="${C.ink}" stroke-width="3"/>`);
+  return s;
+}
+const PIPES = [[C.blue, 726, 12], [C.ring, 750, 7], ['#8A6A4E', 774, 13]];
+function pipesSoil(st) {
+  if (st.pipes <= 0 && st.coil <= 0) return '';
+  let s = '';
+  PIPES.forEach(([c, y, w]) => s += `<path d="M1400 ${y} H${PX1}" stroke="${C.ink}" stroke-width="${w + 6}" stroke-linecap="round"/><path d="M1400 ${y} H${PX1}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/>`);
+  return s;
+}
+function attach(st, k) { return [360 + st.drift + 170, st.hb + 84 + 22 * k]; }
+function pipesBridge(st, t) {
+  let s = '';
+  if (st.pipeOn) {
+    const op = st.pipes;
+    PIPES.forEach(([c, y, w], k) => {
+      const A = attach(st, k);
+      let segs;
+      if (!st.snapped) segs = [[[PX1, y], A]];
+      else segs = [[[PX1, y], [PX1 - 16, y + 7]], [A, [A[0] + 24, A[1] - 5]]];
+      segs.forEach(([a, b]) => s += `<g opacity="${op.toFixed(2)}"><path d="M${f1(a[0])} ${f1(a[1])} L${f1(b[0])} ${f1(b[1])}" stroke="${C.ink}" stroke-width="${w + 6}" stroke-linecap="round"/><path d="M${f1(a[0])} ${f1(a[1])} L${f1(b[0])} ${f1(b[1])}" stroke="${c}" stroke-width="${w}" stroke-linecap="round"/></g>`);
+    });
+    // strain warning just before the snap
+    const warn = prog(t, T_SNAP - .5, T_SNAP) * (st.snapped ? 0 : 1);
+    if (warn > 0) s += `<circle cx="${PX1 - 6}" cy="750" r="${f1(22 + 8 * Math.sin(t * 30))}" fill="none" stroke="${C.red}" stroke-width="5" opacity="${warn.toFixed(2)}"/>`;
+    if (st.snapped) {
+      const R2 = rnd(5), dt = t - T_SNAP;
+      for (let i = 0; i < 26; i++) {
+        const ph = (dt * 1.6 + R2()) % 1, ang = -.4 - R2() * 1.6, sp = 160 + R2() * 120;
+        const px = PX1 - 16 + Math.cos(ang) * sp * ph * -1, py = 733 + Math.sin(ang) * sp * ph + 220 * ph * ph;
+        s += `<circle cx="${f1(px)}" cy="${f1(py)}" r="${f1(5 - 3 * ph)}" fill="#BFE6FA" opacity="${(1 - ph).toFixed(2)}"/>`;
+      }
+      for (let i = 0; i < 8; i++) { const ph = (dt * 3 + i / 8) % 1; s += `<circle cx="${f1(PX1 - 18 - 30 * ph * Math.cos(i))}" cy="${f1(757 - 30 * ph * Math.sin(i * 1.7))}" r="3" fill="#FFE27A" opacity="${(1 - ph).toFixed(2)}"/>`; }
+    }
+  }
+  if (st.coil > 0) {
+    PIPES.forEach(([c, y, w], k) => {
+      const A = attach(st, k), dx = A[0] - PX1, dy = A[1] - y, L = Math.hypot(dx, dy), ux = dx / L, uy = dy / L;
+      const n = 5, r = 11, a = r * .85;
+      let d = '';
+      for (let j = 0; j <= 80; j++) {
+        const u = j / 80, th = 2 * Math.PI * n * u;
+        const al = L * u + a * Math.sin(th) * (j > 0 && j < 80 ? 1 : 0), ac = r * (Math.cos(th) - 1) * (j > 0 && j < 80 ? 1 : 0);
+        d += (j ? 'L' : 'M') + f1(PX1 + ux * al - uy * ac) + ' ' + f1(y + uy * al + ux * ac);
+      }
+      const ww = Math.min(w, 8);
+      s += `<g opacity="${st.coil.toFixed(2)}"><path d="${d}" stroke="${C.ink}" stroke-width="${ww + 5}" fill="none" stroke-linejoin="round"/><path d="${d}" stroke="${c}" stroke-width="${ww}" fill="none" stroke-linejoin="round"/></g>`;
+    });
+  }
+  return s;
+}
+function craneSVG(st) {
+  if (st.crane <= 0.001) return '';
+  const x = 360 + st.drift, hookY = lerp(-1500, st.hb - 450, st.crane);
+  let s = `<path d="M${f1(x)} -1700 V${f1(hookY)}" stroke="${C.ink}" stroke-width="5"/>
+    <rect x="${f1(x - 16)}" y="${f1(hookY - 4)}" width="32" height="26" rx="5" fill="${C.ring}" stroke="${C.ink}" stroke-width="3.5"/>
+    <path d="M${f1(x)} ${f1(hookY + 22)} v18 a10 10 0 1 1 -14 4" stroke="${C.ink}" stroke-width="6" fill="none" stroke-linecap="round"/>`;
+  if (st.crane > .98) s += `<path d="M${f1(x - 150)} ${f1(st.hb - 300)} L${f1(x)} ${f1(hookY + 44)} L${f1(x + 150)} ${f1(st.hb - 300)}" stroke="${C.ink}" stroke-width="3.5" fill="none"/>`;
+  return s;
+}
+function arrow(x, y0, y1, col, label, op, lx) {
+  if (op <= 0) return '';
+  const dir = Math.sign(y1 - y0), hd = 30;
+  return `<g opacity="${op.toFixed(2)}">
+    <path d="M${x} ${f1(y0)} V${f1(y1 - dir * hd)}" stroke="${C.ink}" stroke-width="22" stroke-linecap="round"/>
+    <path d="M${x} ${f1(y0)} V${f1(y1 - dir * hd)}" stroke="${col}" stroke-width="14" stroke-linecap="round"/>
+    <path d="M${x - 26} ${f1(y1 - dir * hd)} L${x} ${f1(y1)} L${x + 26} ${f1(y1 - dir * hd)} Z" fill="${col}" stroke="${C.ink}" stroke-width="4" stroke-linejoin="round"/>
+    ${text(lx, (y0 + y1) / 2 + 10, label, { size: 30, weight: 700, fill: '#fff', stroke: C.ink, sw: 7 })}</g>`;
+}
+function particles(st, t) {
+  let s = '';
+  const splash = (t0, x0, y0) => {
+    const dt = t - t0; if (dt < 0 || dt > .9) return '';
+    const R3 = rnd(Math.round(t0 * 100)); let o = '';
+    for (let i = 0; i < 22; i++) {
+      const vx = (R3() - .5) * 520, vy = -240 - R3() * 260, px = x0 + (R3() - .5) * 300 + vx * dt, py = y0 + vy * dt + 700 * dt * dt;
+      if (py < y0 + 6) o += `<circle cx="${f1(px)}" cy="${f1(py)}" r="${f1(4 + R3() * 5)}" fill="#D8F1FC" stroke="${C.ink}" stroke-width="1.5" opacity="${(1 - dt / .9).toFixed(2)}"/>`;
+    }
+    return o;
+  };
+  s += splash(T(2, .28), 360, 640) + splash(T(5, .28), 360, 640);
+  // bubbles while it sinks
+  if (t > T(2, .42) && t < T(3, .5)) {
+    const R4 = rnd(3);
+    for (let i = 0; i < 26; i++) {
+      const x = 230 + R4() * 260, sp = 120 + R4() * 120, ph = ((t - T(2, .42)) * sp / 300 + R4()) % 1;
+      const y = lerp(st.hb - 120 - R4() * 260, 650, ph);
+      if (y > st.water + 6) s += `<circle cx="${f1(x + Math.sin(t * 4 + i) * 6)}" cy="${f1(y)}" r="${f1(4 + R4() * 6)}" fill="none" stroke="#E6F6FF" stroke-width="2.5" opacity=".85"/>`;
+    }
+  }
+  // drips when it is lifted out
+  if (t > T(4, .2) && t < T(4, .75)) {
+    const R5 = rnd(9);
+    for (let i = 0; i < 16; i++) { const ph = ((t - T(4, .2)) * 1.4 + R5()) % 1, x = 220 + R5() * 280; s += `<path d="M${f1(x)} ${f1(st.hb + ph * 200)} q4 8 0 12 q-4 -4 0 -12" fill="#BFE6FA" stroke="${C.ink}" stroke-width="1.5" opacity="${(1 - ph).toFixed(2)}"/>`; }
+  }
+  // concrete dust while building
+  if (st.build > 0 && st.build < 1) {
+    const R6 = rnd(21), by = st.hb + 150 * st.build;
+    for (let i = 0; i < 14; i++) s += `<circle cx="${f1(200 + R6() * 320)}" cy="${f1(by + (R6() - .5) * 20 - ((t * 60 + i * 9) % 40))}" r="${f1(3 + R6() * 6)}" fill="#E3E0D8" opacity=".8"/>`;
+  }
+  return s;
+}
+function windSVG(t) {
+  let s = '';
+  const on = Math.max(prog(t, T(8, .15), T(8, .25)) * (1 - prog(t, T(8, .7), T(8, .8))), prog(t, T(10, .55), T(10, .62)) * (1 - prog(t, T(10, .9), T(10, 1))));
+  if (on <= 0) return '';
+  const R7 = rnd(4);
+  for (let i = 0; i < 9; i++) {
+    const y = 300 + R7() * 340, ph = ((t * .9) + R7()) % 1, x = -200 + ph * 1100;
+    s += `<path d="M${f1(x)} ${f1(y)} q60 -18 120 0 q30 10 40 -6" stroke="#fff" stroke-width="6" fill="none" stroke-linecap="round" opacity="${(on * Math.sin(Math.PI * ph) * .9).toFixed(2)}"/>`;
+  }
+  return s;
+}
+
+// ---------- screen space: rain, captions, end card ----------
+function rainSVG(st, t) {
+  if (st.storm <= .01) return '';
+  const R8 = rnd(17);
+  let s = `<rect width="720" height="1280" fill="#1E2A36" opacity="${(st.storm * .18).toFixed(3)}"/>`;
+  for (let i = 0; i < 130; i++) {
+    const x = R8() * 820 - 60, sp = 900 + R8() * 500, y = ((R8() * 1280 + t * sp) % 1380) - 60;
+    s += `<path d="M${f1(x)} ${f1(y)} l-10 30" stroke="#D9ECF7" stroke-width="2.5" stroke-linecap="round" opacity="${(st.storm * .75).toFixed(2)}"/>`;
+  }
+  const fl = Math.max(0, 1 - Math.abs(t - T(13, .3)) * 7) + Math.max(0, 1 - Math.abs(t - T(14, .2)) * 7) * .7;
+  if (fl > 0) s += `<rect width="720" height="1280" fill="#fff" opacity="${(fl * .55).toFixed(2)}"/>`;
+  return s;
+}
+const KEY = new Set(['float', 'flood', 'pit', 'water', 'sinks', 'heavy', 'weight', 'concrete', 'hollow', 'air', 'floats', 'tip', 'tanks', 'pump', 'level', 'sideways', 'bank', 'posts', 'bedrock', 'rings', 'never', 'snap', 'coiled', 'stretch', 'rises', 'safely', 'netherlands', 'follow']);
+function captionSVG(t) {
+  for (let i = 0; i < VO.length; i++) {
+    const ws = VO[i].words, t0 = S[i];
+    if (t < t0 || t > t0 + VO[i].dur + .25) continue;
+    let k = -1; for (let j = 0; j < ws.length; j++) if (t >= t0 + ws[j].s) k = j;
+    if (k < 0) return '';
+    const w = ws[k].w.replace(/[.,!?:;]+$/, '').replace(/\.\.\.$/, '');
+    const pop = prog(t, t0 + ws[k].s, t0 + ws[k].s + .12);
+    const sc = 1.18 - .18 * easeOut(pop);
+    const key = KEY.has(w.toLowerCase().replace(/[^a-z]/g, ''));
+    let size = 78; while (tw(w, size, 700) > 640 && size > 40) size -= 2;
+    return `<g transform="translate(360 262) scale(${sc.toFixed(3)})">
+      ${text(0, 6, w, { size, weight: 700, fill: 'rgba(0,0,0,.35)', stroke: 'rgba(0,0,0,.35)', sw: 14 })}
+      ${text(0, 0, w, { size, weight: 700, fill: key ? '#FFD34D' : '#FFFFFF', stroke: C.ink, sw: 12 })}</g>`;
+  }
+  return '';
+}
+function endCard(t) {
+  const p = prog(t, T(15, .5), T(15, .58));
+  if (p <= 0) return '';
+  const sc = .6 + .4 * backOut(p), str = 'Follow for more', size = 40, w = tw(str, size) + 56 + 50, h = 72;
+  return `<g transform="translate(360 1150) scale(${sc.toFixed(3)})">
+    <rect x="${-w / 2}" y="${-h / 2 + 6}" width="${w}" height="${h}" rx="30" fill="rgba(0,0,0,.25)"/>
+    <rect x="${-w / 2}" y="${-h / 2}" width="${w}" height="${h}" rx="30" fill="#2A2D34"/>
+    <circle cx="${-w / 2 + 46}" cy="0" r="20" fill="#FFD34D"/><path d="M${-w / 2 + 36} 0 h20 M${-w / 2 + 46} -10 v20" stroke="${C.ink}" stroke-width="5" stroke-linecap="round"/>
+    ${text(24, 14, str, { size, fill: '#fff' })}</g>`;
+}
+
+// ---------- frame ----------
+const DEFS = `<defs>
+  <linearGradient id="gSky" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="${C.skyTop}"/><stop offset="1" stop-color="${C.skyBot}"/></linearGradient>
+  <linearGradient id="gStorm" x1="0" y1="0" x2="0" y2="1"><stop offset=".55" stop-color="${C.stormTop}"/><stop offset="1" stop-color="${C.stormBot}"/></linearGradient>
+  <radialGradient id="gSun"><stop offset="0" stop-color="#FFE27A" stop-opacity=".8"/><stop offset="1" stop-color="#FFE27A" stop-opacity="0"/></radialGradient>
+  <radialGradient id="gVig" cx=".5" cy=".5" r=".75"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".28"/></radialGradient>
+</defs>`;
+const svg = document.getElementById('svg');
+function renderAt(t) {
+  t = clamp(t, 0, VDUR - 1e-4);
+  const st = state(t);
+  const [cx, cy, z] = st.cam;
+  const A = st.arrA, B = st.arrB;
+  const world = backdrop(st, t) + ground(st) + pipesSoil(st) + postsSVG(st) + houseGroup(st, t) + pipesBridge(st, t) + waterSVG(st, t) + particles(st, t) +
+    arrow(300, st.hb - 250, st.hb - 60, C.red, 'Weight', A, 300) + arrow(430, st.hb - 20, st.hb - 90, C.blue, 'Push', A, 430) +
+    arrow(290, st.hb - 220, st.hb - 40, C.red, 'Weight', B, 290) + arrow(440, st.hb + 150, st.hb - 30, C.blue, 'Push', B, 440) +
+    windSVG(t) + craneSVG(st);
+  svg.innerHTML = DEFS + `<g transform="translate(360 640) scale(${z.toFixed(4)}) translate(${f1(-cx)} ${f1(-cy)})">${world}</g>` +
+    rainSVG(st, t) + `<rect width="720" height="1280" fill="url(#gVig)"/>` + captionSVG(t) + endCard(t);
+}
+window.renderAt = renderAt;
+window.DUR = VDUR;
+
+// ---------- player ----------
+const params = new URLSearchParams(location.search);
+window.ready = document.fonts.load('700 60px Fredoka').then(() => document.fonts.ready).then(() => {
+  if (params.has('render')) { document.body.classList.add('render'); renderAt(+params.get('t') || 0); return; }
+  const stage = document.getElementById('stage');
+  const fit = () => { const k = Math.min(innerWidth / W, (innerHeight - 40) / H); stage.style.transform = `scale(${k})`; };
+  addEventListener('resize', fit); fit();
+  let playing = true, t0 = performance.now(), cur = 0;
+  const tick = now => { if (playing) { cur = ((now - t0) / 1000) % VDUR; renderAt(cur); } requestAnimationFrame(tick); };
+  const toggle = () => { playing = !playing; t0 = performance.now() - cur * 1000; };
+  stage.addEventListener('click', toggle);
+  addEventListener('keydown', e => {
+    if (e.code === 'Space') { e.preventDefault(); toggle(); }
+    if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') { cur = clamp(cur + (e.code === 'ArrowRight' ? 1 : -1), 0, VDUR - .01); t0 = performance.now() - cur * 1000; renderAt(cur); }
+  });
+  requestAnimationFrame(tick);
+});
+</script>
+</body>
+</html>

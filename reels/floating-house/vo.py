@@ -1,0 +1,110 @@
+"""Voice-over for the Floating House reel, generated with Kokoro TTS (kokoro-onnx).
+
+usage: python vo.py MODEL.onnx VOICES.bin [voice]
+Writes vo/NN.wav (44.1 kHz mono) and vo.js. The animation is timed from vo.js:
+each line is one scene, and `extra` is how long the scene holds after the line ends.
+Word timings (for the word-by-word captions) are estimated from the audio: pauses in
+the speech are matched to punctuation, and words share each phrase by length.
+"""
+import json
+import os
+import re
+import subprocess
+import sys
+
+import numpy as np
+import soundfile as sf
+from kokoro_onnx import Kokoro
+
+LINES = [  # (text, extra hold after the line, seconds)
+    ("What if your house could float when a flood hits?", 0.3),
+    ("First, lift it up, dig a deep pit underneath, and fill it with water.", 0.8),
+    ("Lower the house in... and it sinks straight to the bottom.", 0.7),
+    ("A house is heavy. To float, it has to push aside its own weight in water.", 0.4),
+    ("So, we give it a giant hollow concrete box to sit on.", 0.8),
+    ("It's mostly air inside, so it pushes aside a lot of water. Now the whole house floats!", 0.6),
+    ("But when the family crowds onto one side, it starts to tip.", 0.7),
+    ("So the box gets split into tanks, and a pump moves water to the other side to level it out.", 0.7),
+    ("Next problem: wind and waves push it sideways, into the bank.", 0.5),
+    ("So two steel posts are driven deep down, into the bedrock.", 0.8),
+    ("Rings on the box slide along them. Up and down is fine, but never sideways.", 0.5),
+    ("And the water, power, and sewer pipes would snap the moment it lifts.", 0.6),
+    ("So they're swapped for flexible, coiled lines that stretch as it moves.", 0.5),
+    ("Now, when a flood comes, the water rises...", 1.4),
+    ("and the house rises right along with it, floating safely, exactly where it was built.", 0.8),
+    ("Homes like this really exist, in the Netherlands. Follow for more!", 1.6),
+]
+
+
+def word_times(text, y, sr):
+    """Estimate (word, start, end) in seconds for each word of a trimmed line."""
+    words = text.split()
+    hop = int(sr * .01)
+    rms = np.sqrt(np.convolve(y ** 2, np.ones(hop) / hop, mode='same'))[::hop]
+    speech = rms > 0.035 * rms.max()
+    # internal pauses (>= 80 ms of non-speech)
+    pauses, i, n = [], 0, len(speech)
+    while i < n:
+        if not speech[i]:
+            j = i
+            while j < n and not speech[j]:
+                j += 1
+            if i > 0 and j < n and (j - i) >= 8:
+                pauses.append((i * .01, j * .01))
+            i = j
+        else:
+            i += 1
+    total = len(y) / sr
+    weight = [len(re.sub(r'[^A-Za-z0-9]', '', w)) + 1.2 for w in words]
+    breaks = [k for k, w in enumerate(words[:-1]) if re.search(r'[,.?!:;]$', w) or w.endswith('...')]
+    # expected break times if words were spread evenly, then snap each to the nearest pause
+    cum = np.cumsum(weight) / sum(weight) * total
+    used, cuts = set(), []
+    for k in breaks:
+        exp = cum[k]
+        best = min((abs((p[0] + p[1]) / 2 - exp), idx) for idx, p in enumerate(pauses) if idx not in used) if len(used) < len(pauses) else None
+        if best and best[0] < 0.45:
+            used.add(best[1])
+            cuts.append((k, pauses[best[1]]))
+        else:
+            cuts.append((k, (exp, exp)))
+    cuts.sort(key=lambda c: c[1][0])
+    out, start_word, start_t = [], 0, 0.0
+    for k, (ps, pe) in cuts + [(len(words) - 1, (total, total))]:
+        chunk = list(range(start_word, k + 1))
+        if not chunk:
+            continue
+        span = max(.05, ps - start_t)
+        wsum = sum(weight[c] for c in chunk)
+        t = start_t
+        for c in chunk:
+            d = span * weight[c] / wsum
+            out.append({'w': words[c], 's': round(t, 3), 'e': round(t + d, 3)})
+            t += d
+        start_word, start_t = k + 1, pe
+    return out
+
+
+model, voices = sys.argv[1], sys.argv[2]
+voice = sys.argv[3] if len(sys.argv) > 3 else 'af_heart'
+here = os.path.dirname(os.path.abspath(__file__))
+os.makedirs(os.path.join(here, 'vo'), exist_ok=True)
+kokoro = Kokoro(model, voices)
+out = []
+for i, (text, extra) in enumerate(LINES):
+    samples, sr = kokoro.create(text, voice=voice, speed=1.08, lang='en-us')
+    y = np.asarray(samples, dtype=np.float32)
+    idx = np.where(np.abs(y) > 0.01)[0]
+    y = y[max(0, idx[0] - int(sr * .02)): idx[-1] + int(sr * .06)]
+    y = y / (np.max(np.abs(y)) + 1e-9) * 0.9
+    raw, dst = os.path.join(here, 'vo', f'{i:02d}_raw.wav'), os.path.join(here, 'vo', f'{i:02d}.wav')
+    sf.write(raw, y, sr)
+    subprocess.run(['ffmpeg', '-v', 'error', '-y', '-i', raw, '-ar', '44100', '-ac', '1', dst], check=True)
+    os.remove(raw)
+    dur = len(y) / sr
+    out.append({'text': text, 'dur': round(dur, 3), 'extra': extra, 'file': f'vo/{i:02d}.wav', 'words': word_times(text, y, sr)})
+    print(f'{i:02d} {dur:5.2f}s  {text}')
+
+with open(os.path.join(here, 'vo.js'), 'w') as f:
+    f.write('// generated by vo.py\nwindow.VO = ' + json.dumps(out) + ';\n')
+print('total speech', round(sum(l['dur'] for l in out), 2), 's')
