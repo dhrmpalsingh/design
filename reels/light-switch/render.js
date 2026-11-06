@@ -1,6 +1,6 @@
 // Renders reel.html to video frames.
 //   node render.js stills 2.5,12,30 out_dir   -> PNG stills at those times
-//   node render.js video out.mp4 [fps]        -> silent H.264 video + sfx.json
+//   node render.js video out.mp4 [fps]        -> silent H.264 video + cues.json
 const { chromium } = require('playwright');
 const { spawn } = require('child_process');
 const fs = require('fs');
@@ -23,7 +23,7 @@ const path = require('path');
     }
   } else {
     const fps = +(arg2 || 30);
-    fs.writeFileSync(path.join(__dirname, 'sfx.json'), JSON.stringify(await page.evaluate(() => window.SFX)));
+    fs.writeFileSync(path.join(__dirname, 'cues.json'), JSON.stringify(await page.evaluate(() => window.cues()), null, 1));
     const ff = spawn('ffmpeg', ['-y', '-v', 'error', '-f', 'image2pipe', '-framerate', String(fps), '-c:v', 'mjpeg', '-i', '-',
       '-c:v', 'libx264', '-preset', 'medium', '-crf', '18', '-pix_fmt', 'yuv420p', arg1], { stdio: ['pipe', 'inherit', 'inherit'] });
     const n = Math.round(dur * fps);

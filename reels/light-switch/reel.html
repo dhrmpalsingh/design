@@ -18,12 +18,13 @@
 <body>
 <div id="stage"><svg id="svg" xmlns="http://www.w3.org/2000/svg" width="720" height="1280" viewBox="0 0 720 1280"></svg></div>
 <div id="hint">Click or press space to play / pause · ← → to scrub</div>
+<script src="vo.js"></script>
 <script>
 // ---------------------------------------------------------------------------
 // Light Switch Riddle: a 65-second vertical reel, drawn as SVG from time t.
 // renderAt(t) draws one frame; window.SFX lists sound cues for the audio mix.
 // ---------------------------------------------------------------------------
-const W = 720, H = 1280, DUR = 65;
+const W = 720, H = 1280, DUR = 67.5;
 const C = {
   ink: '#2B2620', wall: '#EFE3CC', wallStripe: '#E9DBC1', wains: '#E3D0AE', wainsLine: '#D3BC95',
   ceil: '#E2D1B3', floor: '#B98757', floorLine: '#A07047', trim: '#FFF7E8',
@@ -99,7 +100,7 @@ const CAPS = [
   [45.2, 48.3, 'Now open the door'],
   [48.7, 50.8, 'The bulb is off…', 'light'],
   [51.7, 54.3, '…but it’s warm!', 'light'],
-  [61.2, 63.1, 'Did you get it right?'],
+  [63.7, 65.6, 'Did you get it right?'],
 ];
 function captions(t) {
   let s = '';
@@ -121,8 +122,8 @@ SFX.push([16.9, 'blip'], [19.6, 'pop'], [22.6, 'pop']);
 for (let i = 0; i < 10; i++) SFX.push([23 + i, i === 9 ? 'tickHi' : 'tick']);
 SFX.push([33.0, 'ding'], [33.45, 'idea'], [36.2, 'click'], [41.55, 'click'], [42.6, 'click']);
 SFX.push([38.0, 'ff'], [46.4, 'whoosh'], [46.55, 'blipDown'], [51.5, 'ouch'], [51.7, 'chime']);
-SFX.push([54.6, 'pop'], [54.9, 'card'], [55.4, 'card'], [55.9, 'card'], [57.0, 'chime'], [57.2, 'pop'], [63.3, 'pop']);
-SFX.push([0.05, 'cut'], [5, 'cut'], [10, 'cut'], [14.5, 'cut'], [19, 'cut'], [22.5, 'cut'], [33, 'cut'], [35.5, 'cut'], [45, 'cut'], [48.5, 'cut'], [54.5, 'cut'], [61, 'cut']);
+SFX.push([54.6, 'pop'], [55.0, 'card'], [56.4, 'card'], [58.6, 'card'], [60.4, 'chime'], [60.6, 'pop'], [65.8, 'pop']);
+SFX.push([0.05, 'cut'], [5, 'cut'], [10, 'cut'], [14.5, 'cut'], [19, 'cut'], [22.5, 'cut'], [33, 'cut'], [35.5, 'cut'], [45, 'cut'], [48.5, 'cut'], [54.5, 'cut'], [63.5, 'cut']);
 for (const [a, b] of [[0, 2.3], [17.0, 17.8], [45.0, 45.9], [48.6, 50.2]]) for (let x = a + .12; x < b; x += .37) SFX.push([x, 'step']);
 window.SFX = SFX.sort((a, b) => a[0] - b[0]);
 
@@ -457,16 +458,16 @@ function countdown(t) {
 }
 function logic(t) {
   let s = bgCream();
-  const an = popAnim(t, 54.6, 61.2) || { scale: 1, opacity: 1 };
+  const an = popAnim(t, 54.6, 63.7) || { scale: 1, opacity: 1 };
   s += pill('How to tell', 360, 190, an);
   const rows = [
     ['on', 'Bulb is on', 'B is on right now', 'B'],
     ['warm', 'Off, but warm', 'A was on for 5 minutes', 'A'],
     ['cold', 'Off and cold', 'C was never turned on', 'C'],
   ];
-  const hi = easeOut(prog(t, 57.0, 57.4));
+  const hi = easeOut(prog(t, 60.4, 60.8));
   rows.forEach(([st, h, sub, letter], i) => {
-    const p = easeOut(prog(t, 54.9 + i * .5, 55.35 + i * .5));
+    const ct = [55.0, 56.4, 58.6][i], p = easeOut(prog(t, ct, ct + .45));
     if (p <= 0) return;
     const y = 300 + i * 214, isA = letter === 'A';
     const sc = isA ? 1 + .05 * hi : 1, op = isA ? 1 : 1 - .45 * hi;
@@ -480,7 +481,7 @@ function logic(t) {
       ${text(606, y + 107, letter, { size: 48, weight: 700, fill: isA ? C.ink : '#fff' })}
     </g>`;
   });
-  const fa = popAnim(t, 57.2, 61.2);
+  const fa = popAnim(t, 60.6, 63.7);
   if (fa) s += pill('So it’s switch A!', 360, 1070, { ...fa, size: 52, bg: C.yellow, fg: C.ink, weight: 700 });
   return s;
 }
@@ -550,11 +551,11 @@ const SCENES = [
     return room({ lit: 1, heat, t, sway: Math.sin(t * 1.7) * 1.2 }) +
       person({ x, y: 1076, s: .95, phase: (t - 48.6) * 8.5, walk: wp < 1 ? 1 : Math.max(0, 1 - (t - 50.2) * 5), front, expr }) + bang;
   }],
-  [54.5, 61, t => logic(t)],
-  [61, 65.01, t => {
-    const front = { to: [372 + Math.sin(t * 9) * 26, 470], amt: easeOut(prog(t, 61.1, 61.5)) };
+  [54.5, 63.5, t => logic(t)],
+  [63.5, 67.51, t => {
+    const front = { to: [372 + Math.sin(t * 9) * 26, 470], amt: easeOut(prog(t, 63.6, 64.0)) };
     let s = hall() + person({ x: 300, y: 1000, expr: 'happy', front });
-    const fa = popAnim(t, 63.3, 65.2);
+    const fa = popAnim(t, 65.8, 67.7);
     if (fa) s += pill('Follow for more', 360, 1150, { ...fa, icon: 'plus', size: 40 });
     return s;
   }],
@@ -567,8 +568,30 @@ const DEFS = `<defs>
 </defs>`;
 
 const svg = document.getElementById('svg');
-function renderAt(t) {
-  t = clamp(t, 0, DUR);
+// Time warp: a scene stretches uniformly when its voice-over lines need more room
+// than the animation gives them. Story time = the times written above; video time = output.
+const WARP = []; let VDUR = 0;
+(function buildWarp() {
+  const lines = (window.VO || []).slice().sort((a, b) => a.t - b.t);
+  let A = 0;
+  for (const [a, b] of SCENES) {
+    const ls = lines.filter(l => l.t >= a && l.t < b);
+    let k = 1;
+    ls.forEach((l, i) => { const next = i + 1 < ls.length ? ls[i + 1].t : b; k = Math.max(k, (l.dur + 0.22) / (next - l.t)); });
+    const B = A + (b - a) * k; WARP.push([a, b, A, B]); A = B;
+  }
+  VDUR = A;
+})();
+const toVideo = s => { for (const [a, b, A, B] of WARP) if (s < b) return A + (Math.max(s, a) - a) * (B - A) / (b - a); return VDUR; };
+const toStory = v => { for (const [a, b, A, B] of WARP) if (v < B) return a + (v - A) * (b - a) / (B - A); return DUR; };
+window.cues = () => ({
+  dur: VDUR,
+  sfx: SFX.map(([t, k]) => [+toVideo(t).toFixed(3), k]),
+  vo: (window.VO || []).map(l => ({ t: +toVideo(l.t).toFixed(3), dur: l.dur, file: l.file, text: l.text })),
+  countdown: [toVideo(22.4), toVideo(22.9), toVideo(32.9), toVideo(33.5)],
+});
+function renderAt(v) {
+  const t = clamp(toStory(clamp(v, 0, VDUR)), 0, DUR - 1e-4);
   const sc = SCENES.find(s => t >= s[0] && t < s[1]) || SCENES[SCENES.length - 1];
   const punch = 1 + .045 * (1 - easeOut(prog(t, sc[0], sc[0] + .3)));
   svg.innerHTML = DEFS +
@@ -576,7 +599,7 @@ function renderAt(t) {
     badge(t) + captions(t);
 }
 window.renderAt = renderAt;
-window.DUR = DUR;
+window.DUR = VDUR;
 
 // ---------- player (when not rendering) ----------
 const params = new URLSearchParams(location.search);
@@ -586,12 +609,12 @@ window.ready = document.fonts.load('600 36px Fredoka').then(() => document.fonts
   const fit = () => { const k = Math.min(innerWidth / W, (innerHeight - 40) / H); stage.style.transform = `scale(${k})`; };
   addEventListener('resize', fit); fit();
   let playing = true, t0 = performance.now(), cur = 0;
-  const tick = now => { if (playing) { cur = ((now - t0) / 1000) % DUR; renderAt(cur); } requestAnimationFrame(tick); };
+  const tick = now => { if (playing) { cur = ((now - t0) / 1000) % VDUR; renderAt(cur); } requestAnimationFrame(tick); };
   const toggle = () => { playing = !playing; t0 = performance.now() - cur * 1000; };
   stage.addEventListener('click', toggle);
   addEventListener('keydown', e => {
     if (e.code === 'Space') { e.preventDefault(); toggle(); }
-    if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') { cur = clamp(cur + (e.code === 'ArrowRight' ? 1 : -1), 0, DUR - .01); t0 = performance.now() - cur * 1000; renderAt(cur); }
+    if (e.code === 'ArrowRight' || e.code === 'ArrowLeft') { cur = clamp(cur + (e.code === 'ArrowRight' ? 1 : -1), 0, VDUR - .01); t0 = performance.now() - cur * 1000; renderAt(cur); }
   });
   requestAnimationFrame(tick);
 });

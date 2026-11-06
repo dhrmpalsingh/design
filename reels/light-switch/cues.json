@@ -1,0 +1,455 @@
+{
+ "dur": 68.57714285714287,
+ "sfx": [
+  [
+   0.05,
+   "cut"
+  ],
+  [
+   0.12,
+   "step"
+  ],
+  [
+   0.49,
+   "step"
+  ],
+  [
+   0.5,
+   "pop"
+  ],
+  [
+   0.86,
+   "step"
+  ],
+  [
+   1.23,
+   "step"
+  ],
+  [
+   1.6,
+   "step"
+  ],
+  [
+   1.97,
+   "step"
+  ],
+  [
+   5,
+   "cut"
+  ],
+  [
+   5.354,
+   "pop"
+  ],
+  [
+   8.186,
+   "pop"
+  ],
+  [
+   10.9,
+   "cut"
+  ],
+  [
+   11.2,
+   "pop"
+  ],
+  [
+   15.4,
+   "cut"
+  ],
+  [
+   15.7,
+   "pop"
+  ],
+  [
+   16.1,
+   "click"
+  ],
+  [
+   16.4,
+   "click"
+  ],
+  [
+   16.7,
+   "click"
+  ],
+  [
+   17,
+   "click"
+  ],
+  [
+   17.3,
+   "click"
+  ],
+  [
+   17.55,
+   "click"
+  ],
+  [
+   17.8,
+   "pop"
+  ],
+  [
+   17.8,
+   "blip"
+  ],
+  [
+   18.02,
+   "step"
+  ],
+  [
+   18.39,
+   "step"
+  ],
+  [
+   19.9,
+   "cut"
+  ],
+  [
+   20.1,
+   "pop"
+  ],
+  [
+   20.5,
+   "pop"
+  ],
+  [
+   23.4,
+   "cut"
+  ],
+  [
+   23.5,
+   "pop"
+  ],
+  [
+   23.9,
+   "tick"
+  ],
+  [
+   24.9,
+   "tick"
+  ],
+  [
+   25.9,
+   "tick"
+  ],
+  [
+   26.9,
+   "tick"
+  ],
+  [
+   27.9,
+   "tick"
+  ],
+  [
+   28.9,
+   "tick"
+  ],
+  [
+   29.9,
+   "tick"
+  ],
+  [
+   30.9,
+   "tick"
+  ],
+  [
+   31.9,
+   "tick"
+  ],
+  [
+   32.9,
+   "tickHi"
+  ],
+  [
+   33.9,
+   "ding"
+  ],
+  [
+   33.9,
+   "cut"
+  ],
+  [
+   34.1,
+   "pop"
+  ],
+  [
+   34.35,
+   "idea"
+  ],
+  [
+   36.4,
+   "cut"
+  ],
+  [
+   36.6,
+   "pop"
+  ],
+  [
+   37.1,
+   "click"
+  ],
+  [
+   38.8,
+   "pop"
+  ],
+  [
+   38.9,
+   "ff"
+  ],
+  [
+   42.1,
+   "pop"
+  ],
+  [
+   42.45,
+   "click"
+  ],
+  [
+   43.5,
+   "click"
+  ],
+  [
+   45.9,
+   "cut"
+  ],
+  [
+   46.02,
+   "step"
+  ],
+  [
+   46.1,
+   "pop"
+  ],
+  [
+   46.39,
+   "step"
+  ],
+  [
+   46.76,
+   "step"
+  ],
+  [
+   47.3,
+   "whoosh"
+  ],
+  [
+   47.45,
+   "blipDown"
+  ],
+  [
+   49.4,
+   "cut"
+  ],
+  [
+   49.6,
+   "pop"
+  ],
+  [
+   49.62,
+   "step"
+  ],
+  [
+   49.99,
+   "step"
+  ],
+  [
+   50.36,
+   "step"
+  ],
+  [
+   50.73,
+   "step"
+  ],
+  [
+   51.1,
+   "step"
+  ],
+  [
+   52.4,
+   "ouch"
+  ],
+  [
+   52.6,
+   "pop"
+  ],
+  [
+   52.6,
+   "chime"
+  ],
+  [
+   55.4,
+   "cut"
+  ],
+  [
+   55.502,
+   "pop"
+  ],
+  [
+   55.909,
+   "card"
+  ],
+  [
+   57.335,
+   "card"
+  ],
+  [
+   59.576,
+   "card"
+  ],
+  [
+   61.41,
+   "chime"
+  ],
+  [
+   61.613,
+   "pop"
+  ],
+  [
+   64.567,
+   "cut"
+  ],
+  [
+   64.767,
+   "pop"
+  ],
+  [
+   66.867,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.3,
+   "dur": 3.18,
+   "file": "vo/00.wav",
+   "text": "Can you solve this one? There are three light switches in a hallway."
+  },
+  {
+   "t": 5.236,
+   "dur": 2.671,
+   "file": "vo/01.wav",
+   "text": "Behind the door, there's a room with one light bulb."
+  },
+  {
+   "t": 8.127,
+   "dur": 1.712,
+   "file": "vo/02.wav",
+   "text": "No windows. No way to peek."
+  },
+  {
+   "t": 11.1,
+   "dur": 1.949,
+   "file": "vo/03.wav",
+   "text": "Only one of the switches works that bulb."
+  },
+  {
+   "t": 15.6,
+   "dur": 1.84,
+   "file": "vo/04.wav",
+   "text": "You can flip them as much as you like..."
+  },
+  {
+   "t": 17.75,
+   "dur": 1.835,
+   "file": "vo/05.wav",
+   "text": "but you can open the door only once."
+  },
+  {
+   "t": 20.05,
+   "dur": 1.162,
+   "file": "vo/06.wav",
+   "text": "So, which switch is it?"
+  },
+  {
+   "t": 23.5,
+   "dur": 2.013,
+   "file": "vo/07.wav",
+   "text": "Pause the video, and comment your answer!"
+  },
+  {
+   "t": 34,
+   "dur": 0.847,
+   "file": "vo/08.wav",
+   "text": "Here's the trick."
+  },
+  {
+   "t": 36.5,
+   "dur": 0.987,
+   "file": "vo/09.wav",
+   "text": "Turn switch A on..."
+  },
+  {
+   "t": 38.75,
+   "dur": 1.183,
+   "file": "vo/10.wav",
+   "text": "and wait five minutes."
+  },
+  {
+   "t": 42,
+   "dur": 1.655,
+   "file": "vo/11.wav",
+   "text": "Then, turn A off, and turn B on."
+  },
+  {
+   "t": 46,
+   "dur": 1.148,
+   "file": "vo/12.wav",
+   "text": "Now, open the door."
+  },
+  {
+   "t": 49.5,
+   "dur": 0.886,
+   "file": "vo/13.wav",
+   "text": "The bulb is off."
+  },
+  {
+   "t": 52.45,
+   "dur": 1.366,
+   "file": "vo/14.wav",
+   "text": "But touch it... it's warm!"
+  },
+  {
+   "t": 55.909,
+   "dur": 1.206,
+   "file": "vo/15.wav",
+   "text": "If it's on, it's B."
+  },
+  {
+   "t": 57.335,
+   "dur": 1.399,
+   "file": "vo/16.wav",
+   "text": "Off, but warm? That's A."
+  },
+  {
+   "t": 59.576,
+   "dur": 1.444,
+   "file": "vo/17.wav",
+   "text": "Off and cold? That's C."
+  },
+  {
+   "t": 61.613,
+   "dur": 1.328,
+   "file": "vo/18.wav",
+   "text": "So the answer is switch A!"
+  },
+  {
+   "t": 64.767,
+   "dur": 0.976,
+   "file": "vo/19.wav",
+   "text": "Did you get it right?"
+  },
+  {
+   "t": 66.867,
+   "dur": 1.209,
+   "file": "vo/20.wav",
+   "text": "Follow for more riddles!"
+  }
+ ],
+ "countdown": [
+  23.299999999999997,
+  23.799999999999997,
+  33.8,
+  34.4
+ ]
+}

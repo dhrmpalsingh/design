@@ -1,6 +1,8 @@
-"""Builds the reel soundtrack: a soft mallet loop plus synthesized sound effects.
+"""Builds the reel soundtrack: voice-over, a soft mallet loop and synthesized sound effects.
 
-Reads sfx.json (written by render.js from the page's cue list), writes soundtrack.wav.
+Reads cues.json (written by render.js: video duration, effect cues, voice-over line
+times), mixes the vo/*.wav lines on top with the music ducked under them, and writes
+soundtrack.wav.
 """
 import json
 import sys
@@ -9,7 +11,8 @@ import wave
 import numpy as np
 
 SR = 44100
-DUR = 65.0
+CUES = json.load(open(sys.argv[1] if len(sys.argv) > 1 else 'cues.json'))
+DUR = CUES['dur']
 N = int(SR * DUR)
 rng = np.random.default_rng(7)
 
@@ -80,7 +83,8 @@ gain = np.ones(N)
 tt = np.arange(N) / SR
 gain *= np.clip(tt / 0.6, 0, 1)
 gain *= np.clip((DUR - tt) / 2.0, 0, 1)
-duck = np.interp(tt, [0, 22.4, 22.9, 32.9, 33.5, DUR], [1, 1, 0.45, 0.45, 1, 1])
+c0, c1, c2, c3 = CUES['countdown']
+duck = np.interp(tt, [0, c0, c1, c2, c3, DUR], [1, 1, 0.45, 0.45, 1, 1])
 music *= gain * duck
 
 # ---------- effects ----------
@@ -122,12 +126,29 @@ SOUNDS = {
     'step': (lambda: lowpass(noise(int(SR * .06)), 20) * env(int(SR * .06), .002, .015), 0.55),
 }
 
-cues = json.load(open(sys.argv[1] if len(sys.argv) > 1 else 'sfx.json'))
-for t0, kind in cues:
+for t0, kind in CUES['sfx']:
     make, g = SOUNDS[kind]
-    add(fx, t0, make(), g)
+    add(fx, t0, make(), g * 0.8)
 
-mix = music * 0.9 + fx
+# ---------- voice-over ----------
+vo = np.zeros(N)
+for line in CUES['vo']:
+    with wave.open(line['file'], 'rb') as w:
+        assert w.getframerate() == SR and w.getnchannels() == 1
+        y = np.frombuffer(w.readframes(w.getnframes()), dtype='<i2').astype(np.float64) / 32768
+    add(vo, line['t'], y, 1.0)
+
+# duck music (and soften effects) while someone is speaking
+active = np.zeros(N)
+for line in CUES['vo']:
+    a, b = int((line['t'] - .12) * SR), int((line['t'] + line['dur'] + .2) * SR)
+    active[max(0, a):min(N, b)] = 1
+k = int(SR * .12)
+active = np.convolve(active, np.ones(k) / k, mode='same')
+music *= 1 - 0.55 * active
+fx *= 1 - 0.3 * active
+
+mix = vo * 1.0 + music * 0.75 + fx
 peak = np.max(np.abs(mix))
 mix = np.tanh(mix / peak * 1.1) * 0.89  # gentle limiting
 stereo = np.stack([mix, mix], axis=1)
@@ -136,4 +157,4 @@ with wave.open('soundtrack.wav', 'wb') as w:
     w.setsampwidth(2)
     w.setframerate(SR)
     w.writeframes((stereo * 32767).astype('<i2').tobytes())
-print('wrote soundtrack.wav', len(cues), 'cues')
+print('wrote soundtrack.wav:', len(CUES['sfx']), 'effects,', len(CUES['vo']), 'voice lines,', f'{DUR:.2f}s')
