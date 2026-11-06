@@ -1,0 +1,15 @@
+{
+  "name": "floating-house",
+  "version": "1.0.0",
+  "description": "73-second vertical explainer (720×1280, 30 fps) with voice-over and word-by-word captions: `floating-house.mp4`.",
+  "main": "render.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "three": "^0.160.0"
+  }
+}

@@ -1,3 +1,6 @@
 soundtrack.wav
 video_silent.mp4
 render.log
+node_modules/
+video3d_silent.mp4
+render3d.log
