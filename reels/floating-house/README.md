@@ -23,14 +23,20 @@ ffmpeg -y -i video_silent.mp4 -i soundtrack.wav -c:v libx264 -crf 20 -pix_fmt yu
 
 ## 3D version
 
-`floating-house-3d.mp4` is the same story, voice-over and sound, rendered in 3D with Three.js: real lighting and soft shadows, a furnished cutaway house, a ground cross-section with soil and bedrock layers, translucent water with moving waves, and a storm.
+`floating-house-3d.mp4` is the same story, voice-over and sound, rendered in 3D with Three.js at 1080×1920, 24 fps: sunlight with soft shadows, ambient occlusion (soft contact shading in corners and where things touch), thousands of individual grass blades with flowers, bushes and lumpy trees, a furnished cutaway house, a ground cross-section with soil and bedrock layers, translucent water with moving waves, procedural clouds, and a storm.
 
 - `reel3d.html`: the 3D scene. It reuses the 2D version's timing through `timeline.js`, so both stay in sync with `cues.json` and the soundtrack.
 - `timeline.js`: the shared timing, state tracks and captions, extracted from `reel.html` (lines 27–147 and 428–469). Re-extract it if those parts of `reel.html` change.
 - `render3d.js`: serves the folder locally (the page loads ES modules) and renders the frames with headless Chromium's software WebGL, about 1 second per frame.
 
+Options: `RES=1080` renders 1080×1920 (default 720), and `AO=0` turns off ambient occlusion (about twice as fast). At 1080 with AO a frame takes about 5 seconds, so render in parallel chunks:
+
 ```sh
 npm install                       # installs three@0.160.0
+D=frames1080; for r in "0 584" "584 1168" "1168 1752"; do set -- $r; RES=1080 node render3d.js frames $1 $2 $D 24 & done; wait
+ffmpeg -y -framerate 24 -i $D/f%05d.jpg -c:v libx264 -crf 18 -pix_fmt yuv420p video3d_silent.mp4
+
+# or, single process:
 node render3d.js video video3d_silent.mp4 30
 ffmpeg -y -i video3d_silent.mp4 -i soundtrack.wav -c:v libx264 -crf 19 -pix_fmt yuv420p -af "loudnorm=I=-14:TP=-1.5:LRA=11,aresample=44100" -c:a aac -b:a 192k -shortest -movflags +faststart floating-house-3d.mp4
 ```
