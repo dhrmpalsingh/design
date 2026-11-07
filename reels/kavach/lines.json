@@ -1,0 +1,18 @@
+[
+ ["Two trains. One track. Heading straight for each other, in the dark.", 0.6],
+ ["Neither driver can see the other yet. But both trains start slowing down... and stop, hundreds of meters apart.", 0.7],
+ ["Nobody pulled the brake. Something called Kavach did.", 0.7],
+ ["Kavach means armour. It's India's own automatic train protection system. Here's how it works.", 0.6],
+ ["Step one: the train has to know exactly where it is, even which track it's on. GPS can't tell tracks just a few meters apart.", 0.6],
+ ["So small RFID tags are fixed between the rails, about one every kilometer, and at every signal.", 0.6],
+ ["A reader under the engine scans each tag as it rolls over it. Exact position. Direction. Which track.", 0.7],
+ ["Step two: each station has its own Kavach unit, wired to every signal nearby. It always knows which ones are red.", 0.6],
+ ["Radio towers carry that, again and again, to every engine in range.", 0.7],
+ ["Step three: the computer on the engine draws a braking curve. At this speed, how far does it need to stop before that red signal?", 0.6],
+ ["If the driver doesn't slow down in time, it warns them. And if they still don't act... it brakes by itself.", 0.9],
+ ["It enforces speed limits too, and shows the signal right on a screen in the cab, so fog can't hide it.", 0.7],
+ ["And if two engines with Kavach end up on the same track, they spot each other, and both stop.", 0.8],
+ ["The cost? Roughly fifty lakh rupees per kilometer of track, and about eighty lakh per engine.", 0.8],
+ ["By mid twenty twenty-six, Kavach four point oh was live on about twenty-five hundred kilometers of the Delhi to Mumbai and Delhi to Howrah routes. Trackside work covers over twenty thousand more.", 0.9],
+ ["Is Kavach on your route yet? Tell me in the comments, and follow for more.", 1.8]
+]

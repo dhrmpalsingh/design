@@ -1,0 +1,531 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Kavach</title>
+<style>
+  @font-face { font-family: 'Fredoka'; src: url('fredoka.woff2') format('woff2'); font-weight: 300 700; font-display: block; }
+  html, body { margin: 0; height: 100%; background: #05060a; }
+  body { display: flex; align-items: center; justify-content: center; overflow: hidden; font-family: Fredoka, sans-serif; }
+  #stage { width: 720px; height: 1280px; position: relative; overflow: hidden; background: #000; transform-origin: center center; }
+  #gl, #ov { position: absolute; inset: 0; display: block; }
+  body.render { display: block; }
+</style>
+<script type="importmap">{ "imports": { "three": "./node_modules/three/build/three.module.js", "three/addons/": "./node_modules/three/examples/jsm/" } }</script>
+</head>
+<body>
+<div id="stage"><canvas id="gl"></canvas><svg id="ov" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1280"></svg></div>
+<script src="vo.js"></script>
+<script type="module">
+// ---------------------------------------------------------------------------
+// How Kavach stops trains from colliding. One night-time railway set (metres):
+// three parallel broad-gauge tracks along z (x = -5.3, 0, 5.3), catenary portals,
+// trees, a station at z ~ 400 with its Kavach unit, a radio tower, signals S-1 / S-2,
+// RFID tag pairs between the rails, and two trains (A: red engine, B: blue engine).
+// Each scene is one narration line (vo.js); actions sit at fractions of a scene.
+// The map (scene 14), the braking-curve graph, the cab screen and the cards are SVG.
+// ---------------------------------------------------------------------------
+import * as THREE from 'three';
+import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { RoundedBoxGeometry } from 'three/addons/geometries/RoundedBoxGeometry.js';
+import { EffectComposer } from 'three/addons/postprocessing/EffectComposer.js';
+import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
+import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
+import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
+await document.fonts.load('700 60px Fredoka');
+
+const QP = new URLSearchParams(location.search);
+const RES = +(QP.get('res') || 720), PXW = RES, PXH = Math.round(RES * 16 / 9);
+
+// ---------- math + timeline ----------
+const clamp = (x, a = 0, b = 1) => Math.max(a, Math.min(b, x));
+const prog = (t, a, b) => b <= a ? (t >= b ? 1 : 0) : clamp((t - a) / (b - a));
+const lerp = (a, b, p) => a + (b - a) * p;
+const easeOut = x => 1 - Math.pow(1 - x, 3);
+const easeInOut = x => x < .5 ? 4 * x * x * x : 1 - Math.pow(-2 * x + 2, 3) / 2;
+const backOut = x => { const c1 = 1.9, c3 = c1 + 1; return 1 + c3 * Math.pow(x - 1, 3) + c1 * Math.pow(x - 1, 2); };
+function rng(seed) { return () => { seed |= 0; seed = seed + 0x6D2B79F5 | 0; let x = Math.imul(seed ^ seed >>> 15, 1 | seed); x = x + Math.imul(x ^ x >>> 7, 61 | x) ^ x; return ((x ^ x >>> 14) >>> 0) / 4294967296; }; }
+const V3 = (x, y, z) => new THREE.Vector3(x, y, z);
+const VO = window.VO || [];
+const S = []; let acc = .35;
+VO.forEach(l => { S.push(acc); acc += l.dur + .25 + l.extra; });
+const VDUR = acc + .1, SE = i => (i + 1 < S.length ? S[i + 1] : VDUR), T = (i, f = 0) => S[i] + f * (SE(i) - S[i]);
+const P = (t, i, a, b) => prog(t, T(i, a), T(i, b));
+const fmt = n => Math.round(n).toLocaleString('en-US');
+
+// Distance covered by something moving at v that starts braking at tb and stops at ts (constant deceleration).
+const runDist = (t, v, tb, ts) => { if (t <= tb) return v * t; const tau = Math.min(t, ts) - tb; return v * tb + v * tau - v * tau * tau / (2 * (ts - tb)); };
+const runSpeed = (t, v, tb, ts) => t <= tb ? v : v * clamp(1 - (t - tb) / (ts - tb));
+
+// ---------- renderer ----------
+const canvas = document.getElementById('gl');
+canvas.width = PXW; canvas.height = PXH; canvas.style.width = PXW + 'px'; canvas.style.height = PXH + 'px';
+{ const st = document.getElementById('stage'), o = document.getElementById('ov'); st.style.width = PXW + 'px'; st.style.height = PXH + 'px'; o.setAttribute('width', PXW); o.setAttribute('height', PXH); }
+const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, preserveDrawingBuffer: true });
+renderer.setPixelRatio(1); renderer.setSize(PXW, PXH, false);
+renderer.outputColorSpace = THREE.SRGBColorSpace; renderer.toneMapping = THREE.ACESFilmicToneMapping; renderer.toneMappingExposure = 1.0;
+renderer.shadowMap.enabled = true; renderer.shadowMap.type = THREE.PCFSoftShadowMap;
+const scene = new THREE.Scene();
+scene.environment = new THREE.PMREMGenerator(renderer).fromScene(new RoomEnvironment(renderer), .04).texture;
+scene.environmentIntensity = .12;
+const FOG = new THREE.Color('#0B1428');
+scene.fog = new THREE.FogExp2(FOG, .0028);
+const camera = new THREE.PerspectiveCamera(40, PXW / PXH, .1, 2e5);
+const composer = new EffectComposer(renderer, new THREE.WebGLRenderTarget(PXW, PXH, { type: THREE.HalfFloatType, samples: 4 }));
+composer.setSize(PXW, PXH);
+composer.addPass(new RenderPass(scene, camera));
+const bloom = new UnrealBloomPass(new THREE.Vector2(PXW, PXH), .5, .45, .92); composer.addPass(bloom);
+composer.addPass(new OutputPass());
+
+// ---------- textures ----------
+function canvasTex(size, draw, rep) { const c = document.createElement('canvas'); c.width = c.height = size; draw(c.getContext('2d'), size); const t = new THREE.CanvasTexture(c); t.colorSpace = THREE.SRGBColorSpace; t.wrapS = t.wrapT = THREE.RepeatWrapping; if (rep) t.repeat.set(rep[0], rep[1]); t.anisotropy = 8; return t; }
+const softDot = (() => { const c = document.createElement('canvas'); c.width = c.height = 64; const g = c.getContext('2d'); const gr = g.createRadialGradient(32, 32, 0, 32, 32, 32); gr.addColorStop(0, 'rgba(255,255,255,1)'); gr.addColorStop(.2, 'rgba(255,255,255,.55)'); gr.addColorStop(1, 'rgba(255,255,255,0)'); g.fillStyle = gr; g.fillRect(0, 0, 64, 64); return new THREE.CanvasTexture(c); })();
+const grassTex = canvasTex(512, (g, s) => { const R = rng(2); g.fillStyle = '#1D2A16'; g.fillRect(0, 0, s, s); for (let k = 0; k < 9000; k++) { const v = R(); g.fillStyle = v < .5 ? 'rgba(52,70,34,.5)' : v < .8 ? 'rgba(20,28,14,.6)' : 'rgba(70,72,48,.35)'; g.fillRect(R() * s, R() * s, 2 + R() * 5, 2 + R() * 5); } }, [500, 500]);
+const ballastTex = canvasTex(256, (g, s) => { const R = rng(4); g.fillStyle = '#4A4744'; g.fillRect(0, 0, s, s); for (let k = 0; k < 2600; k++) { const c = 50 + R() * 70 | 0; g.fillStyle = `rgb(${c},${c - 3},${c - 6})`; g.beginPath(); g.ellipse(R() * s, R() * s, 2 + R() * 4, 2 + R() * 3, R() * 3, 0, 6.3); g.fill(); } }, [1, 600]);
+
+// ---------- sky, moon, stars ----------
+const skyMat = new THREE.ShaderMaterial({ side: THREE.BackSide, depthWrite: false, fog: false,
+  vertexShader: `varying vec3 vD; void main(){ vD = normalize(position); gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }`,
+  fragmentShader: `varying vec3 vD; void main(){ float h = clamp(vD.y, 0., 1.); vec3 c = mix(vec3(.06,.1,.2), vec3(.012,.02,.055), pow(h, .5)); c += vec3(.12,.1,.12) * exp(-h * 18.) * .6; gl_FragColor = vec4(c, 1.); }` });
+const skyDome = new THREE.Mesh(new THREE.SphereGeometry(5e4, 48, 24), skyMat); scene.add(skyDome);
+const stars = (() => { const n = 3500, R = rng(3), pos = new Float32Array(n * 3); for (let i = 0; i < n; i++) { const u = .04 + R() * .96, a = R() * 6.283, s = Math.sqrt(1 - u * u); pos.set([s * Math.cos(a) * 4e4, u * 4e4, s * Math.sin(a) * 4e4], i * 3); } const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3)); return new THREE.Points(g, new THREE.PointsMaterial({ size: RES > 720 ? 2.4 : 1.7, sizeAttenuation: false, color: 0xC8D4FF, map: softDot, transparent: true, depthWrite: false, fog: false })); })();
+skyDome.add(stars);
+const MOON_DIR = V3(-.35, .42, .84).normalize();
+const moon = new THREE.Sprite(new THREE.SpriteMaterial({ map: softDot, color: new THREE.Color(3, 3, 3.3), fog: false, depthWrite: false })); moon.scale.setScalar(2600); moon.position.copy(MOON_DIR).multiplyScalar(4e4); skyDome.add(moon);
+const moonHalo = new THREE.Sprite(new THREE.SpriteMaterial({ map: softDot, color: new THREE.Color(.25, .3, .5), fog: false, depthWrite: false, blending: THREE.AdditiveBlending })); moonHalo.scale.setScalar(14000); moonHalo.position.copy(moon.position); skyDome.add(moonHalo);
+const moonLight = new THREE.DirectionalLight(0x9DB4FF, .55); moonLight.castShadow = true; moonLight.shadow.mapSize.set(2048, 2048); moonLight.shadow.bias = -.0005;
+Object.assign(moonLight.shadow.camera, { left: -70, right: 70, top: 70, bottom: -70, near: 1, far: 400 }); scene.add(moonLight, moonLight.target);
+const hemi = new THREE.HemisphereLight(0x3A4E80, 0x10140C, .42); scene.add(hemi);
+
+// ---------- materials ----------
+const M = o => new THREE.MeshStandardMaterial(o);
+const glow = (r, g, b) => new THREE.MeshBasicMaterial({ color: new THREE.Color(r, g, b) });
+const mat = {
+  grass: M({ map: grassTex, roughness: 1 }), ballast: M({ map: ballastTex, roughness: .95 }),
+  rail: M({ color: 0xB9BEC6, roughness: .22, metalness: .95 }), railSide: M({ color: 0x4A3A30, roughness: .8, metalness: .4 }),
+  sleeper: M({ color: 0x8E8A84, roughness: .9 }), mast: M({ color: 0x7C838C, roughness: .5, metalness: .7 }), wire: M({ color: 0x6E5A44, roughness: .4, metalness: .8 }),
+  red: M({ color: 0xB51E26, roughness: .35, metalness: .3 }), blue: M({ color: 0x1D4FA6, roughness: .35, metalness: .3 }), cream: M({ color: 0xE8DCC0, roughness: .45, metalness: .1 }),
+  roof: M({ color: 0x3A3D42, roughness: .6, metalness: .5 }), dark: M({ color: 0x1E2126, roughness: .7, metalness: .4 }), steel: M({ color: 0x8C949E, roughness: .4, metalness: .75 }),
+  glass: M({ color: 0x0A141C, roughness: .05, metalness: .6 }), coach: M({ color: 0x7A2228, roughness: .4, metalness: .3 }), coachBand: M({ color: 0xD9CDB0, roughness: .5 }),
+  window: M({ color: 0x221A10, emissive: 0xFFC77A, emissiveIntensity: 1.6, roughness: .3 }),
+  concrete: M({ color: 0x6E6C68, roughness: .9 }), plaster: M({ color: 0xC9B48E, roughness: .85 }), trunk: M({ color: 0x2A2016, roughness: 1 }), leaf: M({ color: 0x14240F, roughness: 1 }),
+  cabinet: M({ color: 0xC9CED6, roughness: .45, metalness: .3 }), yellow: M({ color: 0xF2B632, roughness: .5 }), black: M({ color: 0x111316, roughness: .6 }),
+  lampOn: glow(5, 4.2, 3), headlamp: glow(5, 5, 4.4), tail: glow(6, .3, .25),
+};
+function mesh(geo, m, parent, cast = true) { const me = new THREE.Mesh(geo, m); me.castShadow = cast; me.receiveShadow = true; parent.add(me); return me; }
+function box(w, h, d, m, x, y, z, parent, cast = true) { const me = mesh(new THREE.BoxGeometry(w, h, d), m, parent, cast); me.position.set(x, y, z); return me; }
+function cyl(r0, r1, h, m, parent, seg = 16) { return mesh(new THREE.CylinderGeometry(r0, r1, h, seg), m, parent); }
+function beam(a, b, r, m, parent) { const d = new THREE.Vector3().subVectors(b, a); const me = cyl(r, r, d.length(), m, parent, 6); me.position.copy(a).addScaledVector(d, .5); me.quaternion.setFromUnitVectors(V3(0, 1, 0), d.normalize()); return me; }
+const tm = new THREE.Matrix4(), tp = new THREE.Vector3(), tq = new THREE.Quaternion(), ts = new THREE.Vector3();
+
+// ===================== WORLD =====================
+const WORLD = new THREE.Group(); scene.add(WORLD);
+const ZMIN = -1500, ZMAX = 1500, ZLEN = ZMAX - ZMIN, TRACKS = [-5.3, 0, 5.3], GAUGE = 1.676, RAIL_Y = .42;
+const ground = mesh(new THREE.PlaneGeometry(8000, 8000).rotateX(-Math.PI / 2), mat.grass, WORLD, false);
+TRACKS.forEach(x => {
+  const b = mesh(new THREE.BoxGeometry(4.2, .24, ZLEN), mat.ballast, WORLD, false); b.position.set(x, .12, 0);
+  [-1, 1].forEach(s => { box(.08, .16, ZLEN, mat.rail, x + s * GAUGE / 2, RAIL_Y - .08, 0, WORLD, false); box(.16, .04, ZLEN, mat.railSide, x + s * GAUGE / 2, RAIL_Y - .18, 0, WORLD, false); });
+});
+{ const n = Math.floor(ZLEN / .65), sl = new THREE.InstancedMesh(new THREE.BoxGeometry(2.75, .14, .26), mat.sleeper, n * TRACKS.length); let k = 0;
+  TRACKS.forEach(x => { for (let i = 0; i < n; i++) { tm.makeTranslation(x, .28, ZMIN + i * .65); sl.setMatrixAt(k++, tm); } }); sl.receiveShadow = true; WORLD.add(sl); }
+// catenary portals every 60 m, contact wires over every track
+{ const portal = new THREE.Group(); box(.35, 8.6, .35, mat.mast, -9, 4.3, 0, portal); box(.35, 8.6, .35, mat.mast, 9, 4.3, 0, portal); box(18.4, .4, .3, mat.mast, 0, 8.3, 0, portal);
+  TRACKS.forEach(x => { box(.06, 2.0, .06, mat.mast, x, 7.2, 0, portal, false); box(.5, .12, .12, mat.mast, x, 6.25, 0, portal, false); });
+  const parts = []; portal.traverse(o => o.isMesh && parts.push(o));
+  parts.forEach(p => { const n = Math.floor(ZLEN / 60), im = new THREE.InstancedMesh(p.geometry, p.material, n); for (let i = 0; i < n; i++) { tm.makeTranslation(p.position.x, p.position.y, ZMIN + 30 + i * 60); im.setMatrixAt(i, tm); } im.castShadow = true; WORLD.add(im); });
+  TRACKS.forEach(x => { box(.035, .035, ZLEN, mat.wire, x, 6.2, 0, WORLD, false); box(.03, .03, ZLEN, mat.wire, x, 7.6, 0, WORLD, false); }); }
+// trees
+{ const R = rng(9), n = 2200, trunks = new THREE.InstancedMesh(new THREE.CylinderGeometry(.18, .28, 4, 6), mat.trunk, n), crowns = new THREE.InstancedMesh(new THREE.IcosahedronGeometry(2.6, 1), mat.leaf, n);
+  for (let i = 0; i < n; i++) { const side = R() < .5 ? -1 : 1, x = side * (16 + Math.pow(R(), 1.6) * 420), z = ZMIN + R() * ZLEN, s = .7 + R() * .9;
+    if (x > 12 && x < 40 && z > 220 && z < 640) continue; // keep the station yard clear
+    tm.compose(tp.set(x, 2 * s, z), tq.identity(), ts.set(s, s, s)); trunks.setMatrixAt(i, tm);
+    tm.compose(tp.set(x, (4 + 1.6) * s, z), tq.setFromAxisAngle(V3(0, 1, 0), R() * 6), ts.set(s * (1 + R() * .4), s * (.8 + R() * .5), s * (1 + R() * .4))); crowns.setMatrixAt(i, tm); }
+  crowns.castShadow = true; WORLD.add(trunks, crowns); }
+// distant village lights
+{ const R = rng(21), n = 160, pos = new Float32Array(n * 3); for (let i = 0; i < n; i++) { const a = R() * 6.283, d = 900 + R() * 1600; pos.set([Math.cos(a) * d, 2 + R() * 6, Math.sin(a) * d], i * 3); }
+  const g = new THREE.BufferGeometry(); g.setAttribute('position', new THREE.BufferAttribute(pos, 3));
+  WORLD.add(new THREE.Points(g, new THREE.PointsMaterial({ size: RES > 720 ? 6 : 4, sizeAttenuation: false, color: new THREE.Color(2.2, 1.5, .8), map: softDot, transparent: true, depthWrite: false, fog: false }))); }
+
+// ---------- RFID tags: a pair every 200 m on the main track, plus one at each signal ----------
+const TAG_Z = []; for (let z = -1400; z <= 1400; z += 200) TAG_Z.push(z); TAG_Z.push(300 - 30, 520 - 30);
+const tagMat = M({ color: 0xF2B632, roughness: .4, emissive: 0xFFB020, emissiveIntensity: 0 });
+const tagGlowMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(1, .7, .1), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false });
+const TAGS = [];
+TAG_Z.forEach(z => [0, 3].forEach(dz => { const g = new THREE.Group(); g.position.set(0, .31, z + dz); box(.5, .07, .32, tagMat, 0, 0, 0, g, false); box(.32, .075, .14, mat.black, 0, .005, 0, g, false);
+  const h = mesh(new THREE.PlaneGeometry(1.4, 1.4).rotateX(-Math.PI / 2), tagGlowMat, g, false); h.position.y = .05; WORLD.add(g); TAGS.push(g); }));
+
+// ---------- signals ----------
+function makeSignal() {
+  const g = new THREE.Group(); cyl(.12, .14, 6, mat.mast, g).position.y = 3; box(.9, .18, .9, mat.concrete, 0, .09, 0, g);
+  box(.6, 1.7, .4, mat.black, 0, 5.4, 0, g); box(1.0, .06, .4, mat.black, 0, 6.3, 0, g);
+  const lamps = [[0, 1.0, .3], [1, .75, .1], [1, .1, .08]].map(([r, gg, b], k) => { const l = mesh(new THREE.CircleGeometry(.17, 20), new THREE.MeshBasicMaterial({ color: new THREE.Color(r * .08, gg * .08, b * .08) }), g, false); l.position.set(0, 5.95 - k * .52, .21); l.userData.on = new THREE.Color(r * 7, gg * 7, b * 7); l.userData.off = l.material.color.clone(); return l; });
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: softDot, transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })); halo.scale.setScalar(3); g.add(halo);
+  g.userData = { lamps, halo, set(aspect) { lamps.forEach((l, k) => l.material.color.copy(k === aspect ? l.userData.on : l.userData.off)); halo.position.copy(lamps[aspect].position).setZ(.4); halo.material.color.copy(lamps[aspect].userData.on).multiplyScalar(.16); } };
+  return g;
+}
+const SIG1 = makeSignal(), SIG2 = makeSignal();
+SIG1.position.set(-2.4, 0, 300); SIG2.position.set(-2.4, 0, 520); SIG1.rotation.y = SIG2.rotation.y = Math.PI; // facing trains coming from -z
+SIG1.userData.set(0); SIG2.userData.set(2); WORLD.add(SIG1, SIG2);
+
+// ---------- station (z 300..560 on the +x side) ----------
+const STATION = new THREE.Group(); WORLD.add(STATION);
+box(5.6, 1.0, 260, mat.concrete, 9.9, .5, 430, STATION); box(.25, .04, 260, mat.yellow, 7.35, 1.02, 430, STATION, false);
+{ const b = new THREE.Group(); b.position.set(18, 0, 430); STATION.add(b);
+  box(9, 5.5, 34, mat.plaster, 0, 2.75, 0, b); box(10.4, .5, 36, mat.roof, 0, 5.75, 0, b);
+  for (let k = 0; k < 7; k++) box(.1, 1.6, 2.2, mat.window, -4.52, 2.6, -13.5 + k * 4.5, b, false);
+  const board = box(.15, 1.1, 9, M({ color: 0xF2C230, roughness: .5, emissive: 0x3A2A00 }), -4.6, 4.4, 0, b, false); }
+for (let k = 0; k < 8; k++) { cyl(.12, .12, 4.4, mat.mast, STATION).position.set(11.6, 3.2, 340 + k * 26); }
+box(5.6, .25, 200, mat.roof, 10.2, 5.5, 430, STATION);
+const stationLamps = []; for (let k = 0; k < 5; k++) { const l = new THREE.PointLight(0xFFC98A, 260, 40, 1.8); l.position.set(9.5, 5.0, 350 + k * 40); STATION.add(l); stationLamps.push(l); const bulb = mesh(new THREE.BoxGeometry(.3, .08, 1.6), mat.lampOn, STATION, false); bulb.position.set(9.5, 5.3, 350 + k * 40); }
+// the station Kavach cabinet, beside the building
+const CAB = new THREE.Group(); CAB.position.set(12.4, 1.0, 470); STATION.add(CAB);
+box(1.3, 2.1, .8, mat.cabinet, 0, 1.05, 0, CAB); const cabLed = box(.9, .12, .02, glow(.3, 1.6, 3), 0, 1.75, -.42, CAB, false);
+for (let k = 0; k < 4; k++) box(.12, .12, .02, glow(k === 2 ? 3 : .3, k === 2 ? .2 : 2.5, .4), -.35 + k * .23, 1.45, -.42, CAB, false);
+// cables from the cabinet to each signal (thin lines in a trench)
+const cableMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(.3, 1.6, 3), transparent: true, opacity: 0 });
+const cables = [SIG1, SIG2].map(sig => { const g = new THREE.Group(); const a = V3(12.4, 1.1, 470), b = V3(sig.position.x, .5, sig.position.z), m1 = V3(7, .35, 470), m2 = V3(-2.4, .35, 470);
+  [[a, V3(12.4, .35, 470)], [V3(12.4, .35, 470), m1], [m1, m2], [m2, V3(-2.4, .35, sig.position.z)], [V3(-2.4, .35, sig.position.z), b]].forEach(([p, q]) => beam(p, q, .06, cableMat, g)); WORLD.add(g); return g; });
+
+// ---------- radio tower ----------
+const TOWER = new THREE.Group(); TOWER.position.set(30, 0, 400); WORLD.add(TOWER);
+{ const H = 42, legs = [[-1, -1], [1, -1], [1, 1], [-1, 1]], w = y => lerp(2.6, .5, y / H);
+  legs.forEach(([a, b]) => beam(V3(a * w(0), 0, b * w(0)), V3(a * w(H), H, b * w(H)), .1, mat.mast, TOWER));
+  for (let y = 0; y < H - 1; y += 3.5) for (let k = 0; k < 4; k++) { const [a1, b1] = legs[k], [a2, b2] = legs[(k + 1) % 4]; beam(V3(a1 * w(y), y, b1 * w(y)), V3(a2 * w(y + 3.5), y + 3.5, b2 * w(y + 3.5)), .045, mat.mast, TOWER); beam(V3(a1 * w(y), y, b1 * w(y)), V3(a2 * w(y), y, b2 * w(y)), .04, mat.mast, TOWER); }
+  [0, 1.6, 3.2, 4.8].forEach(a => { const p = box(.5, 1.6, .2, mat.cream, Math.cos(a) * .8, H - 2, Math.sin(a) * .8, TOWER); p.rotation.y = -a; });
+  cyl(.04, .04, 4, mat.mast, TOWER).position.y = H + 2;
+  const av = mesh(new THREE.SphereGeometry(.22, 12, 8), mat.tail, TOWER, false); av.position.y = H + 4.1; TOWER.userData.beacon = av;
+  box(2.4, 2.4, 3, mat.cabinet, 4, 1.2, 0, TOWER); }
+const ringMat = new THREE.MeshBasicMaterial({ color: new THREE.Color(.4, 1.8, 3.2), transparent: true, opacity: .0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, fog: false });
+const RINGS = Array.from({ length: 5 }, () => { const r = new THREE.Mesh(new THREE.TorusGeometry(1, .012, 6, 96).rotateX(Math.PI / 2), ringMat.clone()); scene.add(r); return r; });
+const packetMat = new THREE.SpriteMaterial({ map: softDot, color: new THREE.Color(.8, 3, 4), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, fog: false });
+const PACKETS = Array.from({ length: 10 }, () => { const s = new THREE.Sprite(packetMat.clone()); s.scale.setScalar(2.2); scene.add(s); return s; });
+
+// ===================== TRAINS =====================
+// Local frame: forward is +z, the engine's nose at z = 0, the train trails toward -z.
+function beamMaterial() {
+  return new THREE.ShaderMaterial({ transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, side: THREE.DoubleSide, fog: false, uniforms: { uAmt: { value: 1 } },
+    vertexShader: `varying float vZ; varying vec3 vN; varying vec3 vV; void main(){ vZ = position.z; vN = normalize(normalMatrix * normal); vec4 mv = modelViewMatrix * vec4(position, 1.); vV = normalize(-mv.xyz); gl_Position = projectionMatrix * mv; }`,
+    fragmentShader: `uniform float uAmt; varying float vZ; varying vec3 vN; varying vec3 vV; void main(){ float k = pow(1. - clamp(vZ / 90., 0., 1.), 2.2); float e = pow(abs(dot(normalize(vN), normalize(vV))), 1.5); gl_FragColor = vec4(vec3(1., .95, .82) * k * e * .045 * uAmt, 1.); }` });
+}
+function makeEngine(bodyMat) {
+  const g = new THREE.Group();
+  box(3.0, .5, 19.5, mat.dark, 0, 1.3, -9.75, g);
+  [-3.6, -15.9].forEach(z => { box(2.5, .8, 4.2, mat.dark, 0, .98, z, g); [-1.4, 0, 1.4].forEach(dz => [-1, 1].forEach(s => { const w = cyl(.55, .55, .14, mat.steel, g, 18); w.rotation.z = Math.PI / 2; w.position.set(s * .84, RAIL_Y + .55, z + dz); })); });
+  const body = mesh(new RoundedBoxGeometry(3.15, 2.9, 19.2, 3, .3), bodyMat, g); body.position.set(0, 3.0, -9.75);
+  box(3.18, .32, 19.1, mat.cream, 0, 2.15, -9.75, g); box(3.18, .1, 19.1, mat.cream, 0, 3.75, -9.75, g);
+  box(2.8, .3, 18.4, mat.roof, 0, 4.55, -9.75, g);
+  [-1.2, .55].forEach(x => box(1.15, .85, .08, mat.glass, x * .0 + (x < 0 ? -.68 : .68), 3.55, .14, g, false));
+  box(.18, 1.0, .1, bodyMat, 0, 3.55, .13, g, false);
+  for (let k = 0; k < 6; k++) [-1, 1].forEach(s => box(.06, .5, 1.1, mat.dark, s * 1.58, 3.2, -5 - k * 1.8, g, false));
+  [-4.5, -15].forEach(z => { const a = V3(0, 4.7, z), b = V3(0, 5.6, z + 1.2), c = V3(0, 5.95, z); beam(a, b, .05, mat.steel, g); beam(b, c, .05, mat.steel, g); box(1.6, .06, .2, mat.steel, 0, 5.98, z, g, false); });
+  const lamp = mesh(new THREE.CircleGeometry(.2, 20), mat.headlamp, g, false); lamp.position.set(0, 4.15, .16);
+  [-1, 1].forEach(s => { const m = mesh(new THREE.CircleGeometry(.1, 14), mat.lampOn, g, false); m.position.set(s * 1.1, 1.95, .16); });
+  const halo = new THREE.Sprite(new THREE.SpriteMaterial({ map: softDot, color: new THREE.Color(1.1, 1.05, .9), transparent: true, depthWrite: false, blending: THREE.AdditiveBlending })); halo.position.set(0, 4.15, .5); halo.scale.setScalar(3.2); g.add(halo);
+  const spot = new THREE.SpotLight(0xFFF1D6, 22000, 0, .2, .55, 2); spot.position.set(0, 4.15, .3); spot.target.position.set(0, .4, 80); g.add(spot, spot.target);
+  const cone = new THREE.Mesh(new THREE.ConeGeometry(12, 90, 32, 1, true).rotateX(-Math.PI / 2).translate(0, 0, 45), beamMaterial()); cone.position.set(0, 4.15, .3); cone.rotation.x = .05; g.add(cone);
+  // Kavach parts: RFID reader under the nose, radio antenna on the roof
+  const reader = box(.9, .16, .5, M({ color: 0x2C6FD6, roughness: .4, emissive: 0x2C8FFF, emissiveIntensity: .3 }), 0, 1.0, -1.6, g, false);
+  const readBeam = mesh(new THREE.ConeGeometry(.5, .62, 20, 1, true).translate(0, -.31, 0).rotateX(Math.PI), new THREE.MeshBasicMaterial({ color: new THREE.Color(.4, 1.6, 3), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide }), g, false);
+  readBeam.position.set(0, .3, -1.6); readBeam.rotation.x = Math.PI;
+  const ant = mesh(new THREE.SphereGeometry(.35, 16, 8, 0, 6.3, 0, 1.6), mat.cabinet, g); ant.position.set(0, 4.7, -2);
+  const shield = new THREE.Mesh(new THREE.SphereGeometry(1, 48, 24), new THREE.MeshBasicMaterial({ color: new THREE.Color(.3, 1.3, 2.4), transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide, wireframe: true, fog: false }));
+  shield.position.set(0, 3, -6); g.add(shield);
+  g.userData = { spot, cone, halo, reader, readBeam, ant, shield, lamp };
+  return g;
+}
+function makeCoach() {
+  const g = new THREE.Group();
+  box(3.0, .45, 22.4, mat.dark, 0, 1.25, -11.5, g);
+  [-3.5, -19.5].forEach(z => { box(2.4, .6, 3, mat.dark, 0, .95, z, g); [-1, 1].forEach(s => [-1, 1].forEach(d => { const w = cyl(.46, .46, .12, mat.steel, g, 14); w.rotation.z = Math.PI / 2; w.position.set(s * .84, RAIL_Y + .46, z + d * 1.1); })); });
+  const b = mesh(new RoundedBoxGeometry(3.2, 3.0, 22.6, 2, .35), mat.coach, g); b.position.set(0, 3.0, -11.5);
+  box(3.22, .9, 22, mat.coachBand, 0, 3.15, -11.5, g, false);
+  [-1, 1].forEach(s => { for (let k = 0; k < 9; k++) box(.04, .62, 1.5, mat.window, s * 1.62, 3.2, -3.5 - k * 2.0, g, false); });
+  box(2.9, .2, 22, mat.roof, 0, 4.55, -11.5, g);
+  return g;
+}
+function makeTrain(bodyMat, nCoach) {
+  const g = new THREE.Group(), eng = makeEngine(bodyMat); g.add(eng);
+  for (let k = 0; k < nCoach; k++) { const c = makeCoach(); c.position.z = -20 - k * 23.4; g.add(c); }
+  const tail = new THREE.Group(); [-1, 1].forEach(s => { const l = mesh(new THREE.CircleGeometry(.14, 12), mat.tail, tail, false); l.position.set(s * 1.1, 1.9, 0); l.rotation.y = Math.PI; }); tail.position.z = -20 - nCoach * 23.4 + .5; g.add(tail);
+  g.userData.eng = eng; g.userData.coaches = g.children.slice(1, 1 + nCoach);
+  WORLD.add(g); return g;
+}
+const TRAIN_A = makeTrain(mat.red, 8), TRAIN_B = makeTrain(mat.blue, 8);
+const ENG_A = TRAIN_A.userData.eng, ENG_B = TRAIN_B.userData.eng;
+function placeTrain(tr, x, zNose, dir) { tr.visible = true; tr.position.set(x, 0, zNose); tr.rotation.y = dir > 0 ? 0 : Math.PI; }
+function coachesVisible(tr, n) { tr.userData.coaches.forEach((c, k) => c.visible = k < n); tr.children[tr.children.length - 1].visible = n === tr.userData.coaches.length; }
+const noseWorld = (tr, dy = 0, dz = 0) => tr.localToWorld(V3(0, dy, dz));
+
+// GPS uncertainty disc (scene 4)
+const gpsDisc = new THREE.Mesh(new THREE.CircleGeometry(1, 64).rotateX(-Math.PI / 2), new THREE.ShaderMaterial({ transparent: true, depthWrite: false, blending: THREE.AdditiveBlending, fog: false, uniforms: { uA: { value: 0 } },
+  vertexShader: `varying vec2 vP; void main(){ vP = position.xz; gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.); }`,
+  fragmentShader: `uniform float uA; varying vec2 vP; void main(){ float r = length(vP); float ring = smoothstep(.93, .97, r) * (1. - smoothstep(.97, 1., r)); gl_FragColor = vec4(vec3(1., .45, .2) * (ring * 1.6 + (1. - r) * .25) * uA, 1.); }` }));
+gpsDisc.position.y = .6; scene.add(gpsDisc);
+
+// ===================== SCENES =====================
+const N_SC = VO.length;
+let LABELS = [], HUD = null, CHIP = null;
+function label(pos, str, opt = {}) { LABELS.push({ pos: pos.clone(), str, ...opt }); }
+function setCam(pos, look, fov = 40) { camera.position.copy(pos); camera.fov = fov; camera.updateProjectionMatrix(); camera.lookAt(look); camera.updateMatrixWorld(); }
+const sceneIdx = t => { let i = 0; while (i + 1 < N_SC && t >= S[i + 1]) i++; return i; };
+
+// head-on approach: both trains close at v each, brake from tb to ts, stop GAP_END apart around zc
+function headOn(t, tStart, tb, ts, v, gapEnd, zc) {
+  const total = runDist(ts - tStart, v, tb - tStart, ts - tStart), d = runDist(t - tStart, v, tb - tStart, ts - tStart);
+  const half = gapEnd / 2 + total - d;
+  placeTrain(TRAIN_A, 0, zc - half, 1); placeTrain(TRAIN_B, 0, zc + half, -1);
+  return { gap: half * 2, speed: runSpeed(t - tStart, v, tb - tStart, ts - tStart) };
+}
+// train A approaching signal S-2 (z = 520) and stopping at Z_STOP
+const Z_STOP = 492, V_A = 27.8;
+function approach(t) {
+  const tb = T(10, .6), ts = T(10, .88);
+  const rem = t >= ts ? 0 : t >= tb ? V_A * (ts - t) * (ts - t) / (2 * (ts - tb)) : V_A * (ts - tb) / 2 + V_A * (tb - t);
+  return { z: Z_STOP - rem, v: t >= ts ? 0 : t >= tb ? V_A * (ts - t) / (ts - tb) : V_A };
+}
+
+function resetFrame() {
+  LABELS = []; HUD = null; CHIP = null;
+  TRAIN_A.visible = TRAIN_B.visible = true; coachesVisible(TRAIN_A, 8); coachesVisible(TRAIN_B, 8);
+  [ENG_A, ENG_B].forEach(e => { e.userData.readBeam.material.opacity = 0; e.userData.shield.material.opacity = 0; e.userData.cone.material.uniforms.uAmt.value = 1; e.userData.spot.intensity = 22000; });
+  RINGS.forEach(r => r.visible = false); PACKETS.forEach(p => p.visible = false);
+  gpsDisc.material.uniforms.uA.value = 0; tagMat.emissiveIntensity = 0; tagGlowMat.opacity = 0; cableMat.opacity = 0;
+  SIG1.userData.set(0); SIG2.userData.set(2); scene.fog.density = .0028; bloom.strength = .5;
+}
+
+function update(t) {
+  const i = sceneIdx(t), u = P(t, i, 0, 1);
+  resetFrame();
+  TOWER.userData.beacon.material = (Math.floor(t * 1.2) % 2) ? mat.tail : mat.dark;
+
+  if (i <= 2) {   // ---- head-on, both stop ----
+    const r = headOn(t, 0, T(1, .38), T(1, .86), 27.5, 384, -700);
+    HUD = [['GAP', fmt(r.gap) + ' m', r.gap < 600 ? '#FFD34D' : '#fff'], ['SPEED', fmt(r.speed * 3.6) + ' km/h']];
+    if (i === 0) { const za = TRAIN_A.position.z; setCam(V3(lerp(-7, -5, u), lerp(9, 7.5, u), za - lerp(34, 26, u)), V3(0, 2.5, za + 120), 44); }
+    if (i === 1) { const k = easeInOut(P(t, 1, .45, 1)), za = TRAIN_A.position.z, zb = TRAIN_B.position.z;
+      setCam(V3(lerp(-6, -14, k), lerp(8, 64, k), lerp(za - 26, -700 - 192 - 95, k)), V3(0, lerp(2.5, 0, k), lerp(za + 120, -700 + 20, k)), lerp(44, 50, k));
+      if (t > T(1, .4)) { label(noseWorld(TRAIN_A, 5.2), 'braking', { col: '#FF8A5B' }); label(noseWorld(TRAIN_B, 5.2), 'braking', { col: '#FF8A5B', dx: -150 }); } }
+    if (i === 2) { const zc = -700; setCam(V3(-14 + u * 4, 64 - u * 6, zc - 192 - 95 + u * 10), V3(0, 0, zc + 20), 50);
+      label(noseWorld(TRAIN_A, 5.2), 'auto brake', { col: '#7FE8FF' }); label(noseWorld(TRAIN_B, 5.2), 'auto brake', { col: '#7FE8FF', dx: -150 });
+      HUD.push(['DRIVER', 'no brake']); }
+  }
+  if (i === 3) {  // ---- what is Kavach: slow orbit around the stopped red engine ----
+    headOn(T(2, .99), 0, T(1, .38), T(1, .86), 27.5, 384, -700);
+    const za = TRAIN_A.position.z, a = lerp(-.9, .5, u);
+    setCam(V3(Math.sin(a) * 22, 4.5 + u * 1.5, za + Math.cos(a) * 22), V3(0, 3, za - 4), 42);
+    ENG_A.userData.shield.material.opacity = .18 * P(t, 3, .05, .25); ENG_A.userData.shield.scale.set(5, 4.5, 14);
+  }
+  if (i === 4) {  // ---- GPS can't pick the track ----
+    TRAIN_B.visible = false; const z = -300 + V_A * (t - S[4]); placeTrain(TRAIN_A, 0, z, 1);
+    const pulse = .7 + .3 * Math.sin(t * 5); gpsDisc.material.uniforms.uA.value = P(t, 4, .45, .55) * pulse; gpsDisc.position.set(0, .6, z - 5); gpsDisc.scale.setScalar(11);
+    setCam(V3(-16, 34, z - 46), V3(0, 0, z - 4), 40); CHIP = ['1', 'WHERE AM I?'];
+    if (t > T(4, .55)) { label(V3(-5.3, .5, z + 4), 'track 1?', { col: '#FF8A5B', dx: 90, dy: -40 }); label(V3(0, .5, z + 4), 'track 2?', { col: '#FF8A5B', dx: 0, dy: -150 }); label(V3(5.3, .5, z + 4), 'track 3?', { col: '#FF8A5B', dx: -90, dy: -40 }); }
+    HUD = [['GPS ERROR', 'a few m'], ['TRACK GAP', '≈ 5 m']];
+  }
+  if (i === 5) {  // ---- RFID tags between the rails ----
+    TRAIN_A.visible = TRAIN_B.visible = false; CHIP = ['1', 'RFID TAGS'];
+    const k = easeInOut(u); tagMat.emissiveIntensity = 1.5 + Math.sin(t * 6) * .8; tagGlowMat.opacity = .25 + .15 * Math.sin(t * 6);
+    setCam(V3(lerp(1.6, .8, k), lerp(2.2, 7, k), lerp(-8, -30, k)), V3(0, 0, lerp(4, 120, k)), 46);
+    label(V3(0, .4, 0), 'RFID tag', { col: '#FFD34D', dy: -120 }); if (u > .45) label(V3(0, .4, 200), 'next tag · ~1 km', { col: '#FFD34D', dy: -60 });
+    HUD = [['TAGS', '~1 per km'], ['ALSO AT', 'every signal']];
+  }
+  if (i === 6) {  // ---- reader under the engine scans a tag ----
+    TRAIN_B.visible = false; coachesVisible(TRAIN_A, 3); CHIP = ['1', 'READ THE TAG'];
+    const z = lerp(185, 215, easeInOut(u)); placeTrain(TRAIN_A, 0, z, 1);
+    const readerZ = z - 1.6, near = Math.max(...[200, 203].map(tz => 1 - clamp(Math.abs(readerZ - tz) / 2.5)));
+    ENG_A.userData.readBeam.material.opacity = .25 + near * .6; tagMat.emissiveIntensity = near * 3; tagGlowMat.opacity = near * .5;
+    ENG_A.userData.spot.intensity = 8000;
+    setCam(V3(-2.75, .95, 193), V3(0, .5, 203.5), 50);
+    if (u > .35) { label(V3(0, .4, 203), 'tag', { col: '#FFD34D', dy: 60, dx: 120 }); label(noseWorld(TRAIN_A, 1.0, -1.6), 'reader', { col: '#7FE8FF', dy: -140, dx: -120 }); }
+    HUD = u > .35 ? [['POSITION', 'km 812.40'], ['DIRECTION', 'UP →'], ['TRACK', 'main line']] : [['READER', 'scanning...']];
+  }
+  if (i === 7 || i === 8) {  // ---- station unit + radio ----
+    TRAIN_B.visible = false; coachesVisible(TRAIN_A, 6); const a = approach(t); placeTrain(TRAIN_A, 0, a.z - 0, 1);
+    cableMat.opacity = i === 7 ? .5 + .5 * Math.sin(t * 6) * P(t, 7, .4, .5) : .4;
+    if (i === 7) { CHIP = ['2', 'STATION KAVACH']; const k = easeInOut(u); setCam(V3(lerp(-30, -22, k), lerp(38, 26, k), lerp(380, 400, k)), V3(lerp(8, 4, k), 0, lerp(470, 480, k)), 42);
+      label(V3(12.4, 3.2, 470), 'Kavach unit', { col: '#7FE8FF', dy: -110 }); if (u > .45) { label(V3(-2.4, 6, 300), 'S-1 green', { col: '#5BE38B', dy: -60, dx: -100 }); label(V3(-2.4, 6, 520), 'S-2 RED', { col: '#FF5B5B', dy: -60 }); }
+      HUD = [['SIGNAL S-1', 'GREEN', '#5BE38B'], ['SIGNAL S-2', 'RED', '#FF5B5B']]; }
+    if (i === 8) { CHIP = ['2', 'RADIO LINK']; const k = easeInOut(u), z = TRAIN_A.position.z;
+      setCam(V3(lerp(-34, -40, k), lerp(20, 26, k), lerp(z - 70, z - 60, k)), V3(14, 16, lerp(z + 60, 380, k)), 48);
+      const top = V3(30, 40, 400);
+      RINGS.forEach((r, j) => { const ph = ((t - S[8]) * .55 + j / RINGS.length) % 1; r.visible = true; r.position.copy(top); r.scale.setScalar(4 + ph * 150); r.material.opacity = (1 - ph) * (1 - ph) * .3; });
+      const ant = noseWorld(TRAIN_A, 4.9, -2);
+      PACKETS.forEach((p, j) => { const ph = ((t - S[8]) * .8 + j / PACKETS.length) % 1; p.visible = true; p.position.lerpVectors(top, ant, ph); p.position.y += Math.sin(ph * Math.PI) * 18; p.material.opacity = Math.sin(ph * Math.PI); });
+      label(V3(30, 40, 400), 'radio tower', { col: '#7FE8FF', dy: -40 }); label(ant, 'engine radio', { col: '#7FE8FF', dy: 60, dx: 100 });
+      HUD = [['LINK', 'UHF radio'], ['S-2 AHEAD', 'RED', '#FF5B5B']]; }
+  }
+  if (i === 9 || i === 10) {  // ---- braking curve, warning, auto brake ----
+    TRAIN_B.visible = false; coachesVisible(TRAIN_A, 6); const a = approach(t); placeTrain(TRAIN_A, 0, a.z, 1); CHIP = ['3', 'BRAKING CURVE'];
+    const z = a.z, k = easeInOut(P(t, 9, 0, 1));
+    if (i === 9) setCam(V3(lerp(-14, -22, k), lerp(12, 16, k), z - lerp(30, 40, k)), V3(0, 2, z + 60), 44);
+    else { const k2 = easeInOut(P(t, 10, 0, .6)); setCam(V3(lerp(-22, -26, k2), lerp(16, 9, k2), lerp(z - 40, 470, k2)), V3(0, 2, lerp(z + 60, 510, k2)), 44); }
+    label(V3(-2.4, 6, 520), 'red signal', { col: '#FF5B5B', dy: -60 });
+    if (i === 10) { if (t > T(10, .2) && t < T(10, .6)) label(noseWorld(TRAIN_A, 5.2), 'WARNING · BEEP', { col: '#FFD34D' }); if (t >= T(10, .6)) label(noseWorld(TRAIN_A, 5.2), 'AUTO BRAKE', { col: '#FF5B5B' }); if (t >= T(10, .88)) label(noseWorld(TRAIN_A, 1), 'stopped', { col: '#5BE38B', dy: 80, dx: 100 }); }
+    window.__a = a;
+  }
+  if (i === 11) {  // ---- cab view in fog ----
+    TRAIN_A.visible = TRAIN_B.visible = false; CHIP = ['3', 'CAB SIGNAL'];
+    scene.fog.density = .016; SIG2.userData.set(1);
+    const z = 330 + 16.7 * (t - S[11]); setCam(V3(-.6, 3.6, z), V3(-.4, 3.0, z + 60), 50); window.__cab = { z, v: 16.7 };
+  }
+  if (i === 12) {  // ---- engine meets engine ----
+    coachesVisible(TRAIN_A, 2); coachesVisible(TRAIN_B, 2);
+    const r = headOn(t, S[12], T(12, .45), T(12, .88), 25, 300, -700), za = TRAIN_A.position.z, zb = TRAIN_B.position.z;
+    [ENG_A, ENG_B].forEach(e => { const sh = e.userData.shield; sh.scale.set(6, 5, 18); sh.material.opacity = .14 + .08 * Math.sin(t * 6); });
+    const k = easeInOut(u); setCam(V3(-14, lerp(70, 58, k), -700 - 150 - lerp(110, 90, k)), V3(0, 0, -700 + 20), 50);
+    if (t > T(12, .4)) { label(noseWorld(TRAIN_A, 5), 'engine ahead!', { col: '#FFD34D' }); label(noseWorld(TRAIN_B, 5), 'engine ahead!', { col: '#FFD34D', dx: -160 }); }
+    HUD = [['GAP', fmt(r.gap) + ' m'], ['SPEED', fmt(r.speed * 3.6) + ' km/h']];
+  }
+  if (i === 13 || i === 14 || i === 15) {  // ---- costs, map, outro ----
+    TRAIN_B.visible = false; const z = -200 + V_A * (t - S[13]); placeTrain(TRAIN_A, 0, z, 1);
+    if (i === 13) setCam(V3(-50, 70, z - 70 + u * 30), V3(0, 0, z + 40), 40);
+    if (i === 14) setCam(V3(-50, 90, z - 60), V3(0, 0, z + 40), 40);
+    if (i === 15) { const k = easeInOut(u); setCam(V3(-3.5, lerp(6, 4, k), z + lerp(70, 40, k)), V3(0, 2.5, z - 10), 44); }
+  }
+  // moon shadow follows the camera's focus
+  const f = camera.getWorldDirection(V3(0, 0, 0)), focus = camera.position.clone().addScaledVector(f, 40); focus.y = 0;
+  moonLight.target.position.copy(focus); moonLight.position.copy(focus).addScaledVector(MOON_DIR, 200);
+  skyDome.position.copy(camera.position);
+  return i;
+}
+
+// ---------- overlay ----------
+const ov = document.getElementById('ov');
+const mctx = document.createElement('canvas').getContext('2d');
+const tw = (s, size, w = 700) => { mctx.font = `${w} ${size}px Fredoka`; return mctx.measureText(s).width; };
+const esc = s => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;');
+const txt = (x, y, s, { size = 30, w = 700, fill = '#fff', stroke = '', sw = 0, anchor = 'middle', op = 1 } = {}) => `<text x="${x}" y="${y}" text-anchor="${anchor}" font-family="Fredoka" font-weight="${w}" font-size="${size}" fill="${fill}"${op < 1 ? ` opacity="${op}"` : ''}${stroke ? ` stroke="${stroke}" stroke-width="${sw}" paint-order="stroke" stroke-linejoin="round"` : ''}>${esc(s)}</text>`;
+const KEY = new Set(['trains', 'track', 'stop', 'kavach', 'armour', 'india', 'exactly', 'gps', 'rfid', 'tags', 'kilometer', 'signal', 'reader', 'position', 'direction', 'station', 'red', 'radio', 'braking', 'curve', 'warns', 'itself', 'speed', 'screen', 'fog', 'spot', 'cost', 'fifty', 'lakh', 'eighty', 'four', 'twenty-five', 'mumbai', 'howrah', 'delhi', 'route', 'comments', 'follow']);
+function captions(t) {
+  for (let i = 0; i < VO.length; i++) {
+    const ws = VO[i].words || [], t0 = S[i];
+    if (t < t0 || t > t0 + VO[i].dur + .25) continue;
+    let k = -1; for (let j = 0; j < ws.length; j++) if (t >= t0 + ws[j].s) k = j;
+    if (k < 0) return '';
+    const w = ws[k].w.replace(/\.\.\.$/, '').replace(/[.,!?:;]+$/, ''), pop = prog(t, t0 + ws[k].s, t0 + ws[k].s + .12), sc = 1.18 - .18 * easeOut(pop);
+    const key = KEY.has(w.toLowerCase().replace(/[^a-z-]/g, '')); let size = 80; while (tw(w, size) > 640 && size > 40) size -= 2;
+    return `<g transform="translate(360 1040) scale(${sc.toFixed(3)})">${txt(0, 6, w, { size, fill: 'rgba(0,0,0,.4)', stroke: 'rgba(0,0,0,.4)', sw: 14 })}${txt(0, 0, w, { size, fill: key ? '#FFD34D' : '#fff', stroke: '#0B0D14', sw: 12 })}</g>`;
+  }
+  return '';
+}
+function labelsSVG() {
+  let s = '';
+  LABELS.forEach(L => { const p = L.pos.clone().project(camera); if (p.z > 1 || p.z < -1) return; const x = (p.x * .5 + .5) * 720, y = (-p.y * .5 + .5) * 1280; if (x < -50 || x > 770 || y < -50 || y > 1330) return;
+    const dy = L.dy ?? -70, w = tw(L.str, 24, 600) + 30, lx = clamp(x + (L.dx ?? 60), 20 + w / 2, 700 - w / 2), ly = clamp(y + dy, 300, 1180), col = L.col || '#fff';
+    s += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="6" fill="none" stroke="${col}" stroke-width="3"/><path d="M${x.toFixed(1)} ${y.toFixed(1)} L${lx.toFixed(1)} ${ly.toFixed(1)}" stroke="${col}" stroke-width="2.5" opacity=".9"/>
+      <rect x="${(lx - w / 2).toFixed(1)}" y="${(ly - 21).toFixed(1)}" width="${w.toFixed(1)}" height="42" rx="14" fill="rgba(8,12,20,.75)" stroke="${col}" stroke-width="2"/>${txt(lx, ly + 8, L.str, { size: 24, w: 600, fill: col })}`; });
+  return s;
+}
+function hudSVG() {
+  if (!HUD) return ''; const h = HUD.length * 56 + 22;
+  let s = `<g transform="translate(30 130)"><rect width="340" height="${h}" rx="18" fill="rgba(6,10,18,.66)" stroke="rgba(127,232,255,.45)" stroke-width="2"/>`;
+  HUD.forEach(([k, v, c], j) => s += txt(22, 47 + j * 56, k, { size: 19, w: 600, fill: '#7FE8FF', anchor: 'start' }) + txt(318, 49 + j * 56, v, { size: 30, w: 700, fill: c || '#fff', anchor: 'end' }));
+  return s + '</g>';
+}
+function chipSVG() {
+  if (!CHIP) return ''; const [n, str] = CHIP, w = tw(str, 22, 700) + 74;
+  return `<g transform="translate(${720 - 30 - w} 136)"><rect width="${w}" height="44" rx="22" fill="rgba(6,10,18,.7)" stroke="#FFD34D" stroke-width="2"/><circle cx="22" cy="22" r="15" fill="#FFD34D"/>${txt(22, 30, n, { size: 21, fill: '#14161F' })}${txt(46, 30, str, { size: 22, fill: '#FFD34D', anchor: 'start' })}</g>`;
+}
+// braking-curve graph (scenes 9, 10): permitted speed vs distance to the red signal
+function curveSVG(t, i) {
+  if (i !== 9 && i !== 10) return '';
+  const a = window.__a, d = clamp(520 - a.z, 0, 420), vk = a.v * 3.6, X0 = 70, Y0 = 660, W = 580, H = 260, DEC = 1.1;
+  const px = dd => X0 + W - dd / 420 * W, py = v => Y0 + H - v / 130 * H, vAllowed = dd => Math.min(110, Math.sqrt(2 * DEC * Math.max(0, dd - 28)) * 3.6);
+  const show = i === 9 ? P(t, 9, .25, .4) : 1, draw = i === 9 ? P(t, 9, .3, .7) : 1;
+  let path = ''; for (let k = 0; k <= 60; k++) { const dd = 420 * (1 - k / 60 * draw); path += (k ? 'L' : 'M') + px(dd).toFixed(1) + ' ' + py(vAllowed(dd)).toFixed(1); }
+  const over = vk > vAllowed(d) + 1, col = i === 10 && t > T(10, .6) && vk > .5 ? '#FF5B5B' : over ? '#FFD34D' : '#5BE38B';
+  let s = `<g opacity="${show}"><rect x="${X0 - 40}" y="${Y0 - 70}" width="${W + 80}" height="${H + 120}" rx="22" fill="rgba(6,10,18,.78)" stroke="rgba(127,232,255,.45)" stroke-width="2"/>`;
+  s += txt(X0 - 14, Y0 - 30, 'BRAKING CURVE', { size: 20, w: 600, fill: '#7FE8FF', anchor: 'start' }) + txt(X0 + W + 14, Y0 - 30, fmt(vk) + ' km/h · ' + fmt(d) + ' m', { size: 22, fill: col, anchor: 'end' });
+  s += `<path d="M${X0} ${Y0 + H} H${X0 + W} M${X0} ${Y0} V${Y0 + H}" stroke="rgba(255,255,255,.3)" stroke-width="2"/>`;
+  s += `<path d="${path}" stroke="#FF8A5B" stroke-width="4" fill="none" stroke-linecap="round"/>`;
+  s += `<rect x="${px(28) - 4}" y="${Y0}" width="8" height="${H}" fill="#FF5B5B" opacity=".8"/>` + txt(px(28) - 10, Y0 + H + 34, 'RED', { size: 18, w: 700, fill: '#FF5B5B', anchor: 'end' }) + txt(X0, Y0 + H + 34, 'distance →', { size: 18, w: 500, fill: 'rgba(255,255,255,.6)', anchor: 'start' });
+  if (draw >= 1) s += `<circle cx="${px(d).toFixed(1)}" cy="${py(vk).toFixed(1)}" r="11" fill="${col}" stroke="#fff" stroke-width="3"/>`;
+  if (i === 10 && t > T(10, .2) && t < T(10, .6)) { const bl = (Math.floor(t * 4) % 2) ? 1 : .55; s += `<g opacity="${bl}"><rect x="210" y="${Y0 - 140}" width="300" height="56" rx="18" fill="#FFD34D"/>${txt(360, Y0 - 102, '⚠ SLOW DOWN', { size: 30, fill: '#14161F' })}</g>`; }
+  if (i === 10 && t >= T(10, .6)) { const p = prog(t, T(10, .6), T(10, .65)); s += `<g transform="translate(360 ${Y0 - 112}) scale(${(.6 + .4 * backOut(p)).toFixed(3)})"><rect x="-170" y="-30" width="340" height="60" rx="20" fill="#E2574C"/>${txt(0, 12, 'AUTO BRAKE', { size: 34 })}</g>`; }
+  return s + '</g>';
+}
+// cab view (scene 11): windscreen frame + the driver's screen
+function cabSVG(t, i) {
+  if (i !== 11) return '';
+  const c = window.__cab, d = 520 - c.z, v = c.v * 3.6, lim = 75, p = P(t, 11, .35, .45);
+  let s = `<path d="M0 0 H720 V1280 H0 Z M60 180 L660 180 L690 700 L30 700 Z" fill="#07090D" fill-rule="evenodd"/><rect x="345" y="180" width="30" height="520" fill="#07090D"/>`;
+  s += `<path d="M0 700 H720 V1280 H0 Z" fill="#101318"/><path d="M0 700 H720" stroke="#2A2F38" stroke-width="6"/>`;
+  s += `<g opacity="${p}" transform="translate(110 740)"><rect width="500" height="250" rx="20" fill="#05080C" stroke="#3A4250" stroke-width="4"/>`;
+  s += txt(24, 38, 'KAVACH', { size: 20, fill: '#7FE8FF', anchor: 'start' }) + txt(476, 38, 'FULL SUPERVISION', { size: 16, w: 600, fill: '#5BE38B', anchor: 'end' });
+  const cx = 130, cy = 160, R = 82, ang = vv => Math.PI * .75 + vv / 140 * Math.PI * 1.5, pt = (a, r) => `${(cx + Math.cos(a) * r).toFixed(1)} ${(cy + Math.sin(a) * r).toFixed(1)}`;
+  s += `<path d="M${pt(ang(0), R)} A${R} ${R} 0 1 1 ${pt(ang(140), R)}" stroke="#222A35" stroke-width="12" fill="none"/>`;
+  s += `<path d="M${pt(ang(0), R)} A${R} ${R} 0 ${ang(lim) - ang(0) > Math.PI ? 1 : 0} 1 ${pt(ang(lim), R)}" stroke="#5BE38B" stroke-width="12" fill="none"/>`;
+  s += `<path d="M${cx} ${cy} L${pt(ang(v), R - 18)}" stroke="#fff" stroke-width="5" stroke-linecap="round"/><circle cx="${cx}" cy="${cy}" r="8" fill="#fff"/>`;
+  s += txt(cx, cy + 58, fmt(v), { size: 38 }) + txt(cx, cy + 82, 'km/h · limit ' + lim, { size: 15, w: 500, fill: '#8B96A8' });
+  s += `<circle cx="300" cy="120" r="26" fill="#FFD34D"/><circle cx="300" cy="120" r="38" fill="none" stroke="#FFD34D" stroke-width="3" opacity=".5"/>`;
+  s += txt(345, 112, 'NEXT SIGNAL', { size: 16, w: 600, fill: '#8B96A8', anchor: 'start' }) + txt(345, 140, 'CAUTION', { size: 26, fill: '#FFD34D', anchor: 'start' });
+  s += txt(300, 200, fmt(d) + ' m ahead', { size: 28, anchor: 'start' }) + txt(300, 226, 'visible through fog', { size: 15, w: 500, fill: '#8B96A8', anchor: 'start' });
+  return s + '</g>';
+}
+// cost cards (13), India schematic map (14), comment poll + follow (15)
+const CITY = { Delhi: [77.2, 28.6], Mumbai: [72.88, 19.08], Howrah: [88.31, 22.59], Chennai: [80.27, 13.08], Bengaluru: [77.59, 12.97], Hyderabad: [78.48, 17.39], Guwahati: [91.74, 26.14], Ahmedabad: [72.57, 23.02], Kota: [75.86, 25.18], Vadodara: [73.18, 22.31], Mathura: [77.67, 27.49], Kanpur: [80.33, 26.45], Prayagraj: [81.85, 25.44], Dhanbad: [86.43, 23.8], Gaya: [85.0, 24.79], Nagpur: [79.09, 21.15], Bhopal: [77.41, 23.26], Pune: [73.86, 18.52], Jaipur: [75.79, 26.91], Lucknow: [80.95, 26.85], Patna: [85.14, 25.6], Vizag: [83.22, 17.69], Bhubaneswar: [85.82, 20.3], Amritsar: [74.87, 31.63], Kochi: [76.27, 9.93], Itarsi: [77.76, 22.61], Vijayawada: [80.65, 16.51] };
+const mp = n => [70 + (CITY[n][0] - 68) * 20.5, 330 + (36 - CITY[n][1]) * 21.5];
+const NET = [['Amritsar', 'Delhi'], ['Delhi', 'Jaipur'], ['Jaipur', 'Ahmedabad'], ['Ahmedabad', 'Vadodara'], ['Delhi', 'Lucknow'], ['Lucknow', 'Patna'], ['Patna', 'Guwahati'], ['Mathura', 'Bhopal'], ['Bhopal', 'Itarsi'], ['Itarsi', 'Nagpur'], ['Itarsi', 'Mumbai'], ['Nagpur', 'Hyderabad'], ['Hyderabad', 'Vijayawada'], ['Vijayawada', 'Chennai'], ['Mumbai', 'Pune'], ['Pune', 'Hyderabad'], ['Hyderabad', 'Bengaluru'], ['Bengaluru', 'Chennai'], ['Bengaluru', 'Kochi'], ['Chennai', 'Kochi'], ['Howrah', 'Bhubaneswar'], ['Bhubaneswar', 'Vizag'], ['Vizag', 'Vijayawada'], ['Nagpur', 'Howrah'], ['Howrah', 'Guwahati'], ['Patna', 'Gaya']];
+const KAV = [['Delhi', 'Mathura', 'Kota', 'Vadodara', 'Mumbai'], ['Delhi', 'Kanpur', 'Prayagraj', 'Gaya', 'Dhanbad', 'Howrah']];
+function bigOverlay(t, i) {
+  let s = '';
+  if (i === 13) {
+    const cards = [['TRACK', '₹50 lakh', 'per km (approx.)', .2], ['ENGINE', '₹80 lakh', 'per engine (approx.)', .62]];
+    cards.forEach(([k, v, sub, f], j) => { const p = P(t, 13, f, f + .08); if (p <= 0) return; const y = 420 + j * 200;
+      s += `<g transform="translate(360 ${y}) scale(${(.6 + .4 * backOut(p)).toFixed(3)})" opacity="${p}"><rect x="-230" y="-80" width="460" height="160" rx="26" fill="rgba(6,10,18,.82)" stroke="#FFD34D" stroke-width="3"/>${txt(-200, -36, k, { size: 22, w: 600, fill: '#7FE8FF', anchor: 'start' })}${txt(-200, 30, v, { size: 64, fill: '#FFD34D', anchor: 'start' })}${txt(-200, 62, sub, { size: 20, w: 500, fill: '#B8C2D2', anchor: 'start' })}</g>`; });
+  }
+  if (i === 14) {
+    const a = P(t, 14, 0, .08); s += `<rect width="720" height="1280" fill="#070A12" opacity="${(a * .9).toFixed(3)}"/>`;
+    let g = ''; NET.forEach(([p, q]) => { const A = mp(p), B = mp(q); g += `<path d="M${A[0].toFixed(1)} ${A[1].toFixed(1)} L${B[0].toFixed(1)} ${B[1].toFixed(1)}" stroke="rgba(150,170,200,.35)" stroke-width="2.5" stroke-dasharray="2 7" stroke-linecap="round"/>`; });
+    KAV.forEach((route, j) => { const dp = P(t, 14, .12 + j * .12, .4 + j * .12); let len = 0; const pts = route.map(mp); for (let k = 1; k < pts.length; k++) len += Math.hypot(pts[k][0] - pts[k - 1][0], pts[k][1] - pts[k - 1][1]);
+      const dd = 'M' + pts.map(q => q[0].toFixed(1) + ' ' + q[1].toFixed(1)).join(' L');
+      g += `<path d="${dd}" stroke="#5BE38B" stroke-width="12" opacity=".25" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="${len}" stroke-dashoffset="${(len * (1 - dp)).toFixed(1)}"/><path d="${dd}" stroke="#5BE38B" stroke-width="5" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="${len}" stroke-dashoffset="${(len * (1 - dp)).toFixed(1)}"/>`; });
+    Object.keys(CITY).forEach(n => { const [x, y] = mp(n), big = ['Delhi', 'Mumbai', 'Howrah', 'Chennai', 'Bengaluru', 'Hyderabad', 'Guwahati'].includes(n); g += `<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="${big ? 7 : 4}" fill="${big ? '#fff' : '#8B96A8'}"/>`; if (big) g += txt(x + (n === 'Mumbai' || n === 'Bengaluru' ? -12 : 12), y + (n === 'Delhi' ? -12 : 7), n, { size: 20, w: 600, fill: '#DDE4EE', anchor: n === 'Mumbai' || n === 'Bengaluru' ? 'end' : 'start' }); });
+    s += `<g opacity="${a}">${g}${txt(360, 300, 'Kavach 4.0', { size: 52, fill: '#FFD34D', stroke: '#0B0D14', sw: 8 })}${txt(360, 1225, 'Schematic, not to scale · Ministry of Railways, Lok Sabha replies, 2026', { size: 17, w: 500, fill: '#6F7A8C' })}</g>`;
+    const st = [['≈ 2,490 km', 'live (Delhi–Mumbai, Delhi–Howrah)', .3, '#5BE38B'], ['21,794 km', 'trackside work under way', .62, '#FFD34D'], ['6,290', 'engines fitted', .74, '#7FE8FF']];
+    st.forEach(([v, k, f, c], j) => { const p = P(t, 14, f, f + .06); if (p <= 0) return; s += `<g opacity="${p}" transform="translate(40 ${150 + j * 0})">${''}</g>`; });
+    const box3 = st.map(([v, k, f, c], j) => { const p = P(t, 14, f, f + .06); return p > 0 ? `<g opacity="${p}">${txt(60, 1100 + 0, '', {})}<rect x="${36 + j * 220}" y="${930}" width="208" height="110" rx="18" fill="rgba(6,10,18,.85)" stroke="${c}" stroke-width="2"/>${txt(140 + j * 220, 978, v, { size: 32, fill: c })}${k.split(' (').map((line, m) => txt(140 + j * 220, 1008 + m * 20, m ? '(' + line : line, { size: 15, w: 500, fill: '#B8C2D2' })).join('')}</g>` : ''; }).join('');
+    s += box3;
+  }
+  if (i === 15) {
+    const p = P(t, 15, .02, .12);
+    if (p > 0) { s += `<g opacity="${p}" transform="translate(360 470) scale(${(.7 + .3 * backOut(p)).toFixed(3)})"><rect x="-260" y="-150" width="520" height="300" rx="28" fill="rgba(6,10,18,.85)" stroke="rgba(127,232,255,.5)" stroke-width="2"/>${txt(0, -95, 'Is Kavach on your route?', { size: 34 })}`;
+      [['Yes, it is', '#5BE38B'], ['Not yet', '#FF8A5B'], ['No idea!', '#FFD34D']].forEach(([o, c], j) => { s += `<rect x="-220" y="${-60 + j * 66}" width="440" height="54" rx="16" fill="rgba(255,255,255,.06)" stroke="${c}" stroke-width="2"/><circle cx="-190" cy="${-33 + j * 66}" r="10" fill="${c}"/>${txt(-166, -24 + j * 66, o, { size: 26, w: 600, anchor: 'start' })}`; });
+      s += '</g>'; }
+    const q = prog(t, T(15, .55), T(15, .63));
+    if (q > 0) { const str = 'Follow for more', w = tw(str, 40, 600) + 106; s += `<g transform="translate(360 1180) scale(${(.6 + .4 * backOut(q)).toFixed(3)})"><rect x="${-w / 2}" y="-30" width="${w}" height="72" rx="30" fill="rgba(0,0,0,.25)"/><rect x="${-w / 2}" y="-36" width="${w}" height="72" rx="30" fill="#14161F"/><circle cx="${-w / 2 + 46}" cy="0" r="20" fill="#FFD34D"/><path d="M${-w / 2 + 36} 0 h20 M${-w / 2 + 46} -10 v20" stroke="#14161F" stroke-width="5" stroke-linecap="round"/>${txt(24, 14, str, { size: 40, w: 600 })}</g>`; }
+  }
+  if (i === 3) {   // shield emblem
+    const p = P(t, 3, .02, .14), q = P(t, 3, .2, .3);
+    if (p > 0) { s += `<g transform="translate(360 420) scale(${(.6 + .4 * backOut(p)).toFixed(3)})" opacity="${p}"><path d="M0 -130 L105 -92 V8 C105 78 52 118 0 140 C-52 118 -105 78 -105 8 V-92 Z" fill="rgba(6,10,18,.75)" stroke="#7FE8FF" stroke-width="6"/><path d="M0 -100 L78 -71 V6 C78 58 40 90 0 108 C-40 90 -78 58 -78 6 V-71 Z" fill="none" stroke="#7FE8FF" stroke-width="2" opacity=".5"/><path d="M-36 4 L-8 32 L42 -26" stroke="#5BE38B" stroke-width="14" fill="none" stroke-linecap="round" stroke-linejoin="round"/></g>`;
+      s += `<g opacity="${q}">${txt(360, 640, 'KAVACH', { size: 78, fill: '#FFD34D', stroke: '#0B0D14', sw: 10 })}${txt(360, 690, 'kavach = armour', { size: 30, w: 600, fill: '#DDE4EE', stroke: '#0B0D14', sw: 6 })}</g>`; }
+  }
+  return s;
+}
+const VIG = `<defs><radialGradient id="gV" cx=".5" cy=".5" r=".8"><stop offset=".6" stop-color="#000" stop-opacity="0"/><stop offset="1" stop-color="#000" stop-opacity=".5"/></radialGradient></defs><rect width="720" height="1280" fill="url(#gV)"/>`;
+function renderAt(t) {
+  t = clamp(t, 0, VDUR - 1e-4);
+  const i = update(t);
+  composer.render();
+  const fadeIn = 1 - prog(t, S[i], S[i] + .25), cut = i > 0 && !SAME.has(i);
+  ov.innerHTML = VIG + labelsSVG() + cabSVG(t, i) + hudSVG() + chipSVG() + curveSVG(t, i) + bigOverlay(t, i) + captions(t) + (cut && fadeIn > 0 ? `<rect width="720" height="1280" fill="#000" opacity="${(fadeIn * .85).toFixed(2)}"/>` : '');
+}
+const SAME = new Set([1, 2, 8, 10, 14]);   // scenes that continue the previous shot without a dip to black
+
+// ---------- sound cues ----------
+const SFX = [];
+VO.forEach((l, i) => { if (i > 0) SFX.push([S[i], SAME.has(i) ? 'pop' : 'whoosh']); });
+SFX.push([T(0, .05), 'horn'], [T(0, .5), 'hum'], [T(1, .4), 'hiss'], [T(1, .86), 'thud'], [T(2, .2), 'chime'], [T(3, .05), 'sonar'], [T(3, .25), 'chime'], [T(4, .45), 'buzz'], [T(5, .1), 'tick'], [T(5, .5), 'tick'],
+  [T(6, .45), 'tickHi'], [T(6, .5), 'ding'], [T(7, .45), 'click'], [T(7, .6), 'buzz'], [T(8, .05), 'sonar'], [T(8, .55), 'sonar'], [T(9, .3), 'chalk'], [T(10, .2), 'alarm'], [T(10, .6), 'hiss'], [T(10, .88), 'thud'], [T(10, .9), 'chime'],
+  [T(11, .35), 'tick'], [T(12, .4), 'alarm'], [T(12, .45), 'hiss'], [T(12, .88), 'thud'], [T(13, .2), 'coin'], [T(13, .62), 'coin'], [T(14, .12), 'chalk'], [T(14, .24), 'chalk'], [T(14, .3), 'pop'], [T(14, .62), 'pop'], [T(14, .74), 'pop'], [T(15, .02), 'card'], [T(15, .55), 'pop'], [T(15, .6), 'horn']);
+window.cues = () => ({ dur: VDUR, music: 'space', sfx: SFX.sort((a, b) => a[0] - b[0]).map(([t, k]) => [+t.toFixed(3), k]), vo: VO.map((l, i) => ({ t: +S[i].toFixed(3), dur: l.dur, file: l.file, text: l.text })), countdown: [0, .001, .002, .003] });
+window.renderAt = renderAt; window.DUR = VDUR;
+window.ready = Promise.resolve().then(() => {
+  if (QP.has('render')) { document.body.classList.add('render'); renderAt(+QP.get('t') || 0); return; }
+  const stage = document.getElementById('stage'); const fit = () => { const k = Math.min(innerWidth / PXW, innerHeight / PXH); stage.style.transform = `scale(${k})`; }; addEventListener('resize', fit); fit();
+  const t0 = performance.now(); const tick = now => { renderAt(((now - t0) / 1000) % VDUR); requestAnimationFrame(tick); }; requestAnimationFrame(tick);
+});
+</script>
+</body>
+</html>
