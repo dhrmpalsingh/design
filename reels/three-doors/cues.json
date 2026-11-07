@@ -1,0 +1,496 @@
+{
+ "dur": 69.357,
+ "music": "bright",
+ "sfx": [
+  [
+   0.4,
+   "pop"
+  ],
+  [
+   1.798,
+   "horn"
+  ],
+  [
+   3.005,
+   "goat"
+  ],
+  [
+   5.177,
+   "whoosh"
+  ],
+  [
+   5.227,
+   "pop"
+  ],
+  [
+   5.766,
+   "pop"
+  ],
+  [
+   7.141,
+   "whoosh"
+  ],
+  [
+   7.191,
+   "pop"
+  ],
+  [
+   9.422,
+   "door"
+  ],
+  [
+   9.97,
+   "goat"
+  ],
+  [
+   11.704,
+   "whoosh"
+  ],
+  [
+   11.754,
+   "pop"
+  ],
+  [
+   12.043,
+   "pop"
+  ],
+  [
+   13.061,
+   "drum"
+  ],
+  [
+   15.097,
+   "whoosh"
+  ],
+  [
+   15.597,
+   "tick"
+  ],
+  [
+   16.597,
+   "tick"
+  ],
+  [
+   17.597,
+   "tick"
+  ],
+  [
+   18.597,
+   "tick"
+  ],
+  [
+   19.597,
+   "tick"
+  ],
+  [
+   20.597,
+   "tick"
+  ],
+  [
+   21.597,
+   "tick"
+  ],
+  [
+   22.597,
+   "tick"
+  ],
+  [
+   23.597,
+   "tick"
+  ],
+  [
+   24.597,
+   "tickHi"
+  ],
+  [
+   25.597,
+   "ding"
+  ],
+  [
+   28.528,
+   "whoosh"
+  ],
+  [
+   28.578,
+   "pop"
+  ],
+  [
+   28.708,
+   "chime"
+  ],
+  [
+   30.145,
+   "win"
+  ],
+  [
+   32.121,
+   "whoosh"
+  ],
+  [
+   32.171,
+   "pop"
+  ],
+  [
+   33.271,
+   "pop"
+  ],
+  [
+   35.955,
+   "whoosh"
+  ],
+  [
+   36.005,
+   "pop"
+  ],
+  [
+   37.38,
+   "pop"
+  ],
+  [
+   40.706,
+   "whoosh"
+  ],
+  [
+   40.756,
+   "pop"
+  ],
+  [
+   42.272,
+   "door"
+  ],
+  [
+   43.055,
+   "goat"
+  ],
+  [
+   45.405,
+   "chime"
+  ],
+  [
+   48.537,
+   "whoosh"
+  ],
+  [
+   48.587,
+   "pop"
+  ],
+  [
+   48.714,
+   "tick"
+  ],
+  [
+   48.785,
+   "tick"
+  ],
+  [
+   48.856,
+   "tick"
+  ],
+  [
+   48.927,
+   "tick"
+  ],
+  [
+   48.998,
+   "tick"
+  ],
+  [
+   49.069,
+   "tick"
+  ],
+  [
+   49.14,
+   "tick"
+  ],
+  [
+   49.211,
+   "tick"
+  ],
+  [
+   49.282,
+   "tick"
+  ],
+  [
+   49.353,
+   "tick"
+  ],
+  [
+   49.424,
+   "tick"
+  ],
+  [
+   49.495,
+   "tick"
+  ],
+  [
+   49.566,
+   "tick"
+  ],
+  [
+   49.637,
+   "tick"
+  ],
+  [
+   49.708,
+   "tick"
+  ],
+  [
+   49.778,
+   "tick"
+  ],
+  [
+   49.849,
+   "tick"
+  ],
+  [
+   49.92,
+   "tick"
+  ],
+  [
+   49.991,
+   "tick"
+  ],
+  [
+   50.062,
+   "tick"
+  ],
+  [
+   52.084,
+   "whoosh"
+  ],
+  [
+   52.134,
+   "pop"
+  ],
+  [
+   52.385,
+   "tick"
+  ],
+  [
+   52.493,
+   "tick"
+  ],
+  [
+   52.601,
+   "tick"
+  ],
+  [
+   52.709,
+   "tick"
+  ],
+  [
+   52.817,
+   "tick"
+  ],
+  [
+   52.926,
+   "tick"
+  ],
+  [
+   53.034,
+   "tick"
+  ],
+  [
+   53.142,
+   "tick"
+  ],
+  [
+   53.25,
+   "tick"
+  ],
+  [
+   53.359,
+   "tick"
+  ],
+  [
+   53.467,
+   "tick"
+  ],
+  [
+   53.575,
+   "tick"
+  ],
+  [
+   53.683,
+   "tick"
+  ],
+  [
+   53.791,
+   "tick"
+  ],
+  [
+   53.9,
+   "tick"
+  ],
+  [
+   54.008,
+   "tick"
+  ],
+  [
+   54.116,
+   "tick"
+  ],
+  [
+   54.224,
+   "tick"
+  ],
+  [
+   54.332,
+   "tick"
+  ],
+  [
+   54.441,
+   "tick"
+  ],
+  [
+   54.489,
+   "goat"
+  ],
+  [
+   54.549,
+   "tick"
+  ],
+  [
+   54.657,
+   "tick"
+  ],
+  [
+   54.765,
+   "tick"
+  ],
+  [
+   54.874,
+   "tick"
+  ],
+  [
+   54.982,
+   "tick"
+  ],
+  [
+   55.691,
+   "pop"
+  ],
+  [
+   58.096,
+   "whoosh"
+  ],
+  [
+   58.146,
+   "pop"
+  ],
+  [
+   58.449,
+   "roll"
+  ],
+  [
+   63.746,
+   "win"
+  ],
+  [
+   65.158,
+   "whoosh"
+  ],
+  [
+   65.158,
+   "horn"
+  ],
+  [
+   65.208,
+   "pop"
+  ],
+  [
+   65.368,
+   "cheer"
+  ],
+  [
+   67.048,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 4.177,
+   "file": "vo/00.wav",
+   "text": "You're on a game show. Behind one door is a car. Behind the other two, goats."
+  },
+  {
+   "t": 5.177,
+   "dur": 1.214,
+   "file": "vo/01.wav",
+   "text": "You pick door number one."
+  },
+  {
+   "t": 7.141,
+   "dur": 3.713,
+   "file": "vo/02.wav",
+   "text": "The host, who knows where the car is, opens door three. It's a goat!"
+  },
+  {
+   "t": 11.704,
+   "dur": 2.743,
+   "file": "vo/03.wav",
+   "text": "Now the host asks: do you want to switch to door two?"
+  },
+  {
+   "t": 15.097,
+   "dur": 3.781,
+   "file": "vo/04.wav",
+   "text": "Stay, or switch? Does it even matter? Pause, and comment your answer!"
+  },
+  {
+   "t": 28.528,
+   "dur": 2.743,
+   "file": "vo/05.wav",
+   "text": "You should switch! Switching wins two times out of three."
+  },
+  {
+   "t": 32.121,
+   "dur": 3.084,
+   "file": "vo/06.wav",
+   "text": "When you first picked, you had a one in three chance of being right."
+  },
+  {
+   "t": 35.955,
+   "dur": 4.001,
+   "file": "vo/07.wav",
+   "text": "So two times out of three, the car was behind one of the other two doors."
+  },
+  {
+   "t": 40.706,
+   "dur": 6.981,
+   "file": "vo/08.wav",
+   "text": "The host always opens a goat door, never the car. So if your first pick was wrong, the car is behind the door that's left."
+  },
+  {
+   "t": 48.537,
+   "dur": 2.897,
+   "file": "vo/09.wav",
+   "text": "Still not sure? Imagine a hundred doors. You pick one."
+  },
+  {
+   "t": 52.084,
+   "dur": 5.162,
+   "file": "vo/10.wav",
+   "text": "The host opens ninety eight goat doors, and skips just one. Would you stay, or take that door?"
+  },
+  {
+   "t": 58.096,
+   "dur": 5.812,
+   "file": "vo/11.wav",
+   "text": "We played the game a thousand times. Staying won about a third of the games. Switching won about two thirds."
+  },
+  {
+   "t": 65.158,
+   "dur": 2.249,
+   "file": "vo/12.wav",
+   "text": "Would you have switched? Follow for more puzzles!"
+  }
+ ],
+ "countdown": [
+  15.197000000000001,
+  15.597000000000001,
+  25.597,
+  26.097
+ ]
+}

@@ -1,0 +1,15 @@
+[
+ ["You're on a game show. Behind one door is a car. Behind the other two, goats.", "1 car · 2 goats", 0.4],
+ ["You pick door number one.", "You pick door 1", 0.5],
+ ["The host, who knows where the car is, opens door three. It's a goat!", "Host opens door 3: goat", 0.6],
+ ["Now the host asks: do you want to switch to door two?", "Switch to door 2?", 0.4],
+ ["Stay, or switch? Does it even matter? Pause, and comment your answer!", "Stay or switch?", 9.4],
+ ["You should switch! Switching wins two times out of three.", "Switching wins 2 out of 3", 0.6],
+ ["When you first picked, you had a one in three chance of being right.", "Your first pick: 1 in 3", 0.5],
+ ["So two times out of three, the car was behind one of the other two doors.", "Other two doors: 2 in 3", 0.5],
+ ["The host always opens a goat door, never the car. So if your first pick was wrong, the car is behind the door that's left.", "The host always shows a goat", 0.6],
+ ["Still not sure? Imagine a hundred doors. You pick one.", "Imagine 100 doors", 0.4],
+ ["The host opens ninety eight goat doors, and skips just one. Would you stay, or take that door?", "98 goats shown · 1 door skipped", 0.6],
+ ["We played the game a thousand times. Staying won about a third of the games. Switching won about two thirds.", "1,000 games", 1.0],
+ ["Would you have switched? Follow for more puzzles!", "Follow for more puzzles", 1.6]
+]
