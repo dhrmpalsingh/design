@@ -1,0 +1,294 @@
+{
+ "dur": 87.648,
+ "music": "deep",
+ "sfx": [
+  [
+   0.496,
+   "sonar"
+  ],
+  [
+   3.262,
+   "whoosh"
+  ],
+  [
+   4.513,
+   "splash"
+  ],
+  [
+   4.597,
+   "bubbles"
+  ],
+  [
+   6.599,
+   "thud"
+  ],
+  [
+   7.433,
+   "whoosh"
+  ],
+  [
+   7.952,
+   "flood"
+  ],
+  [
+   8.471,
+   "bubbles"
+  ],
+  [
+   12.623,
+   "whoosh"
+  ],
+  [
+   12.866,
+   "clang"
+  ],
+  [
+   13.171,
+   "clang"
+  ],
+  [
+   13.475,
+   "clang"
+  ],
+  [
+   13.779,
+   "clang"
+  ],
+  [
+   14.449,
+   "pump"
+  ],
+  [
+   15.666,
+   "whoosh"
+  ],
+  [
+   16.301,
+   "whoosh"
+  ],
+  [
+   20.958,
+   "whoosh"
+  ],
+  [
+   21.459,
+   "creak"
+  ],
+  [
+   22.461,
+   "creak"
+  ],
+  [
+   24.297,
+   "whoosh"
+  ],
+  [
+   25.993,
+   "chime"
+  ],
+  [
+   29.951,
+   "whoosh"
+  ],
+  [
+   31.461,
+   "creak"
+  ],
+  [
+   34.264,
+   "whoosh"
+  ],
+  [
+   36.994,
+   "thud"
+  ],
+  [
+   39.567,
+   "clang"
+  ],
+  [
+   40.269,
+   "clang"
+  ],
+  [
+   40.503,
+   "thud"
+  ],
+  [
+   40.971,
+   "clang"
+  ],
+  [
+   42.063,
+   "whoosh"
+  ],
+  [
+   43.456,
+   "chime"
+  ],
+  [
+   47.636,
+   "whoosh"
+  ],
+  [
+   48.35,
+   "bubbles"
+  ],
+  [
+   51.566,
+   "clang"
+  ],
+  [
+   52.352,
+   "pump"
+  ],
+  [
+   54.781,
+   "whoosh"
+  ],
+  [
+   55.423,
+   "hiss"
+  ],
+  [
+   61.199,
+   "whoosh"
+  ],
+  [
+   63.17,
+   "pop"
+  ],
+  [
+   67.77,
+   "whoosh"
+  ],
+  [
+   69.627,
+   "click"
+  ],
+  [
+   69.743,
+   "hum"
+  ],
+  [
+   73.572,
+   "whoosh"
+  ],
+  [
+   73.761,
+   "chime"
+  ],
+  [
+   77.356,
+   "whoosh"
+  ],
+  [
+   83.737,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 1.862,
+   "file": "vo/00.wav",
+   "text": "What if you could live at the bottom of the sea?"
+  },
+  {
+   "t": 3.262,
+   "dur": 2.921,
+   "file": "vo/01.wav",
+   "text": "Take an ordinary house, and lower it ten meters down."
+  },
+  {
+   "t": 7.433,
+   "dur": 4.14,
+   "file": "vo/02.wav",
+   "text": "Water pours in through every crack, door, and window. It floods in seconds."
+  },
+  {
+   "t": 12.623,
+   "dur": 1.993,
+   "file": "vo/03.wav",
+   "text": "So we seal it inside a thick steel shell."
+  },
+  {
+   "t": 15.666,
+   "dur": 4.442,
+   "file": "vo/04.wav",
+   "text": "But ten meters down, the water presses on every square meter with about ten tonnes."
+  },
+  {
+   "t": 20.958,
+   "dur": 2.189,
+   "file": "vo/05.wav",
+   "text": "Flat walls bend and buckle under that weight."
+  },
+  {
+   "t": 24.297,
+   "dur": 4.504,
+   "file": "vo/06.wav",
+   "text": "So we curve them. A round hull spreads the push evenly, just like a submarine."
+  },
+  {
+   "t": 29.951,
+   "dur": 3.063,
+   "file": "vo/07.wav",
+   "text": "Next problem: it's full of air, and air wants to float."
+  },
+  {
+   "t": 34.264,
+   "dur": 6.649,
+   "file": "vo/08.wav",
+   "text": "Every cubic meter of air pulls upward with about one tonne. So we add a heavy concrete base, and anchor it to the seabed."
+  },
+  {
+   "t": 42.063,
+   "dur": 4.523,
+   "file": "vo/09.wav",
+   "text": "Ordinary windows would crack. So we use curved acrylic, many centimeters thick."
+  },
+  {
+   "t": 47.636,
+   "dur": 5.995,
+   "file": "vo/10.wav",
+   "text": "To get in, you swim into an airlock. Close the hatch, pump out the water, and step inside, completely dry."
+  },
+  {
+   "t": 54.781,
+   "dur": 5.568,
+   "file": "vo/11.wav",
+   "text": "Fresh air comes down a hose from a buoy at the surface, and scrubbers clean out the carbon dioxide."
+  },
+  {
+   "t": 61.199,
+   "dur": 5.721,
+   "file": "vo/12.wav",
+   "text": "Water steals heat about twenty five times faster than air, so the hull gets thick insulation and heaters."
+  },
+  {
+   "t": 67.77,
+   "dur": 4.652,
+   "file": "vo/13.wav",
+   "text": "And down here, the water swallows red light. So outside lights bring the colors back."
+  },
+  {
+   "t": 73.572,
+   "dur": 2.134,
+   "file": "vo/14.wav",
+   "text": "Now, you can live ten meters under the sea."
+  },
+  {
+   "t": 77.356,
+   "dur": 8.342,
+   "file": "vo/15.wav",
+   "text": "There's a real underwater lab called Aquarius, nineteen meters down off Florida, where scientists live for days at a time. Follow for more!"
+  }
+ ],
+ "countdown": [
+  0,
+  0.001,
+  0.002,
+  0.003
+ ]
+}

@@ -71,7 +71,19 @@ music = np.zeros(N)
 NOTE = {'D2': 73.42, 'A1': 55.0, 'Bb1': 58.27, 'C2': 65.41, 'D4': 293.66, 'F4': 349.23, 'A4': 440.0, 'E4': 329.63, 'G4': 392.0,
         'Bb3': 233.08, 'C4': 261.63, 'D5': 587.33, 'C5': 523.25, 'A3': 220.0, 'F2': 87.31, 'G2': 98.0, 'C3': 130.81, 'A2': 110.0,
         'B4': 493.88, 'E5': 659.25, 'G5': 783.99, 'F5': 698.46}
-if CUES.get('music') == 'bright':   # bouncy major loop
+if CUES.get('music') == 'deep':     # slow ambient pads + underwater rumble
+    pads = [[110.0, 164.81, 220.0, 261.63], [87.31, 130.81, 174.61, 220.0], [98.0, 146.83, 196.0, 246.94], [82.41, 123.47, 164.81, 207.65]]
+    t, k = 0.0, 0
+    while t < DUR:
+        n = int(SR * 9.5); tt_ = np.arange(n) / SR; envp = np.minimum(1, tt_ / 2.5) * np.minimum(1, (9.5 - tt_) / 2.5)
+        chord = sum(np.sin(2 * np.pi * f * tt_ + .3 * np.sin(2 * np.pi * .2 * tt_)) * (1 if j == 0 else .5) for j, f in enumerate(pads[k % 4]))
+        add(music, t, chord * envp, .1)
+        t += 8.0; k += 1
+    music += lp(rng.uniform(-1, 1, N), 400) * 2.5   # deep water rumble
+    for b in np.arange(0, DUR, 1.7):
+        add(music, b + rng.uniform(0, 1.2), sweep(500 + rng.uniform(0, 500), 1400, .06, .02), .05)
+    chords = None
+elif CUES.get('music') == 'bright':   # bouncy major loop
     chords = [('C3', ['C4', 'E4', 'G4', 'C5', 'E5', 'C5', 'G4', 'E4']), ('A2', ['A3', 'C4', 'E4', 'A4', 'C5', 'A4', 'E4', 'C4']),
               ('F2', ['F4', 'A4', 'C5', 'F5', 'C5', 'A4', 'F4', 'C4']), ('G2', ['G4', 'B4', 'D5', 'G5', 'D5', 'B4', 'G4', 'D4'])]
     beat, pl, pdec = 60 / 112, .55, .14
@@ -80,7 +92,7 @@ else:                                # pizzicato mystery loop in D minor
               ('C2', ['C4', 'E4', 'G4', 'E4', 'C5', 'G4', 'E4', 'G4']), ('A1', ['A3', 'C4', 'E4', 'C4', 'A4', 'E4', 'C4', 'E4'])]
     beat, pl, pdec = 60 / 100, .5, .09
 t, k = 0.0, 0
-while t < DUR:
+while chords and t < DUR:
     bass, arp = chords[k % 4]
     add(music, t, tone(NOTE[bass], 2.4, .9, ((1, 1), (2, .4), (3, .15))), .34)
     for i, nm in enumerate(arp):
@@ -114,6 +126,15 @@ SOUNDS = {
     'cheer': (lambda: lp(noise(int(SR * 3.0)), 9) * np.minimum(1, np.arange(int(SR * 3.0)) / (SR * .4)) * np.exp(-np.arange(int(SR * 3.0)) / (SR * 1.8)) * (1 + .4 * np.sin(np.arange(int(SR * 3.0)) / SR * 2 * np.pi * 5.5)), .5),
     'roll': (lambda: seq(*[np.pad(tone(1000 + 40 * i, .03, .01), (0, int(SR * .045))) for i in range(30)]), .1),
     'step': (lambda: lp(noise(int(SR * .05)), 18) * env(int(SR * .05), .002, .012), .45),
+    'sonar': (lambda: plus(tone(1180, 2.4, .9, ((1, 1), (2, .15))), np.pad(tone(1180, 2.0, .7, ((1, 1),)), (int(SR * .45), 0)) * .25), .16),
+    'splash': (lambda: plus(lp(noise(int(SR * 1.0)), 5) * env(int(SR * 1.0), .004, .22), sweep(160, 50, .5, .18) * .8), .55),
+    'bubbles': (lambda: seq(*[np.pad(sweep(300 + 70 * (i % 7), 900 + 90 * (i % 5), .05, .02), (0, int(SR * (.03 + .03 * (i % 3))))) for i in range(26)]), .14),
+    'thud': (lambda: plus(sweep(90, 35, .5, .18), lp(noise(int(SR * .5)), 25) * env(int(SR * .5), .002, .08)), .7),
+    'flood': (lambda: lp(noise(int(SR * 3.0)), 6) * np.minimum(1, np.arange(int(SR * 3.0)) / (SR * .3)) * np.exp(-np.arange(int(SR * 3.0)) / (SR * 1.6)) * (1 + .4 * np.sin(np.arange(int(SR * 3.0)) / SR * 2 * np.pi * 7)), .6),
+    'pump': (lambda: sum(np.sin(2 * np.pi * f * np.arange(int(SR * 2.6)) / SR) * a for f, a in ((90, 1), (180, .5), (270, .25))) * (.8 + .2 * np.sin(np.arange(int(SR * 2.6)) / SR * 2 * np.pi * 10)) * swell(2.6), .08),
+    'creak': (lambda: np.sin(2 * np.pi * np.cumsum(np.linspace(150, 95, int(SR * 1.3)) + 22 * np.sin(np.arange(int(SR * 1.3)) / SR * 2 * np.pi * 23)) / SR) * swell(1.3), .1),
+    'hiss': (lambda: hp(noise(int(SR * 2.4)), 3) * swell(2.4), .1),
+    'hum': (lambda: sum(np.sin(2 * np.pi * f * np.arange(int(SR * 2.0)) / SR) * a for f, a in ((120, 1), (240, .4))) * np.minimum(1, np.arange(int(SR * 2.0)) / (SR * .05)) * np.exp(-np.arange(int(SR * 2.0)) / (SR * 1.2)), .06),
     'coin': (lambda: plus(tone(1975, .5, .12, ((1, 1), (1.5, .4))), np.pad(tone(2637, .5, .15, ((1, 1),)), (int(SR * .06), 0))), .12),
     'paper': (lambda: hp(noise(int(SR * .18)), 4) * swell(.18), .18),
     'door': (lambda: plus(np.sin(2 * np.pi * np.cumsum(np.linspace(160, 110, int(SR * .7)) + 20 * np.sin(np.arange(int(SR * .7)) / SR * 2 * np.pi * 27)) / SR) * swell(.7) * .4, np.pad(sweep(90, 40, .3, .1), (int(SR * .55), 0))), .25),
