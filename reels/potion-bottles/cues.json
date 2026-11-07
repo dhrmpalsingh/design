@@ -1,0 +1,568 @@
+{
+ "dur": 87.51199999999999,
+ "music": "mystery",
+ "sfx": [
+  [
+   0.4,
+   "pop"
+  ],
+  [
+   0.509,
+   "tick"
+  ],
+  [
+   0.615,
+   "tick"
+  ],
+  [
+   0.721,
+   "tick"
+  ],
+  [
+   0.827,
+   "tick"
+  ],
+  [
+   0.933,
+   "tick"
+  ],
+  [
+   1.04,
+   "tick"
+  ],
+  [
+   1.146,
+   "tick"
+  ],
+  [
+   1.252,
+   "tick"
+  ],
+  [
+   1.358,
+   "tick"
+  ],
+  [
+   1.464,
+   "tick"
+  ],
+  [
+   1.57,
+   "tick"
+  ],
+  [
+   1.676,
+   "tick"
+  ],
+  [
+   1.782,
+   "tick"
+  ],
+  [
+   1.888,
+   "tick"
+  ],
+  [
+   1.994,
+   "tick"
+  ],
+  [
+   2.1,
+   "tick"
+  ],
+  [
+   2.206,
+   "tick"
+  ],
+  [
+   2.312,
+   "tick"
+  ],
+  [
+   2.419,
+   "tick"
+  ],
+  [
+   2.525,
+   "tick"
+  ],
+  [
+   5.654,
+   "whoosh"
+  ],
+  [
+   5.704,
+   "pop"
+  ],
+  [
+   6.547,
+   "gulp"
+  ],
+  [
+   8.779,
+   "chime"
+  ],
+  [
+   10.118,
+   "whoosh"
+  ],
+  [
+   10.118,
+   "tick"
+  ],
+  [
+   10.168,
+   "pop"
+  ],
+  [
+   11.999,
+   "step"
+  ],
+  [
+   12.187,
+   "step"
+  ],
+  [
+   12.375,
+   "step"
+  ],
+  [
+   12.563,
+   "step"
+  ],
+  [
+   12.751,
+   "step"
+  ],
+  [
+   12.939,
+   "step"
+  ],
+  [
+   13.127,
+   "step"
+  ],
+  [
+   13.315,
+   "step"
+  ],
+  [
+   13.503,
+   "step"
+  ],
+  [
+   13.692,
+   "step"
+  ],
+  [
+   14.82,
+   "whoosh"
+  ],
+  [
+   14.87,
+   "pop"
+  ],
+  [
+   15.391,
+   "gulp"
+  ],
+  [
+   15.848,
+   "gulp"
+  ],
+  [
+   16.304,
+   "gulp"
+  ],
+  [
+   16.761,
+   "gulp"
+  ],
+  [
+   17.218,
+   "gulp"
+  ],
+  [
+   17.675,
+   "gulp"
+  ],
+  [
+   18.131,
+   "gulp"
+  ],
+  [
+   18.245,
+   "buzz"
+  ],
+  [
+   18.588,
+   "gulp"
+  ],
+  [
+   20.529,
+   "whoosh"
+  ],
+  [
+   20.579,
+   "pop"
+  ],
+  [
+   23.823,
+   "whoosh"
+  ],
+  [
+   24.323,
+   "tick"
+  ],
+  [
+   25.323,
+   "tick"
+  ],
+  [
+   26.323,
+   "tick"
+  ],
+  [
+   27.323,
+   "tick"
+  ],
+  [
+   28.323,
+   "tick"
+  ],
+  [
+   29.323,
+   "tick"
+  ],
+  [
+   30.323,
+   "tick"
+  ],
+  [
+   31.323,
+   "tick"
+  ],
+  [
+   32.323,
+   "tick"
+  ],
+  [
+   33.323,
+   "tickHi"
+  ],
+  [
+   34.323,
+   "ding"
+  ],
+  [
+   35.168,
+   "whoosh"
+  ],
+  [
+   35.218,
+   "pop"
+  ],
+  [
+   35.537,
+   "chime"
+  ],
+  [
+   37.014,
+   "pop"
+  ],
+  [
+   37.421,
+   "pop"
+  ],
+  [
+   37.827,
+   "pop"
+  ],
+  [
+   38.233,
+   "pop"
+  ],
+  [
+   38.639,
+   "pop"
+  ],
+  [
+   39.046,
+   "pop"
+  ],
+  [
+   39.452,
+   "pop"
+  ],
+  [
+   39.858,
+   "pop"
+  ],
+  [
+   40.264,
+   "pop"
+  ],
+  [
+   40.671,
+   "pop"
+  ],
+  [
+   42.554,
+   "whoosh"
+  ],
+  [
+   42.604,
+   "pop"
+  ],
+  [
+   44.245,
+   "tick"
+  ],
+  [
+   44.471,
+   "tick"
+  ],
+  [
+   44.696,
+   "tick"
+  ],
+  [
+   44.922,
+   "tick"
+  ],
+  [
+   45.147,
+   "tick"
+  ],
+  [
+   45.373,
+   "tick"
+  ],
+  [
+   45.599,
+   "tick"
+  ],
+  [
+   45.824,
+   "tick"
+  ],
+  [
+   46.05,
+   "tick"
+  ],
+  [
+   46.275,
+   "tick"
+  ],
+  [
+   46.782,
+   "pop"
+  ],
+  [
+   48.192,
+   "whoosh"
+  ],
+  [
+   48.242,
+   "pop"
+  ],
+  [
+   49.508,
+   "gulp"
+  ],
+  [
+   52.578,
+   "whoosh"
+  ],
+  [
+   52.628,
+   "pop"
+  ],
+  [
+   57.09,
+   "whoosh"
+  ],
+  [
+   57.14,
+   "pop"
+  ],
+  [
+   57.527,
+   "paper"
+  ],
+  [
+   59.712,
+   "pop"
+  ],
+  [
+   61.023,
+   "pop"
+  ],
+  [
+   62.335,
+   "pop"
+  ],
+  [
+   65.831,
+   "whoosh"
+  ],
+  [
+   65.881,
+   "pop"
+  ],
+  [
+   66.826,
+   "chime"
+  ],
+  [
+   68.814,
+   "pop"
+  ],
+  [
+   69.478,
+   "win"
+  ],
+  [
+   72.461,
+   "whoosh"
+  ],
+  [
+   72.511,
+   "pop"
+  ],
+  [
+   73.642,
+   "chime"
+  ],
+  [
+   74.527,
+   "pop"
+  ],
+  [
+   75.708,
+   "win"
+  ],
+  [
+   78.365,
+   "whoosh"
+  ],
+  [
+   78.415,
+   "pop"
+  ],
+  [
+   79.328,
+   "cheer"
+  ],
+  [
+   83.178,
+   "whoosh"
+  ],
+  [
+   83.228,
+   "pop"
+  ],
+  [
+   85.128,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 4.654,
+   "file": "vo/00.wav",
+   "text": "A king has one thousand bottles for tomorrow's feast. But one of them hides a potion."
+  },
+  {
+   "t": 5.654,
+   "dur": 3.714,
+   "file": "vo/01.wav",
+   "text": "Whoever drinks it gets a bright green tongue, exactly one day later."
+  },
+  {
+   "t": 10.118,
+   "dur": 3.952,
+   "file": "vo/02.wav",
+   "text": "The feast is in twenty four hours, and the king has only ten tasters."
+  },
+  {
+   "t": 14.82,
+   "dur": 4.959,
+   "file": "vo/03.wav",
+   "text": "Each taster can sip from as many bottles as they like, but there's only time for one round."
+  },
+  {
+   "t": 20.529,
+   "dur": 2.644,
+   "file": "vo/04.wav",
+   "text": "How can ten tasters find the one potion bottle?"
+  },
+  {
+   "t": 23.823,
+   "dur": 1.495,
+   "file": "vo/05.wav",
+   "text": "Pause, and comment your plan!"
+  },
+  {
+   "t": 35.168,
+   "dur": 6.536,
+   "file": "vo/06.wav",
+   "text": "The trick is binary. Give the tasters the values one, two, four, eight, and so on, up to five hundred twelve."
+  },
+  {
+   "t": 42.554,
+   "dur": 4.788,
+   "file": "vo/07.wav",
+   "text": "Every bottle number from one to a thousand can be made by adding up some of those values."
+  },
+  {
+   "t": 48.192,
+   "dur": 3.636,
+   "file": "vo/08.wav",
+   "text": "Each taster sips from every bottle whose number uses their value."
+  },
+  {
+   "t": 52.578,
+   "dur": 3.862,
+   "file": "vo/09.wav",
+   "text": "Let's try it with seven bottles, and three tasters: one, two, and four."
+  },
+  {
+   "t": 57.09,
+   "dur": 7.891,
+   "file": "vo/10.wav",
+   "text": "Bottle five is four plus one, so tasters four and one sip it. Bottle six is four plus two. And bottle seven uses all three."
+  },
+  {
+   "t": 65.831,
+   "dur": 5.58,
+   "file": "vo/11.wav",
+   "text": "The next day, tasters one and four have green tongues. Four plus one is five. It's bottle five!"
+  },
+  {
+   "t": 72.461,
+   "dur": 5.054,
+   "file": "vo/12.wav",
+   "text": "With ten tasters, the green tongues can point to any bottle up to one thousand and twenty three."
+  },
+  {
+   "t": 78.365,
+   "dur": 3.363,
+   "file": "vo/13.wav",
+   "text": "The potion is found, and the feast is saved, in just one day."
+  },
+  {
+   "t": 83.178,
+   "dur": 2.384,
+   "file": "vo/14.wav",
+   "text": "Could you have cracked it? Follow for more puzzles!"
+  }
+ ],
+ "countdown": [
+  23.923000000000002,
+  24.323,
+  34.323,
+  34.823
+ ]
+}

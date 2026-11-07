@@ -1,0 +1,17 @@
+[
+ ["A king has one thousand bottles for tomorrow's feast. But one of them hides a potion.", "1,000 bottles · 1 potion", 0.4],
+ ["Whoever drinks it gets a bright green tongue, exactly one day later.", "Green tongue after 1 day", 0.5],
+ ["The feast is in twenty four hours, and the king has only ten tasters.", "24 hours · 10 tasters", 0.5],
+ ["Each taster can sip from as many bottles as they like, but there's only time for one round.", "Only one round of tasting", 0.5],
+ ["How can ten tasters find the one potion bottle?", "Find it with 10 tasters?", 0.4],
+ ["Pause, and comment your plan!", "Comment your plan!", 9.6],
+ ["The trick is binary. Give the tasters the values one, two, four, eight, and so on, up to five hundred twelve.", "Tasters = 1, 2, 4, 8 ... 512", 0.6],
+ ["Every bottle number from one to a thousand can be made by adding up some of those values.", "Every number = a sum of them", 0.6],
+ ["Each taster sips from every bottle whose number uses their value.", "Sip every bottle that uses your value", 0.5],
+ ["Let's try it with seven bottles, and three tasters: one, two, and four.", "Try it: 7 bottles, 3 tasters", 0.4],
+ ["Bottle five is four plus one, so tasters four and one sip it. Bottle six is four plus two. And bottle seven uses all three.", "5 = 4+1 · 6 = 4+2 · 7 = 4+2+1", 0.6],
+ ["The next day, tasters one and four have green tongues. Four plus one is five. It's bottle five!", "Green: 4 + 1 = bottle 5", 0.8],
+ ["With ten tasters, the green tongues can point to any bottle up to one thousand and twenty three.", "10 tasters → up to 1,023 bottles", 0.6],
+ ["The potion is found, and the feast is saved, in just one day.", "Feast saved!", 1.2],
+ ["Could you have cracked it? Follow for more puzzles!", "Follow for more puzzles", 1.6]
+]
