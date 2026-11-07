@@ -1,0 +1,310 @@
+{
+ "dur": 109.991,
+ "music": "space",
+ "sfx": [
+  [
+   0.569,
+   "horn"
+  ],
+  [
+   2.544,
+   "hum"
+  ],
+  [
+   4.738,
+   "pop"
+  ],
+  [
+   7.691,
+   "hiss"
+  ],
+  [
+   11.087,
+   "thud"
+  ],
+  [
+   12.121,
+   "pop"
+  ],
+  [
+   12.859,
+   "chime"
+  ],
+  [
+   15.81,
+   "whoosh"
+  ],
+  [
+   16.131,
+   "sonar"
+  ],
+  [
+   17.413,
+   "chime"
+  ],
+  [
+   22.222,
+   "whoosh"
+  ],
+  [
+   26.053,
+   "buzz"
+  ],
+  [
+   30.735,
+   "whoosh"
+  ],
+  [
+   31.393,
+   "tick"
+  ],
+  [
+   34.026,
+   "tick"
+  ],
+  [
+   37.318,
+   "whoosh"
+  ],
+  [
+   40.582,
+   "tickHi"
+  ],
+  [
+   40.945,
+   "ding"
+  ],
+  [
+   44.572,
+   "whoosh"
+  ],
+  [
+   48.039,
+   "click"
+  ],
+  [
+   49.195,
+   "buzz"
+  ],
+  [
+   52.277,
+   "pop"
+  ],
+  [
+   52.521,
+   "sonar"
+  ],
+  [
+   54.965,
+   "sonar"
+  ],
+  [
+   57.165,
+   "whoosh"
+  ],
+  [
+   59.613,
+   "chalk"
+  ],
+  [
+   65.324,
+   "pop"
+  ],
+  [
+   66.709,
+   "alarm"
+  ],
+  [
+   69.48,
+   "hiss"
+  ],
+  [
+   71.42,
+   "thud"
+  ],
+  [
+   71.558,
+   "chime"
+  ],
+  [
+   72.251,
+   "whoosh"
+  ],
+  [
+   74.602,
+   "tick"
+  ],
+  [
+   78.969,
+   "whoosh"
+  ],
+  [
+   81.433,
+   "alarm"
+  ],
+  [
+   81.741,
+   "hiss"
+  ],
+  [
+   84.39,
+   "thud"
+  ],
+  [
+   85.129,
+   "whoosh"
+  ],
+  [
+   86.401,
+   "coin"
+  ],
+  [
+   89.073,
+   "coin"
+  ],
+  [
+   91.49,
+   "pop"
+  ],
+  [
+   93.009,
+   "chalk"
+  ],
+  [
+   94.528,
+   "chalk"
+  ],
+  [
+   95.287,
+   "pop"
+  ],
+  [
+   99.337,
+   "pop"
+  ],
+  [
+   100.856,
+   "pop"
+  ],
+  [
+   104.147,
+   "whoosh"
+  ],
+  [
+   104.264,
+   "card"
+  ],
+  [
+   107.361,
+   "pop"
+  ],
+  [
+   107.653,
+   "horn"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 3.538,
+   "file": "vo/00.wav",
+   "text": "Two trains. One track. Heading straight for each other, in the dark."
+  },
+  {
+   "t": 4.738,
+   "dur": 6.433,
+   "file": "vo/01.wav",
+   "text": "Neither driver can see the other yet. But both trains start slowing down... and stop, hundreds of meters apart."
+  },
+  {
+   "t": 12.121,
+   "dur": 2.739,
+   "file": "vo/02.wav",
+   "text": "Nobody pulled the brake. Something called Kavach did."
+  },
+  {
+   "t": 15.81,
+   "dur": 5.562,
+   "file": "vo/03.wav",
+   "text": "Kavach means armour. It's India's own automatic train protection system. Here's how it works."
+  },
+  {
+   "t": 22.222,
+   "dur": 7.663,
+   "file": "vo/04.wav",
+   "text": "Step one: the train has to know exactly where it is, even which track it's on. GPS can't tell tracks just a few meters apart."
+  },
+  {
+   "t": 30.735,
+   "dur": 5.733,
+   "file": "vo/05.wav",
+   "text": "So small RFID tags are fixed between the rails, about one every kilometer, and at every signal."
+  },
+  {
+   "t": 37.318,
+   "dur": 6.304,
+   "file": "vo/06.wav",
+   "text": "A reader under the engine scans each tag as it rolls over it. Exact position. Direction. Which track."
+  },
+  {
+   "t": 44.572,
+   "dur": 6.855,
+   "file": "vo/07.wav",
+   "text": "Step two: each station has its own Kavach unit, wired to every signal nearby. It always knows which ones are red."
+  },
+  {
+   "t": 52.277,
+   "dur": 3.938,
+   "file": "vo/08.wav",
+   "text": "Radio towers carry that, again and again, to every engine in range."
+  },
+  {
+   "t": 57.165,
+   "dur": 7.309,
+   "file": "vo/09.wav",
+   "text": "Step three: the computer on the engine draws a braking curve. At this speed, how far does it need to stop before that red signal?"
+  },
+  {
+   "t": 65.324,
+   "dur": 5.777,
+   "file": "vo/10.wav",
+   "text": "If the driver doesn't slow down in time, it warns them. And if they still don't act... it brakes by itself."
+  },
+  {
+   "t": 72.251,
+   "dur": 5.768,
+   "file": "vo/11.wav",
+   "text": "It enforces speed limits too, and shows the signal right on a screen in the cab, so fog can't hide it."
+  },
+  {
+   "t": 78.969,
+   "dur": 5.11,
+   "file": "vo/12.wav",
+   "text": "And if two engines with Kavach end up on the same track, they spot each other, and both stop."
+  },
+  {
+   "t": 85.129,
+   "dur": 5.311,
+   "file": "vo/13.wav",
+   "text": "The cost? Roughly fifty lakh rupees per kilometer of track, and about eighty lakh per engine."
+  },
+  {
+   "t": 91.49,
+   "dur": 11.507,
+   "file": "vo/14.wav",
+   "text": "By mid twenty twenty-six, Kavach four point oh was live on about twenty-five hundred kilometers of the Delhi to Mumbai and Delhi to Howrah routes. Trackside work covers over twenty thousand more."
+  },
+  {
+   "t": 104.147,
+   "dur": 3.694,
+   "file": "vo/15.wav",
+   "text": "Is Kavach on your route yet? Tell me in the comments, and follow for more."
+  }
+ ],
+ "countdown": [
+  0,
+  0.001,
+  0.002,
+  0.003
+ ]
+}
