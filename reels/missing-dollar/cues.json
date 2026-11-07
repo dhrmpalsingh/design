@@ -1,0 +1,414 @@
+{
+ "dur": 73.342,
+ "music": "bright",
+ "sfx": [
+  [
+   0.35,
+   "step"
+  ],
+  [
+   0.4,
+   "pop"
+  ],
+  [
+   0.68,
+   "step"
+  ],
+  [
+   1.01,
+   "step"
+  ],
+  [
+   1.34,
+   "step"
+  ],
+  [
+   1.67,
+   "step"
+  ],
+  [
+   2.06,
+   "pop"
+  ],
+  [
+   4.625,
+   "whoosh"
+  ],
+  [
+   4.675,
+   "pop"
+  ],
+  [
+   5.102,
+   "paper"
+  ],
+  [
+   5.642,
+   "paper"
+  ],
+  [
+   5.737,
+   "coin"
+  ],
+  [
+   6.182,
+   "paper"
+  ],
+  [
+   6.278,
+   "coin"
+  ],
+  [
+   6.818,
+   "coin"
+  ],
+  [
+   7.803,
+   "whoosh"
+  ],
+  [
+   7.853,
+   "pop"
+  ],
+  [
+   9.874,
+   "buzz"
+  ],
+  [
+   10.335,
+   "pop"
+  ],
+  [
+   12.406,
+   "whoosh"
+  ],
+  [
+   12.406,
+   "step"
+  ],
+  [
+   12.456,
+   "pop"
+  ],
+  [
+   12.736,
+   "step"
+  ],
+  [
+   13.066,
+   "step"
+  ],
+  [
+   13.396,
+   "step"
+  ],
+  [
+   13.46,
+   "paper"
+  ],
+  [
+   15.918,
+   "whoosh"
+  ],
+  [
+   15.968,
+   "pop"
+  ],
+  [
+   17.243,
+   "paper"
+  ],
+  [
+   17.906,
+   "coin"
+  ],
+  [
+   19.231,
+   "paper"
+  ],
+  [
+   20.027,
+   "paper"
+  ],
+  [
+   20.292,
+   "coin"
+  ],
+  [
+   20.822,
+   "paper"
+  ],
+  [
+   21.087,
+   "coin"
+  ],
+  [
+   21.882,
+   "coin"
+  ],
+  [
+   22.545,
+   "whoosh"
+  ],
+  [
+   22.595,
+   "pop"
+  ],
+  [
+   23.704,
+   "pop"
+  ],
+  [
+   26.795,
+   "pop"
+  ],
+  [
+   28.727,
+   "buzz"
+  ],
+  [
+   30.273,
+   "whoosh"
+  ],
+  [
+   30.323,
+   "pop"
+  ],
+  [
+   30.588,
+   "pop"
+  ],
+  [
+   31.69,
+   "drum"
+  ],
+  [
+   33.422,
+   "whoosh"
+  ],
+  [
+   33.922,
+   "tick"
+  ],
+  [
+   34.922,
+   "tick"
+  ],
+  [
+   35.922,
+   "tick"
+  ],
+  [
+   36.922,
+   "tick"
+  ],
+  [
+   37.922,
+   "tick"
+  ],
+  [
+   38.922,
+   "tick"
+  ],
+  [
+   39.922,
+   "tick"
+  ],
+  [
+   40.922,
+   "tick"
+  ],
+  [
+   41.922,
+   "tick"
+  ],
+  [
+   42.922,
+   "tickHi"
+  ],
+  [
+   43.922,
+   "ding"
+  ],
+  [
+   44.774,
+   "whoosh"
+  ],
+  [
+   44.824,
+   "pop"
+  ],
+  [
+   45.184,
+   "chime"
+  ],
+  [
+   48.873,
+   "whoosh"
+  ],
+  [
+   48.923,
+   "pop"
+  ],
+  [
+   50.332,
+   "pop"
+  ],
+  [
+   51.305,
+   "pop"
+  ],
+  [
+   53.737,
+   "whoosh"
+  ],
+  [
+   53.787,
+   "pop"
+  ],
+  [
+   56.144,
+   "pop"
+  ],
+  [
+   59.086,
+   "whoosh"
+  ],
+  [
+   59.136,
+   "pop"
+  ],
+  [
+   59.728,
+   "pop"
+  ],
+  [
+   60.691,
+   "buzz"
+  ],
+  [
+   62.296,
+   "whoosh"
+  ],
+  [
+   62.346,
+   "pop"
+  ],
+  [
+   64.604,
+   "coin"
+  ],
+  [
+   66.913,
+   "win"
+  ],
+  [
+   67.242,
+   "cheer"
+  ],
+  [
+   68.891,
+   "whoosh"
+  ],
+  [
+   68.941,
+   "pop"
+  ],
+  [
+   70.894,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 3.625,
+   "file": "vo/00.wav",
+   "text": "Three friends check into a hotel. The room costs thirty dollars."
+  },
+  {
+   "t": 4.625,
+   "dur": 2.328,
+   "file": "vo/01.wav",
+   "text": "They each pay ten dollars. Thirty in total."
+  },
+  {
+   "t": 7.803,
+   "dur": 3.953,
+   "file": "vo/02.wav",
+   "text": "Later, the manager realizes the room was only twenty five dollars."
+  },
+  {
+   "t": 12.406,
+   "dur": 2.762,
+   "file": "vo/03.wav",
+   "text": "So the bellhop is sent with five dollars to give back."
+  },
+  {
+   "t": 15.918,
+   "dur": 5.677,
+   "file": "vo/04.wav",
+   "text": "But five dollars won't split three ways. So the bellhop keeps two, and gives each friend one dollar back."
+  },
+  {
+   "t": 22.545,
+   "dur": 6.878,
+   "file": "vo/05.wav",
+   "text": "Now each friend has paid nine dollars. Three times nine is twenty seven. Plus the bellhop's two, that's twenty nine."
+  },
+  {
+   "t": 30.273,
+   "dur": 2.499,
+   "file": "vo/06.wav",
+   "text": "They paid thirty. So where did the missing dollar go?"
+  },
+  {
+   "t": 33.422,
+   "dur": 1.502,
+   "file": "vo/07.wav",
+   "text": "Pause, and comment your answer!"
+  },
+  {
+   "t": 44.774,
+   "dur": 3.349,
+   "file": "vo/08.wav",
+   "text": "Here's the twist: no dollar is missing. The math is the trick."
+  },
+  {
+   "t": 48.873,
+   "dur": 4.014,
+   "file": "vo/09.wav",
+   "text": "The twenty seven dollars the friends paid already includes the bellhop's two."
+  },
+  {
+   "t": 53.737,
+   "dur": 4.499,
+   "file": "vo/10.wav",
+   "text": "Twenty five went to the hotel, and two went to the bellhop. That's the twenty seven."
+  },
+  {
+   "t": 59.086,
+   "dur": 2.36,
+   "file": "vo/11.wav",
+   "text": "So adding the bellhop's two again counts it twice."
+  },
+  {
+   "t": 62.296,
+   "dur": 5.445,
+   "file": "vo/12.wav",
+   "text": "The right sum is the twenty seven they paid, plus the three dollars they got back. Thirty, exactly."
+  },
+  {
+   "t": 68.891,
+   "dur": 2.501,
+   "file": "vo/13.wav",
+   "text": "Did the riddle fool you? Follow for more puzzles!"
+  }
+ ],
+ "countdown": [
+  33.522,
+  33.922,
+  43.922,
+  44.422
+ ]
+}

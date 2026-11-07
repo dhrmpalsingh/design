@@ -1,0 +1,16 @@
+[
+ ["Three friends check into a hotel. The room costs thirty dollars.", "Room: $30", 0.4],
+ ["They each pay ten dollars. Thirty in total.", "3 × $10 = $30", 0.6],
+ ["Later, the manager realizes the room was only twenty five dollars.", "Actually only $25", 0.4],
+ ["So the bellhop is sent with five dollars to give back.", "$5 to give back", 0.5],
+ ["But five dollars won't split three ways. So the bellhop keeps two, and gives each friend one dollar back.", "Keeps $2 · returns $1 each", 0.7],
+ ["Now each friend has paid nine dollars. Three times nine is twenty seven. Plus the bellhop's two, that's twenty nine.", "$27 + $2 = $29", 0.6],
+ ["They paid thirty. So where did the missing dollar go?", "Where's the missing $1?", 0.4],
+ ["Pause, and comment your answer!", "Comment your answer!", 9.6],
+ ["Here's the twist: no dollar is missing. The math is the trick.", "Nothing is missing!", 0.5],
+ ["The twenty seven dollars the friends paid already includes the bellhop's two.", "$27 already includes the $2", 0.6],
+ ["Twenty five went to the hotel, and two went to the bellhop. That's the twenty seven.", "$25 + $2 = $27", 0.6],
+ ["So adding the bellhop's two again counts it twice.", "Adding $2 again = counting it twice", 0.6],
+ ["The right sum is the twenty seven they paid, plus the three dollars they got back. Thirty, exactly.", "$27 + $3 = $30 ✓", 0.9],
+ ["Did the riddle fool you? Follow for more puzzles!", "Follow for more puzzles", 1.6]
+]

@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Missing Dollar Riddle</title>
+<style>
+  @font-face { font-family: 'Fredoka'; src: url('../kit/fredoka.woff2') format('woff2'); font-weight: 300 700; font-display: block; }
+  html, body { margin: 0; height: 100%; background: #111; }
+  body { display: flex; align-items: center; justify-content: center; overflow: hidden; font-family: Fredoka, sans-serif; }
+  #stage { width: 720px; height: 1280px; position: relative; overflow: hidden; background: #1C2030; transform-origin: center center; cursor: pointer; }
+  svg { display: block; }
+  #hint { position: fixed; bottom: 12px; left: 0; right: 0; text-align: center; color: #bbb; font-size: 14px; }
+  body.render { display: block; }
+  body.render #hint { display: none; }
+</style>
+</head>
+<body>
+<div id="stage"><svg id="svg" xmlns="http://www.w3.org/2000/svg" width="720" height="1280" viewBox="0 0 720 1280"></svg></div>
+<div id="hint">Click or press space to play / pause · ← → to scrub</div>
+<script src="vo.js"></script>
+<script src="../kit/kit.js"></script>
+<script src="scenes.js"></script>
+</body>
+</html>
