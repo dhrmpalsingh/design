@@ -1,0 +1,18 @@
+[
+ ["Four friends are stuck on the wrong side of a canyon, at night.", "4 friends · 1 bridge · night", 0.4],
+ ["The old bridge holds only two people at a time, and they have just one torch.", "Max 2 at a time · 1 torch", 0.5],
+ ["No one can cross without the torch, so someone has to carry it back each time.", "The torch must come back", 0.5],
+ ["They cross at different speeds: one, two, five, and ten minutes. A pair moves at the slower person's pace.", "1 · 2 · 5 · 10 minutes", 0.6],
+ ["In seventeen minutes, the bridge collapses. Can they all make it?", "17 minutes. Go!", 0.4],
+ ["Pause, and comment your plan!", "Comment your plan!", 9.6],
+ ["Most people let the fastest friend walk everyone across, one by one.", "The obvious plan...", 0.4],
+ ["Ten, plus one, plus five, plus one, plus two. That's nineteen minutes. Too slow!", "10+1+5+1+2 = 19 ✗", 0.8],
+ ["The trick: send the two slowest across together, so their times overlap.", "Slowest two cross together", 0.6],
+ ["First, one and two cross. Two minutes.", "1 & 2 cross · 2 min", 0.6],
+ ["One brings the torch back. Three minutes.", "1 returns · 3 min", 0.6],
+ ["Now five and ten cross together. Thirteen minutes.", "5 & 10 cross · 13 min", 0.8],
+ ["Two brings the torch back. Fifteen minutes.", "2 returns · 15 min", 0.6],
+ ["And one and two cross again. Seventeen minutes, exactly!", "1 & 2 cross · 17 min ✓", 0.6],
+ ["Everyone's safe, just as the bridge falls.", "Everyone's safe!", 1.6],
+ ["Did you get seventeen? Follow for more puzzles!", "Follow for more puzzles", 1.6]
+]

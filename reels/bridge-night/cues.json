@@ -1,0 +1,554 @@
+{
+ "dur": 76.27499999999999,
+ "music": "mystery",
+ "sfx": [
+  [
+   0.4,
+   "pop"
+  ],
+  [
+   0.718,
+   "fire"
+  ],
+  [
+   4.029,
+   "whoosh"
+  ],
+  [
+   4.079,
+   "pop"
+  ],
+  [
+   4.777,
+   "pop"
+  ],
+  [
+   6.023,
+   "door"
+  ],
+  [
+   9.013,
+   "whoosh"
+  ],
+  [
+   9.063,
+   "pop"
+  ],
+  [
+   11.46,
+   "fire"
+  ],
+  [
+   13.907,
+   "whoosh"
+  ],
+  [
+   13.957,
+   "pop"
+  ],
+  [
+   14.257,
+   "pop"
+  ],
+  [
+   18.249,
+   "pop"
+  ],
+  [
+   20.911,
+   "whoosh"
+  ],
+  [
+   20.961,
+   "pop"
+  ],
+  [
+   21.303,
+   "drum"
+  ],
+  [
+   24.828,
+   "whoosh"
+  ],
+  [
+   25.328,
+   "tick"
+  ],
+  [
+   26.328,
+   "tick"
+  ],
+  [
+   27.328,
+   "tick"
+  ],
+  [
+   28.328,
+   "tick"
+  ],
+  [
+   29.328,
+   "tick"
+  ],
+  [
+   30.328,
+   "tick"
+  ],
+  [
+   31.328,
+   "tick"
+  ],
+  [
+   32.328,
+   "tick"
+  ],
+  [
+   33.328,
+   "tick"
+  ],
+  [
+   34.328,
+   "tickHi"
+  ],
+  [
+   35.328,
+   "ding"
+  ],
+  [
+   36.173,
+   "whoosh"
+  ],
+  [
+   36.223,
+   "pop"
+  ],
+  [
+   36.395,
+   "tick"
+  ],
+  [
+   37.062,
+   "tick"
+  ],
+  [
+   37.728,
+   "tick"
+  ],
+  [
+   38.395,
+   "tick"
+  ],
+  [
+   39.062,
+   "tick"
+  ],
+  [
+   40.617,
+   "whoosh"
+  ],
+  [
+   40.667,
+   "pop"
+  ],
+  [
+   40.906,
+   "tick"
+  ],
+  [
+   41.775,
+   "tick"
+  ],
+  [
+   42.643,
+   "tick"
+  ],
+  [
+   43.511,
+   "tick"
+  ],
+  [
+   44.379,
+   "tick"
+  ],
+  [
+   44.669,
+   "pop"
+  ],
+  [
+   45.247,
+   "buzz"
+  ],
+  [
+   46.405,
+   "whoosh"
+  ],
+  [
+   46.455,
+   "pop"
+  ],
+  [
+   48.249,
+   "chime"
+  ],
+  [
+   51.015,
+   "whoosh"
+  ],
+  [
+   51.065,
+   "pop"
+  ],
+  [
+   51.412,
+   "step"
+  ],
+  [
+   51.712,
+   "step"
+  ],
+  [
+   52.012,
+   "step"
+  ],
+  [
+   52.312,
+   "step"
+  ],
+  [
+   52.612,
+   "step"
+  ],
+  [
+   52.912,
+   "step"
+  ],
+  [
+   53.212,
+   "step"
+  ],
+  [
+   53.338,
+   "tick"
+  ],
+  [
+   53.848,
+   "whoosh"
+  ],
+  [
+   53.898,
+   "pop"
+  ],
+  [
+   54.273,
+   "step"
+  ],
+  [
+   54.573,
+   "step"
+  ],
+  [
+   54.873,
+   "step"
+  ],
+  [
+   55.173,
+   "step"
+  ],
+  [
+   55.473,
+   "step"
+  ],
+  [
+   55.773,
+   "step"
+  ],
+  [
+   56.073,
+   "step"
+  ],
+  [
+   56.337,
+   "tick"
+  ],
+  [
+   56.883,
+   "whoosh"
+  ],
+  [
+   56.933,
+   "pop"
+  ],
+  [
+   57.425,
+   "step"
+  ],
+  [
+   57.725,
+   "step"
+  ],
+  [
+   58.025,
+   "step"
+  ],
+  [
+   58.325,
+   "step"
+  ],
+  [
+   58.625,
+   "step"
+  ],
+  [
+   58.925,
+   "step"
+  ],
+  [
+   59.225,
+   "step"
+  ],
+  [
+   59.525,
+   "step"
+  ],
+  [
+   59.825,
+   "step"
+  ],
+  [
+   60.056,
+   "tick"
+  ],
+  [
+   60.752,
+   "whoosh"
+  ],
+  [
+   60.802,
+   "pop"
+  ],
+  [
+   61.188,
+   "step"
+  ],
+  [
+   61.488,
+   "step"
+  ],
+  [
+   61.788,
+   "step"
+  ],
+  [
+   62.088,
+   "step"
+  ],
+  [
+   62.388,
+   "step"
+  ],
+  [
+   62.688,
+   "step"
+  ],
+  [
+   62.988,
+   "step"
+  ],
+  [
+   63.288,
+   "step"
+  ],
+  [
+   63.307,
+   "tick"
+  ],
+  [
+   63.868,
+   "whoosh"
+  ],
+  [
+   63.918,
+   "pop"
+  ],
+  [
+   64.383,
+   "step"
+  ],
+  [
+   64.683,
+   "step"
+  ],
+  [
+   64.983,
+   "step"
+  ],
+  [
+   65.283,
+   "step"
+  ],
+  [
+   65.583,
+   "step"
+  ],
+  [
+   65.883,
+   "step"
+  ],
+  [
+   66.183,
+   "step"
+  ],
+  [
+   66.483,
+   "step"
+  ],
+  [
+   66.783,
+   "step"
+  ],
+  [
+   66.882,
+   "tick"
+  ],
+  [
+   66.993,
+   "win"
+  ],
+  [
+   67.544,
+   "whoosh"
+  ],
+  [
+   67.594,
+   "pop"
+  ],
+  [
+   68.169,
+   "crack"
+  ],
+  [
+   68.795,
+   "crash"
+  ],
+  [
+   69.421,
+   "cheer"
+  ],
+  [
+   71.714,
+   "whoosh"
+  ],
+  [
+   71.764,
+   "pop"
+  ],
+  [
+   73.766,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 3.029,
+   "file": "vo/00.wav",
+   "text": "Four friends are stuck on the wrong side of a canyon, at night."
+  },
+  {
+   "t": 4.029,
+   "dur": 4.234,
+   "file": "vo/01.wav",
+   "text": "The old bridge holds only two people at a time, and they have just one torch."
+  },
+  {
+   "t": 9.013,
+   "dur": 4.144,
+   "file": "vo/02.wav",
+   "text": "No one can cross without the torch, so someone has to carry it back each time."
+  },
+  {
+   "t": 13.907,
+   "dur": 6.154,
+   "file": "vo/03.wav",
+   "text": "They cross at different speeds: one, two, five, and ten minutes. A pair moves at the slower person's pace."
+  },
+  {
+   "t": 20.911,
+   "dur": 3.267,
+   "file": "vo/04.wav",
+   "text": "In seventeen minutes, the bridge collapses. Can they all make it?"
+  },
+  {
+   "t": 24.828,
+   "dur": 1.495,
+   "file": "vo/05.wav",
+   "text": "Pause, and comment your plan!"
+  },
+  {
+   "t": 36.173,
+   "dur": 3.794,
+   "file": "vo/06.wav",
+   "text": "Most people let the fastest friend walk everyone across, one by one."
+  },
+  {
+   "t": 40.617,
+   "dur": 4.738,
+   "file": "vo/07.wav",
+   "text": "Ten, plus one, plus five, plus one, plus two. That's nineteen minutes. Too slow!"
+  },
+  {
+   "t": 46.405,
+   "dur": 3.76,
+   "file": "vo/08.wav",
+   "text": "The trick: send the two slowest across together, so their times overlap."
+  },
+  {
+   "t": 51.015,
+   "dur": 1.983,
+   "file": "vo/09.wav",
+   "text": "First, one and two cross. Two minutes."
+  },
+  {
+   "t": 53.848,
+   "dur": 2.185,
+   "file": "vo/10.wav",
+   "text": "One brings the torch back. Three minutes."
+  },
+  {
+   "t": 56.883,
+   "dur": 2.819,
+   "file": "vo/11.wav",
+   "text": "Now five and ten cross together. Thirteen minutes."
+  },
+  {
+   "t": 60.752,
+   "dur": 2.266,
+   "file": "vo/12.wav",
+   "text": "Two brings the torch back. Fifteen minutes."
+  },
+  {
+   "t": 63.868,
+   "dur": 2.826,
+   "file": "vo/13.wav",
+   "text": "And one and two cross again. Seventeen minutes, exactly!"
+  },
+  {
+   "t": 67.544,
+   "dur": 2.32,
+   "file": "vo/14.wav",
+   "text": "Everyone's safe, just as the bridge falls."
+  },
+  {
+   "t": 71.714,
+   "dur": 2.611,
+   "file": "vo/15.wav",
+   "text": "Did you get seventeen? Follow for more puzzles!"
+  }
+ ],
+ "countdown": [
+  24.928000000000004,
+  25.328000000000003,
+  35.328,
+  35.828
+ ]
+}
