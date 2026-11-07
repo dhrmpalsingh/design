@@ -1,0 +1,576 @@
+{
+ "dur": 92.577,
+ "music": "mystery",
+ "sfx": [
+  [
+   0.4,
+   "pop"
+  ],
+  [
+   0.463,
+   "tick"
+  ],
+  [
+   0.556,
+   "tick"
+  ],
+  [
+   0.65,
+   "tick"
+  ],
+  [
+   0.744,
+   "tick"
+  ],
+  [
+   0.838,
+   "tick"
+  ],
+  [
+   0.932,
+   "tick"
+  ],
+  [
+   1.025,
+   "tick"
+  ],
+  [
+   1.119,
+   "tick"
+  ],
+  [
+   1.213,
+   "tick"
+  ],
+  [
+   1.307,
+   "tick"
+  ],
+  [
+   1.401,
+   "tick"
+  ],
+  [
+   1.494,
+   "tick"
+  ],
+  [
+   1.588,
+   "tick"
+  ],
+  [
+   1.682,
+   "tick"
+  ],
+  [
+   1.776,
+   "tick"
+  ],
+  [
+   1.87,
+   "tick"
+  ],
+  [
+   1.963,
+   "tick"
+  ],
+  [
+   2.057,
+   "tick"
+  ],
+  [
+   2.151,
+   "tick"
+  ],
+  [
+   2.245,
+   "tick"
+  ],
+  [
+   5.04,
+   "whoosh"
+  ],
+  [
+   5.09,
+   "pop"
+  ],
+  [
+   6.037,
+   "paper"
+  ],
+  [
+   6.535,
+   "paper"
+  ],
+  [
+   7.034,
+   "paper"
+  ],
+  [
+   7.532,
+   "paper"
+  ],
+  [
+   8.03,
+   "paper"
+  ],
+  [
+   10.024,
+   "whoosh"
+  ],
+  [
+   10.074,
+   "pop"
+  ],
+  [
+   11.108,
+   "paper"
+  ],
+  [
+   11.379,
+   "paper"
+  ],
+  [
+   11.65,
+   "paper"
+  ],
+  [
+   11.921,
+   "paper"
+  ],
+  [
+   12.192,
+   "paper"
+  ],
+  [
+   12.463,
+   "paper"
+  ],
+  [
+   12.734,
+   "paper"
+  ],
+  [
+   13.005,
+   "paper"
+  ],
+  [
+   13.276,
+   "paper"
+  ],
+  [
+   13.547,
+   "paper"
+  ],
+  [
+   13.818,
+   "paper"
+  ],
+  [
+   14.089,
+   "paper"
+  ],
+  [
+   14.36,
+   "paper"
+  ],
+  [
+   14.631,
+   "paper"
+  ],
+  [
+   15.444,
+   "whoosh"
+  ],
+  [
+   15.494,
+   "pop"
+  ],
+  [
+   17.783,
+   "buzz"
+  ],
+  [
+   20.121,
+   "whoosh"
+  ],
+  [
+   20.171,
+   "pop"
+  ],
+  [
+   20.753,
+   "win"
+  ],
+  [
+   23.915,
+   "buzz"
+  ],
+  [
+   26.445,
+   "whoosh"
+  ],
+  [
+   26.495,
+   "pop"
+  ],
+  [
+   27.883,
+   "roll"
+  ],
+  [
+   29.561,
+   "buzz"
+  ],
+  [
+   31.239,
+   "whoosh"
+  ],
+  [
+   31.739,
+   "tick"
+  ],
+  [
+   32.739,
+   "tick"
+  ],
+  [
+   33.739,
+   "tick"
+  ],
+  [
+   34.739,
+   "tick"
+  ],
+  [
+   35.739,
+   "tick"
+  ],
+  [
+   36.739,
+   "tick"
+  ],
+  [
+   37.739,
+   "tick"
+  ],
+  [
+   38.739,
+   "tick"
+  ],
+  [
+   39.739,
+   "tick"
+  ],
+  [
+   40.739,
+   "tickHi"
+  ],
+  [
+   41.739,
+   "ding"
+  ],
+  [
+   43.271,
+   "whoosh"
+  ],
+  [
+   43.271,
+   "chime"
+  ],
+  [
+   43.321,
+   "pop"
+  ],
+  [
+   44.8,
+   "pop"
+  ],
+  [
+   47.64,
+   "whoosh"
+  ],
+  [
+   47.69,
+   "pop"
+  ],
+  [
+   48.182,
+   "paper"
+  ],
+  [
+   49.267,
+   "paper"
+  ],
+  [
+   50.351,
+   "paper"
+  ],
+  [
+   51.435,
+   "paper"
+  ],
+  [
+   53.062,
+   "whoosh"
+  ],
+  [
+   53.112,
+   "pop"
+  ],
+  [
+   54.266,
+   "tick"
+  ],
+  [
+   55.469,
+   "win"
+  ],
+  [
+   57.877,
+   "whoosh"
+  ],
+  [
+   57.927,
+   "pop"
+  ],
+  [
+   58.175,
+   "pop"
+  ],
+  [
+   58.308,
+   "pop"
+  ],
+  [
+   58.441,
+   "pop"
+  ],
+  [
+   58.573,
+   "pop"
+  ],
+  [
+   58.706,
+   "pop"
+  ],
+  [
+   58.838,
+   "pop"
+  ],
+  [
+   58.971,
+   "pop"
+  ],
+  [
+   59.104,
+   "pop"
+  ],
+  [
+   61.192,
+   "whoosh"
+  ],
+  [
+   61.242,
+   "pop"
+  ],
+  [
+   62.266,
+   "paper"
+  ],
+  [
+   63.953,
+   "paper"
+  ],
+  [
+   65.64,
+   "paper"
+  ],
+  [
+   67.327,
+   "win"
+  ],
+  [
+   68.861,
+   "whoosh"
+  ],
+  [
+   68.911,
+   "pop"
+  ],
+  [
+   69.12,
+   "chime"
+  ],
+  [
+   71.448,
+   "pop"
+  ],
+  [
+   71.965,
+   "pop"
+  ],
+  [
+   74.035,
+   "whoosh"
+  ],
+  [
+   74.085,
+   "pop"
+  ],
+  [
+   74.473,
+   "buzz"
+  ],
+  [
+   78.414,
+   "whoosh"
+  ],
+  [
+   78.464,
+   "pop"
+  ],
+  [
+   79.454,
+   "roll"
+  ],
+  [
+   83.616,
+   "whoosh"
+  ],
+  [
+   83.666,
+   "pop"
+  ],
+  [
+   84.98,
+   "buzz"
+  ],
+  [
+   85.435,
+   "cheer"
+  ],
+  [
+   88.164,
+   "whoosh"
+  ],
+  [
+   88.214,
+   "pop"
+  ],
+  [
+   90.15,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 4.04,
+   "file": "vo/00.wav",
+   "text": "One hundred prisoners. One hundred boxes. And one very strange deal."
+  },
+  {
+   "t": 5.04,
+   "dur": 4.234,
+   "file": "vo/01.wav",
+   "text": "Each prisoner's number is hidden inside one of the boxes, shuffled at random."
+  },
+  {
+   "t": 10.024,
+   "dur": 4.67,
+   "file": "vo/02.wav",
+   "text": "One at a time, each prisoner may open fifty boxes, looking for their own number."
+  },
+  {
+   "t": 15.444,
+   "dur": 4.027,
+   "file": "vo/03.wav",
+   "text": "Then every box is closed again. No marks, no signals, no talking."
+  },
+  {
+   "t": 20.121,
+   "dur": 5.474,
+   "file": "vo/04.wav",
+   "text": "If every single prisoner finds their number, they all go free. If even one fails, nobody does."
+  },
+  {
+   "t": 26.445,
+   "dur": 3.944,
+   "file": "vo/05.wav",
+   "text": "Guessing at random, their chance is about one in a million trillion trillion."
+  },
+  {
+   "t": 31.239,
+   "dur": 2.582,
+   "file": "vo/06.wav",
+   "text": "Is there a better plan? Pause, and comment yours!"
+  },
+  {
+   "t": 43.271,
+   "dur": 3.519,
+   "file": "vo/07.wav",
+   "text": "Here's the trick. First, open the box with your own number on the lid."
+  },
+  {
+   "t": 47.64,
+   "dur": 4.572,
+   "file": "vo/08.wav",
+   "text": "Whatever number is inside, open that box next. And keep following the chain."
+  },
+  {
+   "t": 53.062,
+   "dur": 3.965,
+   "file": "vo/09.wav",
+   "text": "The boxes always form loops, so the chain must lead back to your own number."
+  },
+  {
+   "t": 57.877,
+   "dur": 2.665,
+   "file": "vo/10.wav",
+   "text": "Let's try it with eight boxes, and four tries each."
+  },
+  {
+   "t": 61.192,
+   "dur": 6.719,
+   "file": "vo/11.wav",
+   "text": "Prisoner three opens box three. Inside is six. Box six holds one. And box one holds three. Found it!"
+  },
+  {
+   "t": 68.861,
+   "dur": 4.424,
+   "file": "vo/12.wav",
+   "text": "That loop has three boxes, so everyone on it finds their number in three tries."
+  },
+  {
+   "t": 74.035,
+   "dur": 3.529,
+   "file": "vo/13.wav",
+   "text": "The plan only fails if some loop is longer than half the boxes."
+  },
+  {
+   "t": 78.414,
+   "dur": 4.352,
+   "file": "vo/14.wav",
+   "text": "With a hundred boxes, there's no loop that long about thirty one percent of the time."
+  },
+  {
+   "t": 83.616,
+   "dur": 3.298,
+   "file": "vo/15.wav",
+   "text": "So their chance jumps from almost zero, to thirty one percent!"
+  },
+  {
+   "t": 88.164,
+   "dur": 2.463,
+   "file": "vo/16.wav",
+   "text": "Would you trust the loop? Follow for more puzzles!"
+  }
+ ],
+ "countdown": [
+  31.339000000000002,
+  31.739,
+  41.739000000000004,
+  42.239000000000004
+ ]
+}

@@ -1,0 +1,19 @@
+[
+ ["One hundred prisoners. One hundred boxes. And one very strange deal.", "100 prisoners · 100 boxes", 0.4],
+ ["Each prisoner's number is hidden inside one of the boxes, shuffled at random.", "Each number hidden in a box", 0.5],
+ ["One at a time, each prisoner may open fifty boxes, looking for their own number.", "Open up to 50 boxes", 0.5],
+ ["Then every box is closed again. No marks, no signals, no talking.", "No signals. No talking.", 0.4],
+ ["If every single prisoner finds their number, they all go free. If even one fails, nobody does.", "All 100 must find it", 0.6],
+ ["Guessing at random, their chance is about one in a million trillion trillion.", "Random guessing ≈ 0%", 0.6],
+ ["Is there a better plan? Pause, and comment yours!", "Comment your plan!", 9.2],
+ ["Here's the trick. First, open the box with your own number on the lid.", "Open YOUR number's box first", 0.6],
+ ["Whatever number is inside, open that box next. And keep following the chain.", "Follow the chain", 0.6],
+ ["The boxes always form loops, so the chain must lead back to your own number.", "Every chain loops back to you", 0.6],
+ ["Let's try it with eight boxes, and four tries each.", "Try it: 8 boxes, 4 tries", 0.4],
+ ["Prisoner three opens box three. Inside is six. Box six holds one. And box one holds three. Found it!", "3 → 6 → 1 → 3 ✓", 0.7],
+ ["That loop has three boxes, so everyone on it finds their number in three tries.", "Loop of 3 = 3 tries", 0.5],
+ ["The plan only fails if some loop is longer than half the boxes.", "Fails only if a loop is too long", 0.6],
+ ["With a hundred boxes, there's no loop that long about thirty one percent of the time.", "No long loop ≈ 31% of the time", 0.6],
+ ["So their chance jumps from almost zero, to thirty one percent!", "≈ 0% → 31%", 1.0],
+ ["Would you trust the loop? Follow for more puzzles!", "Follow for more puzzles", 1.6]
+]
