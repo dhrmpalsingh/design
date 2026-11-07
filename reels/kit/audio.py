@@ -71,7 +71,19 @@ music = np.zeros(N)
 NOTE = {'D2': 73.42, 'A1': 55.0, 'Bb1': 58.27, 'C2': 65.41, 'D4': 293.66, 'F4': 349.23, 'A4': 440.0, 'E4': 329.63, 'G4': 392.0,
         'Bb3': 233.08, 'C4': 261.63, 'D5': 587.33, 'C5': 523.25, 'A3': 220.0, 'F2': 87.31, 'G2': 98.0, 'C3': 130.81, 'A2': 110.0,
         'B4': 493.88, 'E5': 659.25, 'G5': 783.99, 'F5': 698.46}
-if CUES.get('music') == 'deep':     # slow ambient pads + underwater rumble
+if CUES.get('music') == 'space':    # wide pads, slow pulse and a crystal arpeggio
+    pads = [[65.41, 98.0, 130.81, 196.0, 329.63], [55.0, 82.41, 110.0, 164.81, 261.63], [43.65, 65.41, 87.31, 130.81, 220.0], [49.0, 73.42, 98.0, 146.83, 246.94]]
+    t, k = 0.0, 0
+    while t < DUR:
+        n = int(SR * 9.5); tt_ = np.arange(n) / SR; envp = np.minimum(1, tt_ / 2.0) * np.minimum(1, (9.5 - tt_) / 2.5)
+        chord = sum(np.sin(2 * np.pi * f * tt_ + .4 * np.sin(2 * np.pi * .15 * tt_ + j)) * (1 if j < 2 else .45) for j, f in enumerate(pads[k % 4]))
+        add(music, t, chord * envp, .09)
+        for b in range(16):
+            add(music, t + b * .5, tone(pads[k % 4][2] * 4 * [1, 1.5, 2, 1.5][b % 4], .6, .25, ((1, 1), (3, .08))), .05)
+            if b % 2 == 0: add(music, t + b * .5, sweep(70, 40, .3, .12), .18)
+        t += 8.0; k += 1
+    chords = None
+elif CUES.get('music') == 'deep':     # slow ambient pads + underwater rumble
     pads = [[110.0, 164.81, 220.0, 261.63], [87.31, 130.81, 174.61, 220.0], [98.0, 146.83, 196.0, 246.94], [82.41, 123.47, 164.81, 207.65]]
     t, k = 0.0, 0
     while t < DUR:
@@ -126,6 +138,8 @@ SOUNDS = {
     'cheer': (lambda: lp(noise(int(SR * 3.0)), 9) * np.minimum(1, np.arange(int(SR * 3.0)) / (SR * .4)) * np.exp(-np.arange(int(SR * 3.0)) / (SR * 1.8)) * (1 + .4 * np.sin(np.arange(int(SR * 3.0)) / SR * 2 * np.pi * 5.5)), .5),
     'roll': (lambda: seq(*[np.pad(tone(1000 + 40 * i, .03, .01), (0, int(SR * .045))) for i in range(30)]), .1),
     'step': (lambda: lp(noise(int(SR * .05)), 18) * env(int(SR * .05), .002, .012), .45),
+    'laser': (lambda: (np.sin(2 * np.pi * np.cumsum(np.linspace(300, 1600, int(SR * .6))) / SR) * .6 + np.sin(2 * np.pi * 220 * np.arange(int(SR * .6)) / SR) * .3) * swell(.6), .12),
+    'alarm': (lambda: seq(*[np.pad(tone(f, .16, .1, ((1, 1), (2, .3))), (0, int(SR * .06))) for f in (988, 740, 988, 740, 988, 740)]), .14),
     'sonar': (lambda: plus(tone(1180, 2.4, .9, ((1, 1), (2, .15))), np.pad(tone(1180, 2.0, .7, ((1, 1),)), (int(SR * .45), 0)) * .25), .16),
     'splash': (lambda: plus(lp(noise(int(SR * 1.0)), 5) * env(int(SR * 1.0), .004, .22), sweep(160, 50, .5, .18) * .8), .55),
     'bubbles': (lambda: seq(*[np.pad(sweep(300 + 70 * (i % 7), 900 + 90 * (i % 5), .05, .02), (0, int(SR * (.03 + .03 * (i % 3))))) for i in range(26)]), .14),

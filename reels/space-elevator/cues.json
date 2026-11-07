@@ -1,0 +1,284 @@
+{
+ "dur": 109.573,
+ "music": "space",
+ "sfx": [
+  [
+   0.736,
+   "hum"
+  ],
+  [
+   4.21,
+   "whoosh"
+  ],
+  [
+   5.315,
+   "whoosh"
+  ],
+  [
+   9.736,
+   "pop"
+  ],
+  [
+   12.141,
+   "chime"
+  ],
+  [
+   17.753,
+   "pop"
+  ],
+  [
+   18.456,
+   "sonar"
+  ],
+  [
+   24.779,
+   "pop"
+  ],
+  [
+   30.09,
+   "chime"
+  ],
+  [
+   35.402,
+   "whoosh"
+  ],
+  [
+   35.766,
+   "creak"
+  ],
+  [
+   40.212,
+   "crack"
+  ],
+  [
+   40.504,
+   "crash"
+  ],
+  [
+   42.69,
+   "pop"
+  ],
+  [
+   42.833,
+   "creak"
+  ],
+  [
+   44.468,
+   "crack"
+  ],
+  [
+   44.582,
+   "crash"
+  ],
+  [
+   45.557,
+   "pop"
+  ],
+  [
+   47.232,
+   "chime"
+  ],
+  [
+   53.933,
+   "whoosh"
+  ],
+  [
+   54.868,
+   "hum"
+  ],
+  [
+   60.168,
+   "whoosh"
+  ],
+  [
+   60.816,
+   "hiss"
+  ],
+  [
+   62.762,
+   "thud"
+  ],
+  [
+   66.653,
+   "pop"
+  ],
+  [
+   68.394,
+   "laser"
+  ],
+  [
+   72.457,
+   "whoosh"
+  ],
+  [
+   72.716,
+   "hum"
+  ],
+  [
+   75.045,
+   "chime"
+  ],
+  [
+   77.633,
+   "whoosh"
+  ],
+  [
+   81.662,
+   "chime"
+  ],
+  [
+   83.389,
+   "whoosh"
+  ],
+  [
+   85.96,
+   "alarm"
+  ],
+  [
+   87.062,
+   "whoosh"
+  ],
+  [
+   90.735,
+   "pop"
+  ],
+  [
+   92.757,
+   "clang"
+  ],
+  [
+   92.891,
+   "whoosh"
+  ],
+  [
+   97.474,
+   "whoosh"
+  ],
+  [
+   101.489,
+   "pop"
+  ],
+  [
+   103.255,
+   "pop"
+  ],
+  [
+   105.503,
+   "whoosh"
+  ],
+  [
+   107.334,
+   "pop"
+  ]
+ ],
+ "vo": [
+  {
+   "t": 0.35,
+   "dur": 2.81,
+   "file": "vo/00.wav",
+   "text": "What if you could ride an elevator... all the way to space?"
+  },
+  {
+   "t": 4.21,
+   "dur": 4.476,
+   "file": "vo/01.wav",
+   "text": "No rockets, no explosions. Just a cable, from the ground, up into orbit."
+  },
+  {
+   "t": 9.736,
+   "dur": 7.167,
+   "file": "vo/02.wav",
+   "text": "But the cable can't stop just anywhere. It has to reach geostationary orbit, nearly thirty six thousand kilometers up."
+  },
+  {
+   "t": 17.753,
+   "dur": 5.976,
+   "file": "vo/03.wav",
+   "text": "Up there, one orbit takes exactly one day. So anything at that height hovers over the same spot on Earth."
+  },
+  {
+   "t": 24.779,
+   "dur": 9.573,
+   "file": "vo/04.wav",
+   "text": "Gravity pulls the cable down, so we add a heavy counterweight, far beyond orbit. Earth's spin swings it outward, like a ball on a string, and keeps the cable tight."
+  },
+  {
+   "t": 35.402,
+   "dur": 6.438,
+   "file": "vo/05.wav",
+   "text": "Next problem: what's it made of? A steel cable would snap under its own weight after just a few dozen kilometers."
+  },
+  {
+   "t": 42.69,
+   "dur": 2.117,
+   "file": "vo/06.wav",
+   "text": "Even Kevlar gives up after a few hundred."
+  },
+  {
+   "t": 45.557,
+   "dur": 7.326,
+   "file": "vo/07.wav",
+   "text": "We need carbon nanotubes: sheets of carbon, one atom thick, rolled into tubes. For their weight, they're far stronger than steel."
+  },
+  {
+   "t": 53.933,
+   "dur": 5.385,
+   "file": "vo/08.wav",
+   "text": "And the cable tapers. Thickest at orbit, where the pull is strongest, and thinner toward both ends."
+  },
+  {
+   "t": 60.168,
+   "dur": 5.435,
+   "file": "vo/09.wav",
+   "text": "Down on Earth, it's tied to a floating platform on the equator, so it can sail away from storms."
+  },
+  {
+   "t": 66.653,
+   "dur": 4.754,
+   "file": "vo/10.wav",
+   "text": "Climbers grip the ribbon and haul themselves up, powered by lasers beamed from the ground."
+  },
+  {
+   "t": 72.457,
+   "dur": 3.726,
+   "file": "vo/11.wav",
+   "text": "At two hundred kilometers an hour, the ride to orbit takes about a week."
+  },
+  {
+   "t": 77.633,
+   "dur": 4.506,
+   "file": "vo/12.wav",
+   "text": "As you rise, you weigh less and less. And at geostationary orbit... you float."
+  },
+  {
+   "t": 83.389,
+   "dur": 6.296,
+   "file": "vo/13.wav",
+   "text": "But space is crowded. Satellites and debris cross its path, so the platform shifts the cable to dodge them."
+  },
+  {
+   "t": 90.735,
+   "dur": 5.489,
+   "file": "vo/14.wav",
+   "text": "Climb past orbit and let go, and the spin flings you away, fast enough to reach other planets."
+  },
+  {
+   "t": 97.474,
+   "dur": 6.879,
+   "file": "vo/15.wav",
+   "text": "So what's stopping us? The longest carbon nanotube ever made is about half a meter. We'd need a hundred thousand kilometers."
+  },
+  {
+   "t": 105.503,
+   "dur": 2.12,
+   "file": "vo/16.wav",
+   "text": "Would you take the ride? Follow for more!"
+  }
+ ],
+ "countdown": [
+  0,
+  0.001,
+  0.002,
+  0.003
+ ]
+}

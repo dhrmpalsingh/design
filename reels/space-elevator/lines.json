@@ -1,0 +1,19 @@
+[
+ ["What if you could ride an elevator... all the way to space?", 0.8],
+ ["No rockets, no explosions. Just a cable, from the ground, up into orbit.", 0.8],
+ ["But the cable can't stop just anywhere. It has to reach geostationary orbit, nearly thirty six thousand kilometers up.", 0.6],
+ ["Up there, one orbit takes exactly one day. So anything at that height hovers over the same spot on Earth.", 0.8],
+ ["Gravity pulls the cable down, so we add a heavy counterweight, far beyond orbit. Earth's spin swings it outward, like a ball on a string, and keeps the cable tight.", 0.8],
+ ["Next problem: what's it made of? A steel cable would snap under its own weight after just a few dozen kilometers.", 0.6],
+ ["Even Kevlar gives up after a few hundred.", 0.5],
+ ["We need carbon nanotubes: sheets of carbon, one atom thick, rolled into tubes. For their weight, they're far stronger than steel.", 0.8],
+ ["And the cable tapers. Thickest at orbit, where the pull is strongest, and thinner toward both ends.", 0.6],
+ ["Down on Earth, it's tied to a floating platform on the equator, so it can sail away from storms.", 0.8],
+ ["Climbers grip the ribbon and haul themselves up, powered by lasers beamed from the ground.", 0.8],
+ ["At two hundred kilometers an hour, the ride to orbit takes about a week.", 1.2],
+ ["As you rise, you weigh less and less. And at geostationary orbit... you float.", 1.0],
+ ["But space is crowded. Satellites and debris cross its path, so the platform shifts the cable to dodge them.", 0.8],
+ ["Climb past orbit and let go, and the spin flings you away, fast enough to reach other planets.", 1.0],
+ ["So what's stopping us? The longest carbon nanotube ever made is about half a meter. We'd need a hundred thousand kilometers.", 0.9],
+ ["Would you take the ride? Follow for more!", 1.6]
+]
